@@ -1,50 +1,99 @@
 <?php
-/**
- * The template for displaying all single posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
- *
- * @package WordPress
- * @subpackage Twenty_Twenty_One
- * @since Twenty Twenty-One 1.0
- */
-
 get_header();
+?>
 
-/* Start the Loop */
-while ( have_posts() ) :
-	the_post();
+<div class="body-regular" id="post-<?php the_ID(); ?>">
 
-	get_template_part( 'template-parts/content/content-single' );
+   <article>  
+    <div class="widgetContain boxShadowsft">
+        <div class="widgetHeader">
+          <div class="titleBar"></div>
+              <?php
+              if ( function_exists('yoast_breadcrumb') ) {
+                yoast_breadcrumb( '<h3 id="breadcrumbs" class="breadcrumbs-postion">','</h3>' );
+              }
+              ?>                  
+        </div>
+        <div class="widgetBody">
+          <?php the_title( '<h1 class="blogTitle">', '</h1>' ); ?>
 
-	if ( is_attachment() ) {
-		// Parent post navigation.
-		the_post_navigation(
-			array(
-				/* translators: %s: Parent post link. */
-				'prev_text' => sprintf( __( '<span class="meta-nav">Published in</span><span class="post-title">%s</span>', 'twentytwentyone' ), '%title' ),
-			)
-		);
-	}
 
-	// If comments are open or there is at least one comment, load up the comment template.
-	if ( comments_open() || get_comments_number() ) {
-		comments_template();
-	}
+          <div class="entry-content">
+            <div class="featured-image">
+              <?php 
+                if (has_post_thumbnail())
+                  the_post_thumbnail( ); 
+                ?>                  
+            </div>
+            <div class="post-meta">
+              <?php 
+                $get_author_id = get_the_author_meta('ID'); 
+                $get_author_gravatar = get_avatar_url($get_author_id, array('size' => 15));                
+              ?>
+              <div><img src="<?php echo esc_html($get_author_gravatar) ?>"></div>
+              <div><?php echo get_the_author_meta('display_name')  ?></div>
+              <div class="spacer"><div class="spacer-inner"></div></div>
+              <div><span><?php the_modified_date() ?></span></div>              
+              <div class="spacer"><div class="spacer-inner"></div></div>
+              <div><span><?php echo $post->comment_count; ?> Comments</span></div>
+              
+            </div>
 
-	// Previous/next post navigation.
-	$twentytwentyone_next = is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' );
-	$twentytwentyone_prev = is_rtl() ? twenty_twenty_one_get_icon_svg( 'ui', 'arrow_right' ) : twenty_twenty_one_get_icon_svg( 'ui', 'arrow_left' );
+            <div class="post-content">
 
-	$twentytwentyone_next_label     = esc_html__( 'Next post', 'twentytwentyone' );
-	$twentytwentyone_previous_label = esc_html__( 'Previous post', 'twentytwentyone' );
+                <?php 
+                  the_content();
+                ?>
+            </div>
 
-	the_post_navigation(
-		array(
-			'next_text' => '<p class="meta-nav">' . $twentytwentyone_next_label . $twentytwentyone_next . '</p><p class="post-title">%title</p>',
-			'prev_text' => '<p class="meta-nav">' . $twentytwentyone_prev . $twentytwentyone_previous_label . '</p><p class="post-title">%title</p>',
-		)
-	);
-endwhile; // End of the loop.
+            <h3>Related Posts</h3>
+            <div class="related-posts">
+              <?php example_cats_related_post() ?>
+            </div>
 
+            
+            <div class="post-content">
+
+                <?php 
+                  the_content();
+                ?>
+            </div>
+            
+            <div class="post-content">
+
+                <?php 
+                  the_content();
+                ?>
+            </div>
+          </div>
+        </div>
+    </div>
+  </article>
+
+
+  <aside>  
+    <div class="aside-sticky">
+      Hey
+    </div>      
+      
+  </aside>
+
+
+  
+</div>
+<div class="post-bottom">
+    <div class="comment-section">
+      <?php 
+        
+        if ( comments_open() ):
+          comments_template();
+        endif;
+      ?>
+    </div>
+
+    <aside class="comment-aside">
+      Comment Stuff
+    </aside>
+  </div>
+<?php
 get_footer();

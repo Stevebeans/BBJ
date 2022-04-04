@@ -1,0 +1,56 @@
+@import "./shared/normalize";
+@import "./frontend/components/breakpoints";
+@import "./frontend/components/function";
+@import "./frontend/global/tailwind";
+@import "./frontend/global/variables";
+@import "./frontend/layout/body";
+@import "./frontend/layout/header";
+@import "./frontend/layout/homepage";
+@import "./frontend/layout/comments";
+@import "./frontend/layout/playerprofile";
+@import "./frontend/global/mobile";
+
+html {
+  font-size: 16px;
+}
+body {
+  color: #333;
+  font-family: sans-serif;
+  background-color: $backgroundColor;
+
+  @include media("<=phone") {
+    //background-color: $phoneBG;
+  }
+
+  @include media(">phone", "<=tablet") {
+    //360 - 768
+  }
+
+  @include media(">tablet", "<=desktop") {
+    //786-1366
+  }
+
+  @include media(">=desktop") {
+    //background-color: $largeBG;
+  }
+}
+
+.aBlock {
+  display: block;
+  margin-top: toRem(10);
+  margin-bottom: toRem(10);
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+}
+
+.sideBlock {
+  display: block;
+  margin-top: toRem(25);
+  margin-bottom: toRem(25);
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  height: 600px;
+  border: 1px solid;
+}
