@@ -5,32 +5,32 @@
 }
 
 h1 {
-  font-size: toRem(32);
+  font-size: toRem(40);
   font-weight: 700;
   font-family: $header_font;
   color: $primaryColor;
   @include media("<=tablet") {
-    line-height: toRem(32);
+    line-height: toRem(40);
   }
 }
 
 h2 {
+  font-size: toRem(28);
+  font-weight: 700;
+  font-family: $header_font;
+  color: $primaryColor;
+  @include media("<=tablet") {
+    line-height: toRem(28);
+  }
+}
+
+h3 {
   font-size: toRem(24);
   font-weight: 700;
   font-family: $header_font;
   color: $primaryColor;
   @include media("<=tablet") {
     line-height: toRem(24);
-  }
-}
-
-h3 {
-  font-size: toRem(20);
-  font-weight: 700;
-  font-family: $header_font;
-  color: $primaryColor;
-  @include media("<=tablet") {
-    line-height: toRem(20);
   }
 }
 
@@ -136,4 +136,26 @@ aside {
   //border: 1px solid;
   margin: 0px auto;
   position: relative;
+}
+
+#breadcrumbs {
+  list-style: none;
+  margin: -16px 0px 10px 0px;
+  padding-left: toRem(10);
+  overflow: hidden;
+  font-size: toRem(20);
+  font-weight: 600;
+  font-family: $header_font;
+}
+
+#breadcrumbs li {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: toRem(8);
+}
+
+#breadcrumbs .separator {
+  font-size: 18px;
+  font-weight: 100;
+  color: $secondaryColor;
 }

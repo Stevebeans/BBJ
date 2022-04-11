@@ -13,7 +13,12 @@
     
   <div class="container">
 
-
+    <?php 
+      // Get logged in user info 
+      if (is_user_logged_in()):
+      $currentUser = wp_get_current_user();
+      endif;
+    ?>
 
   
     <div class="headerContain">      
@@ -59,14 +64,7 @@
         </li>
       </ul>
     </div>
-    <div class="spoilerBar">
-      <div class="playerDiv">
-
-      
-        <div><a href="/bbplayer/alyssa-lopez/"><img src="<?php echo get_theme_file_uri('/images/alyssa-th.jpg') ?>" alt="Alyssa Big Brother 23"></a></div>
-      </div>
-      <div class="closingBar"></div>
-    </div>
+      <?php get_template_part( 'template-parts/spoiler-bar' )?>
 
     
 

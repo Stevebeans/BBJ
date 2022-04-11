@@ -105,38 +105,38 @@ select {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  font-family: "Agency FB", sans-serif;
+  font-family: "Yanone Kaffeesatz", sans-serif;
   color: #35546e;
 }
 @media (max-width: 768px) {
   h1 {
-    line-height: 2rem;
+    line-height: 2.5rem;
   }
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  font-family: "Agency FB", sans-serif;
+  font-family: "Yanone Kaffeesatz", sans-serif;
   color: #35546e;
 }
 @media (max-width: 768px) {
   h2 {
-    line-height: 1.5rem;
+    line-height: 1.75rem;
   }
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  font-family: "Agency FB", sans-serif;
+  font-family: "Yanone Kaffeesatz", sans-serif;
   color: #35546e;
 }
 @media (max-width: 768px) {
   h3 {
-    line-height: 1.25rem;
+    line-height: 1.5rem;
   }
 }
 
@@ -242,6 +242,28 @@ aside {
   max-width: 70rem;
   margin: 0px auto;
   position: relative;
+}
+
+#breadcrumbs {
+  list-style: none;
+  margin: -16px 0px 10px 0px;
+  padding-left: 0.625rem;
+  overflow: hidden;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-family: "Yanone Kaffeesatz", sans-serif;
+}
+
+#breadcrumbs li {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+#breadcrumbs .separator {
+  font-size: 18px;
+  font-weight: 100;
+  color: #ffbf0f;
 }
 
 header {
@@ -368,13 +390,6 @@ header {
   width: 170px;
 }
 
-.spoilerBar img {
-  border-radius: 50%;
-  height: clamp(30px, 10vw, 50px);
-  width: clamp(30px, 10vw, 50px);
-  border: 1px solid rgba(53, 84, 110, 0.9);
-}
-
 .menu {
   flex-grow: 1;
 }
@@ -431,7 +446,7 @@ header {
 
 .playerDiv {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding: 5px;
   background-color: white;
   transform: translateY(0);
@@ -506,6 +521,97 @@ header {
 
 .btn__left {
   margin-right: 0.625rem;
+}
+
+.profile-contain h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.125rem;
+}
+
+.profile-contain h4 {
+  font-size: 0.875rem;
+  line-height: 0.875rem;
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-weight: 400;
+  text-align: center;
+}
+
+.header-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 2px;
+  border-radius: 25px;
+}
+
+.header-thumb {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  width: 50px;
+  height: 75px;
+  text-align: center;
+}
+
+.HoH,
+.Winner {
+  color: #03b94f;
+}
+
+.HoH img,
+.Winner img {
+  background-color: #b4e4c8;
+  border: 2px solid #03b94f;
+}
+
+.PoV,
+.Second {
+  color: #0091a1;
+}
+
+.PoV img,
+.Second img {
+  background-color: #b4dfe4;
+  border: 2px solid #0091a1;
+}
+
+.Nom,
+.AFP {
+  color: #ffbb00;
+}
+
+.Nom img,
+.AFP img {
+  background-color: #fee08d;
+  border: 2px solid #ffbb00;
+}
+
+.Jury {
+  color: #7c65c1;
+}
+
+.Jury img {
+  background-color: #ab9dd6;
+  border: 2px solid #7c65c1;
+  opacity: 0.5;
+}
+
+.Evicted {
+  color: #666666;
+}
+
+.Evicted img {
+  background-color: #afafaf;
+  border: 2px solid #666666;
+  filter: gray;
+  /* IE6-9 */
+  /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: grayscale(1);
+  /* Microsoft Edge and Firefox 35+ */
 }
 
 .bodyContainer {
@@ -913,6 +1019,14 @@ header {
   border-right: 3px solid #ffbf0f;
 }
 
+.player-name-desktop {
+  display: none;
+}
+
+.player-profile-content {
+  border-left: 3px solid #ffbf0f;
+}
+
 .player-name-mobile {
   color: #35546e;
 }
@@ -1015,6 +1129,60 @@ div[role=progressbar]::before {
   padding: 0.625rem;
 }
 
+.spoiler-block {
+  width: 100%;
+  margin: 10px auto;
+}
+
+.season-standings {
+  display: flex;
+  justify-content: space-between;
+}
+
+.standing-contain {
+  border: 2px solid #ffbf0f;
+  position: relative;
+  border-radius: 50%;
+  width: 33%;
+  width: 7.8125rem;
+  height: 7.8125rem;
+}
+
+.sc__banner {
+  position: absolute;
+  background-color: #ffbf0f;
+  width: 95%;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 5px;
+  color: #35546e;
+  box-shadow: 2px 2px 10px black;
+  z-index: 10;
+}
+
+.nom1 {
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  border-radius: 150px 150px 0 0;
+  background-color: green;
+  border-bottom: 2px solid #ffbf0f;
+}
+
+.nom2 {
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  border-radius: 0 0 150px 150px;
+  background-color: green;
+  border-bottom: 2px solid #ffbf0f;
+}
+
 @media screen and (min-width: 768px) {
   .related-post {
     max-width: 33%;
@@ -1037,6 +1205,29 @@ div[role=progressbar]::before {
 
   .player-name-mobile {
     display: none;
+  }
+
+  .player-profile-content {
+    border-left: 0px;
+  }
+
+  .sc__banner {
+    font-size: 1.125rem;
+  }
+
+  .sc__hoh {
+    width: 15.625rem;
+    height: 15.625rem;
+  }
+
+  .sc__pov {
+    width: 15.625rem;
+    height: 15.625rem;
+  }
+
+  .standing-contain {
+    width: 15.625rem;
+    height: 15.625rem;
   }
 }
 @media screen and (min-width: 1366px) {

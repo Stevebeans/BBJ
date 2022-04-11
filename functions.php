@@ -12,6 +12,7 @@ define('BBJ_THEME_BLOCK_DIR', BBJ_THEME_INC . 'blocks/');
 require ('includes/core.php');
 require ('includes/meta-box.php');
 require ('includes/cpt.php');
+require ('includes/breadcrumbs.php');
 
 
 // Load general scripts
@@ -20,6 +21,7 @@ function load_assets() {
 	wp_enqueue_script('frontend', BBJ_THEME_DIST_PATH . 'index.js', array('jquery'), BBJ_THEME_VERSION, true);  
   wp_enqueue_style('frontend', BBJ_THEME_DIST_PATH . 'index.css', array(), BBJ_THEME_VERSION);  
   wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+  wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@500;600;700&display=swap');
 }
 
 add_action ('wp_enqueue_scripts', 'load_assets');

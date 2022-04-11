@@ -15,14 +15,17 @@ get_header(); ?>
   <?php 
 
 // Get query for the live feed updates post
-
+global $wpdb;
+$feedid = $wpdb->get_col('SELECT ID FROM wp_bbj_feedupdates');
 $feed_updates_args = array(
     'posts_per_page'    =>  5,
-    'post_type'         => 'feed_updates',
+    'post_type'         => 'feed_update',
+    'post__in'          => $feedid,
     'post_status'       => 'publish',
     'orderby'           => 'date',
     'order'             => 'DESC'
 );
+
 ?>
 
   
@@ -35,20 +38,21 @@ $feed_updates_args = array(
       <div class="widgetBody">
 
       <?php  
-        //$feed_updates = new WP_Query($feed_updates_args);
+        $feed_updates = new WP_Query($feed_updates_args);
 
-        //if ($feed_updates->have_posts()) : 
+        if ($feed_updates->have_posts()) : 
+          
       ?>
         <ul>            
-        <?php //while ($feed_updates->have_posts()) : $feed_updates->the_post();?>
+        <?php while ($feed_updates->have_posts()) : $feed_updates->the_post();?>
           <li>
-            <?php //the_title()?> - <?php 
-            //$feedTime = get_field('time');
-            //echo time_ago_calc($feedTime)?>
+            <a href="<?php the_permalink() ?>"><?php the_title()?></a> - <?php 
+            $feedTime = rwmb_meta( 'feed_time');
+            echo time_ago_calc($feedTime)?>
           </li>
-        <?php //endwhile; ?>
+        <?php endwhile; ?>
         </ul>
-      <?php //endif ?>
+      <?php endif ?>
 
 
 
@@ -97,7 +101,7 @@ $latest_post_args = array(
     <div class="widgetContain boxShadowsft">
       <div class="widgetHeader">
         <div class="titleBar"></div>
-          <h2 class="widgetTitle">Lastest <?php echo $current_season ?> News</h2>        
+          <h2 class="widgetTitle">Latest <?php echo $current_season ?> News</h2>        
       </div>
       <div class="widgetBody">
         
@@ -236,7 +240,16 @@ $latest_post_args = array(
     <div class="widgetContain">
       <div class="widgetHeader">
         <div class="titleBar"></div>
-          <h2 class="widgetTitle">Welcome Back, Steve</h2>        
+          <?php if (is_user_logged_in()): 
+              $currentUser = wp_get_current_user();
+              //echo '<pre>',print_r($currentUser,1),'</pre>';
+          ?>
+          <h2 class="widgetTitle">Welcome Back, Steve</h2>  
+
+          <a href="/user-dashboard">User Dashboard</a>
+          <?php else: ?>  
+          <h2 class="widgetTitle">Welcome, Visitor!</h2>  
+          <?php endif; ?> 
       </div>
       <div class="widgetBody">Here is a small account area that will have some quick links to anything account related. 
         Such items are possibly new posts since last visit, link to edit profile, your comment count, your comment ratio, 

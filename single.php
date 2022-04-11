@@ -8,11 +8,8 @@ get_header();
     <div class="widgetContain boxShadowsft">
         <div class="widgetHeader">
           <div class="titleBar"></div>
-              <?php
-              if ( function_exists('yoast_breadcrumb') ) {
-                yoast_breadcrumb( '<h3 id="breadcrumbs" class="breadcrumbs-postion">','</h3>' );
-              }
-              ?>                  
+          <?php custom_breadcrumbs(); ?>
+                       
         </div>
         <div class="widgetBody">
           <?php the_title( '<h1 class="blogTitle">', '</h1>' ); ?>

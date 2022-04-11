@@ -114,13 +114,6 @@ header {
   width: 170px;
 }
 
-.spoilerBar img {
-  border-radius: 50%;
-  height: clamp(30px, 10vw, 50px);
-  width: clamp(30px, 10vw, 50px);
-  border: 1px solid rgba($primaryColor, 0.9);
-}
-
 .menu {
   flex-grow: 1;
 }
@@ -191,7 +184,7 @@ header {
 
 .playerDiv {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding: 5px;
   background-color: $white;
   transform: translateY(0);
@@ -264,4 +257,93 @@ header {
 
 .btn__left {
   margin-right: toRem(10);
+}
+
+.profile-contain h3 {
+  font-size: toRem(16);
+  font-weight: 400;
+  text-align: center;
+  line-height: toRem(18);
+}
+
+.profile-contain h4 {
+  font-size: toRem(14);
+  line-height: toRem(14);
+  font-family: $header_font;
+  font-weight: 400;
+  text-align: center;
+}
+
+.header-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 2px;
+  border-radius: 25px;
+}
+
+.header-thumb {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  width: 50px;
+  height: 75px;
+  text-align: center;
+}
+
+.HoH,
+.Winner {
+  color: $hoh-strong;
+}
+
+.HoH img,
+.Winner img {
+  background-color: $hoh-light;
+  border: 2px solid $hoh-strong;
+}
+
+.PoV,
+.Second {
+  color: $pov-strong;
+}
+
+.PoV img,
+.Second img {
+  background-color: $pov-light;
+  border: 2px solid $pov-strong;
+}
+
+.Nom,
+.AFP {
+  color: $nom-strong;
+}
+
+.Nom img,
+.AFP img {
+  background-color: $nom-light;
+  border: 2px solid $nom-strong;
+}
+
+.Jury {
+  color: $jury-strong;
+}
+
+.Jury img {
+  background-color: $jury-light;
+  border: 2px solid $jury-strong;
+  opacity: 0.5;
+}
+
+.Evicted {
+  color: $evic-strong;
+}
+
+.Evicted img {
+  background-color: $evic-light;
+  border: 2px solid $evic-strong;
+  filter: gray; /* IE6-9 */
+  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
 }

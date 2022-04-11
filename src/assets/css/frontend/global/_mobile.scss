@@ -22,6 +22,28 @@
   .player-name-mobile {
     display: none;
   }
+  .player-profile-content {
+    border-left: 0px;
+  }
+
+  .sc__banner {
+    font-size: toRem(18);
+  }
+
+  .sc__hoh {
+    width: toRem(250);
+    height: toRem(250);
+  }
+
+  .sc__pov {
+    width: toRem(250);
+    height: toRem(250);
+  }
+
+  .standing-contain {
+    width: toRem(250);
+    height: toRem(250);
+  }
 }
 
 // huge screens
