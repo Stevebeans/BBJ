@@ -32,8 +32,8 @@
       </div>
       <div class="regMenu">
       
-        <button class="menuButtons btn__left">Login</button>
-        <button class="menuButtons">Sign Up</button>
+        <button class="menuButtons btn__left"><a href="/login">Login</a></button>
+        <button class="menuButtons"><a href="/registration">Sign Up</a></button>
       </div>
     </div>
     <div class="menuFull">

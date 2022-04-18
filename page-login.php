@@ -21,15 +21,13 @@ get_header();
 		<div class="widgetContain boxShadowsft">
 			<div class="widgetHeader">
         <div class="titleBar"></div>
-          <h2 class="widgetTitle">User Dashboard</h2>        
+          <h2 class="widgetTitle">Register To Big Brother Junkies</h2>        
       </div>
 			<div class="widgetBody">
 
-      <?php echo do_shortcode( "[profilepress-edit-profile id='1']")?>
+      <?php echo do_shortcode( "[profilepress-login id='1']")?>
 
-				<?php 	$form = '[mb_user_profile_info id="default-fields, user-info, user-photos, rwmb-user-info" submit_button="Update Your Profile"]';
-					echo do_shortcode( $form );
-				?>
+			
 			</div>
 		</div>
 

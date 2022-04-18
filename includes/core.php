@@ -250,3 +250,11 @@ function season_percentage($start, $finish, $evicted){
  */
 
 require_once get_parent_theme_file_path( '/better-comments.php' );
+
+
+
+// MailPoet Checkbox to registration
+add_action("um_after_profile_fields","um_custom_add_register_form_hook");
+function um_custom_add_register_form_hook(){
+   do_action( ‘register_form’ );
+}
