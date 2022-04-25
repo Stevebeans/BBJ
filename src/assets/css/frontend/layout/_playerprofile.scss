@@ -65,10 +65,17 @@
 
 .seasons {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.player-list {
+  display: flex;
 }
 
 .season-container {
   position: relative;
+  width: 3rem;
+  margin: toRem(5);
 }
 
 .season {
@@ -79,6 +86,14 @@
   z-index: 10;
   font-weight: 600;
   color: $primaryColor;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.season img {
+  border-radius: 50%;
 }
 
 @keyframes fill {

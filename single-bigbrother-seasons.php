@@ -3,6 +3,19 @@ get_header();
 ?>
 
 
+<?php
+
+$currentSeason = get_the_id();
+$players = $wpdb->get_results('SELECT sn.*, s.full_name FROM wp_bbj_player_season_new AS sn
+LEFT JOIN wp_bbj_seasons s ON s.ID = sn.ID
+	WHERE sn.ID = "' . $currentSeason . '"');
+
+$playerList = unserialize($players[0]->player_list2);
+$seasonName = $players[0]->full_name;
+?>
+
+
+
 
 <?php $seasonTable = ['storage_type' => 'custom_table', 'table' => 'wp_bbj_seasons'];
 
@@ -33,19 +46,37 @@ get_header();
 
 					<h1 class="player-name-mobile"><?php the_title() ?></h1>
 					<h3>Information:</h3>
-					<div class="seasons">
+					
             
           
-          Season Start:<br>
-					Season End:<br>
+          Season Start: <?php echo rwmb_meta('start_date') ?><br>
+					Season End:  <?php echo rwmb_meta('end_date') ?><br>
 					Days:<br>
 					Winner:<br>
 
-          
-          
-					</div>
 					<h3>Players:</h3>
+          <div class="seasons">
+          
+					
 
+					<?php 
+					foreach ($playerList as $player):
+						$addInfo = $wpdb->get_results('SELECT profile_picture, first_name, last_name FROM wp_bbj_players WHERE ID = "' . $player['player_id'] . '"');
+          	$imgUrl =  wp_get_attachment_image_src($addInfo[0]->profile_picture, 'tiny');
+          	$firstName = $addInfo[0]->first_name;
+						$seasonStart = rwmb_meta('start_date');
+						$seasonEnd = rwmb_meta('end_date');
+						$evictedDate = $player['evicted'];
+						$seasonPercent = season_percentage($seasonStart, $seasonEnd, $evictedDate);
+					?>
+					<div class="season-container">
+						<div class="season"><a href="<?php the_permalink(	$player['player_id']); ?>"><img src="<?php echo $imgUrl[0]?>" alt=""></a></div>
+						<div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:<?php echo $seasonPercent?>"></div>
+						</div>
+					<?php 
+					endforeach;
+					?>
+</div>
           Player Image Loop with the circle
          
 

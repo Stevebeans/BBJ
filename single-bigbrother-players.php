@@ -5,6 +5,8 @@ get_header();
 
 <?php 
 
+	$playerID = get_the_id();
+
 	$playerTableInfo = ['storage_type' => 'custom_table', 'table' => 'wp_bbj_players'];
 	$playerSeasonInfo = ['storage_type' => 'custom_table', 'table' => 'wp_bbj_player_results'];
 
@@ -46,7 +48,6 @@ get_header();
 					<h1 class="player-name-mobile"><?php   the_title() ?></h1>
 					<h3>Seasons:</h3>
 					<div class="seasons">
-
 
 
             
