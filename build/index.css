@@ -1156,7 +1156,6 @@ div[role=progressbar]::before {
 }
 
 .standing-contain {
-  border: 2px solid #ffbf0f;
   position: relative;
   border-radius: 50%;
   width: 33%;
@@ -1178,6 +1177,15 @@ div[role=progressbar]::before {
   color: #35546e;
   box-shadow: 2px 2px 10px black;
   z-index: 10;
+}
+
+.sc__hoh img,
+.sc__pov img {
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #ffbf0f;
+  position: absolute;
 }
 
 .nom1 {

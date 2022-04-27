@@ -12,6 +12,8 @@ LEFT JOIN wp_bbj_seasons s ON s.ID = sn.ID
 
 $playerList = unserialize($players[0]->player_list2);
 $seasonName = $players[0]->full_name;
+
+
 ?>
 
 
@@ -75,6 +77,7 @@ $seasonName = $players[0]->full_name;
 						</div>
 					<?php 
 					endforeach;
+					wp_reset_postdata();
 					?>
 </div>
           Player Image Loop with the circle
@@ -93,10 +96,60 @@ $seasonName = $players[0]->full_name;
               <div class="spoiler-block">
                 <h3>Current Results</h3>
                 <div class="season-standings">
-                  <div class="standing-contain sc__hoh" style="background-image: url(<?php echo esc_url( $banner ); ?>)">
-                    <div class="sc__banner">Head of Household</div>
-                    <?php // If winner, show First Place ?>
+
+								<?php 
+								foreach($playerList as $player):
+									$addInfo = $wpdb->get_results('SELECT profile_picture, first_name, last_name FROM wp_bbj_players WHERE ID = "' . $player['player_id'] . '"');
+									$imgUrl =  wp_get_attachment_image_src($addInfo[0]->profile_picture, 'profile-picture');
+
+					
+
+									echo '<pre>',print_r($player,1),'</pre>';
+									if ($player['current_winner']):
+								?>
+                  <div class="standing-contain sc__hoh">
+                    <div class="sc__banner">Winner</div>
+										<div><A href="<?php the_permalink(	$player['player_id']); ?>"><img src="<?php echo $imgUrl[0] ?>" alt=""></a></div>                    
                   </div>
+								<?php	
+									endif;
+									if ($player['current_second']):
+								?>
+                  <div class="standing-contain sc__pov">
+                    <div class="sc__banner">Second</div>
+										<div><A href="<?php the_permalink(	$player['player_id']); ?>"><img src="<?php echo $imgUrl[0] ?>" alt=""></a></div>                    
+                  </div>
+								<?php 
+									endif;
+									if ($player['current_afp']):
+										?>
+											<div class="standing-contain sc__pov">
+												<div class="sc__banner">America's Favorite</div>
+												<div><A href="<?php the_permalink(	$player['player_id']); ?>"><img src="<?php echo $imgUrl[0] ?>" alt=""></a></div>                    
+											</div>
+										<?php 
+									endif;
+									if ($player['current_hoh']):
+										?>
+											<div class="standing-contain sc__pov">
+												<div class="sc__banner">Head of Household</div>
+												<div><A href="<?php the_permalink(	$player['player_id']); ?>"><img src="<?php echo $imgUrl[0] ?>" alt=""></a></div>                    
+											</div>
+										<?php 
+									endif;
+									
+									if ($player['current_pov']):
+										?>
+											<div class="standing-contain sc__pov">
+												<div class="sc__banner">Power of Veto</div>
+												<div><A href="<?php the_permalink(	$player['player_id']); ?>"><img src="<?php echo $imgUrl[0] ?>" alt=""></a></div>                    
+											</div>
+										<?php 
+									endif;
+								endforeach;
+								?>
+
+
                   <div class="standing-contain sc__pov" style="background-image: url(<?php echo esc_url( $banner ); ?>)">
                     <div class="sc__banner">Power of Veto</div>
                     <?php // If winner, show Second Place ?>
