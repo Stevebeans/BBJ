@@ -115,7 +115,6 @@ header {
 }
 
 .menu {
-  flex-grow: 1;
 }
 
 .menuFull {
@@ -125,6 +124,8 @@ header {
   padding-left: 5px;
   height: auto;
   min-width: 100px;
+  text-align: left;
+  justify-content: space-between;
 }
 
 .menu-inside {
@@ -179,7 +180,7 @@ header {
   border: 0px solid $secondaryColor;
   opacity: 1;
   position: relative;
-  z-index: 10;
+  z-index: 5;
 }
 
 .playerDiv {
@@ -346,4 +347,211 @@ header {
   filter: gray; /* IE6-9 */
   -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
   filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+}
+
+.navigation-main {
+  display: none;
+  //
+  // Structural Styles
+  //
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  text-align: center;
+
+  ul {
+    min-width: 100px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    top: -999em;
+    left: -999em;
+  }
+
+  li {
+    display: inline-block;
+    position: relative;
+    text-align: left; // Reset text alignment
+
+    &.focus,
+    &:hover {
+      > ul {
+        top: auto;
+        left: auto;
+      }
+    }
+
+    li {
+      display: block;
+
+      &.focus,
+      &:hover {
+        > ul {
+          left: 100%;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  //
+  // Presentational Styles
+  //
+
+  // Global menu link styles
+  a {
+    color: $secondaryColor;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+    padding: 5px 10px;
+  }
+
+  // Active & hover styles
+  a:hover,
+  li:hover > a,
+  .focus > a,
+  .current-menu-item > a,
+  .current-menu-ancestor > a {
+    color: $secondaryColorLight;
+  }
+
+  // First level item arrows
+  .menu-item-has-children {
+    > a {
+      &::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 4px solid transparent;
+        border-top-color: currentColor; // Nifty trick to always keep the arrow colored the same as the menu item's text in every different state
+      }
+    }
+  }
+
+  // Second level item arrows
+  ul {
+    .menu-item-has-children {
+      > a {
+        &::before {
+          right: 2px;
+          border-top-color: transparent;
+          border-left-color: currentColor;
+        }
+      }
+    }
+  }
+
+  // Submenu styles
+  ul {
+    background-color: $primaryColor;
+    z-index: 20;
+  }
+}
+
+.navigation-main-mobile {
+  //
+  // Structural Styles
+  //
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  text-align: center;
+
+  ul {
+    min-width: 100px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    top: -999em;
+    left: -999em;
+  }
+
+  li {
+    display: block;
+    position: relative;
+    text-align: left; // Reset text alignment
+
+    &.focus,
+    &:hover {
+      > ul {
+        top: auto;
+        left: auto;
+      }
+    }
+
+    li {
+      display: block;
+
+      &.focus,
+      &:hover {
+        > ul {
+          left: 100%;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  //
+  // Presentational Styles
+  //
+
+  // Global menu link styles
+  a {
+    color: $secondaryColor;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+    padding: 5px 10px;
+  }
+
+  // Active & hover styles
+  a:hover,
+  li:hover > a,
+  .focus > a,
+  .current-menu-item > a,
+  .current-menu-ancestor > a {
+    color: $secondaryColorLight;
+  }
+
+  // First level item arrows
+  .menu-item-has-children {
+    > a {
+      &::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 4px solid transparent;
+        border-top-color: currentColor; // Nifty trick to always keep the arrow colored the same as the menu item's text in every different state
+      }
+    }
+  }
+
+  // Second level item arrows
+  ul {
+    .menu-item-has-children {
+      > a {
+        &::before {
+          right: 2px;
+          border-top-color: transparent;
+          border-left-color: currentColor;
+        }
+      }
+    }
+  }
+
+  // Submenu styles
+  ul {
+    background-color: $primaryColor;
+    z-index: 20;
+  }
 }

@@ -104,7 +104,7 @@ $seasonName = $players[0]->full_name;
 
 					
 
-									echo '<pre>',print_r($player,1),'</pre>';
+								//	echo '<pre>',print_r($player,1),'</pre>';
 									if ($player['current_winner']):
 								?>
                   <div class="standing-contain sc__hoh">
@@ -146,25 +146,25 @@ $seasonName = $players[0]->full_name;
 											</div>
 										<?php 
 									endif;
+
+									
+									if ($player['current_nom']):
+										?>
+											<div class="standing-contain sc__pov">
+												<div class="sc__banner">Nomination</div>
+												<div><A href="<?php the_permalink(	$player['player_id']); ?>"><img src="<?php echo $imgUrl[0] ?>" alt=""></a></div>                    
+											</div>
+										<?php 
+									endif;
 								endforeach;
 								?>
 
 
-                  <div class="standing-contain sc__pov" style="background-image: url(<?php echo esc_url( $banner ); ?>)">
-                    <div class="sc__banner">Power of Veto</div>
-                    <?php // If winner, show Second Place ?>
-                  </div>
-                  <div class="standing-contain sc__nom">                    
-                    <div class="sc__banner">Nominations</div>
-										<div class="nom1" style="background-image: url(<?php echo esc_url( $banner ); ?>)"></div>
-										<div class="nom2" style="background-image: url(<?php echo esc_url( $banner ); ?>)"></div>
-                    <?php // If winner, show Third Place ?>
-                  </div>
                 </div>
               </div>
 
 
-					<?php //the_field( 'right_side' ); ?>
+					<?php the_content(); ?>
 
 					</div>
 				</div>

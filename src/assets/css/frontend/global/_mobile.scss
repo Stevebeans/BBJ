@@ -27,22 +27,19 @@
   }
 
   .sc__banner {
-    font-size: toRem(18);
-  }
-
-  .sc__hoh {
-    width: toRem(250);
-    height: toRem(250);
-  }
-
-  .sc__pov {
-    width: toRem(250);
-    height: toRem(250);
+    font-size: toRem(16);
   }
 
   .standing-contain {
-    width: toRem(250);
-    height: toRem(250);
+    width: toRem(175);
+    height: toRem(175);
+  }
+  .navigation-main {
+    display: block;
+  }
+
+  .navigation-main-mobile {
+    display: none;
   }
 }
 

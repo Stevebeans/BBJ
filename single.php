@@ -47,21 +47,6 @@ get_header();
             <div class="related-posts">
               <?php example_cats_related_post() ?>
             </div>
-
-            
-            <div class="post-content">
-
-                <?php 
-                  the_content();
-                ?>
-            </div>
-            
-            <div class="post-content">
-
-                <?php 
-                  the_content();
-                ?>
-            </div>
           </div>
         </div>
     </div>

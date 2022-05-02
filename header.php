@@ -38,10 +38,23 @@
     </div>
     <div class="menuFull">
       <div class="menu">
-        <a href="http://">dsaf</a>
-        <a href="http://">adfsd</a>
-        <a href="http://">adfdsf</a>
-        <a href="http://">afsd</a>
+      <?php 
+        wp_nav_menu( 
+          array(
+            'theme_location'  => 'bbj-main-menu',
+            'menu_class'     => 'navigation-main',
+          )
+         )
+      ?>
+      <script>
+        jQuery(function ($) {
+        var siteNavigation = $('.navigation-main');
+        
+        siteNavigation.find( 'a' ).on( 'focus blur', function() {
+          $( this ).parents( 'li' ).toggleClass( 'focus' );
+        });
+      });
+      </script>
       </div>
       
       
@@ -50,19 +63,19 @@
       </div>
     </div>
       <div class="menuShow">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Home</a></li>
-        <li>
-          <div class="loginButtons">
+        <?php 
+          wp_nav_menu( 
+            array(
+              'theme_location'  => 'bbj-main-menu',
+              'menu_class'     => 'navigation-main-mobile',
+            )
+          )
+        ?>
+        <div class="loginButtons">
             <div><button class="menuButtons">Login</button></div>
             <div><button class="menuButtons">Sign Up</button></div>
             
           </div>
-        </li>
-      </ul>
     </div>
       <?php get_template_part( 'template-parts/spoiler-bar' )?>
 

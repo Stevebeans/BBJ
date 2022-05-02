@@ -15,19 +15,45 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+<div class="body-regular" id="post-<?php the_ID(); ?>">
 
-			the_content();
+   <article>  
+    <div class="widgetContain boxShadowsft">
+        <div class="widgetHeader">
+          <div class="titleBar"></div>
+          <?php custom_breadcrumbs(); ?>
+                       
+        </div>
+        <div class="widgetBody">
+          <?php the_title( '<h1 class="blogTitle">', '</h1>' ); ?>
 
-		endwhile; // End of the loop.
-		?>
 
-	</main><!-- #main -->
+          <div class="entry-content">
+            <div class="featured-image">
+              <?php 
+                if (has_post_thumbnail())
+                  the_post_thumbnail( ); 
+                ?>                  
+            </div>
 
+            <div class="post-content">
+
+                <?php 
+                  the_content();
+                ?>
+            </div>
+
+          </div>
+        </div>
+    </div>
+  </article>
+
+
+
+  <?php get_template_part( 'template-parts/sidebar-pages' )?>
+
+  
+</div>
 <?php
-get_sidebar();
 get_footer();

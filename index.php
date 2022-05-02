@@ -230,44 +230,8 @@ $latest_post_args = array(
 
 
 
+  <?php get_template_part( 'template-parts/sidebar-main' )?>
 
-
-
-  <!-- SideBar   -->
-  <div class="sideBar">
-
-    <!-- HouseStatus   -->
-    <div class="widgetContain">
-      <div class="widgetHeader">
-        <div class="titleBar"></div>
-          <?php if (is_user_logged_in()): 
-              $currentUser = wp_get_current_user();
-              //echo '<pre>',print_r($currentUser,1),'</pre>';
-          ?>
-          <h2 class="widgetTitle">Welcome Back, Steve</h2>  
-
-          <a href="/user-dashboard">User Dashboard</a>
-          <?php else: ?>  
-          <h2 class="widgetTitle">Welcome, Visitor!</h2>  
-          <?php endif; ?> 
-      </div>
-      <div class="widgetBody">Here is a small account area that will have some quick links to anything account related. 
-        Such items are possibly new posts since last visit, link to edit profile, your comment count, your comment ratio, 
-        your membership status (premium, etc)
-      </div>
-    </div>
-  
-    <!-- HouseStatus   -->
-    <div class="widgetContain">
-      <div class="widgetHeader">
-        <div class="titleBar"></div>
-          <h2 class="widgetTitle">House Status</h2>        
-      </div>
-      <div class="widgetBody">dsfsdfsdd
-      </div>
-    </div>
-
-  </div>
 
 
 </div>

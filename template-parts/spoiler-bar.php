@@ -7,6 +7,7 @@
 
       $playerList = unserialize($players[0]->player_list2);
       $seasonName = $players[0]->full_name;
+
     ?>
     
     <div class="spoilerBar">

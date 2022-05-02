@@ -76,7 +76,7 @@ get_header();
 						
 						
 						<div class="season-container">
-						<div class="season"><a href="<?php the_permalink(	$season); ?>"><?php echo esc_html($seasons[0]->season_number) ?></a></div>
+						<div class="season-text"><a href="<?php the_permalink(	$season); ?>"><?php echo esc_html($seasons[0]->season_number) ?></a></div>
 						<div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:<?php echo $seasonPercent?>"></div>
 						</div>
 
@@ -137,7 +137,7 @@ get_header();
           <div class="player-profile-content">
 
 
-					<?php echo $rightSide ?>
+					<?php the_content(); ?>
 
 					</div>
 				</div>

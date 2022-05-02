@@ -27,6 +27,15 @@ function load_assets() {
 add_action ('wp_enqueue_scripts', 'load_assets');
 
 
+// Create Menu 
+function bbj_menu() {
+  register_nav_menus(array(
+    'bbj-main-menu' => _( 'Main Menu' ),
+    'bbj-secondary-menu' => _( 'Second Menu' ))
+  );
+}
+add_action( 'init', 'bbj_menu' );
+
 // Load admin scripts 
 function load_admin_scripts() {
 
