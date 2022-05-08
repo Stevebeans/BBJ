@@ -135,7 +135,7 @@ get_header();
 					<h1 class="player-name-desktop"><?php  the_title() ?></h1>
 				
           <div class="player-profile-content">
-
+						<a href="/bigbrother-players">More Players</a>
 
 					<?php the_content(); ?>
 

@@ -79,6 +79,8 @@ header {
 
   @include media(">tablet") {
     display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -248,12 +250,12 @@ header {
 
 .menuButtons {
   width: toRem(100);
-  background-color: $secondaryColor;
+  background-color: $secondaryColorLight;
   border: 1px solid $primaryHover;
-  padding-top: toRem(4);
-  border-radius: 5px;
   font-size: toRem(14);
   font-weight: 600;
+  text-align: center;
+  align-self: center;
 }
 
 .btn__left {

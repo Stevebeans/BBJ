@@ -53,12 +53,7 @@ get_header();
   </article>
 
 
-  <aside>  
-    <div class="aside-sticky">
-      Hey
-    </div>      
-      
-  </aside>
+  <?php get_template_part( 'template-parts/sidebar-pages' )?>
 
 
   

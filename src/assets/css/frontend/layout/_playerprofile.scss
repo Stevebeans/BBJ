@@ -240,3 +240,8 @@ div[role="progressbar"]::before {
   background-color: green;
   border-bottom: 2px solid $secondaryColor;
 }
+
+.p-t-image {
+  height: toRem(45);
+  border-radius: 50%;
+}

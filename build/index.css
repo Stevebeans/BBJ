@@ -266,6 +266,15 @@ aside {
   color: #ffbf0f;
 }
 
+.pp-form-container .pp-form-wrapper.ppBuildScratch .pp-form-field-wrap {
+  padding: 5px 5% 10px 0px !important;
+}
+
+.dashboard-profile-pic img {
+  width: 40%;
+  float: left;
+}
+
 header {
   font-size: 1rem;
   border-bottom: 0px solid #35546e;
@@ -355,6 +364,8 @@ header {
 @media (min-width: 769px) {
   .regMenu {
     display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -509,12 +520,13 @@ header {
 
 .menuButtons {
   width: 6.25rem;
-  background-color: #ffbf0f;
+  background-color: #fdf8e7;
   border: 1px solid #1c384e;
-  padding-top: 0.25rem;
-  border-radius: 5px;
   font-size: 0.875rem;
   font-weight: 600;
+  text-align: center;
+  -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .btn__left {
@@ -1015,6 +1027,74 @@ header {
   align-items: stretch;
 }
 
+.form-title {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  color: #35546e;
+  font-weight: 600;
+}
+
+hr.rm_divider {
+  border: 0;
+  height: 2px;
+  background: #35546e;
+  background-image: linear-gradient(to right, #ccc, #35546e, #ccc);
+}
+
+.user-avatar-sidebar {
+  border: 2px solid #ffbf0f;
+  margin: 5px auto;
+  padding: 3px;
+  width: 5.625rem;
+  height: 5.625rem;
+  overflow: hidden;
+  border-radius: 25%;
+}
+
+.user-avatar-sidebar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 25%;
+}
+
+.sidebar-button-contain {
+  display: flex;
+  margin: 10px auto;
+  justify-content: space-around;
+}
+
+.sidebar-button,
+.menuButtons {
+  border: 1px solid #35546e;
+  background-color: #ffd970;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+}
+
+.sidebar-button a,
+.sidebar-button a:visited,
+.menuButtons a,
+.menuButtons a:visited {
+  text-decoration: none;
+  font-weight: 600;
+  color: #35546e;
+}
+
+.sidebar-button a:hover,
+.menuButtons a:hover {
+  color: #ffbf0f;
+}
+
+.sidebar-button:hover,
+.menuButtons:hover {
+  background-color: #35546e;
+}
+
+.sidebar-button:hover a,
+.menuButtons:hover a {
+  color: #ffbf0f;
+}
+
 .comments-area {
   background-color: white;
   padding: 0.625rem;
@@ -1350,6 +1430,11 @@ div[role=progressbar]::before {
   border-radius: 0 0 150px 150px;
   background-color: green;
   border-bottom: 2px solid #ffbf0f;
+}
+
+.p-t-image {
+  height: 2.8125rem;
+  border-radius: 50%;
 }
 
 @media screen and (min-width: 768px) {

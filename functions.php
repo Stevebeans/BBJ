@@ -1,6 +1,6 @@
 <?php
 
-define('BBJ_THEME_VERSION', '2.0.2');
+define('BBJ_THEME_VERSION', '2.0.3');
 define('BBJ_THEME_URL', get_theme_file_uri());
 define('BBJ_THEME_PATH', get_theme_file_uri() . '/');
 define('BBJ_THEME_DIST_PATH', BBJ_THEME_PATH . 'build/');
@@ -13,12 +13,13 @@ require ('includes/core.php');
 require ('includes/meta-box.php');
 require ('includes/cpt.php');
 require ('includes/breadcrumbs.php');
+require ('includes/routes.php');
 
 
 // Load general scripts
 function load_assets() {
   wp_enqueue_style('needed', BBJ_THEME_PATH . 'style.css', array(), BBJ_THEME_VERSION);  
-	wp_enqueue_script('frontend', BBJ_THEME_DIST_PATH . 'index.js', array('jquery'), BBJ_THEME_VERSION, true);  
+	wp_enqueue_script('frontend', BBJ_THEME_DIST_PATH . 'index.js', array('jquery', 'wp-element'), BBJ_THEME_VERSION, true);  
   wp_enqueue_style('frontend', BBJ_THEME_DIST_PATH . 'index.css', array(), BBJ_THEME_VERSION);  
   wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
   wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@500;600;700&display=swap');
@@ -55,3 +56,8 @@ add_filter('acfe/bidirectional/force_update', '__return_true');
 
 // or target a specific field only
 add_filter('acfe/bidirectional/force_update/name=my_field', '__return_true');
+
+
+if ( function_exists('register_sidebar') ) {
+register_sidebar();
+}

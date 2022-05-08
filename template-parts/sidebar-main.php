@@ -14,21 +14,39 @@ $playerList = unserialize($players[0]->player_list2);
       <div class="widgetHeader">
         <div class="titleBar"></div>
           <?php if (is_user_logged_in()): 
+              global $current_user;
               $currentUser = wp_get_current_user();
               //echo '<pre>',print_r($currentUser,1),'</pre>';
           ?>
-          <h2 class="widgetTitle">Welcome Back, Steve</h2>  
+          <h2 class="widgetTitle">Welcome, <?php echo $currentUser->display_name?></h2>  
 
-          <a href="/user-dashboard">User Dashboard</a>
+
+          <div class="widgetBody">
+
+          
+            <div class="user-avatar-sidebar"><?php echo get_avatar($currentUser->ID)?></div>
+            <div class="sidebar-button-contain">
+              
+              <div class="sidebar-button"><a href="<?php echo site_url()?>/dashboard">Edit Profile</a></div>
+              <div class="sidebar-button"><a href="<?php echo site_url()?>/my-profile">View Profile</a></div>
+            </div>
+          </div>
+
           <?php else: ?>  
           <h2 class="widgetTitle">Welcome, Visitor!</h2>  
+          <div class="widgetBody">
+
+      
+          <div class="sidebar-button-contain">            
+            <div class="sidebar-button"><a href="<?php echo site_url()?>/log-in">Login</a></div>
+            <div class="sidebar-button"><a href="<?php echo site_url()?>/registration">Sign Up</a></div>
+          </div>
+          </div>
           <?php endif; ?> 
       </div>
-      <div class="widgetBody">Here is a small account area that will have some quick links to anything account related. 
-        Such items are possibly new posts since last visit, link to edit profile, your comment count, your comment ratio, 
-        your membership status (premium, etc)
-      </div>
     </div>
+
+
   
     <!-- HouseStatus   -->
     <div class="widgetContain">
@@ -63,4 +81,8 @@ $playerList = unserialize($players[0]->player_list2);
       </div>
     </div>
 
+
+    <div class="aBlock">
+            AD BLOCK
+    </div>
   </div>

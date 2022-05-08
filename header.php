@@ -31,9 +31,13 @@
         <i class="mobileMenu__icon fa fa-bars" aria-hidden="true"></i>
       </div>
       <div class="regMenu">
-      
-        <button class="menuButtons btn__left"><a href="/login">Login</a></button>
-        <button class="menuButtons"><a href="/registration">Sign Up</a></button>
+        <?php if (is_user_logged_in()): ?> 
+        <div class="menuButtons btn__left"><a href="<?php echo site_url()?>/dashboard">Settings</a></div>   
+        <div class="menuButtons"><a href="<?php echo wp_logout_url()?>">Log Out</a></div>       
+        <?php else: ?>
+        <div class="menuButtons btn__left"><a href="<?php echo site_url()?>/log-in">Login</a></div>
+        <div class="menuButtons"><a href="<?php echo site_url()?>/registration">Sign Up</a></div>
+        <?php endif; ?>
       </div>
     </div>
     <div class="menuFull">
@@ -72,9 +76,12 @@
           )
         ?>
         <div class="loginButtons">
-            <div><button class="menuButtons">Login</button></div>
-            <div><button class="menuButtons">Sign Up</button></div>
-            
+        <?php if (is_user_logged_in()): ?>          
+        <div><a href="<?php echo site_url()?>/dashboard">Account Settings</a></div>
+        <?php else: ?>
+            <div><a href="<?php echo site_url()?>/log-in">Login</a></div>
+            <div><a href="<?php echo site_url()?>/registration">Sign Up</a></div>
+        <?php endif; ?>  
           </div>
     </div>
       <?php get_template_part( 'template-parts/spoiler-bar' )?>
