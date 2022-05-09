@@ -8,7 +8,7 @@
  */
 
 get_header();
-// whatever22
+// whatever21
 ?>
 
 <div class="body-regular" id="post-<?php the_ID(); ?>">
