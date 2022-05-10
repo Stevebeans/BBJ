@@ -8,21 +8,24 @@ export class Players extends Component {
   };
 
   componentDidMount() {
-    const { meta_box } = this.props.player;
+    const { player } = this.props;
+
+    console.log(player);
 
     const getSeason = axios.get(`/wp-json/wp/v2/bigbrother-seasons/`);
   }
 
   render() {
-    const { meta_box } = this.props.player;
+    const { player } = this.props;
 
-    console.log(this.props.player);
+    const seasonsPlayed = player.seasons.map(player => player.pick_seasons);
 
     return (
       <React.Fragment>
         <tr>
-          <td>{meta_box.first_name}</td>
-          <td>{meta_box.last_name}</td>
+          <td>{player.first_name}</td>
+          <td>{player.last_name}</td>
+          <td>{seasonsPlayed}</td>
         </tr>
       </React.Fragment>
     );

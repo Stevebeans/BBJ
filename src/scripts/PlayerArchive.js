@@ -10,7 +10,7 @@ export class PlayerArchive extends Component {
 
   componentDidMount() {
     axios
-      .get("/wp-json/wp/v2/bigbrother-players")
+      .get("/wp-json/bbj/v1/player_info/")
       .then(res =>
         this.setState({
           players: res.data,

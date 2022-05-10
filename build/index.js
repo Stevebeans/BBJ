@@ -2528,7 +2528,7 @@ class PlayerArchive extends react__WEBPACK_IMPORTED_MODULE_3__.Component {
   }
 
   componentDidMount() {
-    axios__WEBPACK_IMPORTED_MODULE_2___default().get("/wp-json/wp/v2/bigbrother-players").then(res => this.setState({
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get("/wp-json/bbj/v1/player_info/").then(res => this.setState({
       players: res.data,
       isLoaded: true
     })).catch(err => console.log(err));
@@ -2583,17 +2583,18 @@ __webpack_require__.r(__webpack_exports__);
 class Players extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
   componentDidMount() {
     const {
-      meta_box
-    } = this.props.player;
+      player
+    } = this.props;
+    console.log(player);
     const getSeason = axios__WEBPACK_IMPORTED_MODULE_3___default().get(`/wp-json/wp/v2/bigbrother-seasons/`);
   }
 
   render() {
     const {
-      meta_box
-    } = this.props.player;
-    console.log(this.props.player);
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("td", null, meta_box.first_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("td", null, meta_box.last_name)));
+      player
+    } = this.props;
+    const seasonsPlayed = player.seasons.map(player => player.pick_seasons);
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("td", null, player.first_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("td", null, player.last_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("td", null, seasonsPlayed)));
   }
 
 }
