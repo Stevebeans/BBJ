@@ -25,7 +25,7 @@ get_header();
       </div>
 			<div class="widgetBody">
 
-      <?php echo do_shortcode( "[profilepress-login id='1']")?>
+      <?php echo do_shortcode( "[RM_Login]")?>
 
 			
 			</div>
