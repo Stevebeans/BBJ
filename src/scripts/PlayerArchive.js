@@ -23,6 +23,10 @@ export class PlayerArchive extends Component {
   render() {
     const { players, isLoaded } = this.state;
 
+    const playerList = players.map(player => player.first_name);
+
+    console.log(playerList);
+
     if (isLoaded) {
       return (
         <div>
@@ -31,9 +35,7 @@ export class PlayerArchive extends Component {
               <th>First Name</th>
               <th>Last Name</th>
             </tr>
-            {players.map(player => (
-              <Players key={player.ID} player={player} />
-            ))}
+            <Players player={player} />
           </table>
         </div>
       );

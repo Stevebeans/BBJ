@@ -2539,12 +2539,13 @@ class PlayerArchive extends react__WEBPACK_IMPORTED_MODULE_3__.Component {
       players,
       isLoaded
     } = this.state;
+    const playerList = players.map(player => player.first_name);
+    console.log(playerList);
 
     if (isLoaded) {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("table", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("th", null, "First Name"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("th", null, "Last Name")), players.map(player => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_ReactComponents_Players__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        key: player.ID,
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("table", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("th", null, "First Name"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("th", null, "Last Name")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_ReactComponents_Players__WEBPACK_IMPORTED_MODULE_4__["default"], {
         player: player
-      }))));
+      })));
     }
 
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("h3", null, "Loading...");
@@ -2552,6 +2553,45 @@ class PlayerArchive extends react__WEBPACK_IMPORTED_MODULE_3__.Component {
 
 }
 /* harmony default export */ __webpack_exports__["default"] = (PlayerArchive);
+
+/***/ }),
+
+/***/ "./src/scripts/PlayerTable.js":
+/*!************************************!*\
+  !*** ./src/scripts/PlayerTable.js ***!
+  \************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+
+class PlayerTable {
+  constructor() {
+    this.mainTable = document.getElementById("player-table");
+    (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["X-WP-Nonce"]) = playerData.nonce;
+
+    if (this.mainTable) {
+      this.isLoaded = false;
+      this.pageLoad();
+      console.log(this.data);
+      this.events();
+    }
+  }
+
+  events() {}
+
+  async pageLoad() {
+    const response = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(playerData.root_url + "/wp-json/bbj/v1/player_info/").catch(error => console.log(error));
+    this.data = response.data;
+    console.log(this.data);
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (PlayerTable);
 
 /***/ }),
 
@@ -2585,16 +2625,15 @@ class Players extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
     const {
       player
     } = this.props;
-    console.log(player);
-    const getSeason = axios__WEBPACK_IMPORTED_MODULE_3___default().get(`/wp-json/wp/v2/bigbrother-seasons/`);
   }
 
   render() {
     const {
       player
     } = this.props;
-    const seasonsPlayed = player.seasons.map(player => player.pick_seasons);
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("td", null, player.first_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("td", null, player.last_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("td", null, seasonsPlayed)));
+    console.log(player); //onst seasonsPlayed = player.seasons.map(player => player.pick_seasons);
+
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("tr", null));
   }
 
 }
@@ -3903,10 +3942,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_MobileDrop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/MobileDrop */ "./src/scripts/MobileDrop.js");
 /* harmony import */ var _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scripts/SpoilerBar */ "./src/scripts/SpoilerBar.js");
 /* harmony import */ var _scripts_PlayerArchive__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scripts/PlayerArchive */ "./src/scripts/PlayerArchive.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-dom */ "react-dom");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scripts/PlayerTable */ "./src/scripts/PlayerTable.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-dom */ "react-dom");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_7__);
 
  //import ExampleReactComponent from "./scripts/ExampleReactComponent";
 
@@ -3917,9 +3957,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 const mobileDrop = new _scripts_MobileDrop__WEBPACK_IMPORTED_MODULE_2__["default"]();
-const spoilerBar = new _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_3__["default"]();
-react_dom__WEBPACK_IMPORTED_MODULE_6___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_scripts_PlayerArchive__WEBPACK_IMPORTED_MODULE_4__["default"], null), document.querySelector("#player-table"));
+const spoilerBar = new _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_3__["default"](); //const playerTable = new PlayerTable();
+
+react_dom__WEBPACK_IMPORTED_MODULE_7___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_scripts_PlayerArchive__WEBPACK_IMPORTED_MODULE_4__["default"], null), document.querySelector("#player-table"));
 }();
 /******/ })()
 ;

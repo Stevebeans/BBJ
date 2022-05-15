@@ -1,5 +1,8 @@
 <?php
 get_header();
+
+
+  
 ?>
 
 <div class="body-regular" id="post-<?php the_ID(); ?>">
@@ -12,11 +15,11 @@ get_header();
                        
         </div>
         <div class="widgetBody">
-
-
           <div class="entry-content">
 
+
             <div class="post-content">
+                
               <div id="player-table"></div>
             </div>
 

@@ -1,7 +1,7 @@
 <?php
-add_filter( 'rwmb_meta_boxes', 'bbj_seasonresults' );
+add_filter( 'rwmb_meta_boxes', 'bbj_season_results' );
 
-function bbj_seasonresults( $meta_boxes ) {
+function bbj_season_results( $meta_boxes ) {
     $prefix = '';
 
     $meta_boxes[] = [
@@ -9,7 +9,7 @@ function bbj_seasonresults( $meta_boxes ) {
         'id'           => 'bb-season-player-relationship',
         'post_types'   => ['bigbrother-seasons'],
         'storage_type' => 'custom_table',
-        'table'        => 'wp_bbj_player_season_new',
+        'table'        => 'bbj_player_season_new',
         'fields'       => [
             [
                 'name'              => __( 'Players', 'your-text-domain' ),

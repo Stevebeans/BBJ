@@ -23,6 +23,11 @@ function load_assets() {
   wp_enqueue_style('frontend', BBJ_THEME_DIST_PATH . 'index.css', array(), BBJ_THEME_VERSION);  
   wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
   wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@500;600;700&display=swap');
+
+  wp_localize_script('frontend', 'playerData', array(
+    'root_url'  => get_site_url(),
+    'nonce'     => wp_create_nonce('wp_rest')
+  ));
 }
 
 add_action ('wp_enqueue_scripts', 'load_assets');
