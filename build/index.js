@@ -2547,7 +2547,7 @@ class PlayerArchive extends react__WEBPACK_IMPORTED_MODULE_3__.Component {
     const playerList = players.map(player => player.first_name); //console.log(playerList);
 
     if (isLoaded) {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("table", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("th", null, "First Name"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("th", null, "Last Name"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("th", null, "Seasons")), players.map(player => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_ReactComponents_Players__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)((react__WEBPACK_IMPORTED_MODULE_3___default().Fragment), null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("table", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("th", null, "First Name"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("th", null, "Last Name"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("th", null, "Seasons")), players.map(player => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_ReactComponents_Players__WEBPACK_IMPORTED_MODULE_4__["default"], {
         key: player.id,
         player: player
       }))));
@@ -2591,17 +2591,9 @@ class Players extends react__WEBPACK_IMPORTED_MODULE_1__.Component {
     const {
       player
     } = this.props;
-    const seasons = player.seasons; //[seasons].map(season => console.log(season));
-    //console.log(seasons);
-    //seasons.map(season => console.log(season));
-    //console.log(player.seasons);
-    //console.log(player);
-    /// player.map(play => console.log(play.first_name));
-    //onst seasonsPlayed = player.seasons.map(player => player.pick_seasons);
-
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, player.first_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, player.last_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, [seasons].map(season => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Seasons__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      season: season
-    })))));
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("tr", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, player.first_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, player.last_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Seasons__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      season: player.seasons
+    }))));
   }
 
 }
@@ -2628,12 +2620,17 @@ __webpack_require__.r(__webpack_exports__);
 
 class Seasons extends react__WEBPACK_IMPORTED_MODULE_1__.Component {
   render() {
-    const {
-      seasons
+    let {
+      season
     } = this.props;
-    console.log("seasons page  ");
-    console.log(seasons);
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "hi");
+    let arrayCheck = Array.isArray(season); //console.log(season);
+
+    if (season) {
+      console.log(season);
+    } //console.log(season);
+
+
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, season);
   }
 
 }

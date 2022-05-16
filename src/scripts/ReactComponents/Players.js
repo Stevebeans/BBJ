@@ -8,19 +8,6 @@ export class Players extends Component {
 
   render() {
     const { player } = this.props;
-    const seasons = player.seasons;
-
-    //[seasons].map(season => console.log(season));
-
-    //console.log(seasons);
-
-    //seasons.map(season => console.log(season));
-
-    //console.log(player.seasons);
-    //console.log(player);
-    /// player.map(play => console.log(play.first_name));
-
-    //onst seasonsPlayed = player.seasons.map(player => player.pick_seasons);
 
     return (
       <React.Fragment>
@@ -28,9 +15,7 @@ export class Players extends Component {
           <td>{player.first_name}</td>
           <td>{player.last_name}</td>
           <td>
-            {[seasons].map(season => (
-              <Seasons season={season} />
-            ))}
+            <Seasons season={player.seasons} />
           </td>
         </tr>
       </React.Fragment>

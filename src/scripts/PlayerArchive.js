@@ -34,7 +34,7 @@ export class PlayerArchive extends Component {
 
     if (isLoaded) {
       return (
-        <div>
+        <React.Fragment>
           <table>
             <tr>
               <th>First Name</th>
@@ -45,7 +45,7 @@ export class PlayerArchive extends Component {
               <Players key={player.id} player={player} />
             ))}
           </table>
-        </div>
+        </React.Fragment>
       );
     }
 

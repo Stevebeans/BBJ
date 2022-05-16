@@ -2,11 +2,19 @@ import React, { Component } from "react";
 
 export class Seasons extends Component {
   render() {
-    const { seasons } = this.props;
+    let { season } = this.props;
 
-    console.log("seasons page  ");
-    console.log(seasons);
-    return <div>hi</div>;
+    let arrayCheck = Array.isArray(season);
+
+    //console.log(season);
+
+    if (season) {
+      console.log(season);
+    }
+
+    //console.log(season);
+
+    return <React.Fragment>{season}</React.Fragment>;
   }
 }
 
