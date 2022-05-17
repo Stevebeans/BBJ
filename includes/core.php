@@ -29,6 +29,27 @@ function time_ago_calc($time) {
   return sprintf( esc_html__( '%s ago', 'textdomain' ), human_time_diff($time, time() ) );
 }
 
+function show_age ($dob, $start) {
+  $age = $start - $dob;
+  echo $age;
+}
+
+function current_age ($dob) {
+  $today = new DateTime();
+  $today = $today->format('Y-m-d');
+
+  echo $today-$dob;
+}
+
+function days_calc($enter, $exit) {
+  $earlier = new DateTime($enter);
+  $later = new DateTime($exit);
+  
+  $abs_diff = $later->diff($earlier)->format("%a"); //3
+
+  echo $abs_diff;
+}
+
 /**
 * Filter the excerpt length to 20 words.
 *

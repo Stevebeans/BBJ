@@ -12,11 +12,13 @@ get_header();
 
 	$player_banner = rwmb_meta( 'player_banner', $playerTableInfo);
 	$player_profile = rwmb_meta( 'profile_picture', $playerTableInfo);
-	$fbLink = rwmb_meta( 'facebook', $playerTableInfo);
-	$igLink = rwmb_meta( 'instagram', $playerTableInfo);
-	$twLink = rwmb_meta( 'twitter', $playerTableInfo);
-	$ttLink = rwmb_meta( 'tiktok', $playerTableInfo);
+	$fbLink = rwmb_meta( 'facebook');
+	$igLink = rwmb_meta( 'instagram');
+	$twLink = rwmb_meta( 'twitter');
+	$ttLink = rwmb_meta( 'tiktok');
 	$rightSide = rwmb_meta( 'right_side', $playerTableInfo);
+
+	$evicted_date = rwmb_meta( 'evicted_date');
 
 
 
@@ -46,83 +48,109 @@ get_header();
 					</div>
 
 					<h1 class="player-name-mobile"><?php   the_title() ?></h1>
-					<h3>Seasons:</h3>
-					<div class="seasons">
+					<h3>Season Progress:</h3>
 
+				
 
-            
-<?php 
+					<?php
+						$connected = new WP_Query( [
+							'relationship' => [
+									'id'   => 'player-to-season',
+									'from' => get_the_ID(), // You can pass object ID or full object
+							],
+							'nopaging'     => true,
+						] );
+						while ( $connected->have_posts() ) : $connected->the_post();
 
-							
-						$newInfo = rwmb_meta( 'bb_seasons_played', ['storage_type' => 'custom_table', 'table' => 'wp_bbj_player_results_new']);
-						foreach ($newInfo as $n):
-
-						$evicted = $n['evicted_date'];
-						$season = $n['pick_seasons'];
+						$start_date = rwmb_meta( 'start_date');
+						$end_date = rwmb_meta( 'end_date');
+						$season_abv = rwmb_meta( 'abbreviation');
 						
-
-						$sql = 'SELECT s.ID, s.start_date, s.end_date, s.season_number
-            FROM wp_bbj_seasons AS s
-            WHERE s.ID = "' . $season . '"';
-          	$seasons = $wpdb->get_results($sql);
-						
-						$seasonStart = $seasons[0]->start_date;
-						$seasonEnd = $seasons[0]->end_date;
-						$evictedDate = $n['evicted_date'];
-
-						$seasonPercent = season_percentage($seasonStart, $seasonEnd, $evictedDate);
-								
-						?>
-						
-						
-						<div class="season-container">
-						<div class="season-text"><a href="<?php the_permalink(	$season); ?>"><?php echo esc_html($seasons[0]->season_number) ?></a></div>
-						<div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:<?php echo $seasonPercent?>"></div>
+						$seasonPercent = season_percentage($start_date, $end_date, $evicted_date);
+						?>	
+						<div class="season-headline"><a href="<?php the_permalink( )?>"><?php the_title()?></a></div>
+						<div class="horizontal rounded">
+							<div class="progress-bar horizontal">
+								<div class="progress-season"><?php days_calc($start_date, $evicted_date) ?> Days</div>
+								<div class="progress-track">
+									<div class="progress-fill">
+										<span><?php echo $seasonPercent?>%</span>
+									</div>
+								</div>
+							</div>
 						</div>
 
-						<?php 
-						endforeach;
-							
-
-								//$evictedDate = get_field('evicted_date2');
-							//echo 'evicted Date -';
-							//echo $evictedDate;
-							//echo '<pre>',print_r($evictedDate,1),'</pre>';
-								//season_percentage($seasonStart, $seasonEnd, $evictedDate) 
-
-						//echo '<pre>',print_r($connected,1),'</pre>';
-						// while ( $connected->have_posts() ) : $connected->the_post();
-						// the_title(); 
-						// endwhile;
+						<?php
+						endwhile;
 						wp_reset_postdata();
+						?>
 
-?>
+						<script>
+							jQuery('.horizontal .progress-fill span').each(function(){
+								var percent = jQuery(this).html();
+								console.log (percent)
+								jQuery(this).parent().css('width', percent);
+							});
+						</script>
+					<div class="seasons">
+
 
 
           
 					</div>
 					<h3>Info:</h3>
-          (needed fields)..<br>
-          Date of birth (show age)<br>
-          Hometown<Br>
-          Occupation<br>
-          Days in house<br>
-          <b>Official Social Media</b><br>
+
+					<div class="player-info">
+
+
+						<div class="player-info-fa"><i class="fa-solid fa-user"></i></div> 
+						<div class="player-info-cat">Gender:</div>
+						<div class="player-info-details"><?php echo ucfirst(rwmb_meta( 'player_gender' ));?></div>
+						
+						<div class="player-info-fa"><i class="fa-regular fa-address-card"></i></div> 						
+						<div class="player-info-cat">Age:</div>
+						<div class="player-info-details"><?php show_age(rwmb_meta( 'date_of_birth' ), $start_date )?></div>						
+						
+						<div class="player-info-fa"><i class="fa-regular fa-address-card"></i></div> 						
+						<div class="player-info-cat">Age: (now)</div>
+						<div class="player-info-details"><?php current_age(rwmb_meta( 'date_of_birth' ))?></div>
+
+										
+						
+						<div class="player-info-fa"><i class="fa-solid fa-house-chimney"></i></div> 						
+						<div class="player-info-cat">City</div>
+						<div class="player-info-details"><?php echo rwmb_meta('locality')?></div>
+
+						
+						<div class="player-info-fa"><i class="fa-solid fa-location-dot"></i></div> 						
+						<div class="player-info-cat">State</div>
+						<div class="player-info-details"><?php echo rwmb_meta('administrative_area_level_1')?></div>
+
+						
+						<div class="player-info-fa"><i class="fa-solid fa-briefcase"></i></div> 						
+						<div class="player-info-cat">Occupation</div>
+						<div class="player-info-details"><?php echo rwmb_meta('occupation')?></div>
+
+										
+					</div>
+
+        
+          <h3>Offical Social Media</h3>
 					<div class="player-socials">
 						         
           <?php if ($fbLink): ?>
-						<div><a href="<?php $fbLink ?>" target="_blank"><img src="<?php echo BBJ_THEME_PATH . 'images/facebook.png' ?>" alt="facebook"></a></div>
+						<div><a href="<?php echo $fbLink ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></div>
           <?php endif; ?>
           <?php if ($igLink): ?>
-						<div><a href="<?php $igLink ?>" target="_blank"><img src="<?php echo BBJ_THEME_PATH . 'images/instagram.png' ?>" alt="Instagram"></a></div>
+						<div><a href="<?php echo $igLink ?>" target="_blank"><i class="fa-brands fa-instagram"></i></a></div>
           <?php endif; ?>
 					
           <?php if ($twLink): ?>
-						<div><a href="<?php $twLink ?>" target="_blank"><img src="<?php echo BBJ_THEME_PATH . 'images/twitter.png' ?>" alt="twitter"></a></div>
+						<div><a href="<?php echo $twLink ?>" target="_blank"><i class="fa-brands fa-twitter"></i></a></div>
           <?php endif; ?>
 					
           <?php if ($ttLink): ?>
-						<div><a href="<?php $ttLink ?>" target="_blank"><img src="<?php echo BBJ_THEME_PATH . 'images/tiktok.png' ?>" alt="tiktok"></a></div>
+						<div><a href="<?php echo $ttLink ?>" target="_blank"><i class="fa-brands fa-tiktok"></i></a></div>
           <?php endif; ?>
 					</div>
 
@@ -132,11 +160,13 @@ get_header();
 
 				</div>
 				<div class="profile-right">
-					<h1 class="player-name-desktop"><?php  the_title() ?></h1>
 				
           <div class="player-profile-content">
-						<a href="/bigbrother-players">More Players</a>
 
+						<h1><?php  the_title() ?> <span class="season-abv">(<?php echo $season_abv?>)</span></h1>
+						
+
+						<a href="/bigbrother-players">More Players</a>
 					<?php the_content(); ?>
 
 					</div>
