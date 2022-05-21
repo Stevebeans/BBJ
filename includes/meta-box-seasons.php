@@ -29,6 +29,12 @@ function bbj_seasons( $meta_boxes ) {
                 'columns' => 4,
             ],
             [
+                'name'    => __( 'Abbreviation', 'your-text-domain' ),
+                'id'      => $prefix . 'abbreviation',
+                'type'    => 'text',
+                'columns' => 1,
+            ],
+            [
                 'type' => 'divider',
             ],
             [

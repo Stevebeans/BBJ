@@ -1465,6 +1465,58 @@ div[role=progressbar]::before {
   font-family: "Yanone Kaffeesatz", sans-serif;
 }
 
+.player-table {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50px 1fr;
+  grid-template-columns: 50px 1fr;
+  -ms-grid-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+      grid-template-areas: "pt-pic pt-title" "pt-pic pt-bar";
+}
+
+.pt-pic {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: pt-pic;
+  text-align: center;
+  position: relative;
+}
+
+.pt-pic img {
+  border-radius: 50%;
+  height: 45px;
+  width: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pt-title {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: pt-title;
+}
+
+.pt-title a {
+  font-size: 0.875rem;
+  color: #35546e;
+  font-weight: 600;
+}
+
+.pt-title a:hover {
+  color: #ffbf0f;
+  font-weight: 600;
+}
+
+.pt-bar {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: pt-bar;
+}
+
 .horizontal .progress-track {
   position: relative;
   flex-grow: 1;
@@ -1519,6 +1571,193 @@ div[role=progressbar]::before {
   font-size: 1.25rem;
   font-family: "IBM Plex Mono", monospace;
   color: #696969;
+}
+
+#spinner {
+  display: none;
+}
+
+.pt-main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 40px 1fr 1fr 1fr;
+  grid-template-columns: 40px 1fr 1fr 1fr;
+  gap: 5px;
+  border: 1px solid #000;
+  width: 100%;
+}
+
+.pt-inner.profile-picture img {
+  height: 35px;
+  width: 35px;
+  border-radius: 10px;
+}
+
+.pt-main-header {
+  background-color: #35546e;
+  color: white;
+  font-weight: 600;
+}
+
+.pt-main > div {
+  border: 1px solid green;
+  padding: 2px 5px;
+}
+
+.pt-player-card-contain {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pt-player-card-contain a {
+  color: #35546e;
+}
+
+.pt-player-card {
+  max-width: 350px;
+  background-color: #fdf8e7;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5803921569);
+  margin: 0.625rem;
+  border-radius: 10px;
+  display: -ms-grid;
+  display: grid;
+  overflow: hidden;
+  -ms-grid-columns: 150px 1fr;
+  grid-template-columns: 150px 1fr;
+      grid-template-areas: "a b" "c c";
+}
+
+.pt-stats-body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (60px)[5];
+  grid-template-columns: repeat(5, 60px);
+  margin: 5px auto;
+  gap: 3px;
+}
+
+.pt-stats-body > div {
+  font-size: 0.75rem;
+}
+
+.pt-stats-hd {
+  font-size: 0.75rem;
+  background-color: #ffbf0f;
+  border-radius: 5px;
+}
+
+.pt-stats-bd {
+  font-size: 0.75rem;
+}
+
+.pt-body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 75px 1fr;
+  grid-template-columns: 75px 1fr;
+}
+
+.pt-body > div {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 0.875rem;
+}
+
+.pt-body > div span {
+  font-size: 0.75rem;
+}
+
+.pt-body > div:nth-child(even) {
+  font-weight: 600;
+}
+
+.pt-stats {
+  width: 100%;
+  background-color: #d4e6f3;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pt-stats > div {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.pt-stats-header {
+  background-color: #35546e;
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+}
+
+.pt-player-card-img {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  width: 150px;
+  grid-area: a;
+}
+
+.pt-player-card-img img {
+  width: 150px;
+  height: 150px;
+}
+
+.pt-player-card-info {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  padding: 5px;
+  grid-area: b;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pt-player-card-bottom {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  padding: 0.3125rem;
+  grid-area: c;
+}
+
+.pt-header h2,
+.pt-header h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.125rem;
+  margin: 0px;
+  padding: 0px;
+  line-height: 20px;
+}
+
+.pt-header h2 {
+  font-weight: 600;
+}
+
+.pt-header h3 {
+  font-weight: 400;
+}
+
+.pt-header h4 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 0.875rem;
+  margin-top: 5px;
+  font-weight: 400;
+  padding: 0px;
+  line-height: 14px;
+}
+
+.pt-header span {
+  -webkit-text-decoration: italic;
+          text-decoration: italic;
+  font-size: 90%;
 }
 
 @media screen and (min-width: 768px) {

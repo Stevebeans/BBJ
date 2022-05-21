@@ -18,9 +18,13 @@ get_header();
           <div class="entry-content">
 
 
+          
+
             <div class="post-content">
-                
+              
+              <div id="spinner">Loading....</div>
               <div id="player-table"></div>
+              
             </div>
 
            

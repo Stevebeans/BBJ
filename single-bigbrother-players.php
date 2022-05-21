@@ -109,11 +109,11 @@ get_header();
 						
 						<div class="player-info-fa"><i class="fa-regular fa-address-card"></i></div> 						
 						<div class="player-info-cat">Age:</div>
-						<div class="player-info-details"><?php show_age(rwmb_meta( 'date_of_birth' ), $start_date )?></div>						
+						<div class="player-info-details"><?php echo show_age(rwmb_meta( 'date_of_birth' ), $start_date )?></div>						
 						
 						<div class="player-info-fa"><i class="fa-regular fa-address-card"></i></div> 						
 						<div class="player-info-cat">Age: (now)</div>
-						<div class="player-info-details"><?php current_age(rwmb_meta( 'date_of_birth' ))?></div>
+						<div class="player-info-details"><?php echo current_age(rwmb_meta( 'date_of_birth' ))?></div>
 
 										
 						

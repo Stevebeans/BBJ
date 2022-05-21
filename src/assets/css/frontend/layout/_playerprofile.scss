@@ -277,6 +277,48 @@ div[role="progressbar"]::before {
   font-family: $header_font;
 }
 
+.player-table {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "pt-pic pt-title"
+    "pt-pic pt-bar";
+}
+
+.pt-pic {
+  grid-area: pt-pic;
+  text-align: center;
+  position: relative;
+}
+
+.pt-pic img {
+  border-radius: 50%;
+  height: 45px;
+  width: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.pt-title {
+  grid-area: pt-title;
+}
+
+.pt-title a {
+  font-size: toRem(14);
+  color: $primaryColor;
+  font-weight: 600;
+}
+
+.pt-title a:hover {
+  color: $secondaryColor;
+  font-weight: 600;
+}
+.pt-bar {
+  grid-area: pt-bar;
+}
+
 .horizontal .progress-track {
   position: relative;
   flex-grow: 1;
