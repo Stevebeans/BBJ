@@ -2523,36 +2523,41 @@ class PlayerTable {
 
   events() {
     this.searchBar.addEventListener("keyup", e => {
-      this.searchString = e.target.value.toLowerCase(); // let newFilter = this.response.filter(char => {
-      //   return char.first_name.toLowerCase().includes(searchString) || char.last_name.toLowerCase().includes(searchString) || char.season.toLowerCase().includes(searchString);
-      // });
-      // console.log(newFilter);
-
+      this.searchString = e.target.value.toLowerCase();
       this.new_table();
     });
     this.genderFilter.addEventListener("change", e => {
-      this.genderOption = e.target.value;
-      const genderOption = e.target.value.toLowerCase();
-      this.filter_results(genderOption);
-      let newFilter = this.response.filter(char => {
-        return char.gender == undefined;
-      });
-      this.new_table();
-      this.build_table(newFilter);
+      this.genderOption = e.target.value; //console.log(this.newGender);
+      //console.log(this.genderOption);
+      // this.filter_results(genderOption);
+      // let newFilter = this.response.filter(char => {
+      //   return char.gender == genderOption;
+      // });
+      //this.filter_table();
+
+      this.new_table(); //this.build_table(newFilter);
     });
     console.log(this.searchBar);
   }
 
   new_table(data) {
     const searchText = this.searchString;
-    let gender = this.genderOption ? this.genderOption : "";
-    let finalReturn = [];
     let combinedFilter = this.response.filter(char => {
+      // console.log("second function");
+      // console.log(char);
       const name = char.first_name.toLowerCase().includes(searchText) || char.last_name.toLowerCase().includes(searchText);
-      const gend = char.gender == gender; // old return name && char.gender == gender;
-      //return finalReturn;
-    });
-    console.log(combinedFilter);
+      this.newGender = this.genderOption;
+
+      if (this.newGender == "both") {
+        this.newGender = char.gender == "male" || char.gender == "female";
+      } //console.log(name);
+      //console.log(this.genderOption);
+
+
+      return name || char.gender == this.newGender;
+    }); //console.log(combinedFilter);
+
+    this.build_table(combinedFilter);
   }
 
   async pageLoad() {
