@@ -1522,6 +1522,8 @@ div[role=progressbar]::before {
   flex-grow: 1;
   height: 20px;
   background: #ebebeb;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .horizontal .progress-fill {
@@ -1758,6 +1760,38 @@ div[role=progressbar]::before {
   -webkit-text-decoration: italic;
           text-decoration: italic;
   font-size: 90%;
+}
+
+.filter-contain {
+  width: 100%;
+  display: flex;
+}
+
+#search-bar {
+  max-width: 300px;
+  position: relative;
+  margin-right: 10px;
+}
+
+#searchBar,
+#gender_filter {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #696969;
+  font-size: 0.875rem;
+  padding-left: 5px;
+}
+
+#gender_filter {
+  height: 25px;
+}
+
+.search-icon {
+  color: #ffbf0f;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(-50%, 25%);
 }
 
 @media screen and (min-width: 768px) {

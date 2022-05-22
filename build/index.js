@@ -2509,8 +2509,10 @@ class PlayerTable {
   constructor() {
     this.mainTable = document.getElementById("player-table");
     this.spinner = document.getElementById("spinner");
+    this.searchBar = document.getElementById("searchBar");
+    this.genderFilter = document.getElementById("gender_filter");
     (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["X-WP-Nonce"]) = playerData.nonce;
-    console.log(this.spinner);
+    console.log(this.response);
 
     if (this.mainTable) {
       this.isLoaded = false;
@@ -2519,19 +2521,55 @@ class PlayerTable {
     }
   }
 
-  events() {}
+  events() {
+    this.searchBar.addEventListener("keyup", e => {
+      this.searchString = e.target.value.toLowerCase(); // let newFilter = this.response.filter(char => {
+      //   return char.first_name.toLowerCase().includes(searchString) || char.last_name.toLowerCase().includes(searchString) || char.season.toLowerCase().includes(searchString);
+      // });
+      // console.log(newFilter);
+
+      this.new_table();
+    });
+    this.genderFilter.addEventListener("change", e => {
+      this.genderOption = e.target.value;
+      const genderOption = e.target.value.toLowerCase();
+      this.filter_results(genderOption);
+      let newFilter = this.response.filter(char => {
+        return char.gender == undefined;
+      });
+      this.new_table();
+      this.build_table(newFilter);
+    });
+    console.log(this.searchBar);
+  }
+
+  new_table(data) {
+    const searchText = this.searchString;
+    let gender = this.genderOption ? this.genderOption : "";
+    let finalReturn = [];
+    let combinedFilter = this.response.filter(char => {
+      const name = char.first_name.toLowerCase().includes(searchText) || char.last_name.toLowerCase().includes(searchText);
+      const gend = char.gender == gender; // old return name && char.gender == gender;
+      //return finalReturn;
+    });
+    console.log(combinedFilter);
+  }
 
   async pageLoad() {
+    let response = [];
     this.set_loading();
-    const response = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(playerData.root_url + "/wp-json/bbj/v1/player_info/").then(res => {
+    this.response = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(playerData.root_url + "/wp-json/bbj/v1/player_info/").then(res => {
       this.close_load();
       this.build_table(res.data);
+      return res.data;
     }).catch(error => console.log(error));
-    console.log(this.data);
+  }
+
+  filter_results(data) {
+    console.log(data);
   }
 
   build_table(data) {
-    console.log(data);
     this.mainTable.innerHTML = `
     <div class="pt-player-card-contain">
       ${data.map(p => `

@@ -1,9 +1,5 @@
 <?php
-get_header();
-
-
-  
-?>
+get_header(); ?>
 
 <div class="body-regular" id="post-<?php the_ID(); ?>">
 
@@ -19,6 +15,21 @@ get_header();
 
 
           
+            <div class="filter-contain">
+              <div id="search-bar">
+                <i class="icon fa fa-search search-icon"></i>
+                <input type="text" name='searchBar' id='searchBar' placeholder='Search Players'>
+              </div>
+
+              <div id="gender-filer">
+                <select name="gender_filter" id="gender_filter">
+                  <option value="" selected disabled>Gender</option>
+                  <option value="">Both</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
 
             <div class="post-content">
               
@@ -35,24 +46,20 @@ get_header();
 
 
   
-  <?php get_template_part( 'template-parts/sidebar-pages' )?>
+  <?php get_template_part("template-parts/sidebar-pages"); ?>
 
 
   
 </div>
 <div class="post-bottom">
     <div class="comment-section">
-      <?php 
-        
-        if ( comments_open() ):
-          comments_template();
-        endif;
-      ?>
+      <?php if (comments_open()):
+        comments_template();
+      endif; ?>
     </div>
 
     <aside class="comment-aside">
       Comment Stuff
     </aside>
   </div>
-<?php
-get_footer();
+<?php get_footer();

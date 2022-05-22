@@ -324,6 +324,8 @@ div[role="progressbar"]::before {
   flex-grow: 1;
   height: 20px;
   background: #ebebeb;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .horizontal .progress-fill {

@@ -169,3 +169,35 @@
   text-decoration: italic;
   font-size: 90%;
 }
+
+.filter-contain {
+  width: 100%;
+  display: flex;
+}
+
+#search-bar {
+  max-width: 300px;
+  position: relative;
+  margin-right: 10px;
+}
+
+#searchBar,
+#gender_filter {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid $fontGray;
+  font-size: toRem(14);
+  padding-left: 5px;
+}
+
+#gender_filter {
+  height: 25px;
+}
+
+.search-icon {
+  color: $secondaryColor;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(-50%, 25%);
+}
