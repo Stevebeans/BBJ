@@ -2542,22 +2542,57 @@ class PlayerTable {
 
   new_table(data) {
     const searchText = this.searchString;
+    let char = this.searchString; //let filter = this.filter_name();
+    //let genders = this.filter_gender();
+
+    console.log(this.nameTrue);
+    console.log("filtered stuff below"); // console.log("value");
+    // console.log(value);
+    // console.log(filter);
+    // let newwws = this.response.filter(this.filter_name);
+    // console.log(";newnlew");
+    // console.log(newwws);
+
     let combinedFilter = this.response.filter(char => {
+      // console.log("new stuff");
+      // console.log(char);
+      // console.log(gen);
       // console.log("second function");
       // console.log(char);
-      const name = char.first_name.toLowerCase().includes(searchText) || char.last_name.toLowerCase().includes(searchText);
+      const name = char.first_name.toLowerCase().includes(searchText) || char.last_name.toLowerCase().includes(searchText); //console.log(name);
+
       this.newGender = this.genderOption;
-
-      if (this.newGender == "both") {
-        this.newGender = char.gender == "male" || char.gender == "female";
-      } //console.log(name);
+      console.log(this.genderOption); // if (this.newGender == "both") {
+      //   this.newGender = char.gender == "male" || char.gender == "female";
+      // }
+      //console.log(name);
       //console.log(this.genderOption);
-
 
       return name || char.gender == this.newGender;
     }); //console.log(combinedFilter);
+    //console.log(combinedFilter);
 
     this.build_table(combinedFilter);
+  }
+
+  filter_name(char) {
+    console.log("HIIII");
+    console.log(char);
+    let test = char.first_name;
+    console.log(test); //return char.first_name.toLowerCase().includes(this.searchString) || char.last_name.toLowerCase().includes(this.searchString);
+    //   return newName;
+    // });
+    // console.log(data);
+    //return data;
+  }
+
+  filter_gender() {
+    let data = this.response;
+    this.genderTrue = data.filter(char => {
+      const gender = char.gender;
+      return gender;
+    });
+    return data;
   }
 
   async pageLoad() {

@@ -1,6 +1,6 @@
 <?php
 
-define("BBJ_THEME_VERSION", "2.0.5");
+define("BBJ_THEME_VERSION", "2.0.6");
 define("BBJ_THEME_URL", get_theme_file_uri());
 define("BBJ_THEME_PATH", get_theme_file_uri() . "/");
 define("BBJ_THEME_DIST_PATH", BBJ_THEME_PATH . "build/");
