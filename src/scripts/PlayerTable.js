@@ -10,6 +10,8 @@ class PlayerTable {
 
     console.log(this.response);
 
+    console.log(this.searchBar);
+
     if (this.mainTable) {
       this.isLoaded = false;
       this.pageLoad();
@@ -25,18 +27,7 @@ class PlayerTable {
 
     this.genderFilter.addEventListener("change", e => {
       this.genderOption = e.target.value;
-
-      //console.log(this.newGender);
-
-      //console.log(this.genderOption);
-      // this.filter_results(genderOption);
-      // let newFilter = this.response.filter(char => {
-      //   return char.gender == genderOption;
-      // });
-
-      //this.filter_table();
       this.new_table();
-      //this.build_table(newFilter);
     });
 
     console.log(this.searchBar);
@@ -46,59 +37,24 @@ class PlayerTable {
     const searchText = this.searchString;
     let char = this.searchString;
 
-    //let filter = this.filter_name();
-    //let genders = this.filter_gender();
-
-    console.log(this.nameTrue);
-    console.log("filtered stuff below");
-
-    // console.log("value");
-    // console.log(value);
-    // console.log(filter);
-
-    // let newwws = this.response.filter(this.filter_name);
-
-    // console.log(";newnlew");
-    // console.log(newwws);
-
     let combinedFilter = this.response.filter(char => {
-      // console.log("new stuff");
-      // console.log(char);
-      // console.log(gen);
-      // console.log("second function");
-      // console.log(char);
-
       const name = char.first_name.toLowerCase().includes(searchText) || char.last_name.toLowerCase().includes(searchText);
       //console.log(name);
       this.newGender = this.genderOption;
 
       console.log(this.genderOption);
 
-      // if (this.newGender == "both") {
-      //   this.newGender = char.gender == "male" || char.gender == "female";
-      // }
-      //console.log(name);
-      //console.log(this.genderOption);
+      if (this.genderOption === "both" || this.genderOption == undefined) {
+        return true;
+      }
 
-      return name || char.gender == this.newGender;
+      return name && char.gender == this.newGender;
     });
 
-    //console.log(combinedFilter);
+    console.log(combinedFilter);
 
     //console.log(combinedFilter);
     this.build_table(combinedFilter);
-  }
-
-  filter_name(char) {
-    console.log("HIIII");
-    console.log(char);
-    let test = char.first_name;
-    console.log(test);
-    //return char.first_name.toLowerCase().includes(this.searchString) || char.last_name.toLowerCase().includes(this.searchString);
-    //   return newName;
-    // });
-    // console.log(data);
-    //return data;
   }
 
   filter_gender() {

@@ -23,8 +23,8 @@ get_header(); ?>
 
               <div id="gender-filer">
                 <select name="gender_filter" id="gender_filter">
-                  <option value="" selected disabled>Gender</option>
-                  <option value="both">Both</option>
+                  <option value="both" selected disabled>Gender</option>
+                  <option value="both">All</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>

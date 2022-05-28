@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
   <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta charset="<?php bloginfo("charset"); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
   </head>
@@ -13,43 +13,48 @@
     
   <div class="container">
 
-    <?php 
-      // Get logged in user info 
-      if (is_user_logged_in()):
+    <?php // Get logged in user info
+
+if (is_user_logged_in()):
       $currentUser = wp_get_current_user();
-      endif;
-    ?>
+    endif; ?>
 
   
-    <div class="headerContain">      
-      <div class="headerLeft">
-        <div class="headerLogoFull"><a href="<?php echo site_url()?>"><img src="<?php echo get_theme_file_uri('/images/bbjlogo2020.png') ?>" alt="<?php echo get_bloginfo( 'description' ); ?>"></a></div>
-        <div class="headerLogoMobile"><a href="<?php echo site_url()?>"><img src="<?php echo get_theme_file_uri('/images/bbjlogomobile.png') ?>" alt="<?php echo get_bloginfo( 'description' ); ?>"></a></div>
-        <div class="searchBar"><input type="text" name="" id="" placeholder="Search"></div>
-      </div>
-      <div class="mobileMenu">
-        <i class="mobileMenu__icon fa fa-bars" aria-hidden="true"></i>
-      </div>
-      <div class="regMenu">
-        <?php if (is_user_logged_in()): ?> 
-        <div class="menuButtons btn__left"><a href="<?php echo site_url()?>/dashboard">Settings</a></div>   
-        <div class="menuButtons"><a href="<?php echo wp_logout_url()?>">Log Out</a></div>       
-        <?php else: ?>
-        <div class="menuButtons btn__left"><a href="<?php echo site_url()?>/log-in">Login</a></div>
-        <div class="menuButtons"><a href="<?php echo site_url()?>/registration">Sign Up</a></div>
-        <?php endif; ?>
-      </div>
+    <div class="headerContain"> 
+      <div class="header-content">
+        <div class="headerLeft">
+          <div class="headerLogoFull"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogo2020.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
+          <div class="headerLogoMobile"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogomobile.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
+          <div class="search-wrapper">
+            <div class="search-bar">
+              <input type="text" name="bbj_search" id="bbj_search" placeholder="Search">
+              <div class="search-dropdown">gf</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mobileMenu">
+          <i class="mobileMenu__icon fa fa-bars" aria-hidden="true"></i>
+        </div>
+        <div class="regMenu">
+          <?php if (is_user_logged_in()): ?> 
+          <div class="menuButtons btn__left"><a href="<?php echo site_url(); ?>/dashboard">Settings</a></div>   
+          <div class="menuButtons"><a href="<?php echo wp_logout_url(); ?>">Log Out</a></div>       
+          <?php else: ?>
+          <div class="menuButtons btn__left"><a href="<?php echo site_url(); ?>/log-in">Login</a></div>
+          <div class="menuButtons"><a href="<?php echo site_url(); ?>/registration">Sign Up</a></div>
+          <?php endif; ?>
+        </div>
+      </div>     
+      
+      
     </div>
     <div class="menuFull">
       <div class="menu">
-      <?php 
-        wp_nav_menu( 
-          array(
-            'theme_location'  => 'bbj-main-menu',
-            'menu_class'     => 'navigation-main',
-          )
-         )
-      ?>
+      <?php wp_nav_menu([
+        "theme_location" => "bbj-main-menu",
+        "menu_class" => "navigation-main",
+      ]); ?>
       <script>
         jQuery(function ($) {
         var siteNavigation = $('.navigation-main');
@@ -67,24 +72,20 @@
       </div>
     </div>
       <div class="menuShow">
-        <?php 
-          wp_nav_menu( 
-            array(
-              'theme_location'  => 'bbj-main-menu',
-              'menu_class'     => 'navigation-main-mobile',
-            )
-          )
-        ?>
+        <?php wp_nav_menu([
+          "theme_location" => "bbj-main-menu",
+          "menu_class" => "navigation-main-mobile",
+        ]); ?>
         <div class="loginButtons">
         <?php if (is_user_logged_in()): ?>          
-        <div><a href="<?php echo site_url()?>/dashboard">Account Settings</a></div>
+        <div><a href="<?php echo site_url(); ?>/dashboard">Account Settings</a></div>
         <?php else: ?>
-            <div><a href="<?php echo site_url()?>/log-in">Login</a></div>
-            <div><a href="<?php echo site_url()?>/registration">Sign Up</a></div>
+            <div><a href="<?php echo site_url(); ?>/log-in">Login</a></div>
+            <div><a href="<?php echo site_url(); ?>/registration">Sign Up</a></div>
         <?php endif; ?>  
           </div>
     </div>
-      <?php get_template_part( 'template-parts/spoiler-bar' )?>
+      <?php get_template_part("template-parts/spoiler-bar"); ?>
 
     
 

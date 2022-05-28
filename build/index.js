@@ -2513,6 +2513,7 @@ class PlayerTable {
     this.genderFilter = document.getElementById("gender_filter");
     (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["X-WP-Nonce"]) = playerData.nonce;
     console.log(this.response);
+    console.log(this.searchBar);
 
     if (this.mainTable) {
       this.isLoaded = false;
@@ -2527,63 +2528,30 @@ class PlayerTable {
       this.new_table();
     });
     this.genderFilter.addEventListener("change", e => {
-      this.genderOption = e.target.value; //console.log(this.newGender);
-      //console.log(this.genderOption);
-      // this.filter_results(genderOption);
-      // let newFilter = this.response.filter(char => {
-      //   return char.gender == genderOption;
-      // });
-      //this.filter_table();
-
-      this.new_table(); //this.build_table(newFilter);
+      this.genderOption = e.target.value;
+      this.new_table();
     });
     console.log(this.searchBar);
   }
 
   new_table(data) {
     const searchText = this.searchString;
-    let char = this.searchString; //let filter = this.filter_name();
-    //let genders = this.filter_gender();
-
-    console.log(this.nameTrue);
-    console.log("filtered stuff below"); // console.log("value");
-    // console.log(value);
-    // console.log(filter);
-    // let newwws = this.response.filter(this.filter_name);
-    // console.log(";newnlew");
-    // console.log(newwws);
-
+    let char = this.searchString;
     let combinedFilter = this.response.filter(char => {
-      // console.log("new stuff");
-      // console.log(char);
-      // console.log(gen);
-      // console.log("second function");
-      // console.log(char);
       const name = char.first_name.toLowerCase().includes(searchText) || char.last_name.toLowerCase().includes(searchText); //console.log(name);
 
       this.newGender = this.genderOption;
-      console.log(this.genderOption); // if (this.newGender == "both") {
-      //   this.newGender = char.gender == "male" || char.gender == "female";
-      // }
-      //console.log(name);
-      //console.log(this.genderOption);
+      console.log(this.genderOption);
 
-      return name || char.gender == this.newGender;
-    }); //console.log(combinedFilter);
-    //console.log(combinedFilter);
+      if (this.genderOption === "both" || this.genderOption == undefined) {
+        return true;
+      }
+
+      return name && char.gender == this.newGender;
+    });
+    console.log(combinedFilter); //console.log(combinedFilter);
 
     this.build_table(combinedFilter);
-  }
-
-  filter_name(char) {
-    console.log("HIIII");
-    console.log(char);
-    let test = char.first_name;
-    console.log(test); //return char.first_name.toLowerCase().includes(this.searchString) || char.last_name.toLowerCase().includes(this.searchString);
-    //   return newName;
-    // });
-    // console.log(data);
-    //return data;
   }
 
   filter_gender() {
@@ -2720,6 +2688,69 @@ class PlayerTable {
 //     .join("")}
 // </div>
 // `;
+
+/***/ }),
+
+/***/ "./src/scripts/SearchBar.js":
+/*!**********************************!*\
+  !*** ./src/scripts/SearchBar.js ***!
+  \**********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class SearchBar {
+  constructor() {
+    this.searchBar = document.querySelector("#bbj_search");
+    this.overLay = document.querySelector(".search-dropdown");
+    this.searchLayerOpen = false;
+    this.events();
+  }
+
+  events() {
+    this.searchBar.addEventListener("click", e => this.open_overlay(e));
+    window.addEventListener("click", e => this.close_overlay(e));
+  } // Open the search overlay
+
+
+  open_overlay(e) {
+    if (this.searchLayerOpen == false) {
+      this.overLay.classList.add("search-drop-active");
+      this.searchLayerOpen = true;
+      console.log("open");
+    }
+  }
+
+  close_overlay(e) {
+    console.log(this.searchLayerOpen);
+    console.log(e.target);
+
+    if (this.searchLayerOpen) {
+      if (e.target.closest(this.searchBar)) {
+        console.log("closest");
+      } // if (e.target !== this.searchBar) {
+      //   this.overLay.classList.remove("search-drop-active");
+      //   this.searchLayerOpen = false;
+      //   console.log("outside of search");
+      // }
+
+    } // console.log("clicsdfdsk");
+    // this.overLay.classList.remove("search-drop-active");
+    // this.searchLayerOpen = false;
+    // if (this.searchLayerOpen) {
+    //   //console.log("click");
+    //   if (e.target.value != this.searchBar || e.target.value != this.overLay) {
+    //     //this.overLay.classList.remove("search-drop-active");
+    //     //console.log("clickck");
+    //   }
+    // }
+    //this.searchLayerOpen = false;
+
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchBar);
 
 /***/ }),
 
@@ -2872,13 +2903,15 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_css_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/main.scss */ "./src/assets/css/main.scss");
-/* harmony import */ var _scripts_MobileDrop__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scripts/MobileDrop */ "./src/scripts/MobileDrop.js");
-/* harmony import */ var _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/SpoilerBar */ "./src/scripts/SpoilerBar.js");
-/* harmony import */ var _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scripts/PlayerTable */ "./src/scripts/PlayerTable.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-dom */ "react-dom");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _scripts_SearchBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scripts/SearchBar */ "./src/scripts/SearchBar.js");
+/* harmony import */ var _scripts_MobileDrop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/MobileDrop */ "./src/scripts/MobileDrop.js");
+/* harmony import */ var _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scripts/SpoilerBar */ "./src/scripts/SpoilerBar.js");
+/* harmony import */ var _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scripts/PlayerTable */ "./src/scripts/PlayerTable.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-dom */ "react-dom");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_6__);
+
  //import ExampleReactComponent from "./scripts/ExampleReactComponent";
 
  //import React from "react";
@@ -2889,9 +2922,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const mobileDrop = new _scripts_MobileDrop__WEBPACK_IMPORTED_MODULE_1__["default"]();
-const spoilerBar = new _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_2__["default"]();
-const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_3__["default"](); //ReactDOM.render(<PlayerArchive />, document.querySelector("#player-table"));
+const searchBar = new _scripts_SearchBar__WEBPACK_IMPORTED_MODULE_1__["default"]();
+const mobileDrop = new _scripts_MobileDrop__WEBPACK_IMPORTED_MODULE_2__["default"]();
+const spoilerBar = new _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_3__["default"]();
+const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_4__["default"](); //ReactDOM.render(<PlayerArchive />, document.querySelector("#player-table"));
 }();
 /******/ })()
 ;
