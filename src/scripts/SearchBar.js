@@ -9,6 +9,7 @@ class SearchBar {
   events() {
     this.searchBar.addEventListener("click", e => this.open_overlay(e));
     window.addEventListener("click", e => this.close_overlay(e));
+    window.addEventListener("keydown", e => this.close_overlay(e));
   }
 
   // Open the search overlay
@@ -21,33 +22,19 @@ class SearchBar {
   }
 
   close_overlay(e) {
-    console.log(this.searchLayerOpen);
-    console.log(e.target);
-
-    if (this.searchLayerOpen) {
-      if (e.target.closest(this.searchBar)) {
-        console.log("closest");
-      }
-
-      // if (e.target !== this.searchBar) {
-      //   this.overLay.classList.remove("search-drop-active");
-      //   this.searchLayerOpen = false;
-      //   console.log("outside of search");
-      // }
+    var isEscape = false;
+    if ("key" in e) {
+      isEscape = e.key === "Escape" || e.key === "Esc";
+    } else {
+      isEscape = e.keyCode === 27;
     }
 
-    // console.log("clicsdfdsk");
-    // this.overLay.classList.remove("search-drop-active");
-    // this.searchLayerOpen = false;
-
-    // if (this.searchLayerOpen) {
-    //   //console.log("click");
-    //   if (e.target.value != this.searchBar || e.target.value != this.overLay) {
-    //     //this.overLay.classList.remove("search-drop-active");
-    //     //console.log("clickck");
-    //   }
-    // }
-    //this.searchLayerOpen = false;
+    if (this.searchLayerOpen) {
+      if ((e.target !== this.searchBar && e.target !== this.overLay) || isEscape) {
+        this.overLay.classList.remove("search-drop-active");
+        this.searchLayerOpen = false;
+      }
+    }
   }
 }
 
