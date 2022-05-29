@@ -306,7 +306,7 @@ header {
 .search-wrapper .search-bar input {
   width: 100%;
   margin: 0px auto;
-  border-radius: 15px 15px;
+  border-radius: 15px 0px 0px 15px;
   border: 1px solid #888888;
   padding: 4px 10px 2px 10px;
   font-size: 0.85rem;
@@ -330,6 +330,11 @@ header {
 }
 .search-wrapper .search-drop-active {
   visibility: visible;
+}
+
+.is-search-icon {
+  border-radius: 0px 15px 15px 0px;
+  background-color: #d4e6f3;
 }
 
 #bbj_search:focus {
@@ -805,7 +810,7 @@ header {
 }
 
 .sideBar {
-  width: 18.75rem;
+  width: 100%;
 }
 
 .widgetContain {
@@ -1822,6 +1827,101 @@ div[role=progressbar]::before {
   transform: translate(-50%, 25%);
 }
 
+.spoiler-box {
+  width: 250px;
+  height: 125px;
+  margin: 0px auto;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "sb-hoh sb-pov sb-pov" "sb-hoh sb-nom sb-nom2";
+}
+.spoiler-box .sb-hoh {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: sb-hoh;
+  height: 125px;
+  width: 125px;
+  position: relative;
+}
+.spoiler-box .sb-hoh-ban {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 4px 8px;
+}
+.spoiler-box .sb-pov-ban {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 2px 4px;
+}
+.spoiler-box .sb-nom-ban {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 2px 4px;
+  width: 100%;
+  text-align: center;
+}
+.spoiler-box .ban-style {
+  background-color: rgba(255, 191, 15, 0.3);
+}
+.spoiler-box .ban-style-nom {
+  background-color: rgba(255, 191, 15, 0.6);
+}
+.spoiler-box .ban-text {
+  font-size: 0.875rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 0.8125rem;
+  font-weight: 800;
+  z-index: 30;
+}
+.spoiler-box .ban-text-sm {
+  font-size: 0.75rem;
+  line-height: 0.6875rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 800;
+  z-index: 30;
+}
+.spoiler-box .sb-hoh img {
+  height: 125px;
+  width: 125px;
+}
+.spoiler-box .sb-pov {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: sb-pov;
+  width: 125px;
+  height: 62.5px;
+  position: relative;
+}
+.spoiler-box .sb-pov img {
+  height: 62.5px;
+  width: 125px;
+}
+.spoiler-box .sb-nom {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: sb-nom;
+  position: relative;
+}
+.spoiler-box .sb-nom img {
+  height: 62.5px;
+  width: 62.5px;
+}
+.spoiler-box .sb-nom2 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  grid-area: sb-nom2;
+  position: relative;
+}
+.spoiler-box .sb-nom2 img {
+  height: 62.5px;
+  width: 62.5px;
+}
+
 @media screen and (min-width: 768px) {
   .related-post {
     max-width: 33%;
@@ -1865,6 +1965,10 @@ div[role=progressbar]::before {
 
   .navigation-main-mobile {
     display: none;
+  }
+
+  .sideBar {
+    width: 18.75rem;
   }
 }
 @media screen and (min-width: 1366px) {

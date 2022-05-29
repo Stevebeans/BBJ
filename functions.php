@@ -13,6 +13,7 @@ require "includes/meta-box.php";
 require "includes/cpt.php";
 require "includes/breadcrumbs.php";
 require "includes/routes.php";
+require "includes/search-route.php";
 
 // Load general scripts
 function load_assets()

@@ -27,8 +27,13 @@ if (is_user_logged_in()):
           <div class="headerLogoMobile"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogomobile.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
           <div class="search-wrapper">
             <div class="search-bar">
-              <input type="text" name="bbj_search" id="bbj_search" placeholder="Search">
-              <div class="search-dropdown">gf</div>
+              <?php
+              $searchForm = '[ivory-search id="44850" title="Default Search Form"]';
+              echo do_shortcode($searchForm);
+              ?>
+
+              <!--<input type="text" name="bbj_search" id="bbj_search" placeholder="Search">
+              <div class="search-dropdown">gf</div>-->
             </div>
           </div>
         </div>

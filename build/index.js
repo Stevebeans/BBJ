@@ -2699,6 +2699,10 @@ class PlayerTable {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+
 class SearchBar {
   constructor() {
     this.searchBar = document.querySelector("#bbj_search");
@@ -2711,6 +2715,12 @@ class SearchBar {
     this.searchBar.addEventListener("click", e => this.open_overlay(e));
     window.addEventListener("click", e => this.close_overlay(e));
     window.addEventListener("keydown", e => this.close_overlay(e));
+    window.addEventListener("load", () => this.get_results());
+  }
+
+  async get_results() {
+    console.log("getting results");
+    this.results = await axios__WEBPACK_IMPORTED_MODULE_0___default().get("/wp-json/bbj/v1/search").then(res => console.log(res)).catch(err => console.log(err));
   } // Open the search overlay
 
 
@@ -2720,6 +2730,8 @@ class SearchBar {
       this.searchLayerOpen = true;
       console.log("open");
     }
+
+    this.get_results();
   }
 
   close_overlay(e) {
@@ -2912,8 +2924,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ //const searchBar = new SearchBar(); back burner for now
 
-const searchBar = new _scripts_SearchBar__WEBPACK_IMPORTED_MODULE_1__["default"]();
 const mobileDrop = new _scripts_MobileDrop__WEBPACK_IMPORTED_MODULE_2__["default"]();
 const spoilerBar = new _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_3__["default"]();
 const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_4__["default"](); //ReactDOM.render(<PlayerArchive />, document.querySelector("#player-table"));

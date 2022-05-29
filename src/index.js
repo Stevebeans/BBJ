@@ -13,7 +13,7 @@ import PlayerTable from "./scripts/PlayerTable";
 import React from "react";
 import ReactDOM from "react-dom";
 
-const searchBar = new SearchBar();
+//const searchBar = new SearchBar(); back burner for now
 const mobileDrop = new MobileDrop();
 const spoilerBar = new SpoilerBar();
 const playerTable = new PlayerTable();
