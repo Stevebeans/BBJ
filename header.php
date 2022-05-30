@@ -4,6 +4,16 @@
     <meta charset="<?php bloginfo("charset"); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1Q771W4ZV2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-1Q771W4ZV2');
+    </script>
   </head>
   <body <?php body_class(); ?>>
 
@@ -28,7 +38,7 @@ if (is_user_logged_in()):
           <div class="search-wrapper">
             <div class="search-bar">
               <?php
-              $searchForm = '[ivory-search id="44850" title="Default Search Form"]';
+              $searchForm = '[ivory-search id="44859" title="Default Search Form"]';
               echo do_shortcode($searchForm);
               ?>
 

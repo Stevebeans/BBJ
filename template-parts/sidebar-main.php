@@ -76,7 +76,7 @@ $playerList = unserialize($players[0]->player_list2);
           ?>
 
                    
-        <?php if ($player["current_hoh"]): ?>
+        <?php if (isset($player["current_hoh"])): ?>
             <div class="sb-hoh">
               <div class="sb-hoh-ban ban-style"><div class="ban-text">HOH</div></div>
               <a href="<?php the_permalink($player["player_id"]); ?>"><?php echo get_the_post_thumbnail($player["player_id"], "profile-picture"); ?></a>
@@ -84,7 +84,7 @@ $playerList = unserialize($players[0]->player_list2);
         <?php endif; ?>
 
 
-        <?php if ($player["current_pov"]): ?>   
+        <?php if (isset($player["current_pov"])): ?>   
             <div class="sb-pov">
               
             <div class="sb-pov-ban ban-style"><div class="ban-text">POV</div></div>
@@ -93,7 +93,7 @@ $playerList = unserialize($players[0]->player_list2);
         <?php endif; ?> 
         
         
-        <?php if ($player["current_nom"]): ?>
+        <?php if (isset($player["current_nom"])): ?>
 
             <div class="sb-nom">
               
@@ -102,7 +102,7 @@ $playerList = unserialize($players[0]->player_list2);
         <?php endif; ?>   
         
         
-        <?php if ($player["current_nom2"]): ?>
+        <?php if (isset($player["current_nom2"])): ?>
             <div class="sb-nom2">
             
             <div class="sb-nom-ban ban-style-nom"><div class="ban-text-sm">NOM</div></div>  

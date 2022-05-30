@@ -30,16 +30,24 @@ function time_ago_calc($time)
 
 function show_age($dob, $start)
 {
-  $age = $start - $dob;
-  return $age;
+  $dob = new DateTime($dob);
+  $start = new DateTime($start);
+
+  $result = $dob->diff($start);
+
+  $difference = $result->format("%y years old");
+
+  return $difference;
 }
 
 function current_age($dob)
 {
   $today = new DateTime();
-  $today = $today->format("Y-m-d");
+  $dob = new DateTime($dob);
 
-  $currentAge = $today - $dob;
+  $diff = $dob->diff($today);
+
+  $currentAge = $diff->format("%y years old");
 
   return $currentAge;
 }

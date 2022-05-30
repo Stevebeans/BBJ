@@ -1,5 +1,6 @@
 <?php
 
+echo "META BOX";
 //require_once('meta-box-db-create.php');
 //require_once("meta-box-players.php");
 //require_once('meta-box-geo.php');

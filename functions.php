@@ -1,6 +1,9 @@
 <?php
 
-define("BBJ_THEME_VERSION", "2.0.6");
+define("BBJ_THEME_VERSION", "2.0.7");
+define("BBJ_ROOT", dirname(__FILE__));
+define("BBJ_INCLUDES", BBJ_ROOT . "/includes");
+define("BBJ_MB_FILES", BBJ_INCLUDES . "/MB");
 define("BBJ_THEME_URL", get_theme_file_uri());
 define("BBJ_THEME_PATH", get_theme_file_uri() . "/");
 define("BBJ_THEME_DIST_PATH", BBJ_THEME_PATH . "build/");
@@ -8,12 +11,14 @@ define("BBJ_THEME_DIST_URL", BBJ_THEME_URL . "/build/");
 define("BBJ_THEME_INC", BBJ_THEME_PATH . "includes/");
 define("BBJ_THEME_BLOCK_DIR", BBJ_THEME_INC . "blocks/");
 
-require "includes/core.php";
-require "includes/meta-box.php";
+require_once BBJ_INCLUDES . "/core.php";
 require "includes/cpt.php";
 require "includes/breadcrumbs.php";
 require "includes/routes.php";
 require "includes/search-route.php";
+
+//Include Metabox Files
+//require_once BBJ_MB_FILES . "/relationships.php";
 
 // Load general scripts
 function load_assets()
@@ -58,6 +63,6 @@ add_filter("acfe/bidirectional/force_update", "__return_true");
 // or target a specific field only
 add_filter("acfe/bidirectional/force_update/name=my_field", "__return_true");
 
-if (function_exists("register_sidebar")) {
-  register_sidebar();
-}
+// if (function_exists("register_sidebar")) {
+//   register_sidebar();
+// }
