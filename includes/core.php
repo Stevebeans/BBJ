@@ -217,6 +217,12 @@ function bbj_menu_top()
 }
 add_action("init", "bbj_menu_top");
 
+function bbj_menu_footer()
+{
+  register_nav_menu("my-custom-footer", __("BBJ Footer Menu"));
+}
+add_action("init", "bbj_menu_footer");
+
 function boilerplate_add_support()
 {
   add_theme_support("title-tag");

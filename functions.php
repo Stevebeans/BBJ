@@ -43,6 +43,7 @@ function bbj_menu()
   register_nav_menus([
     "bbj-main-menu" => _("Main Menu"),
     "bbj-secondary-menu" => _("Second Menu"),
+    "bbj-footer-menu" => _("Footer Menu"),
   ]);
 }
 add_action("init", "bbj_menu");

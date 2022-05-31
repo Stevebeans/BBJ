@@ -1,8 +1,9 @@
 @import "./shared/normalize";
+@import "./frontend/global/variables";
 @import "./frontend/components/breakpoints";
 @import "./frontend/components/function";
 @import "./frontend/global/tailwind";
-@import "./frontend/global/variables";
+@import "./frontend/layout/footer";
 @import "./frontend/layout/body";
 @import "./frontend/layout/header";
 @import "./frontend/layout/homepage";
