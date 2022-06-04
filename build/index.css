@@ -73,11 +73,6 @@ select {
     scroll-behavior: initial;
   }
 }
-/**
-*
-* Testing
-*
-**/
 .w-full {
   width: 100%;
 }
@@ -98,6 +93,11 @@ select {
   flex-grow: 1;
 }
 
+/**
+*
+* Testing
+*
+**/
 .site-footer {
   background-color: #d4e6f3;
   padding: 15px 0;
@@ -1677,6 +1677,30 @@ div[role=progressbar]::before {
   color: #696969;
 }
 
+.player-section {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 769px) {
+  .player-section {
+    flex-direction: row;
+  }
+}
+.player-section .players-left {
+  flex-grow: 1;
+  padding-right: 10px;
+}
+.player-section .players-right {
+  width: 100%;
+  padding-left: 10px;
+}
+@media (min-width: 769px) {
+  .player-section .players-right {
+    border-left: 1px solid #d4e6f3;
+    width: 260px;
+  }
+}
+
 #spinner {
   display: none;
 }
@@ -1989,6 +2013,72 @@ div[role=progressbar]::before {
 .spoiler-box .sb-nom2 img {
   height: 62.5px;
   width: 62.5px;
+}
+
+.feed-update-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+@media (min-width: 769px) {
+  .feed-update-container {
+    flex-direction: row;
+  }
+}
+.feed-update-container .update-left {
+  flex-grow: 1;
+  padding-left: 20px;
+}
+
+.update-right {
+  width: 100%;
+  padding-left: 10px;
+  background-color: #eeeeee;
+  padding: 15px;
+  border-radius: 15px;
+  -ms-grid-row-align: start;
+      align-self: start;
+  display: block;
+  top: 30px;
+  position: -webkit-sticky;
+  position: sticky;
+}
+@media (min-width: 769px) {
+  .update-right {
+    width: 280px;
+  }
+}
+.feed-update {
+  margin-right: 10px;
+}
+.feed-update h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.feed-update p {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.update-post {
+  border-left: 1px solid #eeeeee;
+  border-right: 1px solid #eeeeee;
+}
+
+.update-post > div > div {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.625rem;
+  padding-top: 0.625rem;
+}
+
+.update-post > div > div:hover {
+  background-color: #eeeeee;
+  transition-timing-function: ease-in;
+  /* Quick on the way out */
+  transition: 0.2s;
 }
 
 @media screen and (min-width: 768px) {

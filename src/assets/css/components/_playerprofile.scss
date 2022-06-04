@@ -377,3 +377,26 @@ div[role="progressbar"]::before {
   font-family: $alt_font;
   color: $fontGray;
 }
+
+.player-section {
+  display: flex;
+  flex-direction: column;
+
+  @include media(">tablet") {
+    flex-direction: row;
+  }
+
+  .players-left {
+    flex-grow: 1;
+    padding-right: 10px;
+  }
+
+  .players-right {
+    width: 100%;
+    padding-left: 10px;
+    @include media(">tablet") {
+      border-left: 1px solid $primaryAccent;
+      width: 260px;
+    }
+  }
+}

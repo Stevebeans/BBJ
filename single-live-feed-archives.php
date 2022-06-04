@@ -1,7 +1,9 @@
 <?php
-get_header(); ?>
+get_header();
+global $post;
+?>
 
-<div class="body-regular" id="post-<?php the_ID(); ?>">
+<div class="new-body-container" id="post-<?php the_ID(); ?>">
 
    <article>  
     <div class="widgetContain boxShadowsft">
@@ -20,20 +22,26 @@ get_header(); ?>
                 the_post_thumbnail();
               } ?>                  
             </div>
-            <div class="post-meta">
-              <?php $get_author_id = $post->post_author; ?>
-              <div><img src="<?php echo esc_url(get_avatar_url($get_author_id, ["size" => 15])); ?>" height="20"/></div>
-              <div><?php echo get_the_author_meta("display_name"); ?></div>
-              <div class="spacer"><div class="spacer-inner"></div></div>
-              <div><span><?php the_modified_date(); ?></span></div>              
-              <div class="spacer"><div class="spacer-inner"></div></div>
-              <div><span><?php echo $post->comment_count; ?> Comments</span></div>
-              
-            </div>
 
             <div class="post-content">
 
-                <?php the_content(); ?>
+              <div class="feed-update-container">
+                <div class="update-left">
+
+                  <div class="feed-update">
+                    
+                  <?php the_content(); ?>
+                  </div>
+                  
+
+                  
+                </div>
+                    
+                  <?php get_template_part("template-parts/sidebar-spoiler-box"); ?>
+
+              </div>
+                
+
             </div>
 
             <h3>Related Posts</h3>
@@ -46,7 +54,6 @@ get_header(); ?>
   </article>
 
 
-  <?php get_template_part("template-parts/sidebar-pages"); ?>
 
 
   

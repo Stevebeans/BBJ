@@ -21,8 +21,11 @@ get_header(); ?>
               } ?>                  
             </div>
             <div class="post-meta">
-              <?php $get_author_id = $post->post_author; ?>
-              <div><img src="<?php echo esc_url(get_avatar_url($get_author_id, ["size" => 15])); ?>" height="20"/></div>
+              <?php
+              $get_author_id = get_the_author_meta("ID");
+              $get_author_gravatar = get_avatar_url($get_author_id, ["size" => 15]);
+              ?>
+              <div><img src="<?php echo esc_html($get_author_gravatar); ?>"></div>
               <div><?php echo get_the_author_meta("display_name"); ?></div>
               <div class="spacer"><div class="spacer-inner"></div></div>
               <div><span><?php the_modified_date(); ?></span></div>              
