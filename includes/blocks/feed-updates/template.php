@@ -10,9 +10,27 @@ if (!empty($attributes["anchor"])) {
   $id = $attributes["anchor"];
 }
 
+// Fields
+$ppp = mb_get_block_field("posts_per_page");
+// Main ID
+$mID = mb_get_block_field("random_id");
+// Cache ID
+$cID = mb_get_block_field("cache_ID");
+$postType = mb_get_block_field("customPT");
+$comPT = implode(",", $postType);
+$feedDate = mb_get_block_field("feed_date");
+$newDate = strtotime($feedDate);
+$newDate = getDate($newDate);
+$year = $newDate["year"];
+$month = $newDate["mon"];
+$day = $newDate["mday"];
+$monthFull = $newDate["month"];
+
 $postsPerPage = mb_get_block_field("posts_per_page");
 
-$ajaxCode = '[ajax_load_more id="1890809383" container_type="div" css_classes="update-post" cache="true" cache_id="9130117963" filters="true" preloaded="true" preloaded_amount="20" seo="true" post_type="live-feed-updates,bigbrother-players" posts_per_page="10" destroy_after="200" no_results_text="No updates yet, check back shortly!" cta="true" cta_position="after:5" cta_theme_repeater="adsense-feed-updates.php" theme_repeater="feed-updates.php"]';
-?>
+$ajaxCode = '[ajax_load_more id="' . $mID . '" container_type="div" css_classes="update-post" cache="true" cache_id="' . $cID . '" preloaded="true" preloaded_amount="' . $ppp . '" seo="true" post_type="' . $comPT . '" posts_per_page="' . $ppp . '" destroy_after="200" no_results_text="No updates yet, check back shortly!" year="' . $year . '" month="' . $month . '" day="' . $day . '" order="ASC" cta="true" cta_position="after:5" cta_theme_repeater="adsense-feed-updates.php" theme_repeater="feed-updates.php"]';
 
+//
+?>
+<div>Live Feed Updates for <?= $monthFull ?> <?= $day ?>, <?= $year ?></div>
 <?= do_shortcode($ajaxCode) ?>

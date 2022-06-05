@@ -5,3 +5,4 @@ build/index.css
 build/index.asset.php
 build/index.js.map
 /build
+/info.env

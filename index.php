@@ -17,12 +17,17 @@ get_header(); ?>
   global $wpdb;
   $feedid = $wpdb->get_col("SELECT ID FROM wp_bbj_feedupdates");
   $feed_updates_args = [
-    "posts_per_page" => 5,
+    "posts_per_page" => 10,
     "post_type" => "live-feed-updates",
-    "post__in" => $feedid,
     "post_status" => "publish",
-    "orderby" => "date",
+    "orderby" => "modified",
     "order" => "DESC",
+  ];
+
+  $feed_update_page = [
+    "posts_per_Page" => 1,
+    "post_type" => "live-feed-archives",
+    "post_status" => "publish",
   ];
   ?>
 
@@ -39,23 +44,29 @@ get_header(); ?>
       $feed_updates = new WP_Query($feed_updates_args);
 
       if ($feed_updates->have_posts()): ?>
-        <ul>            
-        <?php while ($feed_updates->have_posts()):
-          $feed_updates->the_post(); ?>
-          <li>
-            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> - <?php
-$feedTime = rwmb_meta("feed_time");
-echo time_ago_calc($feedTime);
-?>
-          </li>
+      <?php while ($feed_updates->have_posts()):
+        $feed_updates->the_post(); ?>
+        <div class="front-feed-contain">
+          <div class="date"><span class="timeStamp"><?php the_modified_date(); ?></span></div>
+          <div class="body"><?php
+          the_title();
+          the_excerpt();
+          ?></div>
+        </div>
         <?php
-        endwhile; ?>
-        </ul>
+      endwhile; ?>
       <?php endif;
       ?>
 
-
-
+      <?php
+      $feed_button = new WP_Query($feed_update_page);
+      while ($feed_button->have_posts()):
+        $feed_button->the_post(); ?>
+        
+      <a href="<?= the_permalink() ?>"><div class="front-view-more">View More Updates Here</div></a>
+      <?php
+      endwhile;
+      ?>
       </div>
     </div>
 

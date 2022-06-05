@@ -22,27 +22,7 @@ global $post;
                 the_post_thumbnail();
               } ?>                  
             </div>
-
-            <div class="post-content">
-
-              <div class="feed-update-container">
-                <div class="update-left">
-
-                  <div class="feed-update">
-                  <?php get_template_part("template-parts/google-wide"); ?>
-                  <?php the_content(); ?>
-                  </div>
-                  
-
-                  
-                </div>
-                    
-                  <?php get_template_part("template-parts/sidebar-spoiler-box"); ?>
-
-              </div>
-                
-
-            </div>
+              <?php get_template_part("template-parts/single-blog-post-no-meta"); ?>
 
             <h3>Related Posts</h3>
             <div class="related-posts">

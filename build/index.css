@@ -1197,6 +1197,50 @@ hr.rm_divider {
   color: #ffbf0f;
 }
 
+.front-feed-contain {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100px 1fr;
+  grid-template-columns: 100px 1fr;
+      grid-template-areas: "date body";
+  margin-bottom: 10px;
+  padding: 5px;
+}
+.front-feed-contain .date {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: date;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+.front-feed-contain .body {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: body;
+}
+.front-feed-contain .body p {
+  margin: 5px 0 0 0;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.front-feed-contain:hover {
+  background-color: #eeeeee;
+}
+
+.front-view-more {
+  border: 1px solid #35546e;
+  background-color: #ffd970;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 75%;
+  margin: 10px auto 0px auto;
+}
+
 .comments-area {
   background-color: white;
   padding: 0.625rem;
@@ -2109,7 +2153,6 @@ div[role=progressbar]::before {
   -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   position: relative;
-  display: flex;
   padding-top: 10px;
   grid-area: body;
   padding-left: 15px;

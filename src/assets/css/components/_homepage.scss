@@ -324,3 +324,44 @@ hr.rm_divider {
 .menuButtons:hover a {
   color: $secondaryColor;
 }
+
+// Updated 6/5
+
+.front-feed-contain {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-areas: "date body";
+  margin-bottom: 10px;
+  padding: 5px;
+  .date {
+    grid-area: date;
+    font-family: $alt_font;
+    font-size: toRem(12);
+    font-weight: 400;
+  }
+
+  .body {
+    grid-area: body;
+    p {
+      margin: 5px 0 0 0;
+      padding: 0;
+      font-size: toRem(14);
+    }
+  }
+}
+
+.front-feed-contain:hover {
+  background-color: $lightGray;
+}
+
+.front-view-more {
+  border: 1px solid $primaryColor;
+  background-color: $secondaryColorAccent;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px 5px;
+  font-size: toRem(16);
+  font-weight: 600;
+  width: 75%;
+  margin: 10px auto 0px auto;
+}

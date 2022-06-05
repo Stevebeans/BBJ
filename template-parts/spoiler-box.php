@@ -1,6 +1,6 @@
 
 <?php
-if (is_home() || is_single()):
+if (is_home() || is_single() || is_archive()):
   $seasonID = rwmb_meta("current_season", ["object_type" => "setting"], "bbj_settings");
 else:
   $seasonID = get_the_id();
