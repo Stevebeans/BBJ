@@ -2066,15 +2066,79 @@ div[role=progressbar]::before {
   border-left: 1px solid #eeeeee;
   border-right: 1px solid #eeeeee;
 }
-
-.update-post > div > div {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  padding-top: 0.625rem;
-  padding-top: 0.625rem;
+.update-post a,
+.update-post a:visited {
+  color: #696969;
 }
 
-.update-post > div > div:hover {
+.feed-update-post {
+  padding: 10px 20px;
+  display: -ms-grid;
+  display: grid;
+  border-top: 1px solid #eeeeee;
+  -ms-grid-columns: 40px 1fr 100px;
+  grid-template-columns: 40px 1fr 100px;
+      grid-template-areas: "avatar title date" "avatar body body";
+}
+.feed-update-post p {
+  padding: 0 0 0 10px;
+  margin: 0;
+  font-size: 0.875rem;
+  top: 0;
+  align-items: start;
+}
+.feed-update-post .header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-block;
+  grid-area: title;
+  padding-left: 15px;
+}
+.feed-update-post .date {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: date;
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-align: right;
+}
+.feed-update-post .body {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  position: relative;
+  display: flex;
+  padding-top: 10px;
+  grid-area: body;
+  padding-left: 15px;
+}
+.feed-update-post .body img {
+  width: 150px;
+  height: 75px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  float: left;
+  border-radius: 10px;
+}
+.feed-update-post .avatar {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: avatar;
+  padding-top: 5px;
+  text-align: center;
+}
+.feed-update-post .avatar img {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.feed-update-post:hover {
   background-color: #eeeeee;
   transition-timing-function: ease-in;
   /* Quick on the way out */

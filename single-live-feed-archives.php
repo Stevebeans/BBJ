@@ -29,7 +29,7 @@ global $post;
                 <div class="update-left">
 
                   <div class="feed-update">
-                    
+                  <?php get_template_part("template-parts/google-wide"); ?>
                   <?php the_content(); ?>
                   </div>
                   

@@ -18,7 +18,9 @@ require "includes/routes.php";
 require "includes/search-route.php";
 
 //Include Metabox Files
+require_once BBJ_MB_FILES . "/create-tables.php";
 //require_once BBJ_MB_FILES . "/relationships.php";
+require_once BBJ_MB_FILES . "/custom-blocks.php";
 
 // Load general scripts
 function load_assets()
