@@ -97,8 +97,7 @@ $current_season = $primary_category->name;
 $latest_post_args = [
   "post_type" => "post",
   "post_status" => "publish",
-  "category_name" => $primary_category->slug,
-  "posts_per_page" => 6,
+  "posts_per_page" => 10,
 ];
 ?>
 
@@ -115,6 +114,7 @@ $latest_post_args = [
         <div>
           <!-- Featured Post   -->
           <?php
+/*
           $featured_post = new WP_Query($featured_post_args);
           if ($featured_post->have_posts()):
             $featured_post->the_post(); ?>
@@ -132,7 +132,8 @@ $latest_post_args = [
           <?php
           endif;
           wp_reset_postdata();
-          ?>
+          */
+?>
 
           <div class="aBlock">
             AD BLOCK
@@ -141,11 +142,9 @@ $latest_post_args = [
           <div class="mainUpdates">
 
           <?php
-          $latestPosts = new WP_Query($latest_post_args);
-
-          if ($latestPosts->have_posts()):
-            while ($latestPosts->have_posts()):
-              $latestPosts->the_post(); ?>
+          if (have_posts()): ?>            
+            <?php while (have_posts()):
+              the_post(); ?>
             
                   
             <div class="newsArticle flex flex-col">
@@ -162,13 +161,16 @@ $latest_post_args = [
             </div>
 
             <?php
-            endwhile;
-          endif;
+            endwhile; ?>
+              <div class="pagination"><?php ca_pagination(); ?></div>
+
+          <?php endif;
 
           wp_reset_postdata();
           ?>           
             
-           
+ 
+  
           </div> 
           <div class="newsArticle">Read More <?php echo $current_season; ?> News Here</div>
         </div>
@@ -187,6 +189,8 @@ $latest_post_args = [
 
 
     <!-- Main Section   -->
+    <?php
+/* ?>
     <div class="widgetContain boxShadowsft">
       <div class="widgetHeader">
         <div class="titleBar"></div>
@@ -226,6 +230,8 @@ $latest_post_args = [
 
       </div>
     </div>
+    */
+?>
   </div>
 
 

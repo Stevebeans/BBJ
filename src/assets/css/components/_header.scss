@@ -221,8 +221,8 @@ header {
 
 .playerDiv {
   display: flex;
-  justify-content: space-between;
   padding: 5px;
+  gap: 5px;
   background-color: $white;
   transform: translateY(0);
   flex-wrap: wrap;
@@ -231,6 +231,30 @@ header {
   margin: 0px auto;
   position: relative;
   z-index: 5;
+  justify-content: center;
+}
+
+.header-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 2px;
+  border-radius: 25px;
+}
+
+.header-thumb {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  width: 50px;
+  height: 75px;
+  text-align: center;
+  @include media("<=tablet") {
+    width: 40px;
+    height: 65px;
+  }
 }
 
 .spoilerBar--active {
@@ -308,25 +332,6 @@ header {
   line-height: toRem(14);
   font-family: $header_font;
   font-weight: 400;
-  text-align: center;
-}
-
-.header-thumb img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 2px;
-  border-radius: 25px;
-}
-
-.header-thumb {
-  display: block;
-  margin: 0px;
-  padding: 0px;
-  width: 50px;
-  height: 75px;
   text-align: center;
 }
 

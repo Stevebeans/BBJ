@@ -14,6 +14,8 @@
 
       gtag('config', 'G-1Q771W4ZV2');
     </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
+     crossorigin="anonymous"></script>
   </head>
   <body <?php body_class(); ?>>
 
