@@ -233,6 +233,9 @@ header {
   z-index: 5;
   justify-content: center;
 }
+.player-div-hide {
+  display: none !important;
+}
 
 .header-thumb img {
   display: block;

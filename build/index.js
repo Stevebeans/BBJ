@@ -2770,27 +2770,130 @@ class SpoilerBar {
     this.toggleButton = document.getElementById("toggleSpoiler");
     this.spoilerBar = jQuery(".spoilerBar");
     this.playerDiv = jQuery(".playerDiv");
-    this.body = jQuery(".bodyContainer"); //this.spoilerSet = window.localStorage;
+    this.body = jQuery(".bodyContainer");
+    this.showBar = true; //this.spoilerSet = window.localStorage;
     //this.showBar = window.localStorage("spoilerbar");
     //console.log(this.showBar);
 
+    this.initial_state();
     this.events();
+    const buttonCheck = localStorage.getItem("showbar");
+    console.log("button check1");
+    console.log(buttonCheck);
   }
 
   events() {
     this.toggleButton.addEventListener("click", () => this.spoilerToggle());
   }
 
+  initial_state() {
+    if (localStorage.getItem("showbar") === null) {
+      localStorage.setItem("showbar", this.showBar);
+    } else {
+      console.log("there is a setting");
+    }
+  }
+
   spoilerToggle() {
-    this.toggleButton.classList.toggle("fa-toggle-off");
-    this.toggleButton.classList.toggle("fa-toggle-on");
-    this.playerDiv.slideToggle(); // Do an if statement and add padding if it's expanded
+    const buttonCheck = localStorage.getItem("showbar");
+    console.log("button check2");
+    console.log(buttonCheck);
+
+    if (buttonCheck === true) {
+      this.toggleButton.classList.hide("fa-toggle-off");
+      this.toggleButton.classList.show("fa-toggle-on");
+      localStorage.setItem("showbar", false);
+      this.playerDiv.hide();
+      console.log("hide");
+      console.log("button check3");
+      console.log(buttonCheck);
+    } else {
+      console.log("whatever");
+      this.toggleButton.classList.show("fa-toggle-off");
+      this.toggleButton.classList.hide("fa-toggle-on");
+    } // if (buttonCheck == false) {
+    //   this.toggleButton.classList.toggle("fa-toggle-off");
+    //   this.toggleButton.classList.toggle("fa-toggle-on");
+    //   localStorage.setItem("showbar", true);
+    //   this.playerDiv.show();
+    //   console.log("show");
+    //   console.log("button check3");
+    //   console.log(buttonCheck);
+    // }
+    //this.playerDiv.slideToggle();
+    // Do an if statement and add padding if it's expanded
     //this.body.css("padding-top: 50px");
+
   }
 
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (SpoilerBar);
+
+/***/ }),
+
+/***/ "./src/scripts/SpoilerBarNew.js":
+/*!**************************************!*\
+  !*** ./src/scripts/SpoilerBarNew.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class SpoilerBarNew {
+  constructor() {
+    this.toggleButton = document.getElementById("toggleSpoiler");
+    this.playerDiv = document.querySelector(".playerDiv");
+    this.initial_state();
+    this.events();
+  }
+
+  events() {
+    this.toggleButton.addEventListener("click", e => this.spoiler_toggle(e));
+  }
+
+  spoiler_toggle(e) {
+    const toggleCheck = localStorage.getItem("showbar");
+
+    if (toggleCheck === "true") {
+      console.log("toggletrue");
+      this.toggleButton.classList.add("fa-toggle-off");
+      this.toggleButton.classList.remove("fa-toggle-on");
+      this.playerDiv.classList.add("player-div-hide");
+      localStorage.setItem("showbar", false);
+    } else if (toggleCheck === "false") {
+      console.log("togglefalse");
+      this.toggleButton.classList.remove("fa-toggle-off");
+      this.toggleButton.classList.add("fa-toggle-on");
+      this.playerDiv.classList.remove("player-div-hide");
+      localStorage.setItem("showbar", true);
+    }
+  } // This sets initial value to true when viewers first visit
+
+
+  initial_state() {
+    if (localStorage.getItem("showbar") === null) {
+      localStorage.setItem("showbar", this.showBar);
+    }
+
+    const toggleCheck = localStorage.getItem("showbar");
+
+    if (toggleCheck === "true") {
+      console.log("opening true");
+      this.toggleButton.classList.add("fa-toggle-on");
+      this.toggleButton.classList.remove("fa-toggle-off");
+      this.playerDiv.classList.remove("player-div-hide");
+    } else if (toggleCheck === "false") {
+      console.log("opening false");
+      this.toggleButton.classList.remove("fa-toggle-on");
+      this.toggleButton.classList.add("fa-toggle-off");
+      this.playerDiv.classList.add("player-div-hide");
+    }
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (SpoilerBarNew);
 
 /***/ }),
 
@@ -2909,16 +3012,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_SearchBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scripts/SearchBar */ "./src/scripts/SearchBar.js");
 /* harmony import */ var _scripts_MobileDrop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/MobileDrop */ "./src/scripts/MobileDrop.js");
 /* harmony import */ var _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scripts/SpoilerBar */ "./src/scripts/SpoilerBar.js");
-/* harmony import */ var _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scripts/PlayerTable */ "./src/scripts/PlayerTable.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-dom */ "react-dom");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scripts/SpoilerBarNew */ "./src/scripts/SpoilerBarNew.js");
+/* harmony import */ var _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scripts/PlayerTable */ "./src/scripts/PlayerTable.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-dom */ "react-dom");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_7__);
 
  //import ExampleReactComponent from "./scripts/ExampleReactComponent";
 
  //import React from "react";
 //import ReactDOM from "react-dom";
+
 
  //import PlayerArchive from "./scripts/PlayerArchive";
 
@@ -2927,8 +3032,8 @@ __webpack_require__.r(__webpack_exports__);
  //const searchBar = new SearchBar(); back burner for now
 
 const mobileDrop = new _scripts_MobileDrop__WEBPACK_IMPORTED_MODULE_2__["default"]();
-const spoilerBar = new _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_3__["default"]();
-const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_4__["default"](); //ReactDOM.render(<PlayerArchive />, document.querySelector("#player-table"));
+const spoilerBar = new _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_4__["default"]();
+const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_5__["default"](); //ReactDOM.render(<PlayerArchive />, document.querySelector("#player-table"));
 }();
 /******/ })()
 ;

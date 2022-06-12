@@ -71,12 +71,17 @@ get_header(); ?>
     </div>
 
 
-
-    <div class="newsBar">
-
+<form method="post" action="https://bigbrotherjunkies.com/?na=s">
+    <div class="newsBar">      
       <div class="newsInner">Never Miss An Update</div>
-
-    </div>
+      <input type="hidden" name="nlang" value="">
+      <div class="tnp-field tnp-field-email">
+      <input class="tnp-email" type="email" name="ne" id="tnp-1" value="Enter your email" required>
+      </div>
+      <div class="tnp-field tnp-field-button"><input class="tnp-submit" type="submit" value="Subscribe" ></div>     
+    
+  </div> 
+</form>
 
 <?php
 // Get query for the featured post
@@ -135,9 +140,9 @@ $latest_post_args = [
           */
 ?>
 
-          <div class="aBlock">
-            AD BLOCK
-          </div>
+
+<?php get_template_part("template-parts/google-flex"); ?>
+
 
           <div class="mainUpdates">
 
@@ -162,7 +167,7 @@ $latest_post_args = [
 
             <?php
             endwhile; ?>
-              <div class="pagination"><?php ca_pagination(); ?></div>
+             
 
           <?php endif;
 
@@ -171,8 +176,7 @@ $latest_post_args = [
             
  
   
-          </div> 
-          <div class="newsArticle">Read More <?php echo $current_season; ?> News Here</div>
+          </div>  <div class="pagination"><?php ca_pagination(); ?></div>
         </div>
       </div>
     </div>

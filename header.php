@@ -85,7 +85,7 @@ if (is_user_logged_in()):
       
       
       <div class="spoilerTrigger">
-        <div class="spoilerTriggerText">Spoiler Bar: <i class="fa fa-toggle-off" id="toggleSpoiler"></i></div> 
+        <div class="spoilerTriggerText">Spoiler Bar: <i class="fa fa-toggle-on" id="toggleSpoiler"></i></div> 
       </div>
     </div>
       <div class="menuShow">

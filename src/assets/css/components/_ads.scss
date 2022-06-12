@@ -1,0 +1,31 @@
+.bbjad {
+  display: block;
+}
+
+.bbj-ad-block-sq {
+  border: 1px solid black;
+  width: 300px;
+  height: 250px;
+  margin: 20px auto;
+  align-self: center;
+  @include media(">=tablet") {
+    margin: 0px auto;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+  }
+}
+
+// .bbj-ad-block-sq-mobile {
+//   width: 300px;
+//   height: 200px;
+//   display: block;
+//   position: absolute;
+//   top: 50%;
+//   right: 50%;
+//   transform: translate(50%, -50%);
+//   @include media(">=tablet") {
+//     display: none;
+//   }
+// }

@@ -11,6 +11,10 @@ Remainder to do
 - Mkae sure single page looks fine 
 
 
+-- Make sure newsletters are good.  
+- New user (links on what to do set up profile)
+- Post updates (BBJ Daily Digest) showing the posts for the day from posts to feed updates split into their own section 
+
 Missing from BBJ
 
 Index -- 
