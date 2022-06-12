@@ -1,6 +1,6 @@
 <?php
 
-define("BBJ_THEME_VERSION", "2.1.1");
+define("BBJ_THEME_VERSION", "2.1.2");
 define("BBJ_ROOT", dirname(__FILE__));
 define("BBJ_INCLUDES", BBJ_ROOT . "/includes");
 define("BBJ_MB_FILES", BBJ_INCLUDES . "/MB");
