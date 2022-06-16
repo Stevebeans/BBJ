@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
 
+    
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1Q771W4ZV2"></script>
     <script>
@@ -105,7 +107,18 @@ if (is_user_logged_in()):
       <?php get_template_part("template-parts/spoiler-bar"); ?>
 
     
+      <?php
+      $bbjAdCheck = "regular";
+      $bbjUpdater = "visitor";
+      if (is_user_logged_in()):
+        if (current_user_can("administrator") || current_user_can("editor")):
+          $bbjAdCheck = "premium";
+          $bbjUpdater = "updater";
+        endif;
+      endif;
+      ?>
 
+      <div id="user-role" data-role="<?= $bbjAdCheck ?>"></div>
 
     
   </div>
@@ -113,3 +126,4 @@ if (is_user_logged_in()):
 
 
   </header>
+  <div id="update-box" data-update="<?= $bbjUpdater ?>">Scroll for info</div>

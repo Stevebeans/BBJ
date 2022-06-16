@@ -71,17 +71,8 @@ get_header(); ?>
     </div>
 
 
-<form method="post" action="https://bigbrotherjunkies.com/?na=s">
-    <div class="newsBar">      
-      <div class="newsInner">Never Miss An Update</div>
-      <input type="hidden" name="nlang" value="">
-      <div class="tnp-field tnp-field-email">
-      <input class="tnp-email" type="email" name="ne" id="tnp-1" value="Enter your email" required>
-      </div>
-      <div class="tnp-field tnp-field-button"><input class="tnp-submit" type="submit" value="Subscribe" ></div>     
-    
-  </div> 
-</form>
+
+    <?php get_template_part("template-parts/newsletter"); ?>
 
 <?php
 // Get query for the featured post

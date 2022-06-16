@@ -2493,6 +2493,42 @@ class MobileDrop {
 
 /***/ }),
 
+/***/ "./src/scripts/Permissions.js":
+/*!************************************!*\
+  !*** ./src/scripts/Permissions.js ***!
+  \************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "permission_check": function() { return /* binding */ permission_check; }
+/* harmony export */ });
+function permission_check() {
+  const adBlocks = document.querySelectorAll(".bbjad");
+  const roleCheck = document.querySelector("#user-role");
+  const updater = document.querySelector("#update-box");
+
+  if (roleCheck.getAttribute("data-role") === "premium") {
+    console.log("premium user");
+  } else {
+    console.log("regular user");
+  }
+
+  if (updater.getAttribute("data-update") === "updater") {
+    updater.style.display = "block";
+  } else {
+    updater.style.display = "none";
+  }
+
+  console.log(roleCheck.getAttribute("data-role"));
+  adBlocks.forEach(el => {
+    el.style.display = "none";
+  });
+}
+
+/***/ }),
+
 /***/ "./src/scripts/PlayerTable.js":
 /*!************************************!*\
   !*** ./src/scripts/PlayerTable.js ***!
@@ -2844,6 +2880,7 @@ class SpoilerBarNew {
   constructor() {
     this.toggleButton = document.getElementById("toggleSpoiler");
     this.playerDiv = document.querySelector(".playerDiv");
+    console.log("loaded");
     this.initial_state();
     this.events();
   }
@@ -2853,6 +2890,7 @@ class SpoilerBarNew {
   }
 
   spoiler_toggle(e) {
+    console.log("click");
     const toggleCheck = localStorage.getItem("showbar");
 
     if (toggleCheck === "true") {
@@ -2872,8 +2910,11 @@ class SpoilerBarNew {
 
 
   initial_state() {
-    if (localStorage.getItem("showbar") === null) {
-      localStorage.setItem("showbar", this.showBar);
+    const bar = localStorage.getItem("showbar");
+
+    if (bar === null || bar === "undefined") {
+      console.log("undefinefdsfd");
+      localStorage.setItem("showbar", true);
     }
 
     const toggleCheck = localStorage.getItem("showbar");
@@ -3014,10 +3055,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scripts/SpoilerBar */ "./src/scripts/SpoilerBar.js");
 /* harmony import */ var _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scripts/SpoilerBarNew */ "./src/scripts/SpoilerBarNew.js");
 /* harmony import */ var _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scripts/PlayerTable */ "./src/scripts/PlayerTable.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-dom */ "react-dom");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _scripts_Permissions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./scripts/Permissions */ "./src/scripts/Permissions.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-dom */ "react-dom");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_8__);
 
  //import ExampleReactComponent from "./scripts/ExampleReactComponent";
 
@@ -3029,11 +3071,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
  //const searchBar = new SearchBar(); back burner for now
 
 const mobileDrop = new _scripts_MobileDrop__WEBPACK_IMPORTED_MODULE_2__["default"]();
 const spoilerBar = new _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_4__["default"]();
-const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_5__["default"](); //ReactDOM.render(<PlayerArchive />, document.querySelector("#player-table"));
+const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_5__["default"]();
+(0,_scripts_Permissions__WEBPACK_IMPORTED_MODULE_6__.permission_check)();
+console.log("js-loaded"); //ReactDOM.render(<PlayerArchive />, document.querySelector("#player-table"));
 }();
 /******/ })()
 ;

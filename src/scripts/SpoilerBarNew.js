@@ -3,6 +3,8 @@ class SpoilerBarNew {
     this.toggleButton = document.getElementById("toggleSpoiler");
     this.playerDiv = document.querySelector(".playerDiv");
 
+    console.log("loaded");
+
     this.initial_state();
     this.events();
   }
@@ -12,6 +14,7 @@ class SpoilerBarNew {
   }
 
   spoiler_toggle(e) {
+    console.log("click");
     const toggleCheck = localStorage.getItem("showbar");
     if (toggleCheck === "true") {
       console.log("toggletrue");
@@ -31,8 +34,10 @@ class SpoilerBarNew {
 
   // This sets initial value to true when viewers first visit
   initial_state() {
-    if (localStorage.getItem("showbar") === null) {
-      localStorage.setItem("showbar", this.showBar);
+    const bar = localStorage.getItem("showbar");
+    if (bar === null || bar === "undefined") {
+      console.log("undefinefdsfd");
+      localStorage.setItem("showbar", true);
     }
 
     const toggleCheck = localStorage.getItem("showbar");

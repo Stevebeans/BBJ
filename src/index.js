@@ -10,6 +10,7 @@ import SpoilerBar from "./scripts/SpoilerBar";
 import SpoilerBarNew from "./scripts/SpoilerBarNew";
 //import PlayerArchive from "./scripts/PlayerArchive";
 import PlayerTable from "./scripts/PlayerTable";
+import { permission_check } from "./scripts/Permissions";
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -18,5 +19,8 @@ import ReactDOM from "react-dom";
 const mobileDrop = new MobileDrop();
 const spoilerBar = new SpoilerBarNew();
 const playerTable = new PlayerTable();
+permission_check();
+
+console.log("js-loaded");
 
 //ReactDOM.render(<PlayerArchive />, document.querySelector("#player-table"));
