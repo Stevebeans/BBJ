@@ -14,9 +14,12 @@ global $post;
         </div>
         <div class="widgetBody">
           <?php the_title('<h1 class="blogTitle">', "</h1>"); ?>
+          
+     
 
 
-          <div class="entry-content">
+          <div class="entry-content"> 
+            
             <div class="featured-image">
               <?php if (has_post_thumbnail()) {
                 the_post_thumbnail();
@@ -24,10 +27,6 @@ global $post;
             </div>
               <?php get_template_part("template-parts/single-blog-post-no-meta"); ?>
 
-            <h3>Related Posts</h3>
-            <div class="related-posts">
-              <?php example_cats_related_post(); ?>
-            </div>
           </div>
         </div>
     </div>

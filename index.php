@@ -38,6 +38,8 @@ get_header(); ?>
         <div class="titleBar"></div>
           <h2 class="widgetTitle">Live Feed Updates</h2>        
       </div>
+      <?php get_template_part("template-parts/feed-update-form"); ?>
+
       <div class="widgetBody">
 
       <?php

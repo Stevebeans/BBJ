@@ -2521,10 +2521,9 @@ function permission_check() {
     updater.style.display = "none";
   }
 
-  console.log(roleCheck.getAttribute("data-role"));
-  adBlocks.forEach(el => {
-    el.style.display = "none";
-  });
+  console.log(roleCheck.getAttribute("data-role")); // adBlocks.forEach(el => {
+  //   el.style.display = "none";
+  // });
 }
 
 /***/ }),

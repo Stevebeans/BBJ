@@ -707,3 +707,13 @@ header {
   color: $secondaryColor;
   background-color: $primaryColor;
 }
+
+.feed-update-box {
+  border: 1px solid black;
+  padding: 10px 10px 0px 10px;
+  margin: 10px auto;
+  background-color: $secondaryColorLight;
+  h3 {
+    display: none;
+  }
+}

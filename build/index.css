@@ -965,6 +965,16 @@ header {
   background-color: #35546e;
 }
 
+.feed-update-box {
+  border: 1px solid black;
+  padding: 10px 10px 0px 10px;
+  margin: 10px auto;
+  background-color: #fdf8e7;
+}
+.feed-update-box h3 {
+  display: none;
+}
+
 .bodyContainer {
   max-width: 70rem;
   margin: 0px auto;
@@ -2411,6 +2421,7 @@ div[role=progressbar]::before {
 }
 .bbjad {
   display: block;
+  border: 1px solid black;
 }
 
 .bbj-ad-block-sq {

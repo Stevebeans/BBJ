@@ -17,7 +17,7 @@ export function permission_check() {
 
   console.log(roleCheck.getAttribute("data-role"));
 
-  adBlocks.forEach(el => {
-    el.style.display = "none";
-  });
+  // adBlocks.forEach(el => {
+  //   el.style.display = "none";
+  // });
 }
