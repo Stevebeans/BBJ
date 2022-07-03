@@ -1,5 +1,18 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?>>    
+  <?php
+  $addFreeExperience = false;
+
+  $bbjAdCheck = "regular";
+  $bbjUpdater = "visitor";
+  if (is_user_logged_in()):
+    if (current_user_can("administrator") || current_user_can("editor")):
+      $bbjAdCheck = "premium";
+      $bbjUpdater = "updater";
+      $addFreeExperience = true;
+    endif;
+  endif;
+  ?>
   <head>
     <meta charset="<?php bloginfo("charset"); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,16 +29,24 @@
 
       gtag('config', 'G-1Q771W4ZV2');
     </script>
+
+
+    <?php if (!premiumCheck()): ?>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
      crossorigin="anonymous"></script>
+    <?php endif; ?>  
+
   </head>
   <body <?php body_class(); ?>>
 
 
 
   <header>
+
+
     
   <div class="container">
+    
 
     <?php // Get logged in user info
 
@@ -35,6 +56,7 @@ if (is_user_logged_in()):
 
   
     <div class="headerContain"> 
+  <?php get_template_part("template-parts/google-flex"); ?>
       <div class="header-content">
         <div class="headerLeft">
           <div class="headerLogoFull"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogo2020.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
@@ -107,16 +129,7 @@ if (is_user_logged_in()):
       <?php get_template_part("template-parts/spoiler-bar"); ?>
 
     
-      <?php
-      $bbjAdCheck = "regular";
-      $bbjUpdater = "visitor";
-      if (is_user_logged_in()):
-        if (current_user_can("administrator") || current_user_can("editor")):
-          $bbjAdCheck = "premium";
-          $bbjUpdater = "updater";
-        endif;
-      endif;
-      ?>
+
 
       <div id="user-role" data-role="<?= $bbjAdCheck ?>"></div>
 

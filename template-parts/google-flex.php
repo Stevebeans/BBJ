@@ -1,3 +1,6 @@
+
+<?php if (!premiumCheck()): ?>
+
 <div class="bbjad">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
      crossorigin="anonymous"></script>
@@ -12,3 +15,4 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
+<?php endif; ?>

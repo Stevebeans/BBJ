@@ -60,8 +60,6 @@
       </div>
     </div>
 
+          <?php get_template_part("template-parts/google-flex"); ?>
 
-    <div class="aBlock">
-            AD BLOCK
-    </div>
   </div>

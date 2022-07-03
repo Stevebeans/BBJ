@@ -334,3 +334,13 @@ function ca_pagination()
 
   echo "</ul></div>" . "\n";
 }
+
+function premiumCheck()
+{
+  if (is_user_logged_in()):
+    $user = wp_get_current_user();
+    if (current_user_can("supporter") || current_user_can("editor")):
+      return true;
+    endif;
+  endif;
+}

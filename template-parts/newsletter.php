@@ -5,5 +5,5 @@
     </div>
   </div>
   <div class="nl-header"><h4>Get Live Feed Updates In Email!</h4></div>
-  <div class="nl-body"><?php echo FrmFormsController::get_form_shortcode(["id" => 7, "title" => true, "description" => true]); ?></div>
+  <div class="nl-body"><?php echo FrmFormsController::get_form_shortcode(["id" => 7, "title" => false, "description" => true]); ?></div>
 </div>

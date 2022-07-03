@@ -134,7 +134,7 @@ $latest_post_args = [
 ?>
 
 
-<?php get_template_part("template-parts/google-flex"); ?>
+          <?php get_template_part("template-parts/google-flex"); ?>
 
 
           <div class="mainUpdates">
@@ -176,11 +176,8 @@ $latest_post_args = [
 
   
     
-    <div class="newsBar">
 
-      <div class="newsInner">Never Miss An Update</div>
-
-    </div>
+    <?php get_template_part("template-parts/google-flex"); ?>
 
 
 
