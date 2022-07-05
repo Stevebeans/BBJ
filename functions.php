@@ -1,6 +1,6 @@
 <?php
 
-define("BBJ_THEME_VERSION", "2.2.0.1");
+define("BBJ_THEME_VERSION", "2.2.1");
 define("BBJ_ROOT", dirname(__FILE__));
 define("BBJ_INCLUDES", BBJ_ROOT . "/includes");
 define("BBJ_MB_FILES", BBJ_INCLUDES . "/MB");
@@ -12,6 +12,7 @@ define("BBJ_THEME_INC", BBJ_THEME_PATH . "includes/");
 define("BBJ_THEME_BLOCK_DIR", BBJ_THEME_INC . "blocks/");
 
 require_once BBJ_INCLUDES . "/core.php";
+require_once BBJ_INCLUDES . "/director.php";
 require "includes/cpt.php";
 require "includes/breadcrumbs.php";
 require "includes/routes.php";

@@ -167,7 +167,7 @@ select {
   text-align: center;
 }
 
-.container {
+.bbj-container {
   width: 100%;
   margin: 0px auto;
   border: 0px solid;
@@ -2424,6 +2424,33 @@ div[role=progressbar]::before {
   margin: 10px auto;
   max-width: 1400px;
   text-align: center;
+}
+
+.bbadhead {
+  display: none;
+}
+@media (min-width: 768px) {
+  .bbadhead {
+    display: block;
+  }
+}
+
+.bbjad-hd-mb {
+  display: block;
+}
+@media (min-width: 768px) {
+  .bbjad-hd-mb {
+    display: none;
+  }
+}
+
+.bbjad-hd-dt {
+  display: block;
+}
+@media (min-width: 361px) {
+  .bbjad-hd-dt {
+    display: none;
+  }
 }
 
 .bbj-ad-block-sq {

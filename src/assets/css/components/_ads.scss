@@ -5,6 +5,26 @@
   text-align: center;
 }
 
+.bbadhead {
+  display: none;
+  @include media(">=tablet") {
+    display: block;
+  }
+}
+
+.bbjad-hd-mb {
+  display: block;
+  @include media(">=tablet") {
+    display: none;
+  }
+}
+
+.bbjad-hd-dt {
+  display: block;
+  @include media(">phone") {
+    display: none;
+  }
+}
 .bbj-ad-block-sq {
   border: 1px solid black;
   width: 300px;

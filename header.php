@@ -45,7 +45,7 @@
 
 
     
-  <div class="container">
+  <div class="bbj-container">
     
 
     <?php // Get logged in user info
@@ -56,7 +56,10 @@ if (is_user_logged_in()):
 
   
     <div class="headerContain"> 
-  <?php get_template_part("template-parts/google-flex"); ?>
+      <?php get_template_part("template-parts/google-flex-head"); ?>
+      <?php get_template_part("template-parts/google-header-mobile"); ?>
+
+      
       <div class="header-content">
         <div class="headerLeft">
           <div class="headerLogoFull"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogo2020.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
