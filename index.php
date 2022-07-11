@@ -25,9 +25,11 @@ get_header(); ?>
   ];
 
   $feed_update_page = [
-    "posts_per_Page" => 1,
+    "posts_per_page" => 2,
     "post_type" => "live-feed-archives",
     "post_status" => "publish",
+    "orderby" => "date",
+    "order" => "DESC",
   ];
   ?>
 
@@ -38,7 +40,6 @@ get_header(); ?>
         <div class="titleBar"></div>
           <h2 class="widgetTitle">Live Feed Updates</h2>        
       </div>
-      <?php get_template_part("template-parts/feed-update-form"); ?>
 
       <div class="widgetBody">
 
@@ -64,8 +65,7 @@ get_header(); ?>
       $feed_button = new WP_Query($feed_update_page);
       while ($feed_button->have_posts()):
         $feed_button->the_post(); ?>
-        
-      <a href="<?= the_permalink() ?>"><div class="front-view-more">View More Updates Here</div></a>
+      <a href="<?= the_permalink() ?>"><div class="front-view-more"><?= $post->post_title ?></div></a>
       <?php
       endwhile;
       ?>
@@ -89,8 +89,9 @@ $featured_post_args = [
   "no_found_rows" => true,
 ];
 
-$primary_category = rwmb_meta("current_category", ["object_type" => "setting"], "bbj_settings");
-$current_season = $primary_category->name;
+$primary_category = rwmb_meta("current_season", ["object_type" => "setting"], "bbj_settings");
+
+$current_season = get_the_title($primary_category);
 
 $latest_post_args = [
   "post_type" => "post",
@@ -144,7 +145,6 @@ $latest_post_args = [
             <?php while (have_posts()):
               the_post(); ?>
             
-                  
             <div class="newsArticle flex flex-col">
               
 
@@ -153,7 +153,7 @@ $latest_post_args = [
                 <div class="categoryInfo-sm"><?php echo $current_season; ?></div>
                 <div class="coverHeadline"><a href="<?php the_permalink(); ?>"><h3><?php esc_attr(the_title()); ?></h3></a></div>
                 <div class="coverExcerptSm flex-grow"><p><?php the_excerpt(); ?> <span><a href="<?php the_permalink(); ?>">Read More</a></span></p></div>
-                <div class="frontMeta"><?php echo get_the_author_meta("display_name"); ?> <span class="timeStamp"> <?php the_modified_date(); ?></span></div>
+                <div class="frontMeta"><?php echo get_the_author_meta("display_name"); ?> <span class="timeStamp"> <?php the_modified_date(); ?> | <?= $post->comment_count ?> comments</span></div>
               </div>
 
             </div>

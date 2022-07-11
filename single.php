@@ -51,7 +51,7 @@ get_header(); ?>
 
   
 </div>
-<div class="post-bottom">
+  <div class="post-bottom">
     <div class="comment-section">
       <?php if (comments_open()):
         comments_template();

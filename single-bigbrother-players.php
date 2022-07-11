@@ -97,7 +97,6 @@ endif; ?>
 					</div>
 					<h3>Info:</h3>
 
-					<?php echo "<pre>", print_r($start_date, 1), "</pre>"; ?>
 
 					<div class="player-info">
 
@@ -153,9 +152,8 @@ endif; ?>
           <?php endif; ?>
 					</div>
 
-					<div class="sideBlock">
-						Ad Block 250 wide
-					</div>
+					
+					<?php get_template_part("template-parts/google-flex"); ?>
 
 				</div>
 				<div class="profile-right">
@@ -173,16 +171,15 @@ endif; ?>
 	</div>
 
 
-   <div class="mainBody">
-
-		 <?php echo "BEGIN NEWS"; ?>
+   <!-- <div class="mainBody">
 
 
 
 
 
 
-  </div>
+
+  </div> -->
 </div>
 
 

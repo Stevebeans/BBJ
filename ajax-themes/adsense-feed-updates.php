@@ -1,1 +1,1 @@
-<?php get_template_part("template-parts/google-wide"); ?>
+<?php get_template_part("template-parts/google-flex"); ?>

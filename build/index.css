@@ -869,20 +869,53 @@ header {
 }
 
 #update-box {
-  border: 1px solid green;
-  height: 20px;
-  width: 350px;
+  border: 1px solid rgba(53, 84, 110, 0.2);
+  background-color: #fff;
+  padding: 10px;
+  width: 100%;
   position: fixed;
   margin: 0px auto;
   display: block;
   bottom: 0%;
   left: 50%;
   transform: translate(-50%, 0%);
+  z-index: 50;
+}
+@media (min-width: 769px) {
+  #update-box {
+    max-width: 1000px;
+  }
 }
 #update-box .bbj-nl-first,
 #update-box .bbj-nl-last,
 #update-box .bbj-nl-email {
   margin: 0px;
+}
+
+.update-box-body {
+  height: 0px;
+  overflow: auto;
+}
+
+.update-toggle {
+  height: 40vh;
+}
+
+.update-box-header {
+  padding: 5px;
+  background-color: #35546e;
+  position: relative;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.update-box-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 3px 10px 3px 0px;
+  font-size: 20px;
 }
 
 .newsletter-bar {
@@ -2428,6 +2461,7 @@ div[role=progressbar]::before {
 
 .bbadhead {
   display: none;
+  text-align: center;
 }
 @media (min-width: 768px) {
   .bbadhead {
@@ -2436,6 +2470,7 @@ div[role=progressbar]::before {
 }
 
 .bbjad-hd-mb {
+  text-align: center;
   display: block;
 }
 @media (min-width: 768px) {
@@ -2469,6 +2504,10 @@ div[role=progressbar]::before {
     right: 50%;
     transform: translate(50%, -50%);
   }
+}
+
+.adblock-taboola {
+  display: block;
 }
 
 html {

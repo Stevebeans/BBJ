@@ -339,7 +339,17 @@ function premiumCheck()
 {
   if (is_user_logged_in()):
     $user = wp_get_current_user();
-    if (current_user_can("supporter") || current_user_can("editor")):
+    if (current_user_can("supporter") || current_user_can("editor") || current_user_can("administrator") || current_user_can("second_in_command")):
+      return true;
+    endif;
+  endif;
+}
+
+function feedUpdater()
+{
+  if (is_user_logged_in()):
+    $user = wp_get_current_user();
+    if (current_user_can("administrator")):
       return true;
     endif;
   endif;

@@ -7,12 +7,14 @@
 
 .bbadhead {
   display: none;
+  text-align: center;
   @include media(">=tablet") {
     display: block;
   }
 }
 
 .bbjad-hd-mb {
+  text-align: center;
   display: block;
   @include media(">=tablet") {
     display: none;
@@ -38,6 +40,10 @@
     right: 50%;
     transform: translate(50%, -50%);
   }
+}
+
+.adblock-taboola {
+  display: block;
 }
 
 // .bbj-ad-block-sq-mobile {

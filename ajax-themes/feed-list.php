@@ -14,7 +14,6 @@ $get_author_id = $post->post_author;
     <div class="body">
     <?php if (has_post_thumbnail()):
       $thumb = the_post_thumbnail($size = "profile-picture");
-      echo "<pre>", print_r($thumb, 1), "</pre>";
     endif; ?>  
     <?php the_excerpt(); ?></div>
   </div>

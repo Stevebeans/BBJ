@@ -601,21 +601,50 @@ header {
 }
 
 #update-box {
-  border: 1px solid green;
-  height: 20px;
-  width: 350px;
+  border: 1px solid rgba($primaryColor, 0.2);
+  background-color: #fff;
+  padding: 10px;
+  width: 100%;
   position: fixed;
   margin: 0px auto;
   display: block;
   bottom: 0%;
   left: 50%;
   transform: translate(-50%, 0%);
+  z-index: 50;
+
+  @include media(">tablet") {
+    max-width: 1000px;
+  }
 
   .bbj-nl-first,
   .bbj-nl-last,
   .bbj-nl-email {
     margin: 0px;
   }
+}
+
+.update-box-body {
+  height: 0px;
+  overflow: auto;
+}
+.update-toggle {
+  height: 40vh;
+}
+.update-box-header {
+  padding: 5px;
+  background-color: $primaryColor;
+  position: relative;
+  color: #ffffff;
+  font-size: toRem(16);
+  font-weight: 600;
+}
+.update-box-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 3px 10px 3px 0px;
+  font-size: 20px;
 }
 
 .newsletter-bar {

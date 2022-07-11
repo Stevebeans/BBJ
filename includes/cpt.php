@@ -190,7 +190,7 @@ function register_feeds()
     "menu_position" => 2,
     "menu_icon" => "dashicons-video-alt",
     "capability_type" => "post",
-    "supports" => ["title", "editor", "thumbnail", "custom-fields"],
+    "supports" => ["title", "editor", "thumbnail", "custom-fields", "comments"],
     "taxonomies" => [],
     "rewrite" => [
       "with_front" => false,
@@ -257,7 +257,7 @@ function your_prefix_register_post_type()
     "menu_position" => 6,
     "menu_icon" => "dashicons-media-text",
     "capability_type" => "post",
-    "supports" => ["title", "editor", "thumbnail", "excerpt", "author", "custom-fields"],
+    "supports" => ["title", "editor", "thumbnail", "excerpt", "author", "custom-fields", "comments"],
     "taxonomies" => [],
     "rewrite" => [
       "with_front" => false,

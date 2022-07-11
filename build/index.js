@@ -2462,6 +2462,63 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./src/scripts/FeedUpdateBar.js":
+/*!**************************************!*\
+  !*** ./src/scripts/FeedUpdateBar.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "feed_update_slider": function() { return /* binding */ feed_update_slider; }
+/* harmony export */ });
+const g_update_body = document.querySelector(".update-box-body");
+const g_update_toggle = document.querySelector("#toggle_feed_update");
+const g_update_box = document.querySelector("#update-box");
+let g_update_status = false;
+let g_storage_status = localStorage.getItem("feed_update_bar");
+function feed_update_slider() {
+  console.log("FEED UPDATE BAR");
+  console.log(g_storage_status);
+  console.log("FEED UPDATE BAR ABOIVE"); // if (g_storage_status === true) {
+  //   console.log("should be open");
+  //   g_update_status = true;
+  //   g_update_box.classList.add("update-toggle");
+  // }
+
+  if (g_storage_status == "true") {
+    console.log("should be open");
+    g_update_status = true;
+    g_update_body.classList.add("update-toggle");
+  }
+
+  g_update_toggle.addEventListener("click", e => {
+    console.log("click");
+    toggle_feed_window();
+  });
+}
+
+function toggle_feed_window() {
+  if (g_update_status) {
+    g_update_body.classList.remove("update-toggle");
+    g_update_status = false;
+    localStorage.setItem("feed_update_bar", false);
+    console.log("close");
+    console.log(g_storage_status);
+  } else {
+    g_update_body.classList.add("update-toggle");
+    localStorage.setItem("feed_update_bar", true);
+    g_update_status = true;
+    console.log("open");
+    console.log(g_storage_status);
+  }
+
+  console.log("update");
+}
+
+/***/ }),
+
 /***/ "./src/scripts/MobileDrop.js":
 /*!***********************************!*\
   !*** ./src/scripts/MobileDrop.js ***!
@@ -2513,12 +2570,6 @@ function permission_check() {
     console.log("premium user");
   } else {
     console.log("regular user");
-  }
-
-  if (updater.getAttribute("data-update") === "updater") {
-    updater.style.display = "block";
-  } else {
-    updater.style.display = "none";
   }
 
   console.log(roleCheck.getAttribute("data-role")); // adBlocks.forEach(el => {
@@ -3055,10 +3106,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scripts/SpoilerBarNew */ "./src/scripts/SpoilerBarNew.js");
 /* harmony import */ var _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scripts/PlayerTable */ "./src/scripts/PlayerTable.js");
 /* harmony import */ var _scripts_Permissions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./scripts/Permissions */ "./src/scripts/Permissions.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-dom */ "react-dom");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scripts/FeedUpdateBar */ "./src/scripts/FeedUpdateBar.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-dom */ "react-dom");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_9__);
 
  //import ExampleReactComponent from "./scripts/ExampleReactComponent";
 
@@ -3071,12 +3123,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
  //const searchBar = new SearchBar(); back burner for now
 
 const mobileDrop = new _scripts_MobileDrop__WEBPACK_IMPORTED_MODULE_2__["default"]();
 const spoilerBar = new _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_4__["default"]();
 const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_5__["default"]();
 (0,_scripts_Permissions__WEBPACK_IMPORTED_MODULE_6__.permission_check)();
+(0,_scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_7__.feed_update_slider)();
 console.log("js-loaded"); //ReactDOM.render(<PlayerArchive />, document.querySelector("#player-table"));
 }();
 /******/ })()

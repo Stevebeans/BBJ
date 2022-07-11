@@ -2,7 +2,9 @@
 add_action("frm_payment_status_canceled", "cancel_role");
 function cancel_role($atts)
 {
+  bbj_log(print_r($atts, 1));
   bbj_log("TRIGGERED PAYMENT CANCEL");
+  bbj_log("new");
   $new_role = "subscriber"; // change contributor to the new user role
   $entry = isset($atts["entry"]) ? $atts["entry"] : $atts["payment"]->item_id;
   if (is_numeric($entry)) {
@@ -30,3 +32,7 @@ function cancel_role($atts)
     wp_update_user($updated_user);
   }
 }
+
+/*
+4242 4242 4242 4242
+*/

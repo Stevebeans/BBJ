@@ -17,7 +17,11 @@ $allowed_roles = ["editor", "administrator"];
     <div class="header"><h3><?php the_title(); ?></h3></div>
     <div class="date"><?php the_modified_date(); ?></div>
     <div class="body">
-      <div><?php the_content(); ?></div>
+      <div>
+      <?php if (has_post_thumbnail()):
+        $thumb = the_post_thumbnail($size = "featured-thumbnail");
+      endif; ?>  
+    <?php the_content(); ?></div>
     </div>
   </div>
   

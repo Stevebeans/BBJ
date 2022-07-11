@@ -9,12 +9,7 @@ export function permission_check() {
     console.log("regular user");
   }
 
-  if (updater.getAttribute("data-update") === "updater") {
-    updater.style.display = "block";
-  } else {
-    updater.style.display = "none";
-  }
-
+ 
   console.log(roleCheck.getAttribute("data-role"));
 
   // adBlocks.forEach(el => {

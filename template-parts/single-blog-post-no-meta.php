@@ -3,7 +3,7 @@
     <div class="update-left">
 
       <div class="feed-update">
-      <?php get_template_part("template-parts/google-wide"); ?>
+      <?php get_template_part("template-parts/google-flex"); ?>
       <?php the_content(); ?>
       </div>    
     </div>                    

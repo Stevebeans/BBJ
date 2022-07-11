@@ -31,3 +31,36 @@ TRIGGERED PAYMENT COMPLETE
 TRIGGERED PAYMENT COMPLETE
 TRIGGERED PAYMENT COMPLETE
 TRIGGERED PAYMENT CANCEL
+TRIGGERED PAYMENT COMPLETE
+
+TRIGGERED PAYMENT CANCEL
+TRIGGERED PAYMENT COMPLETE
+Array
+TRIGGERED PAYMENT CANCEL
+new
+TRIGGERED PAYMENT COMPLETE
+Array
+(
+    [trigger] => canceled
+    [entry_id] => 46
+    [payment] => stdClass Object
+        (
+            [id] => 43
+            [meta_value] => a:1:{i:0;a:2:{s:7:"message";s:16:"Payment complete";s:4:"date";s:19:"2022-07-05 15:41:53";}}
+            [receipt_id] => ch_3LIDsjGjb8i2Ihlb0Wtz7Bxl
+            [invoice_id] => 
+            [sub_id] => 18
+            [item_id] => 46
+            [action_id] => 45197
+            [amount] => 4.95
+            [status] => complete
+            [begin_date] => 2022-07-05
+            [expire_date] => 2022-08-05
+            [paysys] => stripe
+            [created_at] => 2022-07-05 15:41:53
+        )
+
+)
+
+TRIGGERED PAYMENT CANCEL
+new

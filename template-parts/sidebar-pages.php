@@ -1,6 +1,9 @@
+
+<?php if (!premiumCheck()): ?>
 <aside>  
     <div class="aside-sticky">
-      Hey
+    <?php get_template_part("template-parts/google-flex"); ?>
     </div>      
       
 </aside>
+<?php endif; ?>

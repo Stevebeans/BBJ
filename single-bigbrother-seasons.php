@@ -69,7 +69,7 @@ endif; ?>
 
 					<h3>Players:</h3>
           
-					
+					<?php get_template_part("template-parts/player-list"); ?>
 					
 
 
@@ -81,9 +81,9 @@ wp_reset_postdata(); ?>
 
          
 
-					<div class="sideBlock">
-						Ad Block 250 wide
-					</div>
+					
+					
+<?php get_template_part("template-parts/google-flex"); ?>
 
 				</div>
 				<div class="profile-right">
@@ -97,8 +97,6 @@ wp_reset_postdata(); ?>
 									<h3>Latest Spoilers</h3>
         					<?php get_template_part("template-parts/spoiler-box"); ?>
 
-									<h3>Player List:</h3>
-        					<?php get_template_part("template-parts/player-list"); ?>
 
 
 								</div>

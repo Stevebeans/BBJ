@@ -28,7 +28,7 @@ $monthFull = $newDate["month"];
 
 $postsPerPage = mb_get_block_field("posts_per_page");
 
-$ajaxCode = '[ajax_load_more id="' . $mID . '" container_type="div" css_classes="update-post" cache="true" cache_id="' . $cID . '" preloaded="true" preloaded_amount="' . $ppp . '" seo="true" post_type="' . $comPT . '" posts_per_page="' . $ppp . '" destroy_after="200" no_results_text="No updates yet, check back shortly!" year="' . $year . '" month="' . $month . '" day="' . $day . '" order="ASC" cta="true" cta_position="after:5" cta_theme_repeater="adsense-feed-updates.php" theme_repeater="feed-updates.php"]';
+$ajaxCode = '[ajax_load_more id="' . $mID . '" container_type="div" css_classes="update-post" cache="true" cache_id="' . $cID . '" preloaded="true" preloaded_amount="' . $ppp . '" seo="true" post_type="' . $comPT . '" posts_per_page="' . $ppp . '" destroy_after="200" no_results_text="No updates yet, check back shortly!" year="' . $year . '" month="' . $month . '" day="' . $day . '" order="DESC" cta="true" cta_position="after:5" cta_theme_repeater="adsense-feed-updates.php" theme_repeater="feed-updates.php"]';
 
 //
 ?>
