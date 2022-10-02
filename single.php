@@ -27,13 +27,13 @@ get_header(); ?>
               <div class="spacer"><div class="spacer-inner"></div></div>
               <div><span><?php the_modified_date(); ?></span></div>              
               <div class="spacer"><div class="spacer-inner"></div></div>
-              <div><span><?php echo $post->comment_count; ?> Comments</span></div>
+              <div><span><A href="#wpd-threads"><?php echo $post->comment_count; ?> Comments</span></a></div>
               
             </div>
 
             <div class="post-content">
 
-                <?php the_content(); ?>
+            <?php get_template_part("template-parts/single-blog-post"); ?>
             </div>
 
             <h3>Related Posts</h3>
@@ -44,9 +44,6 @@ get_header(); ?>
         </div>
     </div>
   </article>
-
-
-  <?php get_template_part("template-parts/sidebar-pages"); ?>
 
 
   

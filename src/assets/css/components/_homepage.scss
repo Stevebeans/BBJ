@@ -2,9 +2,63 @@
   max-width: $max_width;
   margin: 0px auto;
   display: flex;
+  box-sizing: border-box;
+  width: 100%;
 
   @include media("<=tablet") {
     flex-direction: column;
+    box-sizing: border-box;
+  }
+}
+
+.primary-ad-block {
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  margin: 0px auto;
+
+  @include media(">=tablet") {
+    width: 100%;
+  }
+
+  span {
+    display: block;
+    font-family: $alt_font;
+    color: $fontGray;
+  }
+
+  .ad-inside-div {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+.secondary-ad-block {
+  text-align: center;
+  width: 300px;
+  min-height: 200px;
+  max-width: 100%;
+  padding: 10px;
+  margin: 0px auto;
+
+  @include media(">=tablet") {
+    width: 100%;
+  }
+
+  span {
+    display: block;
+    font-family: $alt_font;
+    color: $fontGray;
+  }
+
+  .ad-inside-div {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 
@@ -398,4 +452,10 @@ hr.rm_divider {
     padding: 0.75rem;
     background-color: rgba($primaryColor, 0.4);
   }
+}
+
+.index-bottom {
+  max-width: $max-width-full;
+  margin: 10px auto;
+  text-align: center;
 }

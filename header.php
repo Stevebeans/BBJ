@@ -31,10 +31,11 @@
     </script>
 
 
-    <?php if (!premiumCheck()): ?>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
-     crossorigin="anonymous"></script>
-    <?php endif; ?>  
+    <?php if (!premiumCheck()):
+      if (function_exists("adinserter")) {
+        echo adinserter(1);
+      }
+    endif; ?>
 
   </head>
   <body <?php body_class(); ?>>
@@ -56,8 +57,6 @@ if (is_user_logged_in()):
 
   
     <div class="headerContain"> 
-      <?php get_template_part("template-parts/google-flex-head"); ?>
-      <?php get_template_part("template-parts/google-header-mobile"); ?>
 
       
       <div class="header-content">
@@ -123,6 +122,7 @@ if (is_user_logged_in()):
         <div class="loginButtons">
         <?php if (is_user_logged_in()): ?>          
         <div><a href="<?php echo site_url(); ?>/dashboard">Account Settings</a></div>
+        <div><A href="<?php echo wp_logout_url(); ?>">Log Out</a></div>
         <?php else: ?>
             <div><a href="<?php echo site_url(); ?>/log-in">Login</a></div>
             <div><a href="<?php echo site_url(); ?>/registration">Sign Up</a></div>
@@ -132,7 +132,17 @@ if (is_user_logged_in()):
       <?php get_template_part("template-parts/spoiler-bar"); ?>
 
     
+      <div class="bodyContainer">
+          <?php if (!premiumCheck()):
+            // Header Ad Space
+            if (function_exists("adinserter")) {
+              echo adinserter(2);
+            }
+          endif; ?>  
+      </div>
 
+
+      
 
       <div id="user-role" data-role="<?= $bbjAdCheck ?>"></div>
 
@@ -140,6 +150,7 @@ if (is_user_logged_in()):
   </div>
 
 
+  
 
   </header>
   <?php if (feedUpdater()): ?>

@@ -640,14 +640,15 @@ header {
 .loginButtons {
   width: 100%;
   display: flex;
+  gap: 2px;
 }
 
 .loginButtons > div {
   width: 50%;
   justify-content: center;
   align-items: center;
-  border: 0px solid pink;
   text-align: center;
+  background-color: #ffbf0f;
 }
 
 .menuButtons {
@@ -681,12 +682,14 @@ header {
 }
 
 .HoH,
-.Winner {
+.Winner,
+.HoH-PoV {
   color: #03b94f;
 }
 
 .HoH img,
-.Winner img {
+.Winner,
+.HoH-PoV img {
   background-color: #b4e4c8;
   border: 2px solid #03b94f;
 }
@@ -895,6 +898,7 @@ header {
 .update-box-body {
   height: 0px;
   overflow: auto;
+  padding: 0px 5px;
 }
 
 .update-toggle {
@@ -1012,11 +1016,63 @@ header {
   max-width: 70rem;
   margin: 0px auto;
   display: flex;
+  box-sizing: border-box;
+  width: 100%;
 }
 @media (max-width: 768px) {
   .bodyContainer {
     flex-direction: column;
+    box-sizing: border-box;
   }
+}
+
+.primary-ad-block {
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  margin: 0px auto;
+}
+@media (min-width: 768px) {
+  .primary-ad-block {
+    width: 100%;
+  }
+}
+.primary-ad-block span {
+  display: block;
+  font-family: "IBM Plex Mono", monospace;
+  color: #696969;
+}
+.primary-ad-block .ad-inside-div {
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.secondary-ad-block {
+  text-align: center;
+  width: 300px;
+  min-height: 200px;
+  max-width: 100%;
+  padding: 10px;
+  margin: 0px auto;
+}
+@media (min-width: 768px) {
+  .secondary-ad-block {
+    width: 100%;
+  }
+}
+.secondary-ad-block span {
+  display: block;
+  font-family: "IBM Plex Mono", monospace;
+  color: #696969;
+}
+.secondary-ad-block .ad-inside-div {
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .mainBody {
@@ -1420,6 +1476,12 @@ hr.rm_divider {
   padding: 12px;
   padding: 0.75rem;
   background-color: rgba(53, 84, 110, 0.4);
+}
+
+.index-bottom {
+  max-width: 1366px;
+  margin: 10px auto;
+  text-align: center;
 }
 
 .comments-area {
@@ -2253,7 +2315,6 @@ div[role=progressbar]::before {
 }
 .feed-update-container .update-left {
   flex-grow: 1;
-  padding-left: 20px;
 }
 
 .update-right {
@@ -2287,6 +2348,18 @@ div[role=progressbar]::before {
   font-weight: 400;
 }
 
+.feed-update-detail {
+  min-height: 300px;
+  border: 1px solid #363636;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.feed-update a,
+.feed-update a:visited {
+  color: #363636;
+}
+
 .update-post {
   border-left: 1px solid #eeeeee;
   border-right: 1px solid #eeeeee;
@@ -2296,21 +2369,31 @@ div[role=progressbar]::before {
   color: #696969;
 }
 
+.feed-update-featured {
+  display: block;
+}
+.feed-update-featured img {
+  width: 400px;
+  height: 200px;
+  border-radius: 10px;
+  margin: 5px auto 10px auto;
+}
+
 .feed-update-post {
-  padding: 10px 20px;
+  padding: 10px 10px;
   display: -ms-grid;
   display: grid;
   border-top: 1px solid #eeeeee;
-  -ms-grid-columns: 40px 1fr 100px;
-  grid-template-columns: 40px 1fr 100px;
-      grid-template-areas: "avatar title date" "avatar body body";
+  -ms-grid-columns: 100px 1fr;
+  grid-template-columns: 100px 1fr;
+      grid-template-areas: "date title" "body body";
 }
 .feed-update-post p {
-  padding: 0 0 0 10px;
   margin: 0;
   font-size: 0.875rem;
   top: 0;
   align-items: start;
+  color: #363636;
 }
 .feed-update-post .header {
   -ms-grid-row: 1;
@@ -2319,37 +2402,34 @@ div[role=progressbar]::before {
   font-weight: 600;
   display: inline-block;
   grid-area: title;
-  padding-left: 15px;
+  padding-left: 5px;
+}
+.feed-update-post .header h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
 }
 .feed-update-post .date {
   -ms-grid-row: 1;
-  -ms-grid-column: 3;
+  -ms-grid-column: 1;
   grid-area: date;
   font-size: 0.75rem;
   font-weight: 400;
-  text-align: right;
+  text-align: center;
+  font-family: "IBM Plex Mono", monospace;
+  padding: 5px;
+  border-right: 1px solid #eeeeee;
+  border-radius: 5px;
 }
 .feed-update-post .body {
   -ms-grid-row: 2;
-  -ms-grid-column: 2;
+  -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   position: relative;
   padding-top: 10px;
   grid-area: body;
-  padding-left: 15px;
-}
-.feed-update-post .body img {
-  width: 150px;
-  height: 75px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  float: left;
-  border-radius: 10px;
 }
 .feed-update-post .avatar {
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
-  -ms-grid-column: 1;
   grid-area: avatar;
   padding-top: 5px;
   text-align: center;
@@ -2367,6 +2447,31 @@ div[role=progressbar]::before {
   transition-timing-function: ease-in;
   /* Quick on the way out */
   transition: 0.2s;
+}
+
+.post-content {
+  padding: 0px;
+}
+@media (min-width: 768px) {
+  .post-content {
+    padding: 10px;
+  }
+}
+
+.promobox {
+  border: 1px solid #363636;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  margin: 5px auto 10px auto;
+  text-align: center;
+}
+
+.ad-notice {
+  font-size: 0.875rem;
+  font-family: "IBM Plex Mono", monospace;
+  text-align: center;
+  margin-bottom: -10px;
+  color: #696969;
 }
 
 @media screen and (min-width: 768px) {
@@ -2457,16 +2562,12 @@ div[role=progressbar]::before {
   margin: 10px auto;
   max-width: 1400px;
   text-align: center;
+  padding: 10px;
 }
 
 .bbadhead {
-  display: none;
+  display: block;
   text-align: center;
-}
-@media (min-width: 768px) {
-  .bbadhead {
-    display: block;
-  }
 }
 
 .bbjad-hd-mb {
@@ -2489,23 +2590,12 @@ div[role=progressbar]::before {
 }
 
 .bbj-ad-block-sq {
-  border: 1px solid black;
   width: 300px;
   height: 250px;
   margin: 20px auto;
   -ms-grid-row-align: center;
       align-self: center;
 }
-@media (min-width: 768px) {
-  .bbj-ad-block-sq {
-    margin: 0px auto;
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    transform: translate(50%, -50%);
-  }
-}
-
 .adblock-taboola {
   display: block;
 }

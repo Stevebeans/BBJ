@@ -17,6 +17,11 @@
 
       <?php foreach ($playerList as $player):
 
+        // if (isAdmin()):
+        //   echo "hey";
+        //   echo "<pre>", print_r($player, 1), "</pre>";
+        // endif;
+
         $addInfo = $wpdb->get_results('SELECT profile_picture, first_name, last_name FROM wp_bbj_players WHERE ID = "' . $player["player_id"] . '"');
         $imgUrl = wp_get_attachment_image_src($addInfo[0]->profile_picture, "profile-picture");
         $firstName = $addInfo[0]->first_name;
@@ -34,9 +39,13 @@
           <?php
           $status = "";
           switch (true) {
+            case $cHOH && $cPOV:
+              $status = "HoH-PoV";
+              break;
             case $cHOH:
               $status = "HoH";
               break;
+
             case $cPOV:
               $status = "PoV";
               break;

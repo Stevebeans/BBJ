@@ -1,6 +1,6 @@
 <?php
 
-define("BBJ_THEME_VERSION", "2.2.3.1");
+define("BBJ_THEME_VERSION", "2.2.81");
 define("BBJ_ROOT", dirname(__FILE__));
 define("BBJ_INCLUDES", BBJ_ROOT . "/includes");
 define("BBJ_MB_FILES", BBJ_INCLUDES . "/MB");
@@ -39,6 +39,13 @@ function load_assets()
 }
 
 add_action("wp_enqueue_scripts", "load_assets");
+
+function admin_includes()
+{
+  wp_register_style("bbj-admin-css", get_template_directory_uri() . "/includes/blocks/feed-updates/style.css", [], BBJ_THEME_VERSION);
+  wp_enqueue_style("bbj-admin-css");
+}
+add_action("admin_enqueue_scripts", "admin_includes");
 
 // Create Menu
 function bbj_menu()

@@ -299,14 +299,15 @@ header {
 .loginButtons {
   width: 100%;
   display: flex;
+  gap: 2px;
 }
 
 .loginButtons > div {
   width: 50%;
   justify-content: center;
   align-items: center;
-  border: 0px solid pink;
   text-align: center;
+  background-color: $secondaryColor;
 }
 
 .menuButtons {
@@ -339,12 +340,14 @@ header {
 }
 
 .HoH,
-.Winner {
+.Winner,
+.HoH-PoV {
   color: $hoh-strong;
 }
 
 .HoH img,
-.Winner img {
+.Winner,
+.HoH-PoV img {
   background-color: $hoh-light;
   border: 2px solid $hoh-strong;
 }
@@ -627,6 +630,7 @@ header {
 .update-box-body {
   height: 0px;
   overflow: auto;
+  padding: 0px 5px;
 }
 .update-toggle {
   height: 40vh;

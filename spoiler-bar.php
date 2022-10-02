@@ -14,8 +14,16 @@
     
     <div class="spoilerBar">
       <div class="playerDiv">
-
+asfdsdfds
       <?php foreach ($playerList as $player):
+
+        // if (isAdmin()):
+        //   echo "hey";
+        //   echo "<pre>", print_r($player, 1), "</pre>";
+        // endif;
+
+        echo "<pre>", print_r($player, 1), "</pre>";
+        var_dump($player);
 
         $addInfo = $wpdb->get_results('SELECT profile_picture, first_name, last_name FROM wp_bbj_players WHERE ID = "' . $player["player_id"] . '"');
         $imgUrl = wp_get_attachment_image_src($addInfo[0]->profile_picture, "profile-picture");

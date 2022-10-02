@@ -33,7 +33,52 @@ get_header(); ?>
   ];
   ?>
 
+
+
+
   
+ <!-- Live Feed Updates   -->
+ <div class="widgetContain boxShadowsft">
+      <div class="widgetHeader">
+        <div class="titleBar"></div>
+          <h2 class="widgetTitle">Latest Feed Discussion Thread</h2>        
+      </div>
+
+      <div class="widgetBody">
+
+      <?php
+      $featured_post_args = [
+        "posts_per_page" => 1,
+        "post_type" => "post",
+        "post_status" => "publish",
+        "orderby" => "date",
+        "order" => "DESC",
+        "no_found_rows" => true,
+      ];
+
+      $featured_post = new WP_Query($featured_post_args);
+      if ($featured_post->have_posts()):
+        $featured_post->the_post(); ?>
+        <div class="featured-contain">
+            <div class="newsArticle">
+              <div class="newsFeatured"><a href="<?php the_permalink(); ?>"><img src="<?php echo the_post_thumbnail_url("featured-thumbnail"); ?>" alt="<?php esc_attr(the_title()); ?>"></a></div>
+              <div class="newsInfo">            
+                <div class="categoryInfo">Live Feed Discussion</div>
+                <div class="coverHeadline"><a href="<?php the_permalink(); ?>"><h2><?php esc_attr(the_title()); ?></h2></a></div>
+                <div class="coverExcerpt"><p><?php echo wp_trim_words(get_the_content(), 55, "..."); ?> <span><a href="<?php the_permalink(); ?>">Read More</a></span></p></div>
+                <div class="frontMeta"><?php echo get_the_author_meta("display_name"); ?> <span class="timeStamp"> <?php the_modified_date(); ?> | <?= $post->comment_count ?> comments</span></div>
+              </div>
+            </div>
+          </div>
+          <?php
+      endif;
+      wp_reset_postdata();
+      ?>
+      </div>
+    </div>
+
+    <?php get_template_part("template-parts/ads/ad-index-top"); ?>
+
     <!-- Live Feed Updates   -->
     <div class="widgetContain boxShadowsft">
       <div class="widgetHeader">
@@ -42,6 +87,8 @@ get_header(); ?>
       </div>
 
       <div class="widgetBody">
+
+     
 
       <?php
       $feed_updates = new WP_Query($feed_updates_args);
@@ -61,14 +108,7 @@ get_header(); ?>
       <?php endif;
       ?>
 
-      <?php
-      $feed_button = new WP_Query($feed_update_page);
-      while ($feed_button->have_posts()):
-        $feed_button->the_post(); ?>
-      <a href="<?= the_permalink() ?>"><div class="front-view-more"><?= $post->post_title ?></div></a>
-      <?php
-      endwhile;
-      ?>
+      <a href="/live-feed-updates/"><div class="front-view-more">Live Feed Archives</div></a>
       </div>
     </div>
 
@@ -97,7 +137,10 @@ $latest_post_args = [
   "post_type" => "post",
   "post_status" => "publish",
   "posts_per_page" => 10,
+  "offset" => 1,
 ];
+
+$latest_posts = new WP_Query($latest_post_args);
 ?>
 
 
@@ -135,15 +178,16 @@ $latest_post_args = [
 ?>
 
 
-          <?php get_template_part("template-parts/google-flex"); ?>
-
+<?php get_template_part("template-parts/ads/ad-index-mid"); ?>
 
           <div class="mainUpdates">
 
           <?php
-          if (have_posts()): ?>            
-            <?php while (have_posts()):
-              the_post(); ?>
+          if ($latest_posts->have_posts()): ?>  
+
+
+            <?php while ($latest_posts->have_posts()):
+              $latest_posts->the_post(); ?>
             
             <div class="newsArticle flex flex-col">
               
@@ -177,7 +221,7 @@ $latest_post_args = [
   
     
 
-    <?php get_template_part("template-parts/google-flex"); ?>
+   
 
 
 
@@ -233,8 +277,8 @@ $latest_post_args = [
   <?php get_template_part("template-parts/sidebar-main"); ?>
 
 
-
+            
 </div>
 
-
+<div class="index-bottom"><?php get_template_part("template-parts/ads/ad-index-bottom"); ?></div>
 <?php get_footer();

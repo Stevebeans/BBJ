@@ -1,7 +1,7 @@
 <?php
 get_header(); ?>
 
-<div class="body-regular" id="post-<?php the_ID(); ?>">
+<div class="new-body-container" id="post-<?php the_ID(); ?>">
 
    <article>  
     <div class="widgetContain boxShadowsft">
@@ -11,50 +11,41 @@ get_header(); ?>
                        
         </div>
         <div class="widgetBody">
-          <?php the_title('<h1 class="blogTitle">', "</h1>"); ?>
+          <?php
+          $primary_category = rwmb_meta("current_season", ["object_type" => "setting"], "bbj_settings");
+          $current_season = get_the_title($primary_category);
+          ?>
+          <h1><?php echo $current_season; ?> Live Feed Updates</h1>
 
 
           <div class="entry-content">
-            <div class="featured-image">
-              <?php if (has_post_thumbnail()) {
-                the_post_thumbnail();
-              } ?>                  
-            </div>
-            <div class="post-meta">
-              <?php
-              $get_author_id = get_the_author_meta("ID");
-              $get_author_gravatar = get_avatar_url($get_author_id, ["size" => 15]);
-              ?>
-              <div><img src="<?php echo esc_html($get_author_gravatar); ?>"></div>
-              <div><?php echo get_the_author_meta("display_name"); ?></div>
-              <div class="spacer"><div class="spacer-inner"></div></div>
-              <div><span><?php the_modified_date(); ?></span></div>              
-              <div class="spacer"><div class="spacer-inner"></div></div>
-              <div><span><?php echo $post->comment_count; ?> Comments</span></div>
-              
-            </div>
-
             <div class="post-content">
 
-                <?php the_content(); ?>
+            
+            <div class="feed-update-container">
+                <div class="update-left">
+                <div class="feed-update">
+                <?php get_template_part("template-parts/google-flex"); ?>
+                <?php $stream = '[ajax_load_more id="3056419650" container_type="div" cache="true" cache_id="8086353915" paging="true" paging_show_at_most="25" paging_scroll="true:100" paging_controls="true" paging_previous_label="Prev" paging_next_label="Next" preloaded="true" seo="true" theme_repeater="feed-list.php" post_type="live-feed-updates" posts_per_page="15" cta="true" cta_position="after:7" cta_theme_repeater="adsense-feed-updates.php"]';
+// $stream = '[ajax_load_more id="9371596830" container_type="div" cta="true" cta_position="before:5" cta_theme_repeater="adsense-feed-updates.php" seo="true" theme_repeater="feed-list.php" post_type="live-feed-archives" posts_per_page="10" destroy_after="20"]';
+?> 
+                  <?php echo do_shortcode($stream); ?>
+                  
+                <?php get_template_part("template-parts/google-flex"); ?>
+</div>
+              </div>
+              
+              <?php get_template_part("template-parts/sidebar-spoiler-box"); ?>
+            </div>
             </div>
 
-            <h3>Related Posts</h3>
-            <div class="related-posts">
-              <?php example_cats_related_post(); ?>
-            </div>
           </div>
         </div>
     </div>
   </article>
 
 
-  <?php get_template_part("template-parts/sidebar-pages"); ?>
-
-
-  
-</div>
-<div class="post-bottom">
+  <div class="post-bottom">
     <div class="comment-section">
       <?php if (comments_open()):
         comments_template();
@@ -65,4 +56,7 @@ get_header(); ?>
       Comment Stuff
     </aside>
   </div>
+
+  
+</div>
 <?php get_footer();

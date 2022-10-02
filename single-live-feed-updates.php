@@ -14,8 +14,7 @@ get_header(); ?>
           <?php the_title('<h1 class="blogTitle">', "</h1>"); ?>
 
           <div class="entry-content">
-            
-          <?php get_template_part("template-parts/single-blog-post-no-meta"); ?>
+          <?php get_template_part("template-parts/single-feed-update"); ?>
           </div>
         </div>
     </div>

@@ -10,7 +10,7 @@ add_filter("rwmb_meta_boxes", function ($meta_boxes) {
     "description" => "Show the feed updates",
     "type" => "block",
     "icon" => "media-document",
-    "category" => "layout",
+    "category" => "kadence-blocks",
     "context" => "side",
     "render_template" => get_template_directory() . "/includes/blocks/feed-updates/template.php",
     "enqueue_style" => get_template_directory_uri() . "/includes/blocks/feed-updates/style.css",
