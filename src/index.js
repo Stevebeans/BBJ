@@ -1,4 +1,5 @@
 import "./assets/css/main.scss";
+import "flowbite";
 
 import SearchBar from "./scripts/SearchBar";
 

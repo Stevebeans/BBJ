@@ -29,6 +29,7 @@ function load_assets()
   wp_enqueue_style("needed", BBJ_THEME_PATH . "style.css", [], BBJ_THEME_VERSION);
   wp_enqueue_script("frontend", BBJ_THEME_DIST_PATH . "index.js", ["jquery", "wp-element"], BBJ_THEME_VERSION, true);
   wp_enqueue_style("frontend", BBJ_THEME_DIST_PATH . "index.css", [], BBJ_THEME_VERSION);
+  wp_enqueue_style("tailwind", BBJ_THEME_DIST_PATH . "index-style.css", [], BBJ_THEME_VERSION);
   wp_enqueue_style("font-awesome", "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
   wp_enqueue_style("custom-google-fonts", "//fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@500;600;700&display=swap");
 

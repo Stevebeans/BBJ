@@ -64,7 +64,7 @@ if (is_user_logged_in()):
           <div class="headerLogoFull"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogo2020.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
           <div class="headerLogoMobile"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogomobile.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
           <div class="search-wrapper">
-            <div class="search-bar">
+            <div class="search-bar border-2 border-purple-500">
               <?php
               $searchForm = '[ivory-search id="44859" title="Default Search Form"]';
               echo do_shortcode($searchForm);

@@ -61,14 +61,11 @@ select {
   *,
 *::before,
 *::after {
-    -webkit-animation-duration: 0.01ms !important;
-            animation-duration: 0.01ms !important;
-    -webkit-animation-iteration-count: 1 !important;
-            animation-iteration-count: 1 !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-
   html {
     scroll-behavior: initial;
   }
@@ -658,8 +655,7 @@ header {
   font-size: 0.875rem;
   font-weight: 600;
   text-align: center;
-  -ms-grid-row-align: center;
-      align-self: center;
+  align-self: center;
 }
 
 .btn__left {
@@ -733,11 +729,8 @@ header {
 .Evicted img {
   background-color: #afafaf;
   border: 2px solid #666666;
-  filter: gray;
-  /* IE6-9 */
-  /* Google Chrome, Safari 6+ & Opera 15+ */
-  filter: grayscale(1);
-  /* Microsoft Edge and Firefox 35+ */
+  filter: gray; /* IE6-9 */ /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
 }
 
 .navigation-main {
@@ -1144,9 +1137,7 @@ header {
 }
 
 .mainUpdates {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
   gap: 0.625rem;
   position: relative;
@@ -1408,11 +1399,9 @@ hr.rm_divider {
 }
 
 .front-feed-contain {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 100px 1fr;
   grid-template-columns: 100px 1fr;
-      grid-template-areas: "date body";
+  grid-template-areas: "date body";
   margin-bottom: 10px;
   padding: 5px;
 }
@@ -1677,29 +1666,12 @@ hr.rm_divider {
   border-radius: 50%;
 }
 
-@-webkit-keyframes fill {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(135deg);
-  }
-}
-
 @keyframes fill {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(135deg);
-  }
-}
-@-webkit-keyframes growProgressBar {
-  0%, 33% {
-    --pgPercentage: 0;
-  }
-  100% {
-    --pgPercentage: var(--value);
   }
 }
 @keyframes growProgressBar {
@@ -1720,12 +1692,10 @@ div[role=progressbar] {
   --fg: #35546e;
   --bg: #d4e6f3;
   --pgPercentage: var(--value);
-  -webkit-animation: growProgressBar 3s 1 forwards;
-          animation: growProgressBar 3s 1 forwards;
+  animation: growProgressBar 3s 1 forwards;
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
-  display: -ms-grid;
   display: grid;
   place-items: center;
   background: radial-gradient(closest-side, rgb(255, 191, 15) 80%, transparent 0 99.9%, white 0), conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
@@ -1855,13 +1825,10 @@ div[role=progressbar]::before {
 }
 
 .player-table {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 50px 1fr;
   grid-template-columns: 50px 1fr;
-  -ms-grid-rows: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-      grid-template-areas: "pt-pic pt-title" "pt-pic pt-bar";
+  grid-template-areas: "pt-pic pt-title" "pt-pic pt-bar";
 }
 
 .pt-pic {
@@ -1934,9 +1901,7 @@ div[role=progressbar]::before {
 }
 
 .player-info {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 25px 1.5fr 2fr;
   grid-template-columns: 25px 1.5fr 2fr;
   font-size: 0.875rem;
 }
@@ -1993,9 +1958,7 @@ div[role=progressbar]::before {
 }
 
 .pt-main {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 40px 1fr 1fr 1fr;
   grid-template-columns: 40px 1fr 1fr 1fr;
   gap: 5px;
   border: 1px solid #000;
@@ -2034,18 +1997,14 @@ div[role=progressbar]::before {
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5803921569);
   margin: 0.625rem;
   border-radius: 10px;
-  display: -ms-grid;
   display: grid;
   overflow: hidden;
-  -ms-grid-columns: 150px 1fr;
   grid-template-columns: 150px 1fr;
-      grid-template-areas: "a b" "c c";
+  grid-template-areas: "a b" "c c";
 }
 
 .pt-stats-body {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (60px)[5];
   grid-template-columns: repeat(5, 60px);
   margin: 5px auto;
   gap: 3px;
@@ -2066,9 +2025,7 @@ div[role=progressbar]::before {
 }
 
 .pt-body {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 75px 1fr;
   grid-template-columns: 75px 1fr;
 }
 
@@ -2211,9 +2168,8 @@ div[role=progressbar]::before {
   width: 250px;
   height: 125px;
   margin: 0px auto;
-  display: -ms-grid;
   display: grid;
-      grid-template-areas: "sb-hoh sb-pov sb-pov" "sb-hoh sb-nom sb-nom2";
+  grid-template-areas: "sb-hoh sb-pov sb-pov" "sb-hoh sb-nom sb-nom2";
 }
 .spoiler-box .sb-hoh {
   -ms-grid-row: 1;
@@ -2323,11 +2279,9 @@ div[role=progressbar]::before {
   background-color: #eeeeee;
   padding: 15px;
   border-radius: 15px;
-  -ms-grid-row-align: start;
-      align-self: start;
+  align-self: start;
   display: block;
   top: 30px;
-  position: -webkit-sticky;
   position: sticky;
 }
 @media (min-width: 769px) {
@@ -2381,12 +2335,10 @@ div[role=progressbar]::before {
 
 .feed-update-post {
   padding: 10px 10px;
-  display: -ms-grid;
   display: grid;
   border-top: 1px solid #eeeeee;
-  -ms-grid-columns: 100px 1fr;
   grid-template-columns: 100px 1fr;
-      grid-template-areas: "date title" "body body";
+  grid-template-areas: "date title" "body body";
 }
 .feed-update-post p {
   margin: 0;
@@ -2478,47 +2430,37 @@ div[role=progressbar]::before {
   .related-post {
     max-width: 33%;
   }
-
   .player-profile {
     flex-direction: row;
   }
-
   .profile-left {
     max-width: 300px;
   }
-
   .player-name-desktop {
     display: block;
     margin-top: -55px;
     margin-left: -45px;
     color: white;
   }
-
   .player-name-mobile {
     display: none;
   }
-
   .player-profile-content {
     border-left: 0px;
   }
-
   .sc__banner {
     font-size: 1rem;
   }
-
   .standing-contain {
     width: 10.9375rem;
     height: 10.9375rem;
   }
-
   .navigation-main {
     display: block;
   }
-
   .navigation-main-mobile {
     display: none;
   }
-
   .sideBar {
     width: 18.75rem;
   }
@@ -2528,30 +2470,24 @@ div[role=progressbar]::before {
 .post-bottom {
     max-width: 1400px;
     display: flex;
-    -ms-grid-columns: 1fr 300px;
     grid-template-columns: 1fr 300px;
   }
-
   aside {
     display: block;
     flex-shrink: 0;
     flex-basis: 300px;
     padding: 0.625rem;
     margin-top: 0.625rem;
-    -ms-grid-row-align: start;
-        align-self: start;
+    align-self: start;
     position: sticky;
-    position: -webkit-sticky;
-    /* for Safari */
+    position: -webkit-sticky; /* for Safari */
     top: 10px;
   }
-
   .aside-sticky {
     border: 1px solid blue;
     height: 300px;
     width: 100%;
   }
-
   .related-post {
     font-size: 1rem;
     flex-grow: 1;
@@ -2593,8 +2529,7 @@ div[role=progressbar]::before {
   width: 300px;
   height: 250px;
   margin: 20px auto;
-  -ms-grid-row-align: center;
-      align-self: center;
+  align-self: center;
 }
 .adblock-taboola {
   display: block;

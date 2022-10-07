@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a {
+    @apply text-primaryBlue transition visited:text-primaryBlue hover:text-primaryHard hover:transition dark:text-primarySoft dark:hover:text-primaryBlue;
+  }
+}
+
+@layer components {
+}
+
+@layer utilities {
+}
+
+/* Misc Stuff */
+#gform_wrapper_3 .gform_heading .gform_required_legend {
+  display: none;
+}
+#gform_3 .gform_footer input {
+  width: 100%;
+}
+
+/* Small */
+@media screen and (min-width: 640px) {
+}
+
+/* Medium */
+@media screen and (min-width: 768px) {
+}
+
+/* Hamburger Menu */
+.hamburger {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  transition: all 0.25s;
+  position: relative;
+}
+
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom {
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  top: 0;
+  left: 0;
+  background: #009999;
+  transform: rotate(0);
+  transition: all 0.5s;
+}
+
+.hamburger-middle {
+  transform: translateY(7px);
+}
+
+.hamburger-bottom {
+  transform: translateY(14px);
+}
+
+.open {
+  transform: rotate(90deg);
+}
+
+.open .hamburger-top {
+  transform: rotate(45deg) translateY(6px) translateX(6px);
+}
+
+.open .hamburger-middle {
+  display: none;
+}
+
+.open .hamburger-bottom {
+  transform: rotate(-45deg) translateY(6px) translateX(-6px);
+}
