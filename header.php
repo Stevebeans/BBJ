@@ -81,7 +81,7 @@ if (is_user_logged_in()):
         </div>
         <div class="regMenu">
           <?php if (is_user_logged_in()): ?> 
-          <div class="menuButtons btn__left"><a href="<?php echo site_url(); ?>/dashboard">Settings</a></div>   
+          <div class="menuButtons btn__left"><a href="<?php echo site_url(); ?>/dashboard">Settingss</a></div>   
           <div class="menuButtons"><a href="<?php echo wp_logout_url(); ?>">Log Out</a></div>       
           <?php else: ?>
           <div class="menuButtons btn__left"><a href="<?php echo site_url(); ?>/log-in">Login</a></div>
