@@ -32,15 +32,44 @@
 
 
     <?php if (!premiumCheck()):
-      if (function_exists("adinserter")) {
+      if (function_exists("adinserter")):
         echo adinserter(1);
-      }
+      endif;
+    endif; 
+
+    $logIn = is_user_logged_in();
+
+    if ($logIn):
+      $currentUser = wp_get_current_user();
     endif; ?>
 
   </head>
   <body <?php body_class(); ?>>
 
 
+
+    <!--  New TW Header  
+    
+    <header id="main-header" class="mb-2 bg-white py-4 px-2 max-w-full flex justify-between">
+      <div class="border w-[400px] flex items-center">
+        <div class="hidden md:block"><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . '/bbjlogo2020.png' ?>" alt="<?= get_bloginfo("description");?>" ></a></div>        
+        <div class="block md:hidden"><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . '/bbjlogomobile.png' ?>" alt="<?= get_bloginfo("description");?>" ></a></div> 
+      </div>
+      <div class="border  w-full"></div>
+      <div class="border w-[350px] flex justify-around">
+        <?php if (is_user_logged_in()): ?>
+          <div class="bbj-btn border-2">
+            <a href="<?php echo site_url(); ?>/dashboard">Settings</a>
+          </div>
+        <?php else: ?>
+          <a href="<?php echo site_url(); ?>/dashboard"><div class="bbj-btn mr-2">Login</div></a>
+          <a href="<?php echo site_url(); ?>/dashboard"><div class="bbj-btn">Sign Up</div></a>
+          
+           
+          
+        <?php endif;?>
+      </div>
+    </header>-->
 
   <header>
 
@@ -49,11 +78,6 @@
   <div class="bbj-container">
     
 
-    <?php // Get logged in user info
-
-if (is_user_logged_in()):
-      $currentUser = wp_get_current_user();
-    endif; ?>
 
   
     <div class="headerContain"> 
@@ -61,10 +85,10 @@ if (is_user_logged_in()):
       
       <div class="header-content">
         <div class="headerLeft">
-          <div class="headerLogoFull"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogo2020.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
+          <div class="flex justify-start"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogo2020.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
           <div class="headerLogoMobile"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogomobile.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
           <div class="search-wrapper">
-            <div class="search-bar border-2 border-purple-500">
+            <div class="search-bar">
               <?php
               $searchForm = '[ivory-search id="44859" title="Default Search Form"]';
               echo do_shortcode($searchForm);
@@ -81,11 +105,11 @@ if (is_user_logged_in()):
         </div>
         <div class="regMenu">
           <?php if (is_user_logged_in()): ?> 
-          <div class="menuButtons btn__left"><a href="<?php echo site_url(); ?>/dashboard">Settingss</a></div>   
-          <div class="menuButtons"><a href="<?php echo wp_logout_url(); ?>">Log Out</a></div>       
+          <a href="<?php echo site_url(); ?>/dashboard"><div class="bbj-btn mr-2">Settingss</div></a>   
+          <a href="<?php echo wp_logout_url(); ?>"><div class="bbj-btn">Log Out</div></a>       
           <?php else: ?>
-          <div class="menuButtons btn__left"><a href="<?php echo site_url(); ?>/log-in">Login</a></div>
-          <div class="menuButtons"><a href="<?php echo site_url(); ?>/registration">Sign Up</a></div>
+          <a href="<?php echo site_url(); ?>/log-in"><div class="bbj-btn mr-2">Login</div></a>
+          <a href="<?php echo site_url(); ?>/registration"><div class="bbj-btn">Sign Up</div></a>
           <?php endif; ?>
         </div>
       </div>     
@@ -136,7 +160,7 @@ if (is_user_logged_in()):
           <?php if (!premiumCheck()):
             // Header Ad Space
             if (function_exists("adinserter")) {
-              echo adinserter(2);
+              //echo adinserter(2);
             }
           endif; ?>  
       </div>

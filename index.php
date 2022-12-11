@@ -77,7 +77,7 @@ get_header(); ?>
       </div>
     </div>
 
-    <?php get_template_part("template-parts/ads/ad-index-top"); ?>
+    <?php //get_template_part("template-parts/ads/ad-index-top"); ?>
 
     <!-- Live Feed Updates   -->
     <div class="widgetContain boxShadowsft">
@@ -178,7 +178,7 @@ $latest_posts = new WP_Query($latest_post_args);
 ?>
 
 
-<?php get_template_part("template-parts/ads/ad-index-mid"); ?>
+<?php //get_template_part("template-parts/ads/ad-index-mid"); ?>
 
           <div class="mainUpdates">
 
@@ -280,5 +280,5 @@ $latest_posts = new WP_Query($latest_post_args);
             
 </div>
 
-<div class="index-bottom"><?php get_template_part("template-parts/ads/ad-index-bottom"); ?></div>
+<div class="index-bottom"><?php // get_template_part("template-parts/ads/ad-index-bottom"); ?></div>
 <?php get_footer();

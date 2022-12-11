@@ -3,6 +3,7 @@
 define("BBJ_THEME_VERSION", "2.2.81");
 define("BBJ_ROOT", dirname(__FILE__));
 define("BBJ_INCLUDES", BBJ_ROOT . "/includes");
+define('BBJ_IMAGES', get_theme_file_uri("/images"));
 define("BBJ_MB_FILES", BBJ_INCLUDES . "/MB");
 define("BBJ_THEME_URL", get_theme_file_uri());
 define("BBJ_THEME_PATH", get_theme_file_uri() . "/");

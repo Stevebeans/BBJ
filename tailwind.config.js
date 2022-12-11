@@ -10,14 +10,13 @@ module.exports = {
         lg: "1.15"
       },
       colors: {
-        primaryBlue: "#009999",
-        primarySoft: "#00b5b5",
-        primaryHard: "#007a7a",
-        secondaryColor: "#FFA500",
-        secondarySoft: "#fbae20",
-        secondaryHard: "#e29200",
-        limeGreen: "#a5cf7b",
-        textColor: "rgb(71 85 105)"
+        bbj500: "#35546e",
+        bbjSoft: "#4D6D88",
+        bbjHard: "2D4B65",
+        second500: "#FFBF0F",
+        secondSoft: "#ffd970",
+        secondHard: "#FA910A",
+        textColor: ""
       },
       fontFamily: {
         sans: ["Roboto", "sans-serif"],
