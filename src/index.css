@@ -4,16 +4,136 @@
 
 @layer base {
   a {
-    @apply text-bbj500 transition visited:text-bbj500 hover:text-second500 hover:transition dark:text-bbj500 dark:hover:text-second500;
+    @apply text-primary500 transition visited:text-primary500 hover:text-second500 hover:transition dark:text-primary500 dark:hover:text-second500;
   }
 }
 
 @layer components {
+  .bbj-container {
+    @apply container mx-auto  p-2;
+  }
+
+  .front-card {
+    @apply rounded-md bg-white p-2 shadow-md;
+  }
 }
 
 @layer utilities {
   .bbj-btn {
-    @apply rounded-lg border border-bbj500 bg-second500 px-4 py-1.5 text-bbj500 hover:bg-secondHard hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+    @apply rounded-lg border border-primary500 bg-second500 px-4 py-1.5 text-primary500 hover:bg-secondHard hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+  }
+
+  .nav-class-li li a,
+  .nav-class-li li ul li a,
+  .nav-class-li li ul li ul li a {
+    @apply px-2 text-second500 visited:text-second500 hover:text-secondSoft;
+  }
+
+  .nav-class-li li {
+    @apply px-2 hover:rounded-lg hover:bg-primarySoft md:py-1 md:pr-4 md:hover:bg-transparent;
+  }
+
+  .nav-class-li li li {
+    @apply px-2;
+  }
+
+  .nav-class-li .current-menu-item a {
+    @apply font-bold text-secondSoft underline decoration-secondHard decoration-2 underline-offset-4;
+  }
+
+  .spoilerBar {
+    display: block;
+    @apply mx-auto flex max-w-5xl flex-col;
+  }
+
+  .playerDiv {
+    @apply relative mx-auto grid w-full max-w-6xl translate-y-0 grid-cols-8 grid-rows-2  justify-center  gap-1 bg-white py-2 px-0.5 shadow-md dark:bg-gray-900 lg:flex lg:w-[975px] lg:gap-4 lg:px-4;
+  }
+
+  .profile-contain {
+    @apply md:w-16 md:max-w-[60px];
+  }
+
+  .player-thumb {
+    @apply m-0 block h-12 w-full   rounded-3xl p-0.5 md:h-16  md:w-12;
+  }
+  .closing-bar {
+    @apply z-20 mx-auto flex h-1.5 w-full max-w-[1050px]  bg-gradient-to-b from-yellow-100 via-yellow-300 to-yellow-400 shadow lg:w-[1000px];
+  }
+
+  .heading-bg {
+    @apply absolute top-5 left-0 rounded-r-md bg-amber-400 py-1 px-4 shadow-inner;
+  }
+
+  .heading-text {
+    @apply mt-[-16px] font-mainHead text-xl font-bold text-primary500;
+  }
+
+  .ad-box {
+    @apply relative mx-auto max-w-full border border-gray-300 p-2;
+  }
+
+  .ad-label {
+    @apply absolute top-[-10px]  text-xs text-gray-500;
+  }
+
+  .winner {
+    @apply text-green-500;
+  }
+
+  .winner img,
+  .hoh img {
+    @apply border-2 border-green-400 dark:opacity-60;
+  }
+
+  .second,
+  .pov {
+    @apply text-cyan-600;
+  }
+
+  .second img,
+  .pov img {
+    @apply border-2 border-cyan-400  dark:opacity-60;
+  }
+
+  .afp img {
+    @apply border-2 border-rose-400  dark:opacity-60;
+  }
+
+  .afp {
+    @apply text-rose-500;
+  }
+
+  .nom img {
+    @apply border-2 border-amber-400  dark:opacity-60;
+  }
+
+  .nom {
+    @apply text-amber-500;
+  }
+
+  .jury img {
+    @apply border-2 border-purple-400  opacity-40 dark:grayscale;
+  }
+
+  .jury {
+    @apply text-purple-600;
+  }
+
+  .evic img {
+    @apply border border-gray-400 opacity-50 grayscale;
+  }
+
+  .evic {
+    @apply text-gray-400;
+  }
+
+  .active img {
+    @apply border-2 border-primary500 dark:opacity-60;
+  }
+
+  .active {
+    @apply dark:text-gray-200;
   }
 }
 

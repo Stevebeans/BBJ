@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>    
+<html <?php language_attributes(); ?>> 
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Oswald&family=Roboto&family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">   
   <?php
   $addFreeExperience = false;
 
@@ -31,156 +32,114 @@
     </script>
 
 
-    <?php if (!premiumCheck()):
-      if (function_exists("adinserter")):
-        echo adinserter(1);
-      endif;
-    endif; 
+    <?php if (!premiumCheck()): ?>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3657293189229655"
+     crossorigin="anonymous"></script>
+     <?php endif; ?>
+    
 
-    $logIn = is_user_logged_in();
+     <?php
+     $logIn = is_user_logged_in();
 
-    if ($logIn):
-      $currentUser = wp_get_current_user();
-    endif; ?>
+     if ($logIn):
+       $currentUser = wp_get_current_user();
+     endif;
+     ?>
 
   </head>
-  <body <?php body_class(); ?>>
+  <body <?php body_class(); ?> class="">
 
-
-
-    <!--  New TW Header  
+  <header> 
     
-    <header id="main-header" class="mb-2 bg-white py-4 px-2 max-w-full flex justify-between">
-      <div class="border w-[400px] flex items-center">
-        <div class="hidden md:block"><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . '/bbjlogo2020.png' ?>" alt="<?= get_bloginfo("description");?>" ></a></div>        
-        <div class="block md:hidden"><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . '/bbjlogomobile.png' ?>" alt="<?= get_bloginfo("description");?>" ></a></div> 
-      </div>
-      <div class="border  w-full"></div>
-      <div class="border w-[350px] flex justify-around">
-        <?php if (is_user_logged_in()): ?>
-          <div class="bbj-btn border-2">
-            <a href="<?php echo site_url(); ?>/dashboard">Settings</a>
-          </div>
-        <?php else: ?>
-          <a href="<?php echo site_url(); ?>/dashboard"><div class="bbj-btn mr-2">Login</div></a>
-          <a href="<?php echo site_url(); ?>/dashboard"><div class="bbj-btn">Sign Up</div></a>
-          
-           
-          
-        <?php endif;?>
-      </div>
-    </header>-->
-
-  <header>
-
-
-    
-  <div class="bbj-container">
-    
-
-
-  
-    <div class="headerContain"> 
-
+    <script>
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark')
+    }
+</script>
+    <nav class="bg-white border-gray-200 rounded dark:bg-gray-900">
+      <div class="container flex flex-wrap items-center justify-between mx-auto px-2 py-1 md:p-2">
       
-      <div class="header-content">
-        <div class="headerLeft">
-          <div class="flex justify-start"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogo2020.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
-          <div class="headerLogoMobile"><a href="<?php echo site_url(); ?>"><img src="<?php echo get_theme_file_uri("/images/bbjlogomobile.png"); ?>" alt="<?php echo get_bloginfo("description"); ?>"></a></div>
-          <div class="search-wrapper">
-            <div class="search-bar">
-              <?php
-              $searchForm = '[ivory-search id="44859" title="Default Search Form"]';
-              echo do_shortcode($searchForm);
-              ?>
+        <div class="hidden md:block"><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . "/bbjlogo2020.png" ?>" alt="<?= get_bloginfo("description") ?>" ></a></div>        
+        <div class="block md:hidden"><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . "/bbjlogomobile.png" ?>" alt="<?= get_bloginfo("description") ?>" ></a></div> 
 
-              <!--<input type="text" name="bbj_search" id="bbj_search" placeholder="Search">
-              <div class="search-dropdown">gf</div>-->
-            </div>
-          </div>
+      <div class="flex items-center md:order-2">
+
+        <div class="flex flex-col justify-center items-center mr-2">
+          <div class="text-xs text-gray-500">Spoilers</div>
+          <div class="mx-auto h-4 flex justify-center items-center"><i class="fa fa-toggle-off text-gray-500" id="toggleSpoiler"></i></div>
         </div>
-        
-        <div class="mobileMenu">
-          <i class="mobileMenu__icon fa fa-bars" aria-hidden="true"></i>
-        </div>
-        <div class="regMenu">
-          <?php if (is_user_logged_in()): ?> 
-          <a href="<?php echo site_url(); ?>/dashboard"><div class="bbj-btn mr-2">Settingss</div></a>   
-          <a href="<?php echo wp_logout_url(); ?>"><div class="bbj-btn">Log Out</div></a>       
-          <?php else: ?>
-          <a href="<?php echo site_url(); ?>/log-in"><div class="bbj-btn mr-2">Login</div></a>
-          <a href="<?php echo site_url(); ?>/registration"><div class="bbj-btn">Sign Up</div></a>
+          <button id="theme-toggle" type="button" class="text-gray-500 mr-2 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+
+          <?php if (is_user_logged_in()): ?>
+          <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
           <?php endif; ?>
-        </div>
-      </div>     
-      
-      
-    </div>
-    <div class="menuFull">
-      <div class="menu">
-      <?php wp_nav_menu([
-        "theme_location" => "bbj-main-menu",
-        "menu_class" => "navigation-main",
-      ]); ?>
-      <script>
-        jQuery(function ($) {
-        var siteNavigation = $('.navigation-main');
-        
-        siteNavigation.find( 'a' ).on( 'focus blur', function() {
-          $( this ).parents( 'li' ).toggleClass( 'focus' );
-        });
-      });
-      </script>
-      </div>
-      
-      
-      <div class="spoilerTrigger">
-        <div class="spoilerTriggerText">Spoiler Bar: <i class="fa fa-toggle-on" id="toggleSpoiler"></i></div> 
-      </div>
-    </div>
-      <div class="menuShow">
-        <?php wp_nav_menu([
-          "theme_location" => "bbj-main-menu",
-          "menu_class" => "navigation-main-mobile",
-        ]); ?>
-        <div class="loginButtons">
-        <?php if (is_user_logged_in()): ?>          
-        <div><a href="<?php echo site_url(); ?>/dashboard">Account Settings</a></div>
-        <div><A href="<?php echo wp_logout_url(); ?>">Log Out</a></div>
-        <?php else: ?>
-            <div><a href="<?php echo site_url(); ?>/log-in">Login</a></div>
-            <div><a href="<?php echo site_url(); ?>/registration">Sign Up</a></div>
-        <?php endif; ?>  
+            <span class="sr-only">Open user menu</span>
+            <?php echo is_user_logged_in() ? '<img class="w-8 h-8 rounded-full" src="' . get_avatar_url($currentUser->ID) . '" alt="' . $currentUser->display_name . '">' : '<img class="bg-white" src="' . BBJ_IMAGES . '/bbjlogomobile.png" alt="' . get_bloginfo("description") . '" >'; ?>
+          </button>
+          <!-- Dropdown menu -->
+          <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+            <div class="px-4 py-3">
+              <span class="block text-sm text-gray-900 dark:text-white"><?= $currentUser->display_name ?></span>
+              <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"><?= $currentUser->user_email ?></span>
+            </div>
+            <ul class="py-1" aria-labelledby="user-menu-button">
+              <li>
+                <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+              </li>
+              <li>
+                <a href="<?= wp_logout_url() ?>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+              </li>
+            </ul>
           </div>
-    </div>
+          <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+        </button>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center justify-between mx-auto bg-primary500 px-2 sm:px-4 py-1">
+        <div class="container mx-auto hidden lg:flex" id="mobile-menu-2">          
+          <ul id="bbj-main-menu" class="menu list-none p-0">
+                <?php wp_nav_menu([
+                  "theme_location" => "bbj-main-menu",
+                  "items_wrap" =>
+                    '<ul id="%1$s" class="%2$s nav-class-li">%3$s' .
+                    (is_user_logged_in()
+                      ? '<li><a href="/dashboard">Settings</a></li>  
+                    <li><a href="' .
+                        wp_logout_url() .
+                        '">Log Out</a></li>'
+                      : '
+                      <li><a href="/log-in">Log In</a></li>
+                      <li><a href="/registration">Register</a></li>
+                      ') .
+                    "</ul>",
+                  "container" => "",
+                  "menu_class" => "flex flex-col md:flex-row py-0.5 px-1",
+                ]); ?>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+</header>
+
+<section id="main-body" class="bg-slate-200 dark:bg-slate-700">
+  
       <?php get_template_part("template-parts/spoiler-bar"); ?>
 
+      <?php if (!premiumCheck()):
+        get_template_part("template-parts/ads/ad-header");
+      endif; ?>
     
-      <div class="bodyContainer">
-          <?php if (!premiumCheck()):
-            // Header Ad Space
-            if (function_exists("adinserter")) {
-              //echo adinserter(2);
-            }
-          endif; ?>  
-      </div>
-
-
-      
-
       <div id="user-role" data-role="<?= $bbjAdCheck ?>"></div>
-
-    
-  </div>
-
-
-  
-
-  </header>
-  <?php if (feedUpdater()): ?>
-  <div id="update-box" data-update="<?= $bbjUpdater ?>">
-    <div class="update-box-header">Feed Updates
-      <div class="update-box-button"><i class="fa fa-toggle-on" id="toggle_feed_update"></i></div>
-    </div>
-    <div class="update-box-body"><?php echo FrmFormsController::get_form_shortcode(["id" => 5, "title" => false, "description" => true]); ?></div></div>
-  <?php endif; ?>
+<?php if (feedUpdater()): ?>
+  <?php get_template_part("template-parts/feed-updater"); ?>
+<?php endif; ?>

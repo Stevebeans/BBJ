@@ -3,7 +3,7 @@
 define("BBJ_THEME_VERSION", "2.2.81");
 define("BBJ_ROOT", dirname(__FILE__));
 define("BBJ_INCLUDES", BBJ_ROOT . "/includes");
-define('BBJ_IMAGES', get_theme_file_uri("/images"));
+define("BBJ_IMAGES", get_theme_file_uri("/images"));
 define("BBJ_MB_FILES", BBJ_INCLUDES . "/MB");
 define("BBJ_THEME_URL", get_theme_file_uri());
 define("BBJ_THEME_PATH", get_theme_file_uri() . "/");
@@ -32,7 +32,6 @@ function load_assets()
   wp_enqueue_style("frontend", BBJ_THEME_DIST_PATH . "index.css", [], BBJ_THEME_VERSION);
   wp_enqueue_style("tailwind", BBJ_THEME_DIST_PATH . "index-style.css", [], BBJ_THEME_VERSION);
   wp_enqueue_style("font-awesome", "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
-  wp_enqueue_style("custom-google-fonts", "//fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@500;600;700&display=swap");
 
   wp_localize_script("frontend", "playerData", [
     "root_url" => get_site_url(),

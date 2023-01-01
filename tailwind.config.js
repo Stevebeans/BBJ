@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: "class",
   content: ["./**/*.php", "./src/**/*.js", "./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {
@@ -10,9 +11,9 @@ module.exports = {
         lg: "1.15"
       },
       colors: {
-        bbj500: "#35546e",
-        bbjSoft: "#4D6D88",
-        bbjHard: "2D4B65",
+        primary500: "#35546e",
+        primarySoft: "#4D6D88",
+        primaryHard: "2D4B65",
         second500: "#FFBF0F",
         secondSoft: "#ffd970",
         secondHard: "#FA910A",
@@ -20,7 +21,9 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Roboto", "sans-serif"],
-        osw: ["Oswald", "sans-serif"]
+        osw: ["Oswald", "sans-serif"],
+        mainHead: ["Yanone Kaffeesatz", "sans-serif"],
+        ibm: ["IBM Plex Mono", "monospace"]
       }
     }
   },

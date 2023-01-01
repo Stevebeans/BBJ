@@ -3,6 +3,56 @@
 get_header(); ?>
 
 
+<div class="bbj-container">
+  
+  <section id="front-hero" class="max-w-full rounded-md flex flex-col lg:flex-row gap-2">
+
+    <div class="w-full lg:w-1/2 front-card relative">    
+      <div class="heading-bg">
+        <h2 class="heading-text">Latest Big Brother 24 News</h2>
+      </div>
+      <div class="mt-12">sdf</div>    
+    </div>
+
+
+    <div class="w-full lg:w-1/2 front-card relative">
+      <div class="heading-bg">
+        <h2 class="heading-text">Latest Live Feed Updates</h2>
+      </div>
+      <div class="mt-12">sdf</div>
+    </div>
+
+  
+  </section>
+
+
+  <section id="email-section" class="my-4 bg-primary500 rounded-md max-w-5xl mx-auto p-2">
+    Get Big Brother Feed Updates Sent Directly to your inbox
+  </section>
+
+
+  <section id="front-body" class="max-w-full rounded-md flex flex-cold lg:flex-row">
+
+    <div class="w-3/4 front-card relative">    
+      <div class="heading-bg">
+        <h2 class="heading-text">Latest Big Brother 24 News</h2>
+      </div>
+      <div class="mt-12">sdf</div>    
+    </div>
+
+
+    <div class="w-1/4 front-card relative">    
+      <div class="heading-bg">
+        <h2 class="heading-text">Latest Big Brother 24 News</h2>
+      </div>
+      <div class="mt-12">sdf</div>    
+    </div>
+
+  </section>
+
+</div>
+
+
 
 <div class="bodyContainer">
 
@@ -77,7 +127,9 @@ get_header(); ?>
       </div>
     </div>
 
-    <?php //get_template_part("template-parts/ads/ad-index-top"); ?>
+    <?php
+//get_template_part("template-parts/ads/ad-index-top");
+?>
 
     <!-- Live Feed Updates   -->
     <div class="widgetContain boxShadowsft">
@@ -178,7 +230,9 @@ $latest_posts = new WP_Query($latest_post_args);
 ?>
 
 
-<?php //get_template_part("template-parts/ads/ad-index-mid"); ?>
+<?php
+//get_template_part("template-parts/ads/ad-index-mid");
+?>
 
           <div class="mainUpdates">
 
@@ -280,5 +334,7 @@ $latest_posts = new WP_Query($latest_post_args);
             
 </div>
 
-<div class="index-bottom"><?php // get_template_part("template-parts/ads/ad-index-bottom"); ?></div>
+<div class="index-bottom"><?php
+// get_template_part("template-parts/ads/ad-index-bottom");
+?></div>
 <?php get_footer();

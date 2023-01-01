@@ -195,16 +195,16 @@ header {
   transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
 }
 
-.spoilerBar {
-  display: block;
-  flex-direction: column;
-  background-color: $backgroundColor;
-  max-width: $max_width;
-  margin: 0px auto;
-  //position: absolute;
-  //left: 50%;
-  //max-width: toRem(1000);
-}
+// .spoilerBar {
+//   display: block;
+//   flex-direction: column;
+//   background-color: $backgroundColor;
+//   max-width: $max_width;
+//   margin: 0px auto;
+//   //position: absolute;
+//   //left: 50%;
+//   //max-width: toRem(1000);
+// }
 
 .closingBar {
   background: rgb(255, 191, 15);
@@ -219,20 +219,20 @@ header {
   z-index: 5;
 }
 
-.playerDiv {
-  display: flex;
-  padding: 5px;
-  gap: 5px;
-  background-color: $white;
-  transform: translateY(0);
-  flex-wrap: wrap;
-  max-width: toRem(1030);
-  box-shadow: 5px 0px 10px 1px rgba(0, 0, 0, 0.15);
-  margin: 0px auto;
-  position: relative;
-  z-index: 5;
-  justify-content: center;
-}
+// .playerDiv {
+//   display: flex;
+//   padding: 5px;
+//   gap: 5px;
+//   background-color: $white;
+//   transform: translateY(0);
+//   flex-wrap: wrap;
+//   max-width: toRem(1030);
+//   box-shadow: 5px 0px 10px 1px rgba(0, 0, 0, 0.15);
+//   margin: 0px auto;
+//   position: relative;
+//   z-index: 5;
+//   justify-content: center;
+// }
 .player-div-hide {
   display: none !important;
 }
