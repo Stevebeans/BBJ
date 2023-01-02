@@ -59,11 +59,13 @@
         document.documentElement.classList.remove('dark')
     }
 </script>
-    <nav class="bg-white border-gray-200 rounded dark:bg-gray-900">
+    <nav class="bg-white rounded dark:bg-gray-900 drop-shadow">
       <div class="container flex flex-wrap items-center justify-between mx-auto px-2 py-1 md:p-2">
       
-        <div class="hidden md:block"><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . "/bbjlogo2020.png" ?>" alt="<?= get_bloginfo("description") ?>" ></a></div>        
-        <div class="block md:hidden"><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . "/bbjlogomobile.png" ?>" alt="<?= get_bloginfo("description") ?>" ></a></div> 
+        <div class="hidden md:block"><h1><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . "/bbjlogo2020.png" ?>" alt="<?= get_bloginfo("description") ?>" ></a> <span class="clip-rect-1 clip-path-inset-50 h-1 m-0 overflow-hidden
+p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div>        
+        <div class="block md:hidden"><h1><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . "/bbjlogomobile.png" ?>" alt="<?= get_bloginfo("description") ?>" ></a> <span class="clip-rect-1 clip-path-inset-50 h-1 m-0 overflow-hidden
+p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div> 
 
       <div class="flex items-center md:order-2">
 
@@ -102,7 +104,7 @@
             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
         </button>
         </div>
-      </div>
+      </div> 
       <div class="flex flex-wrap items-center justify-between mx-auto bg-primary500 px-2 sm:px-4 py-1">
         <div class="container mx-auto hidden lg:flex" id="mobile-menu-2">          
           <ul id="bbj-main-menu" class="menu list-none p-0">
