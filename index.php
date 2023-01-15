@@ -47,11 +47,57 @@ get_header(); ?>
     </div>
 
 
+    <?php
+    $args = [
+      "post_type" => "live-feed-updates",
+      "posts_per_page" => 5,
+      "orderby" => "modified",
+      "order" => "DESC",
+    ];
+    $feed_updates = new WP_Query($args);
+    ?>
+
+
     <div class="w-full lg:w-1/2 front-card relative">
       <div class="heading-bg">
         <h2 class="heading-text">Latest Live Feed Updates</h2>
       </div>
-      <div class="mt-10">sdf</div>
+      <div class="mt-10">
+        
+      <?php if ($feed_updates->have_posts()): ?>
+        <?php while ($feed_updates->have_posts()):
+          $feed_updates->the_post(); ?>
+          <div class="p-2 border-b last:border-0 border-gray-400 flex gap-4 mb-4">          
+            <div class="row-span-2 w-10 flex justify-center items-start">
+              <div>
+                <?php
+                $author_id = get_the_author_meta("ID");
+                $avatar_url = get_avatar_url($author_id, ["size" => 32]);
+                ?>
+                <img src="<?php echo $avatar_url; ?>"class="rounded-full w-10 h-10"alt="Author Avatar"> 
+              </div>  
+            </div>
+
+            <div>
+              
+              <div class="text-red-500 text-sm"><?php echo the_modified_date(); ?></div>
+              <div>
+                <div class="text-gray-800 text-lg"><?php the_title(); ?></div>
+                <div class="text-gray-800"><?php the_content(); ?></div>
+              </div>
+            </div>
+
+          </div>
+        <?php
+        endwhile; ?>
+        <?php else: ?>
+        <p>No updates found</p>
+      <?php endif; ?>
+          <div class="flex justify-center items-center">
+            <a href="http://"><div class="bbj-btn">View More Live Feed Updates Here</div></a>
+          </div>
+      <?php wp_reset_postdata(); ?>
+      </div>
     </div>
 
   
