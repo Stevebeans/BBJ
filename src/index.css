@@ -13,6 +13,19 @@
     @apply mx-auto p-2  lg:container lg:p-2;
   }
 
+  .bbj-container-inner {
+    @apply mx-auto max-w-screen-xl p-2;
+  }
+
+  #breadcrumbs-new a,
+  #breadcrumbs-new a:visited {
+    @apply text-second500 underline underline-offset-2 hover:text-secondHard;
+  }
+
+  #breadcrumbs-new {
+    @apply text-white;
+  }
+
   .front-card {
     @apply rounded-sm bg-white shadow-md dark:bg-gray-800;
   }
