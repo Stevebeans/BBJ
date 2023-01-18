@@ -9,7 +9,7 @@ get_header(); ?>
 <?php while (have_posts()):
   the_post(); ?>
   <section id="blog-post" class="rounded-md w-full flex flex-col lg:flex-row bg-white">
-    <div class="container mx-auto relative border border-purple-500">
+    <div class="container mx-auto relative">
       
 
 
@@ -40,7 +40,7 @@ get_header(); ?>
               $avatar_url = get_avatar_url($author_id, ["size" => 32]);
               ?>
             <div><img src="<?php echo $avatar_url; ?>"class="rounded-full w-8 h-8 mr-2"alt="Author Avatar"></div>
-            <div>By <span class="font-bold">Steve Beans</span></div>  
+            <div class="text-gray-500">Author: <span class="font-bold">Steve Beans</span></div>  
           </div>
         </div>
         <div>
@@ -48,7 +48,7 @@ get_header(); ?>
         </div>
 
 
-        <div class="prose-xl prose-slate"> 
+        <div class="prose-xl prose-slate p-2"> 
           <?php the_content(); ?>  
         </div>
       </div>
