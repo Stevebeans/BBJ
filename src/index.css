@@ -183,6 +183,14 @@
   .read-more a {
     @apply text-xs underline;
   }
+
+  .quicklinks {
+    @apply mx-auto grid w-full grid-cols-3 grid-rows-2 justify-between gap-2 rounded border border-slate-300 bg-slate-200 p-2 text-sm shadow-lg md:w-3/4 md:grid-cols-6 md:grid-rows-1;
+  }
+
+  .bbj-btn-sm {
+    @apply cursor-pointer rounded-lg bg-primary500 py-0.5 px-1.5 text-xs text-white hover:bg-primarySoft;
+  }
 }
 
 /* Misc Stuff */

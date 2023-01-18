@@ -5,7 +5,7 @@ add_filter("the_content", "prefix_insert_post_ads");
 
 function prefix_insert_post_ads($content)
 {
-  if (!premiumCheck()) {
+  if (!premiumCheck() && (is_single() || is_page()) && get_post_type() !== "live-feed-updates") {
     $ad_codes = [file_get_contents(locate_template("template-parts/ads/ad-in-article.php")), file_get_contents(locate_template("template-parts/ads/taboola-mid.php")), file_get_contents(locate_template("template-parts/ads/ad-in-article.php")), file_get_contents(locate_template("template-parts/ads/ad-in-article.php"))];
     $paragraphs = explode("</p>", $content);
     $count = 0;
