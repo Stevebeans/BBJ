@@ -184,12 +184,32 @@
     @apply text-xs underline;
   }
 
-  .quicklinks {
+  .bbj-quicklinks {
     @apply mx-auto grid w-full grid-cols-3 grid-rows-2 justify-between gap-2 rounded border border-slate-300 bg-slate-200 p-2 text-sm shadow-lg md:w-3/4 md:grid-cols-6 md:grid-rows-1;
   }
 
   .bbj-btn-sm {
     @apply cursor-pointer rounded-lg bg-primary500 py-0.5 px-1.5 text-xs text-white hover:bg-primarySoft;
+  }
+
+  .bbj-content-container {
+    @apply w-full;
+  }
+
+  .bbj-inner-content-container {
+    @apply my-2 flex w-full flex-col rounded-md bg-white p-2 lg:flex-row;
+  }
+
+  .bbj-player-card-wrap {
+    @apply flex sm:grid sm:grid-cols-2 sm:gap-2;
+  }
+
+  .bbj-player-card-container {
+    @apply w-full overflow-hidden rounded-lg bg-slate-100 shadow-deep hover:cursor-pointer hover:shadow-deepHover;
+  }
+
+  .player-card-stat-header {
+    @apply rounded bg-second500 text-center font-ibm text-xs font-bold capitalize text-primary500;
   }
 }
 

@@ -80,7 +80,7 @@ get_header(); ?>
 
     </div>  
 
-      <div class="w-80 p-2 border-l border-gray-200">
+      <div class="border-l border-gray-200">
           
           <?php get_template_part("template-parts/sidebar-default"); ?>
 

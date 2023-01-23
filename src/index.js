@@ -1,5 +1,8 @@
 import "./assets/css/main.scss";
 import "flowbite";
+import React from "react";
+import ReactDOM from "react-dom";
+import PlayerTableReact from "./scripts/PlayerTableReact";
 
 import SearchBar from "./scripts/SearchBar";
 
@@ -15,8 +18,11 @@ import { permission_check } from "./scripts/Permissions";
 import { feed_update_slider } from "./scripts/FeedUpdateBar";
 import DarkMode from "./scripts/DarkMode";
 
-import React from "react";
-import ReactDOM from "react-dom";
+const playerTableEl = document.getElementById("player-directory-table");
+
+if (playerTableEl) {
+  ReactDOM.render(<PlayerTableReact />, playerTableEl);
+}
 
 //const searchBar = new SearchBar(); back burner for now
 //const mobileDrop = new MobileDrop();

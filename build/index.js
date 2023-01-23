@@ -2747,56 +2747,340 @@ class PlayerTable {
 
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (PlayerTable); // <div class="pt-player-card">
-//         <div class="pt-player-card-img"><img src="http://bbj3.local/wp-content/uploads/2022/04/bb23_brandon_800x1000.jpg" alt=""></div>
-//         <div class="pt-player-card-info">
-//           <div class="pt-header"><h3>First Name</h3><h2>Last Name</h2>
-//             <h4>Big Brother 21 <span>(6th place)</span></h4>
-//           </div>
-//           <div class="pt-body">
-//             <div>Age</div>
-//             <div>21</div>
-//             <div>Age <span>(now)</span></div>
-//             <div>21</div>
-//             <div>Location</div>
-//             <div>21</div>
-//           </div>
-//         </div>
-//         <div class="pt-player-card-bottom">
-//           <div class="pt-stats">
-//             <div class="pt-stats-header">Season Stats</div>
-//             <div class="pt-stats-body">
-//               <div class="pt-stats-hd">HOH</div>
-//               <div class="pt-stats-hd">POV</div>
-//               <div class="pt-stats-hd">NOM</div>
-//               <div class="pt-stats-hd">MISC</div>
-//               <div class="pt-stats-hd">SAVED</div>
-//               <div class="pt-stats-bd">2</div>
-//               <div class="pt-stats-bd">2</div>
-//               <div class="pt-stats-bd">2</div>
-//               <div class="pt-stats-bd">0</div>
-//               <div class="pt-stats-bd">3</div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-// <div class="pt-main">
-//   <div class="pt-main-header"></div>
-//   <div class="pt-main-header">First Name</div>
-//   <div class="pt-main-header">Last Name</div>
-//   <div class="pt-main-header">Nickname</div>
-//   ${data
-//     .map(
-//       p => `
-//   <div class="pt-inner profile-picture"><a href="${p.player_link}"><img src="${p.profile}"></a></div>
-//   <div class="pt-inner">${p.first_name}</div>
-//   <div class="pt-inner">${p.last_name}</div>
-//   <div class="pt-inner">${p.first_name}</div>
-//   `
-//     )
-//     .join("")}
-// </div>
-// `;
+/* harmony default export */ __webpack_exports__["default"] = (PlayerTable);
+
+/***/ }),
+
+/***/ "./src/scripts/PlayerTableReact.js":
+/*!*****************************************!*\
+  !*** ./src/scripts/PlayerTableReact.js ***!
+  \*****************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _ReactComponents_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ReactComponents/Loading */ "./src/scripts/ReactComponents/Loading.js");
+/* harmony import */ var _ReactComponents_PlayerCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ReactComponents/PlayerCard */ "./src/scripts/ReactComponents/PlayerCard.js");
+/* harmony import */ var _ReactComponents_SearchInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ReactComponents/SearchInput */ "./src/scripts/ReactComponents/SearchInput.js");
+/* harmony import */ var _ReactComponents_GenderInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ReactComponents/GenderInput */ "./src/scripts/ReactComponents/GenderInput.js");
+/* harmony import */ var _ReactComponents_SelectSeason__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ReactComponents/SelectSeason */ "./src/scripts/ReactComponents/SelectSeason.js");
+
+
+
+
+
+
+
+
+
+const PlayerTableReact = () => {
+  const [players, setPlayers] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+  const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
+  const [searchQuery, setSearchQuery] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+  const [filteredPlayers, setFilteredPlayers] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+  const [genderFilter, setGenderFilter] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("both");
+  const [filteredByGenderPlayers, setFilteredByGenderPlayers] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(players);
+  const [selectedSeason, setSelectedSeason] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("all seasons");
+  console.log("React");
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get(playerData.root_url + "/wp-json/bbj/v1/player_info/").then(res => {
+      setPlayers(res.data);
+      setFilteredPlayers(res.data);
+      setIsLoading(false);
+      console.log(res.data);
+    }).catch(err => {
+      console.log(err);
+    });
+  }, []);
+
+  const handleSearch = event => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleGender = event => {
+    setGenderFilter(event.target.value);
+  };
+
+  const handleSeason = event => {
+    setSelectedSeason(event.target.value);
+    console.log(event.target.value);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    setFilteredByGenderPlayers(players.filter(player => {
+      if (genderFilter === "both" || genderFilter === "Choose Gender") {
+        return true;
+      } else {
+        return player.gender === genderFilter;
+      }
+    }).filter(player => {
+      if (selectedSeason === "all seasons" || selectedSeason === "") {
+        return true;
+      } else {
+        return player.season === selectedSeason;
+      }
+    }).filter(player => {
+      return player.first_name.toLowerCase().includes(searchQuery.toLowerCase()) || player.last_name.toLowerCase().includes(searchQuery.toLowerCase()) || player.season.toLowerCase().includes(searchQuery.toLowerCase());
+    }));
+  }, [genderFilter, players, searchQuery, selectedSeason]);
+  console.log(searchQuery);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, isLoading ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ReactComponents_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], null) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "mb-2 flex"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ReactComponents_SearchInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    handleSearch: handleSearch
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ReactComponents_GenderInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    handleGender: handleGender
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ReactComponents_SelectSeason__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    players: players,
+    setFilteredPlayers: setFilteredPlayers,
+    handleSeason: handleSeason
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bbj-player-card-wrap"
+  }, filteredByGenderPlayers.length > 0 ? filteredByGenderPlayers.map(player => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ReactComponents_PlayerCard__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    key: player.id,
+    player: player
+  })) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "No Results Found"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PlayerTableReact);
+
+/***/ }),
+
+/***/ "./src/scripts/ReactComponents/GenderInput.js":
+/*!****************************************************!*\
+  !*** ./src/scripts/ReactComponents/GenderInput.js ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+const GenderInput = _ref => {
+  let {
+    handleGender
+  } = _ref;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+    id: "playerGender",
+    class: "mr-2 block w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-slate-500 focus:ring-slate-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400 dark:focus:border-slate-500 dark:focus:ring-slate-500",
+    onChange: handleGender
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    selected: true
+  }, "Choose Gender"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "both"
+  }, "Both"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "male"
+  }, "Male"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: "female"
+  }, "Female"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (GenderInput);
+
+/***/ }),
+
+/***/ "./src/scripts/ReactComponents/Loading.js":
+/*!************************************************!*\
+  !*** ./src/scripts/ReactComponents/Loading.js ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+const Loading = () => {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    role: "status"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    "aria-hidden": "true",
+    class: "mr-2 inline h-10 w-10 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600",
+    viewBox: "0 0 100 101",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z",
+    fill: "currentColor"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
+    fill: "currentFill"
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    class: "sr-only"
+  }, "Loading..."));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Loading);
+
+/***/ }),
+
+/***/ "./src/scripts/ReactComponents/PlayerCard.js":
+/*!***************************************************!*\
+  !*** ./src/scripts/ReactComponents/PlayerCard.js ***!
+  \***************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+const PlayerCard = _ref => {
+  let {
+    player
+  } = _ref;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bbj-player-card-container group"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "flex w-full"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "h-28 w-40"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: player.profile,
+    className: "h-full w-40",
+    alt: `${player.first_name} ${player.last_name}`
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "flex w-full flex-col justify-between py-1 px-2"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+    className: "font-ibm text-sm text-primary500 group-hover:text-secondHard"
+  }, player.first_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
+    className: "font-ibm text-base font-semibold leading-4 text-primary500 group-hover:text-secondHard"
+  }, player.last_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
+    className: "font-ibm text-xs"
+  }, player.season)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "mt-2 grid grid-cols-2 align-bottom text-xs text-primary500",
+    style: {
+      gridTemplateColumns: "0.5fr 1.5fr"
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Age"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "group-hover:text-secondHard"
+  }, player.then_age), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Gender"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "capitalize group-hover:text-secondHard"
+  }, player.gender), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Loc"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "group-hover:text-secondHard"
+  }, player.location)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "px-2 py-1"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "overflow-hidden  rounded-xl"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bg-primary500 text-center text-white"
+  }, "Season Stats"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "grid grid-cols-4 justify-around gap-1 bg-slate-300 p-1"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player-card-stat-header"
+  }, "HOH"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player-card-stat-header"
+  }, "POV"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player-card-stat-header"
+  }, "NOM"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "player-card-stat-header"
+  }, "SAVED"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "text-center text-xs group-hover:text-secondHard"
+  }, player.hoh), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "text-center text-xs group-hover:text-secondHard"
+  }, player.pov), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "text-center text-xs group-hover:text-secondHard"
+  }, player.nom), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "text-center text-xs group-hover:text-secondHard"
+  }, player.saved)))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PlayerCard);
+
+/***/ }),
+
+/***/ "./src/scripts/ReactComponents/SearchInput.js":
+/*!****************************************************!*\
+  !*** ./src/scripts/ReactComponents/SearchInput.js ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+const SearchInput = _ref => {
+  let {
+    handleSearch
+  } = _ref;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "text",
+    class: "mr-2 block w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-slate-500 focus:ring-slate-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400 dark:focus:border-slate-500 dark:focus:ring-slate-500",
+    placeholder: "Search players",
+    onKeyUp: handleSearch
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchInput);
+
+/***/ }),
+
+/***/ "./src/scripts/ReactComponents/SelectSeason.js":
+/*!*****************************************************!*\
+  !*** ./src/scripts/ReactComponents/SelectSeason.js ***!
+  \*****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+const SelectSeason = _ref => {
+  let {
+    players,
+    setFilteredPlayers
+  } = _ref;
+  const [selectedSeason, setSelectedSeason] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+
+  const handleSeasonChange = event => {
+    setSelectedSeason(event.target.value);
+    setFilteredPlayers(players.filter(player => player.season === event.target.value));
+  }; // Extract unique seasons from players
+
+
+  const seasons = Array.from(new Set(players.map(player => player.season)));
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+    onChange: handleSeasonChange,
+    value: selectedSeason,
+    class: "block w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-slate-500 focus:ring-slate-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400 dark:focus:border-slate-500 dark:focus:ring-slate-500"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    value: ""
+  }, "All Seasons"), seasons.map(season => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    key: season,
+    value: season
+  }, season)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SelectSeason);
 
 /***/ }),
 
@@ -7016,6 +7300,17 @@ module.exports = window["React"];
 "use strict";
 module.exports = window["ReactDOM"];
 
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = window["wp"]["element"];
+
 /***/ })
 
 /******/ 	});
@@ -7094,20 +7389,27 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _assets_css_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/main.scss */ "./src/assets/css/main.scss");
-/* harmony import */ var flowbite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flowbite */ "./node_modules/flowbite/dist/flowbite.js");
-/* harmony import */ var flowbite__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flowbite__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _scripts_SearchBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/SearchBar */ "./src/scripts/SearchBar.js");
-/* harmony import */ var _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scripts/SpoilerBar */ "./src/scripts/SpoilerBar.js");
-/* harmony import */ var _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scripts/SpoilerBarNew */ "./src/scripts/SpoilerBarNew.js");
-/* harmony import */ var _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scripts/PlayerTable */ "./src/scripts/PlayerTable.js");
-/* harmony import */ var _scripts_Permissions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./scripts/Permissions */ "./src/scripts/Permissions.js");
-/* harmony import */ var _scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scripts/FeedUpdateBar */ "./src/scripts/FeedUpdateBar.js");
-/* harmony import */ var _scripts_DarkMode__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./scripts/DarkMode */ "./src/scripts/DarkMode.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-dom */ "react-dom");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _assets_css_main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/css/main.scss */ "./src/assets/css/main.scss");
+/* harmony import */ var flowbite__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flowbite */ "./node_modules/flowbite/dist/flowbite.js");
+/* harmony import */ var flowbite__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flowbite__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ "react-dom");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _scripts_PlayerTableReact__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scripts/PlayerTableReact */ "./src/scripts/PlayerTableReact.js");
+/* harmony import */ var _scripts_SearchBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./scripts/SearchBar */ "./src/scripts/SearchBar.js");
+/* harmony import */ var _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scripts/SpoilerBar */ "./src/scripts/SpoilerBar.js");
+/* harmony import */ var _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./scripts/SpoilerBarNew */ "./src/scripts/SpoilerBarNew.js");
+/* harmony import */ var _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./scripts/PlayerTable */ "./src/scripts/PlayerTable.js");
+/* harmony import */ var _scripts_Permissions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./scripts/Permissions */ "./src/scripts/Permissions.js");
+/* harmony import */ var _scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./scripts/FeedUpdateBar */ "./src/scripts/FeedUpdateBar.js");
+/* harmony import */ var _scripts_DarkMode__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./scripts/DarkMode */ "./src/scripts/DarkMode.js");
+
+
+
+
 
 
  //import ExampleReactComponent from "./scripts/ExampleReactComponent";
@@ -7122,15 +7424,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const playerTableEl = document.getElementById("player-directory-table");
 
- //const searchBar = new SearchBar(); back burner for now
+if (playerTableEl) {
+  react_dom__WEBPACK_IMPORTED_MODULE_4___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_scripts_PlayerTableReact__WEBPACK_IMPORTED_MODULE_5__["default"], null), playerTableEl);
+} //const searchBar = new SearchBar(); back burner for now
 //const mobileDrop = new MobileDrop();
 
-const spoilerBar = new _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_4__["default"]();
-const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_5__["default"]();
-const darkMode = new _scripts_DarkMode__WEBPACK_IMPORTED_MODULE_8__["default"]();
-(0,_scripts_Permissions__WEBPACK_IMPORTED_MODULE_6__.permission_check)();
-(0,_scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_7__.feed_update_slider)();
+
+const spoilerBar = new _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_8__["default"]();
+const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_9__["default"]();
+const darkMode = new _scripts_DarkMode__WEBPACK_IMPORTED_MODULE_12__["default"]();
+(0,_scripts_Permissions__WEBPACK_IMPORTED_MODULE_10__.permission_check)();
+(0,_scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_11__.feed_update_slider)();
 console.log("js-loaded"); //ReactDOM.render(<PlayerArchive />, document.querySelector("#player-table"));
 }();
 /******/ })()

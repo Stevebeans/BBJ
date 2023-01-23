@@ -6,6 +6,10 @@ module.exports = {
       dropShadow: {
         "ca-text": "0 1 1 rgba(0,0,0, 0.7)"
       },
+      boxShadow: {
+        deep: "0 3px 6px rgba(53, 84, 110, 0.5)",
+        deepHover: "0 3px 6px rgba(53, 84, 110, 0.8)"
+      },
       scale: {
         md: "1.07",
         lg: "1.15"
@@ -23,7 +27,11 @@ module.exports = {
         sans: ["Roboto", "sans-serif"],
         osw: ["Oswald", "sans-serif"],
         mainHead: ["Yanone Kaffeesatz", "sans-serif"],
-        ibm: ["IBM Plex Mono", "monospace"]
+        ibm: ["IBM Plex Mono", "monospace"],
+        apple: ["-apple-system", "sans-serif"]
+      },
+      gridTemplateRows: {
+        card: "grid-template-columns: 0.5fr 1.5fr"
       }
     }
   },

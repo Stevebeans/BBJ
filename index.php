@@ -7,7 +7,7 @@ get_header(); ?>
   
   <section id="front-hero" class="max-w-full rounded-md flex flex-col lg:flex-row gap-2">
 
-    <div class="w-full lg:w-1/2 front-card relative">    
+    <div class="w-full lg:w-1/2 front-card relative mb-2">    
       <div class="heading-bg">
         <div class="heading-text">Latest Big Brother 24 News</div>
       </div>
@@ -58,7 +58,7 @@ get_header(); ?>
     ?>
 
 
-    <div class="w-full lg:w-1/2 front-card relative">
+    <div class="w-full lg:w-1/2 front-card relative mb-2">
       <div class="heading-bg">
         <h2 class="heading-text">Latest Live Feed Updates</h2>
       </div>
@@ -94,7 +94,7 @@ get_header(); ?>
         <p>No updates found</p>
       <?php endif; ?>
           <div class="flex justify-center items-center">
-            <a href="http://"><div class="bbj-btn">View More Live Feed Updates Here</div></a>
+            <a href="/feed-updates/"><div class="bbj-btn">View More Live Feed Updates Here</div></a>
           </div>
       <?php wp_reset_postdata(); ?>
       </div>

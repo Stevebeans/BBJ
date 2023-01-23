@@ -1,4 +1,4 @@
-<div class="quicklinks">
+<div class="bbj-quicklinks">
 
   <a href="http://www.facebook.com/bigbrotherjunkies" target="_blank"><div class="bbj-btn-sm"><i class="fa-brands fa-facebook"></i> Facebook</div></a>
   <a href="https://twitter.com/BigBrotherBBJ" target="_blank"><div class="bbj-btn-sm"><i class="fa-brands fa-twitter"></i> Twitter</div></a>
