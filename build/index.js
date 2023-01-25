@@ -2786,6 +2786,7 @@ const PlayerTableReact = () => {
   const [filteredPlayers, setFilteredPlayers] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   const [genderFilter, setGenderFilter] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("both");
   const [filteredByGenderPlayers, setFilteredByGenderPlayers] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(players);
+  const [seasons, setSeasons] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   const [selectedSeason, setSelectedSeason] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("all seasons");
   console.log("React");
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
@@ -2797,7 +2798,14 @@ const PlayerTableReact = () => {
     }).catch(err => {
       console.log(err);
     });
-  }, []);
+  }, []); // Pull the seasons from the DB and put it into an array to be passed
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (players.length > 0) {
+      const extractedSeasons = Array.from(new Set(players.map(player => player.season)));
+      setSeasons(extractedSeasons);
+    }
+  }, [players]);
 
   const handleSearch = event => {
     setSearchQuery(event.target.value);
@@ -2809,7 +2817,6 @@ const PlayerTableReact = () => {
 
   const handleSeason = event => {
     setSelectedSeason(event.target.value);
-    console.log(event.target.value);
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
@@ -2837,8 +2844,7 @@ const PlayerTableReact = () => {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ReactComponents_GenderInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
     handleGender: handleGender
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ReactComponents_SelectSeason__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    players: players,
-    setFilteredPlayers: setFilteredPlayers,
+    seasons: seasons,
     handleSeason: handleSeason
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bbj-player-card-wrap"
@@ -3056,24 +3062,19 @@ __webpack_require__.r(__webpack_exports__);
 
 const SelectSeason = _ref => {
   let {
-    players,
-    setFilteredPlayers
+    seasons,
+    handleSeason
   } = _ref;
-  const [selectedSeason, setSelectedSeason] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
-
-  const handleSeasonChange = event => {
-    setSelectedSeason(event.target.value);
-    setFilteredPlayers(players.filter(player => player.season === event.target.value));
-  }; // Extract unique seasons from players
-
-
-  const seasons = Array.from(new Set(players.map(player => player.season)));
+  const [selectedSeason, setSelectedSeason] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("all seasons");
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
-    onChange: handleSeasonChange,
+    onChange: e => {
+      handleSeason(e);
+      setSelectedSeason(e.target.value);
+    },
     value: selectedSeason,
     class: "block w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-slate-500 focus:ring-slate-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400 dark:focus:border-slate-500 dark:focus:ring-slate-500"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-    value: ""
+    value: "all seasons"
   }, "All Seasons"), seasons.map(season => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     key: season,
     value: season

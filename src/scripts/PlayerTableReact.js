@@ -13,6 +13,7 @@ const PlayerTableReact = () => {
   const [filteredPlayers, setFilteredPlayers] = useState([]);
   const [genderFilter, setGenderFilter] = useState("both");
   const [filteredByGenderPlayers, setFilteredByGenderPlayers] = useState(players);
+  const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("all seasons");
 
   console.log("React");
@@ -30,6 +31,14 @@ const PlayerTableReact = () => {
       });
   }, []);
 
+  // Pull the seasons from the DB and put it into an array to be passed
+  useEffect(() => {
+    if (players.length > 0) {
+      const extractedSeasons = Array.from(new Set(players.map(player => player.season)));
+      setSeasons(extractedSeasons);
+    }
+  }, [players]);
+
   const handleSearch = event => {
     setSearchQuery(event.target.value);
   };
@@ -40,7 +49,6 @@ const PlayerTableReact = () => {
 
   const handleSeason = event => {
     setSelectedSeason(event.target.value);
-    console.log(event.target.value);
   };
 
   useEffect(() => {
@@ -76,7 +84,7 @@ const PlayerTableReact = () => {
           <div className="mb-2 flex">
             <SearchInput handleSearch={handleSearch} />
             <GenderInput handleGender={handleGender} />
-            <SelectSeason players={players} setFilteredPlayers={setFilteredPlayers} handleSeason={handleSeason} />
+            <SelectSeason seasons={seasons} handleSeason={handleSeason} />
           </div>
           <div className="bbj-player-card-wrap">{filteredByGenderPlayers.length > 0 ? filteredByGenderPlayers.map(player => <PlayerCard key={player.id} player={player} />) : <div>No Results Found</div>}</div>
         </div>
