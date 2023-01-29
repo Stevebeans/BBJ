@@ -3,6 +3,7 @@ import "flowbite";
 import React from "react";
 import ReactDOM from "react-dom";
 import PlayerTableReact from "./scripts/PlayerTableReact";
+import CommentSystem from "./scripts/ReactComments";
 
 import SearchBar from "./scripts/SearchBar";
 
@@ -19,9 +20,14 @@ import { feed_update_slider } from "./scripts/FeedUpdateBar";
 import DarkMode from "./scripts/DarkMode";
 
 const playerTableEl = document.getElementById("player-directory-table");
+const commentEl = document.getElementById("bbj-comment-system");
 
 if (playerTableEl) {
   ReactDOM.render(<PlayerTableReact />, playerTableEl);
+}
+
+if (commentEl) {
+  //ReactDOM.render(<CommentSystem />, commentEl);
 }
 
 //const searchBar = new SearchBar(); back burner for now

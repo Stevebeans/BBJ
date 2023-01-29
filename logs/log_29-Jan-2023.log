@@ -1,0 +1,813 @@
+customer.subscription.created
+customer field
+cus_NFw6BPTqqLH1ZX
+Stripe\Customer Object
+(
+    [id] => cus_NFw6BPTqqLH1ZX
+    [object] => customer
+    [address] => 
+    [balance] => 0
+    [created] => 1674957798
+    [currency] => usd
+    [default_currency] => usd
+    [default_source] => card_1MVQqVGjb8i2IhlbOoALfzsB
+    [delinquent] => 
+    [description] => 
+    [discount] => 
+    [email] => testing@test.com
+    [invoice_prefix] => 16E03764
+    [invoice_settings] => Stripe\StripeObject Object
+        (
+            [custom_fields] => 
+            [default_payment_method] => 
+            [footer] => 
+            [rendering_options] => 
+        )
+
+    [livemode] => 
+    [metadata] => Stripe\StripeObject Object
+        (
+        )
+
+    [name] => 
+    [next_invoice_sequence] => 11
+    [phone] => 
+    [preferred_locales] => Array
+        (
+        )
+
+    [shipping] => 
+    [tax_exempt] => none
+    [test_clock] => 
+)
+
+testing@test.com
+customer field from stripe
+
+Stripe\Customer Object
+(
+    [id] => cus_NFw6BPTqqLH1ZX
+    [object] => customer
+    [address] => 
+    [balance] => 0
+    [created] => 1674957798
+    [currency] => usd
+    [default_currency] => usd
+    [default_source] => card_1MVQqVGjb8i2IhlbOoALfzsB
+    [delinquent] => 
+    [description] => 
+    [discount] => 
+    [email] => testing@test.com
+    [invoice_prefix] => 16E03764
+    [invoice_settings] => Stripe\StripeObject Object
+        (
+            [custom_fields] => 
+            [default_payment_method] => 
+            [footer] => 
+            [rendering_options] => 
+        )
+
+    [livemode] => 
+    [metadata] => Stripe\StripeObject Object
+        (
+        )
+
+    [name] => 
+    [next_invoice_sequence] => 11
+    [phone] => 
+    [preferred_locales] => Array
+        (
+        )
+
+    [shipping] => 
+    [tax_exempt] => none
+    [test_clock] => 
+)
+
+user field
+WP_User Object
+(
+    [data] => stdClass Object
+        (
+            [ID] => 48420
+            [user_login] => tester22
+            [user_pass] => $P$BcXj8P2fClIQTIae/m7/g1JeZYRyse1
+            [user_nicename] => tester22
+            [user_email] => testing@test.com
+            [user_url] => 
+            [user_registered] => 2023-01-29 02:02:28
+            [user_activation_key] => 
+            [user_status] => 0
+            [display_name] => tester22
+        )
+
+    [ID] => 48420
+    [caps] => Array
+        (
+            [supporter] => 1
+        )
+
+    [cap_key] => wp_capabilities
+    [roles] => Array
+        (
+            [0] => supporter
+        )
+
+    [allcaps] => Array
+        (
+            [level_0] => 1
+            [read] => 1
+            [supporter] => 1
+        )
+
+    [filter] => 
+    [site_id:WP_User:private] => 1
+)
+
+Stripe Sub Created
+Array
+(
+    [id] => evt_1MVQqZGjb8i2Ihlbf0Pkl2N3
+    [object] => event
+    [api_version] => 2020-08-27
+    [created] => 1674960142
+    [data] => Array
+        (
+            [object] => Array
+                (
+                    [id] => sub_1MVQqWGjb8i2IhlbQvsxHiDl
+                    [object] => subscription
+                    [application] => 
+                    [application_fee_percent] => 
+                    [automatic_tax] => Array
+                        (
+                            [enabled] => 
+                        )
+
+                    [billing_cycle_anchor] => 1674960140
+                    [billing_thresholds] => 
+                    [cancel_at] => 
+                    [cancel_at_period_end] => 
+                    [canceled_at] => 
+                    [collection_method] => charge_automatically
+                    [created] => 1674960140
+                    [currency] => usd
+                    [current_period_end] => 1677552140
+                    [current_period_start] => 1674960140
+                    [customer] => cus_NFw6BPTqqLH1ZX
+                    [days_until_due] => 
+                    [default_payment_method] => 
+                    [default_source] => 
+                    [default_tax_rates] => Array
+                        (
+                        )
+
+                    [description] => 
+                    [discount] => 
+                    [ended_at] => 
+                    [items] => Array
+                        (
+                            [object] => list
+                            [data] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [id] => si_NFwkWeoCDxFllQ
+                                            [object] => subscription_item
+                                            [billing_thresholds] => 
+                                            [created] => 1674960141
+                                            [metadata] => Array
+                                                (
+                                                )
+
+                                            [plan] => Array
+                                                (
+                                                    [id] => price_1MVJKyGjb8i2IhlbIjMxNKYK
+                                                    [object] => plan
+                                                    [active] => 1
+                                                    [aggregate_usage] => 
+                                                    [amount] => 1500
+                                                    [amount_decimal] => 1500
+                                                    [billing_scheme] => per_unit
+                                                    [created] => 1674931276
+                                                    [currency] => usd
+                                                    [interval] => month
+                                                    [interval_count] => 1
+                                                    [livemode] => 
+                                                    [metadata] => Array
+                                                        (
+                                                        )
+
+                                                    [nickname] => 
+                                                    [product] => prod_NFoynjyB9wl2G9
+                                                    [tiers_mode] => 
+                                                    [transform_usage] => 
+                                                    [trial_period_days] => 
+                                                    [usage_type] => licensed
+                                                )
+
+                                            [price] => Array
+                                                (
+                                                    [id] => price_1MVJKyGjb8i2IhlbIjMxNKYK
+                                                    [object] => price
+                                                    [active] => 1
+                                                    [billing_scheme] => per_unit
+                                                    [created] => 1674931276
+                                                    [currency] => usd
+                                                    [custom_unit_amount] => 
+                                                    [livemode] => 
+                                                    [lookup_key] => 
+                                                    [metadata] => Array
+                                                        (
+                                                        )
+
+                                                    [nickname] => 
+                                                    [product] => prod_NFoynjyB9wl2G9
+                                                    [recurring] => Array
+                                                        (
+                                                            [aggregate_usage] => 
+                                                            [interval] => month
+                                                            [interval_count] => 1
+                                                            [trial_period_days] => 
+                                                            [usage_type] => licensed
+                                                        )
+
+                                                    [tax_behavior] => unspecified
+                                                    [tiers_mode] => 
+                                                    [transform_quantity] => 
+                                                    [type] => recurring
+                                                    [unit_amount] => 1500
+                                                    [unit_amount_decimal] => 1500
+                                                )
+
+                                            [quantity] => 1
+                                            [subscription] => sub_1MVQqWGjb8i2IhlbQvsxHiDl
+                                            [tax_rates] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [has_more] => 
+                            [total_count] => 1
+                            [url] => /v1/subscription_items?subscription=sub_1MVQqWGjb8i2IhlbQvsxHiDl
+                        )
+
+                    [latest_invoice] => in_1MVQqXGjb8i2IhlbtuZkO0lf
+                    [livemode] => 
+                    [metadata] => Array
+                        (
+                        )
+
+                    [next_pending_invoice_item_invoice] => 
+                    [on_behalf_of] => 
+                    [pause_collection] => 
+                    [payment_settings] => Array
+                        (
+                            [payment_method_options] => 
+                            [payment_method_types] => 
+                            [save_default_payment_method] => off
+                        )
+
+                    [pending_invoice_item_interval] => 
+                    [pending_setup_intent] => 
+                    [pending_update] => 
+                    [plan] => Array
+                        (
+                            [id] => price_1MVJKyGjb8i2IhlbIjMxNKYK
+                            [object] => plan
+                            [active] => 1
+                            [aggregate_usage] => 
+                            [amount] => 1500
+                            [amount_decimal] => 1500
+                            [billing_scheme] => per_unit
+                            [created] => 1674931276
+                            [currency] => usd
+                            [interval] => month
+                            [interval_count] => 1
+                            [livemode] => 
+                            [metadata] => Array
+                                (
+                                )
+
+                            [nickname] => 
+                            [product] => prod_NFoynjyB9wl2G9
+                            [tiers_mode] => 
+                            [transform_usage] => 
+                            [trial_period_days] => 
+                            [usage_type] => licensed
+                        )
+
+                    [quantity] => 1
+                    [schedule] => 
+                    [start_date] => 1674960140
+                    [status] => active
+                    [test_clock] => 
+                    [transfer_data] => 
+                    [trial_end] => 
+                    [trial_start] => 
+                )
+
+        )
+
+    [livemode] => 
+    [pending_webhooks] => 3
+    [request] => Array
+        (
+            [id] => req_5xQBEeBlgaZVCn
+            [idempotency_key] => 1ae39ecd-e3bf-4f14-97a5-b4a9e8ef86ed
+        )
+
+    [type] => customer.subscription.created
+)
+
+customer.subscription.deleted
+Stripe Sub Deleted
+Array
+(
+    [id] => evt_1MVQsYGjb8i2IhlbzSR0zvWT
+    [object] => event
+    [api_version] => 2020-08-27
+    [created] => 1674960266
+    [data] => Array
+        (
+            [object] => Array
+                (
+                    [id] => sub_1MVQqWGjb8i2IhlbQvsxHiDl
+                    [object] => subscription
+                    [application] => 
+                    [application_fee_percent] => 
+                    [automatic_tax] => Array
+                        (
+                            [enabled] => 
+                        )
+
+                    [billing_cycle_anchor] => 1674960140
+                    [billing_thresholds] => 
+                    [cancel_at] => 
+                    [cancel_at_period_end] => 
+                    [canceled_at] => 1674960266
+                    [collection_method] => charge_automatically
+                    [created] => 1674960140
+                    [currency] => usd
+                    [current_period_end] => 1677552140
+                    [current_period_start] => 1674960140
+                    [customer] => cus_NFw6BPTqqLH1ZX
+                    [days_until_due] => 
+                    [default_payment_method] => 
+                    [default_source] => 
+                    [default_tax_rates] => Array
+                        (
+                        )
+
+                    [description] => 
+                    [discount] => 
+                    [ended_at] => 1674960266
+                    [items] => Array
+                        (
+                            [object] => list
+                            [data] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [id] => si_NFwkWeoCDxFllQ
+                                            [object] => subscription_item
+                                            [billing_thresholds] => 
+                                            [created] => 1674960141
+                                            [metadata] => Array
+                                                (
+                                                )
+
+                                            [plan] => Array
+                                                (
+                                                    [id] => price_1MVJKyGjb8i2IhlbIjMxNKYK
+                                                    [object] => plan
+                                                    [active] => 1
+                                                    [aggregate_usage] => 
+                                                    [amount] => 1500
+                                                    [amount_decimal] => 1500
+                                                    [billing_scheme] => per_unit
+                                                    [created] => 1674931276
+                                                    [currency] => usd
+                                                    [interval] => month
+                                                    [interval_count] => 1
+                                                    [livemode] => 
+                                                    [metadata] => Array
+                                                        (
+                                                        )
+
+                                                    [nickname] => 
+                                                    [product] => prod_NFoynjyB9wl2G9
+                                                    [tiers_mode] => 
+                                                    [transform_usage] => 
+                                                    [trial_period_days] => 
+                                                    [usage_type] => licensed
+                                                )
+
+                                            [price] => Array
+                                                (
+                                                    [id] => price_1MVJKyGjb8i2IhlbIjMxNKYK
+                                                    [object] => price
+                                                    [active] => 1
+                                                    [billing_scheme] => per_unit
+                                                    [created] => 1674931276
+                                                    [currency] => usd
+                                                    [custom_unit_amount] => 
+                                                    [livemode] => 
+                                                    [lookup_key] => 
+                                                    [metadata] => Array
+                                                        (
+                                                        )
+
+                                                    [nickname] => 
+                                                    [product] => prod_NFoynjyB9wl2G9
+                                                    [recurring] => Array
+                                                        (
+                                                            [aggregate_usage] => 
+                                                            [interval] => month
+                                                            [interval_count] => 1
+                                                            [trial_period_days] => 
+                                                            [usage_type] => licensed
+                                                        )
+
+                                                    [tax_behavior] => unspecified
+                                                    [tiers_mode] => 
+                                                    [transform_quantity] => 
+                                                    [type] => recurring
+                                                    [unit_amount] => 1500
+                                                    [unit_amount_decimal] => 1500
+                                                )
+
+                                            [quantity] => 1
+                                            [subscription] => sub_1MVQqWGjb8i2IhlbQvsxHiDl
+                                            [tax_rates] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [has_more] => 
+                            [total_count] => 1
+                            [url] => /v1/subscription_items?subscription=sub_1MVQqWGjb8i2IhlbQvsxHiDl
+                        )
+
+                    [latest_invoice] => in_1MVQqXGjb8i2IhlbtuZkO0lf
+                    [livemode] => 
+                    [metadata] => Array
+                        (
+                        )
+
+                    [next_pending_invoice_item_invoice] => 
+                    [on_behalf_of] => 
+                    [pause_collection] => 
+                    [payment_settings] => Array
+                        (
+                            [payment_method_options] => 
+                            [payment_method_types] => 
+                            [save_default_payment_method] => off
+                        )
+
+                    [pending_invoice_item_interval] => 
+                    [pending_setup_intent] => 
+                    [pending_update] => 
+                    [plan] => Array
+                        (
+                            [id] => price_1MVJKyGjb8i2IhlbIjMxNKYK
+                            [object] => plan
+                            [active] => 1
+                            [aggregate_usage] => 
+                            [amount] => 1500
+                            [amount_decimal] => 1500
+                            [billing_scheme] => per_unit
+                            [created] => 1674931276
+                            [currency] => usd
+                            [interval] => month
+                            [interval_count] => 1
+                            [livemode] => 
+                            [metadata] => Array
+                                (
+                                )
+
+                            [nickname] => 
+                            [product] => prod_NFoynjyB9wl2G9
+                            [tiers_mode] => 
+                            [transform_usage] => 
+                            [trial_period_days] => 
+                            [usage_type] => licensed
+                        )
+
+                    [quantity] => 1
+                    [schedule] => 
+                    [start_date] => 1674960140
+                    [status] => canceled
+                    [test_clock] => 
+                    [transfer_data] => 
+                    [trial_end] => 
+                    [trial_start] => 
+                )
+
+        )
+
+    [livemode] => 
+    [pending_webhooks] => 5
+    [request] => Array
+        (
+            [id] => req_SvGgQAu7xlnAr7
+            [idempotency_key] => 
+        )
+
+    [type] => customer.subscription.deleted
+)
+
+customer.subscription.created
+customer field
+cus_NFw6BPTqqLH1ZX
+customer email
+testing@test.com
+customer field from stripe
+
+Stripe\Customer Object
+(
+    [id] => cus_NFw6BPTqqLH1ZX
+    [object] => customer
+    [address] => 
+    [balance] => 0
+    [created] => 1674957798
+    [currency] => usd
+    [default_currency] => usd
+    [default_source] => card_1MVQsrGjb8i2IhlbhDRsaNM0
+    [delinquent] => 
+    [description] => 
+    [discount] => 
+    [email] => testing@test.com
+    [invoice_prefix] => 16E03764
+    [invoice_settings] => Stripe\StripeObject Object
+        (
+            [custom_fields] => 
+            [default_payment_method] => 
+            [footer] => 
+            [rendering_options] => 
+        )
+
+    [livemode] => 
+    [metadata] => Stripe\StripeObject Object
+        (
+        )
+
+    [name] => 
+    [next_invoice_sequence] => 12
+    [phone] => 
+    [preferred_locales] => Array
+        (
+        )
+
+    [shipping] => 
+    [tax_exempt] => none
+    [test_clock] => 
+)
+
+user field
+WP_User Object
+(
+    [data] => stdClass Object
+        (
+            [ID] => 48420
+            [user_login] => tester22
+            [user_pass] => $P$BcXj8P2fClIQTIae/m7/g1JeZYRyse1
+            [user_nicename] => tester22
+            [user_email] => testing@test.com
+            [user_url] => 
+            [user_registered] => 2023-01-29 02:02:28
+            [user_activation_key] => 
+            [user_status] => 0
+            [display_name] => tester22
+        )
+
+    [ID] => 48420
+    [caps] => Array
+        (
+            [supporter] => 1
+        )
+
+    [cap_key] => wp_capabilities
+    [roles] => Array
+        (
+            [0] => supporter
+        )
+
+    [allcaps] => Array
+        (
+            [level_0] => 1
+            [read] => 1
+            [supporter] => 1
+        )
+
+    [filter] => 
+    [site_id:WP_User:private] => 1
+)
+
+Stripe Sub Created
+Array
+(
+    [id] => evt_1MVQsvGjb8i2IhlbZphg6syH
+    [object] => event
+    [api_version] => 2020-08-27
+    [created] => 1674960288
+    [data] => Array
+        (
+            [object] => Array
+                (
+                    [id] => sub_1MVQssGjb8i2IhlbyMXqadiJ
+                    [object] => subscription
+                    [application] => 
+                    [application_fee_percent] => 
+                    [automatic_tax] => Array
+                        (
+                            [enabled] => 
+                        )
+
+                    [billing_cycle_anchor] => 1674960286
+                    [billing_thresholds] => 
+                    [cancel_at] => 
+                    [cancel_at_period_end] => 
+                    [canceled_at] => 
+                    [collection_method] => charge_automatically
+                    [created] => 1674960286
+                    [currency] => usd
+                    [current_period_end] => 1677552286
+                    [current_period_start] => 1674960286
+                    [customer] => cus_NFw6BPTqqLH1ZX
+                    [days_until_due] => 
+                    [default_payment_method] => 
+                    [default_source] => 
+                    [default_tax_rates] => Array
+                        (
+                        )
+
+                    [description] => 
+                    [discount] => 
+                    [ended_at] => 
+                    [items] => Array
+                        (
+                            [object] => list
+                            [data] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [id] => si_NFwmpYRGXbaFaY
+                                            [object] => subscription_item
+                                            [billing_thresholds] => 
+                                            [created] => 1674960287
+                                            [metadata] => Array
+                                                (
+                                                )
+
+                                            [plan] => Array
+                                                (
+                                                    [id] => price_1MVJKyGjb8i2IhlbIjMxNKYK
+                                                    [object] => plan
+                                                    [active] => 1
+                                                    [aggregate_usage] => 
+                                                    [amount] => 1500
+                                                    [amount_decimal] => 1500
+                                                    [billing_scheme] => per_unit
+                                                    [created] => 1674931276
+                                                    [currency] => usd
+                                                    [interval] => month
+                                                    [interval_count] => 1
+                                                    [livemode] => 
+                                                    [metadata] => Array
+                                                        (
+                                                        )
+
+                                                    [nickname] => 
+                                                    [product] => prod_NFoynjyB9wl2G9
+                                                    [tiers_mode] => 
+                                                    [transform_usage] => 
+                                                    [trial_period_days] => 
+                                                    [usage_type] => licensed
+                                                )
+
+                                            [price] => Array
+                                                (
+                                                    [id] => price_1MVJKyGjb8i2IhlbIjMxNKYK
+                                                    [object] => price
+                                                    [active] => 1
+                                                    [billing_scheme] => per_unit
+                                                    [created] => 1674931276
+                                                    [currency] => usd
+                                                    [custom_unit_amount] => 
+                                                    [livemode] => 
+                                                    [lookup_key] => 
+                                                    [metadata] => Array
+                                                        (
+                                                        )
+
+                                                    [nickname] => 
+                                                    [product] => prod_NFoynjyB9wl2G9
+                                                    [recurring] => Array
+                                                        (
+                                                            [aggregate_usage] => 
+                                                            [interval] => month
+                                                            [interval_count] => 1
+                                                            [trial_period_days] => 
+                                                            [usage_type] => licensed
+                                                        )
+
+                                                    [tax_behavior] => unspecified
+                                                    [tiers_mode] => 
+                                                    [transform_quantity] => 
+                                                    [type] => recurring
+                                                    [unit_amount] => 1500
+                                                    [unit_amount_decimal] => 1500
+                                                )
+
+                                            [quantity] => 1
+                                            [subscription] => sub_1MVQssGjb8i2IhlbyMXqadiJ
+                                            [tax_rates] => Array
+                                                (
+                                                )
+
+                                        )
+
+                                )
+
+                            [has_more] => 
+                            [total_count] => 1
+                            [url] => /v1/subscription_items?subscription=sub_1MVQssGjb8i2IhlbyMXqadiJ
+                        )
+
+                    [latest_invoice] => in_1MVQstGjb8i2IhlbGCx88bTw
+                    [livemode] => 
+                    [metadata] => Array
+                        (
+                        )
+
+                    [next_pending_invoice_item_invoice] => 
+                    [on_behalf_of] => 
+                    [pause_collection] => 
+                    [payment_settings] => Array
+                        (
+                            [payment_method_options] => 
+                            [payment_method_types] => 
+                            [save_default_payment_method] => off
+                        )
+
+                    [pending_invoice_item_interval] => 
+                    [pending_setup_intent] => 
+                    [pending_update] => 
+                    [plan] => Array
+                        (
+                            [id] => price_1MVJKyGjb8i2IhlbIjMxNKYK
+                            [object] => plan
+                            [active] => 1
+                            [aggregate_usage] => 
+                            [amount] => 1500
+                            [amount_decimal] => 1500
+                            [billing_scheme] => per_unit
+                            [created] => 1674931276
+                            [currency] => usd
+                            [interval] => month
+                            [interval_count] => 1
+                            [livemode] => 
+                            [metadata] => Array
+                                (
+                                )
+
+                            [nickname] => 
+                            [product] => prod_NFoynjyB9wl2G9
+                            [tiers_mode] => 
+                            [transform_usage] => 
+                            [trial_period_days] => 
+                            [usage_type] => licensed
+                        )
+
+                    [quantity] => 1
+                    [schedule] => 
+                    [start_date] => 1674960286
+                    [status] => active
+                    [test_clock] => 
+                    [transfer_data] => 
+                    [trial_end] => 
+                    [trial_start] => 
+                )
+
+        )
+
+    [livemode] => 
+    [pending_webhooks] => 3
+    [request] => Array
+        (
+            [id] => req_hJpkNv3ugwj0Ai
+            [idempotency_key] => 84ffab4f-2ef6-4413-8149-3ad2fcc59f48
+        )
+
+    [type] => customer.subscription.created
+)
+
+customer.subscription.deleted
+User with email testing@test.com role has changed to subscriber

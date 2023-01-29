@@ -2858,6 +2858,81 @@ const PlayerTableReact = () => {
 
 /***/ }),
 
+/***/ "./src/scripts/ReactComments.js":
+/*!**************************************!*\
+  !*** ./src/scripts/ReactComments.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _ReactComponents_SingleComment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ReactComponents/SingleComment */ "./src/scripts/ReactComponents/SingleComment.js");
+
+
+
+
+
+const CommentSystem = () => {
+  const [comments, setComments] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+  const [commentsPerLoad] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(10);
+  const [page, setPage] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
+  const [totalPages, setTotalPages] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(1);
+  const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
+  const [postId, setPostId] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
+  const rootUrl = playerData.root_url;
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const pageIdDiv = document.getElementById("page-id");
+
+    if (pageIdDiv) {
+      setPostId(pageIdDiv.getAttribute("data-id"));
+    }
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const res = await axios__WEBPACK_IMPORTED_MODULE_2___default().get(`${rootUrl}/wp-json/wp/v2/comments?post=${postId}&per_page=${commentsPerLoad}&page=${page}`);
+      setTotalPages(res.headers["x-wp-totalpages"]);
+      setComments(res.data);
+      setLoading(false);
+    };
+
+    if (postId) {
+      fetchData();
+    }
+  }, [commentsPerLoad, page, postId]);
+
+  const loadMoreComments = async () => {
+    if (page < totalPages) {
+      setLoading(true);
+      const res = await axios__WEBPACK_IMPORTED_MODULE_2___default().get(`${rootUrl}/wp-json/wp/v2/comments?post=${postId}&per_page=${commentsPerLoad}&page=${page + 1}`);
+      setPage(page + 1);
+      setComments([...comments, ...res.data]);
+      setLoading(false);
+    }
+  };
+
+  console.log("page");
+  console.log(page);
+  console.log(window.location.pathname.split("/").pop());
+  console.log(comments);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, comments.filter(comment => comment.status === "approved").map(comment => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ReactComponents_SingleComment__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    key: comment.id,
+    comment: comment
+  })), loading && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Loading..."), page < totalPages && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    onClick: loadMoreComments
+  }, "Load More"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CommentSystem);
+
+/***/ }),
+
 /***/ "./src/scripts/ReactComponents/GenderInput.js":
 /*!****************************************************!*\
   !*** ./src/scripts/ReactComponents/GenderInput.js ***!
@@ -3082,6 +3157,34 @@ const SelectSeason = _ref => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SelectSeason);
+
+/***/ }),
+
+/***/ "./src/scripts/ReactComponents/SingleComment.js":
+/*!******************************************************!*\
+  !*** ./src/scripts/ReactComponents/SingleComment.js ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+function SingleComment(_ref) {
+  let {
+    comment
+  } = _ref;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "m-2 border border-primary500"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, comment.author_name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, comment.content.rendered), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, comment.date)));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (SingleComment);
 
 /***/ }),
 
@@ -7400,13 +7503,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ "react-dom");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _scripts_PlayerTableReact__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scripts/PlayerTableReact */ "./src/scripts/PlayerTableReact.js");
-/* harmony import */ var _scripts_SearchBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./scripts/SearchBar */ "./src/scripts/SearchBar.js");
-/* harmony import */ var _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scripts/SpoilerBar */ "./src/scripts/SpoilerBar.js");
-/* harmony import */ var _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./scripts/SpoilerBarNew */ "./src/scripts/SpoilerBarNew.js");
-/* harmony import */ var _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./scripts/PlayerTable */ "./src/scripts/PlayerTable.js");
-/* harmony import */ var _scripts_Permissions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./scripts/Permissions */ "./src/scripts/Permissions.js");
-/* harmony import */ var _scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./scripts/FeedUpdateBar */ "./src/scripts/FeedUpdateBar.js");
-/* harmony import */ var _scripts_DarkMode__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./scripts/DarkMode */ "./src/scripts/DarkMode.js");
+/* harmony import */ var _scripts_ReactComments__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./scripts/ReactComments */ "./src/scripts/ReactComments.js");
+/* harmony import */ var _scripts_SearchBar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scripts/SearchBar */ "./src/scripts/SearchBar.js");
+/* harmony import */ var _scripts_SpoilerBar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./scripts/SpoilerBar */ "./src/scripts/SpoilerBar.js");
+/* harmony import */ var _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./scripts/SpoilerBarNew */ "./src/scripts/SpoilerBarNew.js");
+/* harmony import */ var _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./scripts/PlayerTable */ "./src/scripts/PlayerTable.js");
+/* harmony import */ var _scripts_Permissions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./scripts/Permissions */ "./src/scripts/Permissions.js");
+/* harmony import */ var _scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./scripts/FeedUpdateBar */ "./src/scripts/FeedUpdateBar.js");
+/* harmony import */ var _scripts_DarkMode__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./scripts/DarkMode */ "./src/scripts/DarkMode.js");
+
 
 
 
@@ -7426,18 +7531,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const playerTableEl = document.getElementById("player-directory-table");
+const commentEl = document.getElementById("bbj-comment-system");
 
 if (playerTableEl) {
   react_dom__WEBPACK_IMPORTED_MODULE_4___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_scripts_PlayerTableReact__WEBPACK_IMPORTED_MODULE_5__["default"], null), playerTableEl);
+}
+
+if (commentEl) {//ReactDOM.render(<CommentSystem />, commentEl);
 } //const searchBar = new SearchBar(); back burner for now
 //const mobileDrop = new MobileDrop();
 
 
-const spoilerBar = new _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_8__["default"]();
-const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_9__["default"]();
-const darkMode = new _scripts_DarkMode__WEBPACK_IMPORTED_MODULE_12__["default"]();
-(0,_scripts_Permissions__WEBPACK_IMPORTED_MODULE_10__.permission_check)();
-(0,_scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_11__.feed_update_slider)();
+const spoilerBar = new _scripts_SpoilerBarNew__WEBPACK_IMPORTED_MODULE_9__["default"]();
+const playerTable = new _scripts_PlayerTable__WEBPACK_IMPORTED_MODULE_10__["default"]();
+const darkMode = new _scripts_DarkMode__WEBPACK_IMPORTED_MODULE_13__["default"]();
+(0,_scripts_Permissions__WEBPACK_IMPORTED_MODULE_11__.permission_check)();
+(0,_scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_12__.feed_update_slider)();
 console.log("js-loaded"); //ReactDOM.render(<PlayerArchive />, document.querySelector("#player-table"));
 }();
 /******/ })()

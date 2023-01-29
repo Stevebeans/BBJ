@@ -2,7 +2,7 @@
 get_header(); ?>
 
 
-
+<div id="page-id" data-id="<?= get_the_ID() ?>"></div>
 <div class="bbj-container-inner">
 
 
@@ -63,8 +63,7 @@ get_header(); ?>
           ISERT TABOOLA HERE
 
 
-          <h2 class="text-lg font-bold text-primary500 mb-2 mt-10" id="wpd-threads">Discuss</h2>
-
+          <div id="bbj-comment-system"></div>
 
           <div>
           <?php if (comments_open()):
@@ -80,13 +79,14 @@ get_header(); ?>
 
     </div>  
 
-      <div class="border-l border-gray-200">
-          
-          <?php get_template_part("template-parts/sidebar-default"); ?>
+    <div class="border-l border-gray-200">
+        
+        <?php get_template_part("template-parts/sidebar-default"); ?>
 
-      </div>
+    </div>
 
-</section>
+  </section>
+
         <?php
 endwhile;
 // End the loop.

@@ -164,7 +164,8 @@ get_header(); ?>
         <div><a href="<?php the_permalink(); ?>"><img src="<?php echo the_post_thumbnail_url("featured-thumbnail"); ?>" class="w-full h-[300px]" alt="<?php esc_attr(the_title()); ?>"></a></div>
         <div class="bbj-title"><h2><a href="<?php the_permalink(); ?>"><h2><?php esc_attr(the_title()); ?></a></h2></div>
         <div class="bbj-desc md:h-[150px]"><?php echo wp_trim_words(get_the_content(), 55, "..."); ?> <span class="read-more"><a href="<?php the_permalink(); ?>" >Read More...</a></span></div>
-        <div class="bbj-meta"><span class="font-bold text-gray-600 "><?= get_the_author_meta("display_name") ?></span> <span class="font-ibm text-gray-400 ">| <?php the_modified_date(); ?> | <?= $latest_post->comment_count ?> comments</span></div>
+        <div class="bbj-meta"><span class="font-bold text-gray-600 "><?= get_the_author_meta("display_name") ?></span> <span class="font-ibm text-gray-400 ">| <?php the_modified_date(); ?> | 
+        <?= comments_number("No comments", "1 comment", "% comments") ?></span></div>
  
       </div>
         <?php if (!premiumCheck() && $counter == 4): ?>
