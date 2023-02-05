@@ -1,5 +1,5 @@
 
-<div class="w-80 p-2">
+<div class="w-full md:w-80 p-2">
 
   <div class="border border-gray-200 rounded-md p-2 m-4">
 

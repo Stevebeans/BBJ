@@ -1,8 +1,6 @@
 <? add_action( 'mb_relationships_init', 'bbj_relationship' );
 
 
-echo 'HIIII';
-
 function bbj_relationship() {
     MB_Relationships_API::register( [
         'id'   => 'player-to-season',

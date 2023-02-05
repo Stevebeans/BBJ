@@ -3,3 +3,8 @@
 Load into Adsense and change:
 ad-flex
 ad-rectangle-box
+
+
+
+Re-do the feed updates box 
+Search box (ajax)

@@ -40,6 +40,18 @@ function show_age($dob, $start)
   return $difference;
 }
 
+function show_age_sm($dob, $start)
+{
+  $dob = new DateTime($dob);
+  $start = new DateTime($start);
+
+  $result = $dob->diff($start);
+
+  $difference = $result->y;
+
+  return $difference < 80 ? $difference : "--";
+}
+
 function current_age($dob)
 {
   $today = new DateTime();
