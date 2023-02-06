@@ -8,3 +8,5 @@ ad-rectangle-box
 
 Re-do the feed updates box 
 Search box (ajax)
+create archive page 
+create page.php and check single.php

@@ -1,54 +1,70 @@
 import axios from "axios";
+import spinner from "./Spinner";
 
-class SearchBar {
+class BBJSearch {
   constructor() {
-    this.searchBar = document.querySelector("#bbj_search");
-    this.overLay = document.querySelector(".search-dropdown");
-    this.searchLayerOpen = false;
-    this.events();
+    this.input = document.getElementById("bbj-search");
+    this.resultsDiv = document.getElementById("bbj-search-results");
+    this.searchDiv = document.querySelector(".searchDiv");
+
+    this.spinner = document.createElement("div");
+    this.spinner.innerHTML = spinner();
+    this.spinner.style.display = "none";
+    this.spinner.style.position = "absolute";
+    this.spinner.style.right = "0px";
+    this.spinner.style.top = "50%";
+    this.spinner.style.transform = "translateY(-50%)";
+
+    this.searchDiv.appendChild(this.spinner);
+
+    this.timeout = null;
+
+    this.init();
   }
 
-  events() {
-    this.searchBar.addEventListener("click", e => this.open_overlay(e));
-    window.addEventListener("click", e => this.close_overlay(e));
-    window.addEventListener("keydown", e => this.close_overlay(e));
-    window.addEventListener("load", () => this.get_results());
+  displayValue(results) {
+    console.log("results");
+    console.log(results);
+
+    this.spinner.style.display = "none";
+    this.resultsDiv.innerHTML = "";
+    // results.forEach(result => {
+    //   let resultDiv = document.createElement("div");
+    //   resultDiv.innerHTML = `<a href="${result.permalink}">${result.title}</a>`;
+    //   this.resultsDiv.appendChild(resultDiv);
+    // });
   }
 
-  async get_results() {
-    console.log("getting results");
-    this.results = await axios
-      .get("/wp-json/bbj/v1/search")
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+  keyUpHandler() {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.spinner.style.display = "inline-block";
+
+      this.resultsDiv.innerHTML = "";
+
+      axios
+        .get("/wp-json/bbj/v1/search?query=" + this.input.value)
+        .then(response => {
+          this.displayValue(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }, 500);
   }
 
-  // Open the search overlay
-  open_overlay(e) {
-    if (this.searchLayerOpen == false) {
-      this.overLay.classList.add("search-drop-active");
-      this.searchLayerOpen = true;
-      console.log("open");
-    }
-
-    this.get_results();
-  }
-
-  close_overlay(e) {
-    var isEscape = false;
-    if ("key" in e) {
-      isEscape = e.key === "Escape" || e.key === "Esc";
-    } else {
-      isEscape = e.keyCode === 27;
-    }
-
-    if (this.searchLayerOpen) {
-      if ((e.target !== this.searchBar && e.target !== this.overLay) || isEscape) {
-        this.overLay.classList.remove("search-drop-active");
-        this.searchLayerOpen = false;
+  init() {
+    this.input.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        this.input.value = "";
       }
-    }
+      this.spinner.style.display = "inline-block";
+    });
+
+    this.input.addEventListener("keyup", event => {
+      this.keyUpHandler();
+    });
   }
 }
 
-export default SearchBar;
+export default BBJSearch;

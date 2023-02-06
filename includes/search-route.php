@@ -1,76 +1,52 @@
 <?php
 
-add_action("rest_api_init", "bbj_search");
-
-function bbj_search()
-{
-  register_rest_route("bbj/v1", "search", [
-    "methods" => WP_REST_SERVER::READABLE,
+add_action("rest_api_init", function () {
+  register_rest_route("bbj/v1", "/search", [
+    "methods" => "GET",
     "callback" => "bbj_search_results",
   ]);
-}
+});
 
-function bbj_search_results($data)
+function bbj_search_results($request)
 {
-  $mainQuery = new WP_Query([
-    "post_type" => ["bigbrother-players", "bigbrother-seasons", "feed_update", "post"],
-    "s" => sanitize_text_field($data["term"]),
-    "posts_per_page" => -1,
-  ]);
+  $search_query = $request->get_param("query");
 
+  $args = [
+    "post_type" => ["post", "page", "bigbrother-players", "bigbrother-seasons"],
+    "s" => $search_query,
+    "posts_per_page" => 10,
+  ];
   $results = [
+    "general" => [],
     "players" => [],
     "seasons" => [],
-    "feed" => [],
-    "general" => [],
   ];
 
-  while ($mainQuery->have_posts()):
-    $mainQuery->the_post();
-    $profilePic = rwmb_meta("profile_picture", ["size" => "tiny"]);
+  $query = new WP_Query($args);
 
-    if (get_post_type() == "bigbrother-players"):
-      get_the_title();
+  while ($query->have_posts()):
+    $query->the_post();
 
+    if (get_post_type() == "post" || get_post_type() == "page") {
+      array_push($results["general"], [
+        "title" => get_the_title(),
+        "permalink" => get_the_permalink(),
+      ]);
+    }
+
+    if (get_post_type() == "bigbrother-players") {
       array_push($results["players"], [
         "title" => get_the_title(),
         "permalink" => get_the_permalink(),
-        "postType" => get_post_type(),
-        "thumbnail" => $profilePic["url"],
-        "first_name" => rwmb_meta("first_name"),
-        "last_name" => rwmb_meta("last_name"),
       ]);
-    endif;
+    }
 
-    if (get_post_type() == "bigbrother-seasons"):
+    if (get_post_type() == "bigbrother-seasons") {
       array_push($results["seasons"], [
         "title" => get_the_title(),
         "permalink" => get_the_permalink(),
       ]);
-    endif;
-
-    if (get_post_type() == "feed_update"):
-      array_push($results["feed"], [
-        "title" => get_the_title(),
-        "permalink" => get_the_permalink(),
-      ]);
-    endif;
-
-    if (get_post_type() == "post"):
-      $description = null;
-      if (has_excerpt()) {
-        $description = get_the_excerpt();
-      } else {
-        $description = wp_trim_words(get_the_content(), 18);
-      }
-
-      array_push($results["general"], [
-        "title" => get_the_title(),
-        "permalink" => get_the_permalink(),
-        "thumb" => get_the_post_thumbnail_url($page->ID, "tiny"),
-        "post" => $description,
-      ]);
-    endif;
+    }
   endwhile;
 
   return $results;

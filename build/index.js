@@ -3198,59 +3198,91 @@ function SingleComment(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Spinner */ "./src/scripts/Spinner.js");
 
 
-class SearchBar {
+
+class BBJSearch {
   constructor() {
-    this.searchBar = document.querySelector("#bbj_search");
-    this.overLay = document.querySelector(".search-dropdown");
-    this.searchLayerOpen = false;
-    this.events();
+    this.input = document.getElementById("bbj-search");
+    this.resultsDiv = document.getElementById("bbj-search-results");
+    this.searchDiv = document.querySelector(".searchDiv");
+    this.spinner = document.createElement("div");
+    this.spinner.innerHTML = (0,_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    this.spinner.style.display = "none";
+    this.spinner.style.position = "absolute";
+    this.spinner.style.right = "0px";
+    this.spinner.style.top = "50%";
+    this.spinner.style.transform = "translateY(-50%)";
+    this.searchDiv.appendChild(this.spinner);
+    this.timeout = null;
+    this.init();
   }
 
-  events() {
-    this.searchBar.addEventListener("click", e => this.open_overlay(e));
-    window.addEventListener("click", e => this.close_overlay(e));
-    window.addEventListener("keydown", e => this.close_overlay(e));
-    window.addEventListener("load", () => this.get_results());
+  displayValue(results) {
+    console.log("results");
+    console.log(results);
+    this.spinner.style.display = "none";
+    this.resultsDiv.innerHTML = ""; // results.forEach(result => {
+    //   let resultDiv = document.createElement("div");
+    //   resultDiv.innerHTML = `<a href="${result.permalink}">${result.title}</a>`;
+    //   this.resultsDiv.appendChild(resultDiv);
+    // });
   }
 
-  async get_results() {
-    console.log("getting results");
-    this.results = await axios__WEBPACK_IMPORTED_MODULE_0___default().get("/wp-json/bbj/v1/search").then(res => console.log(res)).catch(err => console.log(err));
-  } // Open the search overlay
-
-
-  open_overlay(e) {
-    if (this.searchLayerOpen == false) {
-      this.overLay.classList.add("search-drop-active");
-      this.searchLayerOpen = true;
-      console.log("open");
-    }
-
-    this.get_results();
+  keyUpHandler() {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.spinner.style.display = "inline-block";
+      this.resultsDiv.innerHTML = "";
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/wp-json/bbj/v1/search?query=" + this.input.value).then(response => {
+        this.displayValue(response.data);
+      }).catch(error => {
+        console.error(error);
+      });
+    }, 500);
   }
 
-  close_overlay(e) {
-    var isEscape = false;
-
-    if ("key" in e) {
-      isEscape = e.key === "Escape" || e.key === "Esc";
-    } else {
-      isEscape = e.keyCode === 27;
-    }
-
-    if (this.searchLayerOpen) {
-      if (e.target !== this.searchBar && e.target !== this.overLay || isEscape) {
-        this.overLay.classList.remove("search-drop-active");
-        this.searchLayerOpen = false;
+  init() {
+    this.input.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        this.input.value = "";
       }
-    }
+
+      this.spinner.style.display = "inline-block";
+    });
+    this.input.addEventListener("keyup", event => {
+      this.keyUpHandler();
+    });
   }
 
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (SearchBar);
+/* harmony default export */ __webpack_exports__["default"] = (BBJSearch);
+
+/***/ }),
+
+/***/ "./src/scripts/Spinner.js":
+/*!********************************!*\
+  !*** ./src/scripts/Spinner.js ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ spinner; }
+/* harmony export */ });
+function spinner() {
+  return `
+   
+<svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+</svg>
+
+  `;
+}
 
 /***/ }),
 
@@ -7518,6 +7550,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
  //import ExampleReactComponent from "./scripts/ExampleReactComponent";
 //import MobileDrop from "./scripts/MobileDrop";
 //import React from "react";
@@ -7532,6 +7565,11 @@ __webpack_require__.r(__webpack_exports__);
 
 const playerTableEl = document.getElementById("player-directory-table");
 const commentEl = document.getElementById("bbj-comment-system");
+const searchBar = document.getElementById("bbj-search");
+
+if (searchBar) {
+  let searchBar = new _scripts_SearchBar__WEBPACK_IMPORTED_MODULE_7__["default"]();
+}
 
 if (playerTableEl) {
   react_dom__WEBPACK_IMPORTED_MODULE_4___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_scripts_PlayerTableReact__WEBPACK_IMPORTED_MODULE_5__["default"], null), playerTableEl);

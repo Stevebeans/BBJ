@@ -62,12 +62,16 @@
     <nav class="bg-white rounded dark:bg-gray-900 drop-shadow">
       <div class="container flex flex-wrap items-center justify-between mx-auto px-2 py-1 md:p-2">
       
-        <div class="hidden md:block"><h1><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . "/bbjlogo2020.png" ?>" alt="<?= get_bloginfo("description") ?>" ></a> <span class="clip-rect-1 clip-path-inset-50 h-1 m-0 overflow-hidden
+        <div class="hidden md:block shrink-0"><h1><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . "/bbjlogo2020.png" ?>" alt="<?= get_bloginfo("description") ?>" ></a> <span class="clip-rect-1 clip-path-inset-50 h-1 m-0 overflow-hidden
 p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div>        
-        <div class="block md:hidden"><h1><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . "/bbjlogomobile.png" ?>" alt="<?= get_bloginfo("description") ?>" ></a> <span class="clip-rect-1 clip-path-inset-50 h-1 m-0 overflow-hidden
+        <div class="block md:hidden shrink-0"><h1><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . "/bbjlogomobile.png" ?>" alt="<?= get_bloginfo("description") ?>" ></a> <span class="clip-rect-1 clip-path-inset-50 h-1 m-0 overflow-hidden
 p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div> 
 
-      <div class="flex items-center md:order-2">
+      <div class="hidden md:flex grow">
+        <?php get_template_part("template-parts/search-bar"); ?>
+      </div>
+
+      <div class="flex items-center md:order-2 shrink-0">
 
         <div class="flex flex-col justify-center items-center mr-2">
           <div class="text-xs text-gray-500">Spoilers</div>
@@ -106,7 +110,9 @@ p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div>
         </div>
       </div> 
       <div class="flex flex-wrap items-center justify-between mx-auto bg-primary500 px-2 sm:px-4 py-1">
-        <div class="container mx-auto hidden lg:flex" id="mobile-menu-2">          
+        <div class="container mx-auto hidden lg:flex" id="mobile-menu-2">   
+        
+          <div class="md:hidden"><?php get_template_part("template-parts/search-bar"); ?></div>        
           <ul id="bbj-main-menu" class="menu list-none p-0">
                 <?php wp_nav_menu([
                   "theme_location" => "bbj-main-menu",

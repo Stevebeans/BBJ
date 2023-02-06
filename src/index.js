@@ -4,6 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PlayerTableReact from "./scripts/PlayerTableReact";
 import CommentSystem from "./scripts/ReactComments";
+import BBJSearch from "./scripts/SearchBar";
 
 import SearchBar from "./scripts/SearchBar";
 
@@ -21,6 +22,11 @@ import DarkMode from "./scripts/DarkMode";
 
 const playerTableEl = document.getElementById("player-directory-table");
 const commentEl = document.getElementById("bbj-comment-system");
+const searchBar = document.getElementById("bbj-search");
+
+if (searchBar) {
+  let searchBar = new BBJSearch();
+}
 
 if (playerTableEl) {
   ReactDOM.render(<PlayerTableReact />, playerTableEl);
