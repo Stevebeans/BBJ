@@ -3101,22 +3101,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-const SearchInput = _ref => {
-  let {
-    handleSearch
-  } = _ref;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+
+function BBJSearchBar() {
+  const [inputValue, setInputValue] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+  const [searchResults, setSearchResults] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+  const [isLoading, setIsLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (inputValue === "") {
+      return;
+    }
+
+    setIsLoading(true);
+    setTimeout(() => {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get(`/wp-json/bbj/v1/search?q=${inputValue}`).then(response => {
+        setSearchResults(response.data);
+        setIsLoading(false);
+      });
+    }, 300);
+  }, [inputValue]);
+
+  const handleInputChange = event => {
+    setInputValue(event.target.value);
+  };
+
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "relative"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
     type: "text",
-    class: "mr-2 block w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-slate-500 focus:ring-slate-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400 dark:focus:border-slate-500 dark:focus:ring-slate-500",
-    placeholder: "Search players",
-    onKeyUp: handleSearch
-  });
-};
+    className: "w-full rounded-3xl border border-primary500 bg-white py-1 px-2.5 focus:border-second500",
+    id: "bbj-search",
+    placeholder: "Search Here...",
+    value: inputValue,
+    onChange: handleInputChange
+  }), isLoading && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "spinner absolute top-0 right-0 mr-3 mt-1"
+  })), Array.isArray(searchResults) && searchResults.map(result => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: result.id
+  }, result.title)));
+}
 
-/* harmony default export */ __webpack_exports__["default"] = (SearchInput);
+/* harmony default export */ __webpack_exports__["default"] = (BBJSearchBar);
 
 /***/ }),
 
@@ -3206,54 +3235,111 @@ class BBJSearch {
   constructor() {
     this.input = document.getElementById("bbj-search");
     this.resultsDiv = document.getElementById("bbj-search-results");
-    this.searchDiv = document.querySelector(".searchDiv");
-    this.spinner = document.createElement("div");
-    this.spinner.innerHTML = (0,_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"])();
-    this.spinner.style.display = "none";
-    this.spinner.style.position = "absolute";
-    this.spinner.style.right = "0px";
-    this.spinner.style.top = "50%";
-    this.spinner.style.transform = "translateY(-50%)";
-    this.searchDiv.appendChild(this.spinner);
-    this.timeout = null;
+    this.searchDiv = document.querySelector(".searchDiv"); // create spinner element
+
+    this.createSpinner(); //Hide the search result box and add the spinner to it
+
+    this.resultsDiv.style.display = "none"; // show status of spinner
+
+    this.spinnerDisplayed = false;
     this.init();
+  }
+
+  init() {
+    this.input.addEventListener("keydown", event => {
+      this.keydownHandler(event);
+    });
+    this.input.addEventListener("keyup", event => {
+      this.keyUpHandler();
+    });
+  } // create function keydownHandler to handle keydown events
+
+
+  keydownHandler(event) {
+    console.log("keydownHandler"); // make the escape key clear the input
+
+    if (event.key === "Escape") {
+      this.input.value = "";
+    }
+  }
+
+  keyUpHandler() {
+    clearTimeout(this.timeout);
+
+    if (this.input.value.length) {
+      // Turn spinner on
+      if (!this.spinnerDisplayed) {
+        this.spinnerOn();
+      }
+
+      this.resultsDiv.style.display = "block";
+      this.timeout = setTimeout(() => {
+        this.getResults();
+      }, 500);
+    }
+  }
+
+  async getResults() {
+    try {
+      const response = await axios__WEBPACK_IMPORTED_MODULE_0___default().get("/wp-json/bbj/v1/search?query=" + this.input.value);
+      this.displayValue(response.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      // Turn off spinner
+      this.spinnerOff();
+    }
   }
 
   displayValue(results) {
     console.log("results");
     console.log(results);
-    this.spinner.style.display = "none";
-    this.resultsDiv.innerHTML = ""; // results.forEach(result => {
+    this.resultsDiv.innerHTML = `
+    
+    <div id="general-container">
+      <h2 class="font-bold">General Results</h2>
+      ${results.general.map(result => `<a href="${result.permalink}"><div class="search-result">${result.title}</div></a>`).join("")}
+    </div>
+
+    <div>
+    ${results.players.length ? `<h2 class="font-bold">Player Results</h2>` : ""}
+    ${results.players.length ? results.players.map(result => `<a href="${result.permalink}"><div class="search-result flex text-xl items-center"><img src="${result.player_image.url}" class="h-10 w-10 mr-2 rounded-full">${result.title} - (${result.abbreviation})</div></a> `).join("") : ""}
+    </div>
+
+    <div>
+    ${results.seasons.length ? `<h2 class="font-bold">Season Results</h2>` : ""}
+    ${results.seasons.length ? results.seasons.map(result => `<a href="${result.permalink}"><div class="search-result">${result.title}</div></a>`).join("") : ""}
+    </div>
+    `; // results.general.forEach(result => {
     //   let resultDiv = document.createElement("div");
+    //   resultDiv.classList.add("search-result");
     //   resultDiv.innerHTML = `<a href="${result.permalink}">${result.title}</a>`;
     //   this.resultsDiv.appendChild(resultDiv);
     // });
+    // let titleDiv = document.createElement("div");
+    // titleDiv.innerHTML = "Search Results";
+    // titleDiv.style.fontWeight = "bold";
+    // this.resultsDiv.insertBefore(titleDiv, this.resultsDiv.firstChild);
+  } // create function to turn spinner on
+
+
+  spinnerOn() {
+    console.log("trigger");
+    this.spinnerDisplayed = true; // Set the initial HTML for this.resultsDiv
+
+    this.resultsDiv.innerHTML = `${(0,_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"])()} loading results...`;
+  } // Create function to turn off spinner
+
+
+  spinnerOff() {
+    this.spinner.style.display = "none";
+    this.spinnerDisplayed = false;
   }
 
-  keyUpHandler() {
-    clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => {
-      this.spinner.style.display = "inline-block";
-      this.resultsDiv.innerHTML = "";
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/wp-json/bbj/v1/search?query=" + this.input.value).then(response => {
-        this.displayValue(response.data);
-      }).catch(error => {
-        console.error(error);
-      });
-    }, 500);
-  }
-
-  init() {
-    this.input.addEventListener("keydown", event => {
-      if (event.key === "Escape") {
-        this.input.value = "";
-      }
-
-      this.spinner.style.display = "inline-block";
-    });
-    this.input.addEventListener("keyup", event => {
-      this.keyUpHandler();
-    });
+  createSpinner() {
+    this.spinner = document.createElement("div");
+    this.spinner.style.display = "none";
+    this.searchDiv.appendChild(this.spinner);
   }
 
 }

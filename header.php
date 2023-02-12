@@ -59,7 +59,7 @@
         document.documentElement.classList.remove('dark')
     }
 </script>
-    <nav class="bg-white rounded dark:bg-gray-900 drop-shadow">
+    <nav class="bg-white rounded dark:bg-gray-900 drop-shadow z-50 relative">
       <div class="container flex flex-wrap items-center justify-between mx-auto px-2 py-1 md:p-2">
       
         <div class="hidden md:block shrink-0"><h1><a href="<?= site_url() ?>"><img src="<?= BBJ_IMAGES . "/bbjlogo2020.png" ?>" alt="<?= get_bloginfo("description") ?>" ></a> <span class="clip-rect-1 clip-path-inset-50 h-1 m-0 overflow-hidden
@@ -89,7 +89,7 @@ p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div>
             <?php echo is_user_logged_in() ? '<img class="w-8 h-8 rounded-full" src="' . get_avatar_url($currentUser->ID) . '" alt="' . $currentUser->display_name . '">' : '<img class="bg-white" src="' . BBJ_IMAGES . '/bbjlogomobile.png" alt="' . get_bloginfo("description") . '" >'; ?>
           </button>
           <!-- Dropdown menu -->
-          <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+          <div class="z-40 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
             <div class="px-4 py-3">
               <span class="block text-sm text-gray-900 dark:text-white"><?= $currentUser->display_name ?></span>
               <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"><?= $currentUser->user_email ?></span>

@@ -35,9 +35,34 @@ function bbj_search_results($request)
     }
 
     if (get_post_type() == "bigbrother-players") {
+      $player_id = get_the_ID();
+      $player_title = get_the_title();
+      $player_permalink = get_the_permalink();
+      $player_image = rwmb_meta("profile_picture", ["size" => "tiny"], $player_id);
+
+      $connected = new WP_Query([
+        "relationship" => [
+          "id" => "player-to-season",
+          "from" => $player_id,
+        ],
+        "nopaging" => true,
+      ]);
+
+      if ($connected->have_posts()) {
+        while ($connected->have_posts()):
+          $connected->the_post();
+          $abbreviation = rwmb_meta("abbreviation");
+        endwhile;
+      }
+
+      wp_reset_postdata();
+
       array_push($results["players"], [
-        "title" => get_the_title(),
-        "permalink" => get_the_permalink(),
+        "title" => $player_title,
+        "permalink" => $player_permalink,
+        "player_image" => $player_image,
+        "ID" => $player_id,
+        "abbreviation" => $abbreviation,
       ]);
     }
 

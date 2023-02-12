@@ -104,7 +104,7 @@
   }
 
   .playerDiv {
-    @apply relative mx-auto grid w-full max-w-6xl translate-y-0 grid-cols-8 grid-rows-2  justify-center  gap-1 bg-white py-2 px-0.5 shadow-md dark:bg-gray-900 lg:flex lg:w-[975px] lg:gap-4 lg:px-4;
+    @apply mx-auto grid w-full max-w-6xl translate-y-0 grid-cols-8 grid-rows-2  justify-center  gap-1 bg-white py-2 px-0.5 shadow-md dark:bg-gray-900 lg:flex lg:w-[975px] lg:gap-4 lg:px-4;
   }
 
   .profile-contain {
@@ -214,6 +214,10 @@
 
   .player-card-stat-header {
     @apply rounded bg-second500 text-center font-ibm text-xs font-bold capitalize text-primary500;
+  }
+
+  .search-result {
+    @apply w-full bg-white p-2 hover:bg-slate-200 dark:bg-gray-900;
   }
 }
 
