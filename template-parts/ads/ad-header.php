@@ -1,7 +1,7 @@
-<section id="" class="ad-block-header container mx-auto ">
-     <div class="ad-box my-4">
+<section id="" class="ad-block-header container max-w-screen-xl mx-auto">
+     <div class="ad-box my-4 flex">
           <div class="ad-label">Advertisement</div>
-          <div>
+          <div class="mx-auto">
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3657293189229655" crossorigin="anonymous"></script>
           <!-- BBJ Above Header -->
           <ins class="adsbygoogle"
@@ -13,6 +13,7 @@
           <script>
                (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
+
           </div>
      </div>
 </section>

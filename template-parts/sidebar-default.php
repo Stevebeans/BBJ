@@ -1,22 +1,14 @@
 
 <div class="w-full md:w-80 p-2">
 
-  <div class="border border-gray-200 rounded-md p-2 m-4">
-
-  Socials
-
-  </div>
+  <?php get_template_part("template-parts/socials"); ?>
 
 
-  <div class="border border-gray-200 rounded-md p-2 m-4">
-
-Newsletter thing
-
-  </div>
+  <?php get_template_part("template-parts/sidebar-newsletter"); ?>
 
   <?php if (!premiumCheck()):
     get_template_part("template-parts/ads/ad-rectangle");
 
-    get_template_part("template-parts/ads/taboola-sidebar");
+    // get_template_part("template-parts/ads/taboola-sidebar");
   endif; ?>
 </div>

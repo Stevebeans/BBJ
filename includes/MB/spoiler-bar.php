@@ -1,16 +1,16 @@
 <?php
-add_filter("rwmb_meta_boxes", "bbj_season_results");
+add_filter("rwmb_meta_boxes", "spoiler_bar");
 
-function bbj_season_results($meta_boxes)
+function spoiler_bar($meta_boxes)
 {
   $prefix = "";
 
   $meta_boxes[] = [
-    "title" => __("BB Season Player Relationship", "your-text-domain"),
+    "title" => __("BB Season Player Spoiler Bar", "your-text-domain"),
     "id" => "bb-season-player-relationship",
     "post_types" => ["bigbrother-seasons"],
     "storage_type" => "custom_table",
-    "table" => "bbj_player_season_new",
+    "table" => "wp_bbj_player_season_new",
     "fields" => [
       [
         "name" => __("Players", "your-text-domain"),
@@ -29,7 +29,7 @@ function bbj_season_results($meta_boxes)
             "columns" => 2,
           ],
           [
-            "name" => __("HoHs", "your-text-domain"),
+            "name" => __("HoH", "your-text-domain"),
             "id" => $prefix . "current_hoh",
             "type" => "checkbox",
             "columns" => 1,
@@ -49,6 +49,18 @@ function bbj_season_results($meta_boxes)
           [
             "name" => __("Nom", "your-text-domain"),
             "id" => $prefix . "current_nom",
+            "type" => "checkbox",
+            "columns" => 1,
+          ],
+          [
+            "name" => __("Nom 2", "your-text-domain"),
+            "id" => $prefix . "current_nom2",
+            "type" => "checkbox",
+            "columns" => 1,
+          ],
+          [
+            "name" => __("Nom 3", "your-text-domain"),
+            "id" => $prefix . "current_nom3",
             "type" => "checkbox",
             "columns" => 1,
           ],
@@ -75,12 +87,6 @@ function bbj_season_results($meta_boxes)
             "id" => $prefix . "current_afp",
             "type" => "checkbox",
             "columns" => 1,
-          ],
-          [
-            "name" => __("Evicted", "your-text-domain"),
-            "id" => $prefix . "evicted",
-            "type" => "date",
-            "columns" => 2,
           ],
         ],
       ],

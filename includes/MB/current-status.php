@@ -28,7 +28,6 @@ function season_results($meta_boxes)
             "field_type" => "select_advanced",
             "columns" => 2,
           ],
-
           [
             "name" => __("Current House Status", "Season Results"),
             "id" => $prefix . "current_house_status",
@@ -44,7 +43,7 @@ function season_results($meta_boxes)
               "afp" => __('America\'s Favorite', "Season Results"),
             ],
             "multiple" => true,
-            "columns" => 8,
+            "columns" => 10,
           ],
         ],
       ],

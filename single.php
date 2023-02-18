@@ -34,14 +34,16 @@ get_header(); ?>
       
       <div class="blog-post mx-auto bg-white w-11/12 rounded-xl p-2 z-10  mb-10 -mt-[100px]">
         <div class="flex justify-between border-b border-gray-200 p-2">
-          <div class="flex justify-center items-center">
-              <?php
-              $author_id = get_the_author_meta("ID");
-              $avatar_url = get_avatar_url($author_id, ["size" => 32]);
-              ?>
-            <div><img src="<?php echo $avatar_url; ?>"class="rounded-full w-8 h-8 mr-2"alt="Author Avatar"></div>
-            <div class="text-gray-500">Author: <span class="font-bold">Steve Beans</span></div>  
-          </div>
+        <div class="flex justify-center items-center">
+  <?php
+  $author_id = get_the_author_meta("ID");
+  $avatar_url = get_avatar_url($author_id, ["size" => 32]);
+  $author_name = get_the_author();
+  ?>
+  <div><img src="<?php echo $avatar_url; ?>"class="rounded-full w-8 h-8 mr-2"alt="Author Avatar"></div>
+  <div class="text-gray-500">Author: <span class="font-bold"><?php echo $author_name; ?></span></div>  
+</div>
+
         </div>
         <div>
             <!-- socials -->
@@ -60,7 +62,8 @@ get_header(); ?>
           <?php get_template_part("template-parts/related-posts"); ?>
 
 
-          ISERT TABOOLA HERE
+          
+          <?php get_template_part("template-parts/ads/taboola-below"); ?> 
 
 
           <div id="bbj-comment-system"></div>

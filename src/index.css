@@ -219,6 +219,33 @@
   .search-result {
     @apply w-full bg-white p-2 hover:bg-slate-200 dark:bg-gray-900;
   }
+
+  #mailpoet_form_1 form.mailpoet_form {
+    @apply !p-2;
+  }
+}
+
+#mailpoet_form_1 .mailpoet_paragraph {
+  margin-bottom: 4px !important;
+}
+
+#mailpoet_form_1 .mailpoet_text {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+#mailpoet_form_1 .mailpoet_submit {
+  background-color: #35546e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 /* Misc Stuff */

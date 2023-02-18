@@ -101,7 +101,11 @@ WHERE ID = %d",
 
         $player_details = $wpdb->get_row($player_query);
 
-        echo $player["current_house_status"][0] === "winner" ? "<a href='" . get_permalink($player_details->id) . "'>" . $player_details->first_name . " " . $player_details->last_name . "</a>" : "";
+        if (isset($player["current_house_status"]) && $player["current_house_status"][0] === "winner") {
+          echo "<a href='" . get_permalink($player_details->id) . "'>" . $player_details->first_name . " " . $player_details->last_name . "</a>";
+        } else {
+          echo "";
+        }
       endforeach; ?>
 				</td>
        
@@ -117,7 +121,11 @@ WHERE ID = %d",
 
         $player_details = $wpdb->get_row($player_query);
 
-        echo $player["current_house_status"][0] === "afp" ? "<a href='" . get_permalink($player_details->id) . "'>" . $player_details->first_name . " " . $player_details->last_name . "</a>" : "";
+        if (isset($player["current_house_status"]) && $player["current_house_status"][0] === "afp") {
+          echo "<a href='" . get_permalink($player_details->id) . "'>" . $player_details->first_name . " " . $player_details->last_name . "</a>";
+        } else {
+          echo "";
+        }
       endforeach; ?>
 				</td>
 
@@ -139,68 +147,6 @@ WHERE ID = %d",
 
 
 
-
-								<?php
-        $currentSeason = get_the_id();
-        $players = $wpdb->get_results(
-          'SELECT sn.*, s.full_name FROM wp_bbj_player_season_new AS sn
-								LEFT JOIN wp_bbj_seasons s ON s.ID = sn.ID
-									WHERE sn.ID = "' .
-            $currentSeason .
-            '"'
-        );
-
-        $playerList = unserialize($players[0]->player_list2);
-        $seasonName = $players[0]->full_name;
-
-        $seasonTable = ["storage_type" => "custom_table", "table" => "wp_bbj_seasons"];
-
-        $season_banner = rwmb_meta("season_banner_image", $seasonTable);
-        $season_profile = rwmb_meta("season_picture", $seasonTable);
-
-        //echo "<pre>", print_r($playerList, 1), "</pre>";
-
-        $connected = new WP_Query([
-          "relationship" => [
-            "id" => "player-to-season",
-            "to" => get_the_ID(),
-          ],
-          "nopaging" => true,
-        ]);
-        ?>
-
-								<div class="flex flex-wrap">
-									<?php while ($connected->have_posts()):
-
-           $connected->the_post();
-
-           $firstName = rwmb_meta("first_name");
-           $lastName = rwmb_meta("last_name");
-           $city = rwmb_meta("locality");
-           $playerID = get_the_ID();
-
-           $dob = rwmb_meta("date_of_birth");
-           $image = rwmb_meta("profile_picture", ["size" => "profile-picture"]);
-           ?>	
-
-
-									<div class="bg-slate-100 w-full mb-4 shadow-deep relative md:w-[300px] md:mr-4"> 
-										<div class="absolute px-2 py-1 top-[-10px] right-[-10px] bg-white rounded-full border-4 border-primary500 text-primary500 font-osw"><?= show_age_sm($dob, $start_date) ?></div>
-										<div class="flex">
-												<div><img src="<?= esc_url($image["url"]) ?>" class="rounded-br-3xl h-16 w-16" alt=""></div>
-												<div class="font-osw text-primary500 pl-2 pr-2">
-													<div><?= esc_html($firstName) ?> <?= esc_html($lastName) ?></div>
-													<div><?= esc_html($city) ?></div>
-												</div>
-										</div>
-										<a href="<?= get_permalink($playerID) ?>"><div class="text-center py-1 bg-second500 text-xs hover:text-primarySoft"><a href="/all-seasons/">View Player Profile</a></div></a>
-										
-									</div>
-
-									<?php
-         endwhile; ?>
-
-								</div>
 								<div><?php the_content(); ?></div>
 							</div>
 				</div>
