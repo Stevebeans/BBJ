@@ -2573,6 +2573,34 @@ function toggle_feed_window() {
 
 /***/ }),
 
+/***/ "./src/scripts/FeedUpdates.js":
+/*!************************************!*\
+  !*** ./src/scripts/FeedUpdates.js ***!
+  \************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "react-dom");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _ReactComponents_FeedDisplay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ReactComponents/FeedDisplay */ "./src/scripts/ReactComponents/FeedDisplay.js");
+
+
+
+
+
+const FeedUpdates = () => {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_ReactComponents_FeedDisplay__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FeedUpdates);
+
+/***/ }),
+
 /***/ "./src/scripts/Permissions.js":
 /*!************************************!*\
   !*** ./src/scripts/Permissions.js ***!
@@ -2933,6 +2961,88 @@ const CommentSystem = () => {
 
 /***/ }),
 
+/***/ "./src/scripts/ReactComponents/FeedDisplay.js":
+/*!****************************************************!*\
+  !*** ./src/scripts/ReactComponents/FeedDisplay.js ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _PostList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PostList */ "./src/scripts/ReactComponents/PostList.js");
+
+
+
+
+
+const FeedUpdatesPage = () => {
+  const [posts, setPosts] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+  const [lastViewedIDfromStorage, setLastViewedIDfromStorage] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(localStorage.getItem("lastViewedPostId"));
+  const [lastViewedPostID, setLastViewedPostID] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+  const [lastViewedTimestamp, setLastViewedTimestamp] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(localStorage.getItem("lastViewedTimestamp"));
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const fetchData = async () => {
+      const result = await axios__WEBPACK_IMPORTED_MODULE_2___default().get("/wp-json/bbj/v1/feed-updates", {
+        params: {
+          mode: "getInitial"
+        }
+      });
+      setPosts(result.data);
+      console.log("update");
+      console.log(result.data);
+    };
+
+    fetchData();
+
+    const checkLatest = async () => {
+      const result = await axios__WEBPACK_IMPORTED_MODULE_2___default().get("/wp-json/bbj/v1/feed-updates", {
+        params: {
+          mode: "checkLatest"
+        }
+      });
+      const lastPostID = result.data;
+      const lastViewedID = parseInt(lastViewedIDfromStorage);
+      console.log("check");
+      console.log(lastPostID);
+      console.log("this is the last viewed post id: " + lastViewedIDfromStorage);
+      setLastViewedPostID(result.data);
+
+      if (lastPostID !== lastViewedID) {
+        const countResult = await axios__WEBPACK_IMPORTED_MODULE_2___default().get("/wp-json/bbj/v1/feed-updates", {
+          params: {
+            mode: "getCount",
+            originalPost: lastViewedIDfromStorage,
+            latestPost: lastPostID
+          }
+        });
+        const count = countResult.data;
+        console.log("You have " + count + " new posts");
+      }
+    };
+
+    const interval = setInterval(() => {
+      checkLatest();
+    }, 4500);
+    return () => clearInterval(interval);
+  }, []);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "mt-6"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_PostList__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    posts: posts,
+    lastViewedPostID: lastViewedPostID
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FeedUpdatesPage);
+
+/***/ }),
+
 /***/ "./src/scripts/ReactComponents/GenderInput.js":
 /*!****************************************************!*\
   !*** ./src/scripts/ReactComponents/GenderInput.js ***!
@@ -3086,6 +3196,40 @@ const PlayerCard = _ref => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PlayerCard);
+
+/***/ }),
+
+/***/ "./src/scripts/ReactComponents/PostList.js":
+/*!*************************************************!*\
+  !*** ./src/scripts/ReactComponents/PostList.js ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+const PostList = _ref => {
+  let {
+    posts,
+    lastViewedPostID
+  } = _ref;
+  console.log(posts);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, posts.map((post, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: post.id
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, index + 1, " ", post.ID, " - ", post.post_title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    dangerouslySetInnerHTML: {
+      __html: post.post_content
+    }
+  }), lastViewedPostID === post.id && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "You last viewed this post at ", new Date().toLocaleString()))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PostList);
 
 /***/ }),
 
@@ -7629,6 +7773,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_Permissions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./scripts/Permissions */ "./src/scripts/Permissions.js");
 /* harmony import */ var _scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./scripts/FeedUpdateBar */ "./src/scripts/FeedUpdateBar.js");
 /* harmony import */ var _scripts_DarkMode__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./scripts/DarkMode */ "./src/scripts/DarkMode.js");
+/* harmony import */ var _scripts_FeedUpdates__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./scripts/FeedUpdates */ "./src/scripts/FeedUpdates.js");
 
 
 
@@ -7649,9 +7794,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 const playerTableEl = document.getElementById("player-directory-table");
 const commentEl = document.getElementById("bbj-comment-system");
 const searchBar = document.getElementById("bbj-search");
+const feedUpdates = document.getElementById("new-feed-updates");
+
+if (feedUpdates) {
+  react_dom__WEBPACK_IMPORTED_MODULE_4___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_scripts_FeedUpdates__WEBPACK_IMPORTED_MODULE_14__["default"], null), feedUpdates);
+}
 
 if (searchBar) {
   let searchBar = new _scripts_SearchBar__WEBPACK_IMPORTED_MODULE_7__["default"]();

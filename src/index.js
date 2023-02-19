@@ -19,10 +19,16 @@ import PlayerTable from "./scripts/PlayerTable";
 import { permission_check } from "./scripts/Permissions";
 import { feed_update_slider } from "./scripts/FeedUpdateBar";
 import DarkMode from "./scripts/DarkMode";
+import FeedUpdates from "./scripts/FeedUpdates";
 
 const playerTableEl = document.getElementById("player-directory-table");
 const commentEl = document.getElementById("bbj-comment-system");
 const searchBar = document.getElementById("bbj-search");
+const feedUpdates = document.getElementById("new-feed-updates");
+
+if (feedUpdates) {
+  ReactDOM.render(<FeedUpdates />, feedUpdates);
+}
 
 if (searchBar) {
   let searchBar = new BBJSearch();
