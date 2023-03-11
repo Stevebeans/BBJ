@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PostList from "./PostList";
+import NewPostAlert from "./NewPostAlert";
+import LoadingSpinner from "./Spinner";
 
 const FeedUpdatesPage = () => {
   const [posts, setPosts] = useState([]);
   const [lastViewedIDfromStorage, setLastViewedIDfromStorage] = useState(localStorage.getItem("lastViewedPostId"));
   const [lastViewedPostID, setLastViewedPostID] = useState([]);
   const [lastViewedTimestamp, setLastViewedTimestamp] = useState(localStorage.getItem("lastViewedTimestamp"));
+  const [newPostsCount, setNewPostsCount] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,8 +51,9 @@ const FeedUpdatesPage = () => {
         });
 
         const count = countResult.data;
-
-        console.log("You have " + count + " new posts");
+        setNewPostsCount(count);
+      } else {
+        setNewPostsCount(null);
       }
     };
 
@@ -62,7 +66,10 @@ const FeedUpdatesPage = () => {
 
   return (
     <div className="mt-6">
-      <PostList posts={posts} lastViewedPostID={lastViewedPostID} />
+      {newPostsCount && <NewPostAlert countResult={newPostsCount} />}
+      {/*}
+      {posts.length ? <PostList posts={posts} lastViewedPostID={lastViewedPostID} /> : <LoadingSpinner loadingText="Feed Updates" />}
+      {*/}
     </div>
   );
 };
