@@ -28,7 +28,8 @@ module.exports = {
         osw: ["Oswald", "sans-serif"],
         mainHead: ["Yanone Kaffeesatz", "sans-serif"],
         ibm: ["IBM Plex Mono", "monospace"],
-        apple: ["-apple-system", "sans-serif"]
+        apple: ["-apple-system", "sans-serif"],
+        hand: ["Caveat", "cursive"]
       },
       gridTemplateRows: {
         card: "grid-template-columns: 0.5fr 1.5fr"

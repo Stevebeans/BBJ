@@ -6,7 +6,6 @@ define("STRIPE", BBJ_DIR . "/Stripe");
 define("SMALL_FUNCTIONS", BBJ_DIR . "/small-functions");
 
 require_once META_BOX_FILES . "/current-status.php";
-require_once META_BOX_FILES . "/players.php";
 require_once META_BOX_FILES . "/seasons.php";
 require_once META_BOX_FILES . "/feed-updates.php";
 require_once META_BOX_FILES . "/season-stats.php";

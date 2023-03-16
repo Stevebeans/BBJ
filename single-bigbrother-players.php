@@ -1,183 +1,349 @@
 <?php
-get_header(); ?>
+get_header();
 
+global $wpdb;
 
+// get some player variables
 
+$playerID = get_the_ID();
+$playerName = explode(" ", get_the_title($playerID));
 
-<?php get_header(); ?>
+//echo $playerID;
 
-<div class="bbj-container-inner">
+$first_name = $playerName[0];
+$last_name = end($playerName);
 
-<?php
-//get all the fields
-$playerName = get_the_title(get_the_ID());
-$image = rwmb_meta("profile_picture");
-$banner = rwmb_meta("player_banner", ["size" => "player-banner"]);
-$dob = rwmb_meta("date_of_birth");
-$gender = rwmb_meta("player_gender");
-$city = rwmb_meta("locality");
-$state = rwmb_meta("administrative_area_level_1");
-$job = rwmb_meta("occupation");
-$evicted = rwmb_meta("evicted_date");
+$first_name = esc_html(ucwords(strtolower($first_name)));
+$last_name = esc_html(ucwords(strtolower($last_name)));
+$nickname = esc_html(ucwords(strtolower(rwmb_meta("official_nickname"))));
+$profile_pic = rwmb_meta("profile_picture", ["size" => "prof-pic-lg"]);
+
 $fbLink = rwmb_meta("facebook");
 $igLink = rwmb_meta("instagram");
 $twLink = rwmb_meta("twitter");
 $ttLink = rwmb_meta("tiktok");
-$playerID = get_the_id();
+$dob = rwmb_meta("date_of_birth");
+
+$city = rwmb_meta("locality");
+$state = rwmb_meta("administrative_area_level_1");
+$job = rwmb_meta("occupation");
+
+$weeks_players_table = $wpdb->prefix . "bbj_weeks_players";
+$play_season_rel_table = $wpdb->prefix . "bbj_play_season_rel";
+$seasons = $wpdb->prefix . "bbj_seasons";
+$players = $wpdb->prefix . "bbj_players";
+
+// $player_results = $wpdb->get_results(
+//   $wpdb->prepare(
+//     "SELECT wp.*, w.hoh, w.pov, w.nom, w.saved, w.evicted, w.voted_for, w.vote_to_win, s.season_number AS seasonNum, s.start_date AS season_start, s.end_date AS season_end, s.full_name AS season_name
+//          FROM $weeks_players_table AS w
+//          LEFT JOIN $play_season_rel_table AS wp
+//          ON w.player_id = wp.player_id
+// 				 LEFT JOIN $seasons AS s
+// 				 ON wp.season_id = s.ID
+//          WHERE wp.player_id = %d
+// 				 GROUP BY wp.season_id",
+//     $playerID
+//   )
+// );
+
+$overall_totals = $wpdb->get_results(
+  $wpdb->prepare(
+    "SELECT COUNT(DISTINCT w.season_id) AS season_count, SUM(w.hoh) AS hoh, SUM(w.pov) AS pov, SUM(w.nom) AS nom, SUM(w.saved) AS saved, SUM(w.evicted) AS evicted, 
+				(SELECT COUNT(voted_for) FROM $weeks_players_table WHERE voted_for = %d) AS voted_for
+     FROM $weeks_players_table AS w
+     WHERE w.player_id = %d",
+    $playerID,
+    $playerID
+  )
+);
+
+//echo "<pre>", print_r($overall_totals, 1), "</pre>";
+
+$total_season = !empty($overall_totals[0]->season_count) ? $overall_totals[0]->season_count : 0;
+$total_hoh = !empty($overall_totals[0]->hoh) ? $overall_totals[0]->hoh : 0;
+$total_pov = !empty($overall_totals[0]->pov) ? $overall_totals[0]->pov : 0;
+$total_nom = !empty($overall_totals[0]->nom) ? $overall_totals[0]->nom : 0;
+
+$total_saved = $overall_totals[0]->saved;
+$total_evicted = $overall_totals[0]->evicted;
+$total_voted_for = $overall_totals[0]->voted_for;
+
+$season_results = $wpdb->get_results(
+  $wpdb->prepare(
+    "SELECT w.season_id, s.season_number AS seasonNum, s.start_date AS season_start, s.end_date AS season_end, s.abbreviation AS seasonAb, s.full_name AS season_name, SUM(w.hoh) AS hoh_sum, SUM(w.pov) AS pov_sum, SUM(w.nom) AS nom_sum, SUM(w.saved) AS saved_sum, SUM(w.evicted) AS evicted_sum, p.date_of_birth AS dob, 
+				(SELECT COUNT(voted_for) FROM $weeks_players_table WHERE voted_for = %d AND season_id = w.season_id AND voted_for = %d) AS vote_count
+     FROM $weeks_players_table AS w
+     LEFT JOIN $seasons AS s
+     ON w.season_id = s.ID
+		 LEFT JOIN $players AS p
+		 ON w.player_id = p.ID
+     WHERE w.player_id = %d
+     GROUP BY w.season_id
+     ORDER BY s.start_date ASC",
+    $playerID,
+    $playerID,
+    $playerID
+  )
+);
+
+$winner_check = $wpdb->get_results(
+  $wpdb->prepare(
+    "SELECT winner, runner_up, afp 
+		FROM $play_season_rel_table
+		WHERE player_id = %d",
+    $playerID
+  )
+);
+
+//echo "<pre>", print_r($season_results, 1), "</pre>";
+
+// Calculate the unique season count
+//echo "<pre>", print_r($profile_pic["url"], 1), "</pre>";
 ?>
 
-
-  <div class="bbj-inner-content-container">
-    <div class="bbj-content-container">
-      
-    
-      <div class="flex flex-col md:flex-row">
-
-
-
-				<div class="w-full border-2 border-second500 p-2 bg-sky-100 lg:w-[250px]  shrink-0">	
-						
-
-						
-						
-					<div class="flex-cnt">
-
-
-						
-						<div class="mt-[-40px] flex-cnt relative h-40 w-40">
-						
-						<?php if (!empty($image)): ?>
-						<div class="absolute top-0 left-0 h-40 w-40">
-						<img src="<?= esc_url($image["url"]) ?>" alt="Profile Picture" class=" rounded-full">
-						</div>
-						
-							<div class="h-40 w-40 absolute top-0 left-0">
-							<svg viewBox="0 0 100 100" class="circle">
-  							<circle cx="50" cy="50" r="48" fill="transparent" stroke-width="4" stroke="#FFBF0F"/>
-  							<circle cx="50" cy="50" r="48" fill="transparent" stroke-width="4" stroke="gray" id="bar"/>
-							</svg>
+<div class="bbj-container-inner">
+	<div class="my-2 flex w-full flex-col rounded-md bg-white lg:flex-row overflow-hidden">
+		<div class="flex-grow">
+			<section id="profile-head" class="w-full flex h-fit md:h-[375px] flex-wrap md:flex-nowrap">
+				<div class="w-full flex-grow relative order-2 md:order-1">
+					<div class="absolute top-2 right-2">
+							<?php if ($fbLink || $igLink || $twLink || $ttLink) { ?>
+							<div class="text-xs text-white p">Offical Socials:</div>
+							<?php } ?>
+							<div class="flex">
+								<?php if ($fbLink): ?>
+								<div class="mr-2 "><a href="<?php echo $fbLink; ?>" target="_blank" class="text-second500 hover:text-secondSoft"><i class="fa-brands fa-facebook-f"></i></a></div>
+							<?php endif; ?>
+							<?php if ($igLink): ?>
+								<div class="mr-2"><a href="<?php echo $igLink; ?>" target="_blank" class="text-second500 hover:text-secondSoft"><i class="fa-brands fa-instagram"></i></a></div>
+							<?php endif; ?>
+							
+							<?php if ($twLink): ?>
+								<div class="mr-2"><a href="<?php echo $twLink; ?>" target="_blank" class="text-second500 hover:text-secondSoft"><i class="fa-brands fa-twitter"></i></a></div>
+							<?php endif; ?>
+							
+							<?php if ($ttLink): ?>
+								<div><a href="<?php echo $ttLink; ?>" target="_blank" class="text-second500 hover:text-secondSoft"><i class="fa-brands fa-tiktok"></i></a></div>
+							<?php endif; ?>
 							</div>
-						<?php endif; ?>	
-						</div>
-
-        			
-       			
+							
 					</div>
-					<h1 class="font-mainHead text-xl font-bold text-primary500 dark:font-normal dark:text-gray-300 border-b mb-2 border-primary500"><?= $playerName ?></h1>
-
-					<div><span class="text-gray-600 font-osw">Information:</span></div>
-								
-					
-	<?php
- $connected = new WP_Query([
-   "relationship" => [
-     "id" => "player-to-season",
-     "from" => get_the_ID(),
-   ],
-   "nopaging" => true,
- ]);
- if ($connected->have_posts()):
-
-   $connected->the_post();
-
-   $seasonID = get_the_ID();
-   $seasonAb = rwmb_meta("abbreviation");
-   $start_date = rwmb_meta("start_date");
-   $end_date = rwmb_meta("end_date");
-
-   $seasonPercent = season_percentage($start_date, $end_date, $evicted);
-   ?>
-
-
-					<div class="grid grid-cols-[35%_65%] items-center">
-						<div class="text-sm">Season</div>
-						<div class="font-osw font-semibold text-primary500 underline"><a href="<?= get_permalink($seasonID) ?>"><?= $seasonAb ?></a>
-						</div>
-						<div class="text-sm">Gender</div>	
-						<div class="font-osw font-semibold text-primary500"><?= $gender ?></div>
-						<div class="text-sm">Age <span class="text-xs">(then)</span></div>	
-						<div class="font-osw font-semibold text-primary500"><?= show_age($dob, $start_date) ?></div>						
-						<div class="text-sm">Age <span class="text-xs">(now)</span></div>	
-						<div  class="font-osw font-semibold text-primary500"><?= current_age($dob) ?></div>						
-						<div class="text-sm">City</div>	
-						<div class="font-osw font-semibold text-primary500"><?= $city ?></div>
-						<div class="text-sm">State</div>	
-						<div class="font-osw font-semibold text-primary500"><?= $state ?></div>
-						<div class="text-sm">Job</div>	
-						<div class="font-osw font-semibold text-primary500"><?= $job ?></div>
+					<div class="h-[120px] md:h-[50%] bg-primary500 flex justify-center px-2 md:px-8 flex-col" >
+						<h1 class="font-mainHead text-2xl md:text-5xl text-white"><?= $first_name ?><br /><?= $last_name ?></h1>
+						<h2 class="font-hand text-xl md:text-3xl text-white"><?= $nickname ? "\"{$nickname}\"" : "" ?></h2>
+					</div>
+					<div class="h-[25px] md:h-[10%] bg-gradient-to-b from-primary500 to-white ">
 
 					</div>
+					<div class="h-[100px] md:h-[40%] w-full ">
 
-					<div class="my-2"><span class="text-gray-600 font-osw">Season Progression:</span> <span class="font-osw font-semibold text-second500"><?php echo $seasonPercent; ?>%</span> <span class="text-xs">(<?php days_calc($start_date, $evicted); ?> Days)</span> </div>
-					
-					<div class="flex"><span class="text-gray-600 font-osw mr-2">Socials:</span>
-					
-					<?php if ($fbLink): ?>
-						<div class="mr-2 "><a href="<?php echo $fbLink; ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></div>
-          <?php endif; ?>
-          <?php if ($igLink): ?>
-						<div class="mr-2"><a href="<?php echo $igLink; ?>" target="_blank"><i class="fa-brands fa-instagram"></i></a></div>
-          <?php endif; ?>
-					
-          <?php if ($twLink): ?>
-						<div class="mr-2"><a href="<?php echo $twLink; ?>" target="_blank"><i class="fa-brands fa-twitter"></i></a></div>
-          <?php endif; ?>
-					
-          <?php if ($ttLink): ?>
-						<div><a href="<?php echo $ttLink; ?>" target="_blank"><i class="fa-brands fa-tiktok"></i></a></div>
-          <?php endif; ?></div>
+						<div class="grid grid-cols-4 h-full pt-4">
+							<div class="text-center">
+							<div class="text-3xl md:text-5xl font-bold text-second500"><?= $total_season ?></div>
+								<div class="text-sm md:text-xl">Season<?= $total_season > 1 ? "s" : "" ?>
+								</div>
+							</div>
+							<div class="text-center">
+								<div class="text-3xl md:text-5xl font-bold text-second500"><?= $total_hoh ?></div>
+								<div class="text-sm md:text-xl">Head of Household</div>
+							</div>
+							<div class="text-center">
+							<div class="text-3xl md:text-5xl font-bold text-second500"><?= $total_pov ?></div>
+								<div class="text-sm md:text-xl">Power of Veto</div>
+							</div>
+							<div class="text-center">
+							<div class="text-3xl md:text-5xl font-bold text-second500"><?= $total_nom ?></div>
+								<div class="text-sm md:text-xl">Nominated</div>
+							</div>
+						</div>
 
-
-
-
-<script>
-const bar = document.querySelector('#bar');
-const svg = document.querySelector('.circle');
-const circumference = 2 * Math.PI * 45;
-const percent = <?php echo $seasonPercent; ?>;
-bar.style.strokeDasharray = `${circumference * percent / 100} ${circumference}`;
-bar.style.strokeDashoffset = circumference;
-svg.style.transform = "rotate(-90deg)";
-
-
-
-
-</script>
-					<?php
- endif;
- wp_reset_postdata();
- ?>
-
- 					<div class="mt-4"><a href="/player-directory/">View Player Directory</a></div>
+					</div>
 				</div>
+				<div class="w-full md:w-[375px] flex-shrink-0 order-1 md:order-2 relative">
+					<div class="absolute top-2 right-2 flex flex-wrap justify-end">
+					<?php $res = s_results_overall($winner_check); ?>
+						<?php foreach ($res as $value): ?>
+							<?php if ($value == 1): ?>
+								<div class="tracking-wider text-primary500 bg-yellow-300 px-4 py-1 text-sm rounded mx-1 font-semibold my-1" title="">
+									<i class="fa-solid fa-trophy"></i> Winner
+								</div>
+							<?php elseif ($value == 2): ?>
+								<div class="tracking-wider text-primary500 bg-violet-300 px-4 py-1 text-sm rounded mx-1 font-semibold my-1" title="">
+									<i class="fa-solid fa-heart"></i> America's Favorite
+								</div>
+							<?php elseif ($value == 3): ?>
+								<div class="tracking-wider text-primary500 bg-slate-300 px-4 py-1 text-sm rounded mx-1 font-semibold my-1" title="">
+									<i class="fas fa-award" aria-hidden="true"></i> Runner Up
+								</div>
+							<?php endif; ?>
+						<?php endforeach; ?>
 
-				
-				<div class="grow">
-						<?php if (!empty($banner)): ?>
-						<div class="w-full">
-						<img src="<?= esc_url($banner["url"]) ?>" alt="Profile Picture" class="w-full rounded-br-2xl border-t-4 border-second500">
-						</div>
+						<?php if (is_user_logged_in()): ?>
+							<?php if (is_user_logged_in() && current_user_can("edit_posts")): ?>
+								<a href="<?php echo get_edit_post_link(); ?>" class="text-white active:text-white visited:text-white hover:text-secondSoft"><i class="fa-solid fa-edit"></i></a>
+							<?php endif; ?>
 						<?php endif; ?>
-							<div class="p-2">
-								<div class="text-gray-600 font-osw">Biography and more:</div>
-								<div><?php the_content(); ?></div>
-							</div>
+					</div>
+					<img class="w-[375px] h-[375px] md:rounded-bl-3xl  " src="<?= $profile_pic["url"] ?>" alt="Big Brother <?= $first_name . " " . $last_name . " profile picture" ?>">
+				</div>
+			</section>
+
+			<?php if (!premiumCheck()): ?>
+			<section id="spacer" class="w-full flex justify-center items-center my-4">
+				<div class="w-[90%] h-[2px] bg-slate-400"></div>
+			</section>
+
+			<div><?php get_template_part("template-parts/ads/ad-flex"); ?></div>
+			<?php endif; ?>
+			
+			<section id="spacer2" class="w-full flex justify-center items-center my-4">
+				<div class="w-[90%] h-[2px] bg-slate-400"></div>
+			</section>
+
+			<section id="player-bio" class="w-full flex justify-center items-center my-4 flex-wrap md:flex-nowrap">
+				<div class="w-full md:w-[300px] grid grid-cols-2 flex-shrink p-2 bg-sky-100 rounded-lg ml-1 mr-1 md:ml-2 md:mr-4 text-sm">
+					
+					<div>City:</div><div><?= $city ?> </div>
+					<div>State:</div><div><?= $state ?></div>
+					<div>Occupation:</div><div><?= $job ?></div>
+					<div>Current Age:</div><div>
+					<?php if (!empty($season_results[0]->dob)): ?>
+						<?= current_age_calc($season_results[0]->dob) ?>
+					<?php endif; ?>
+
+					</div>
+					
+					
 				</div>
 
-				<div class=" shrink-0">
-        <?php get_template_part("template-parts/sidebar-default"); ?>
-    		</div>
+				<?php // Beginning for sum
 
-			</div>
-    </div>
+$total_days = 0; ?>
 
+				<div class="w-full flex-grow  p-2">
+					<table class="w-full" id="stat-table">
+						<tr  class="border-b border-slate-200">
+							<th class="text-sm p-1 text-slate-600"><span class="hidden md:block">SEASON</span></th>
+							<th class="text-sm p-1 text-slate-600 hidden md:block">AGE</th>
+							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600">HOH</th>
+							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600">POV</th>
+							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600">NOM</th>
+							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600"><span class="hidden md:block">Votes</span><span class="block md:hidden">VTE</span></th>
+							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600">DAYS</th>
+							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600">RESULT</th>
+							<th class="text-sm p-1 text-slate-600 hidden md:block">PROGRESS</th>
 
-  </div>
+						</tr>
+						<?php foreach ($season_results as $season): ?>
+							<?php
+       $p_week = $wpdb->get_results(
+         $wpdb->prepare(
+           "SELECT * FROM $play_season_rel_table 
+										WHERE season_id = %d AND player_id = %d",
+           $season->season_id,
+           $playerID
+         )
+       );
+       $evict_date = $p_week[0]->evict_date;
+       ?>
+							<tr class="border-0">
+								<td class="!border-r border-slate-200"><a href="<?= get_permalink($season->season_id) ?>" class="hover:underline visited:underline"><span class="hidden md:block"><?= $season->season_name ?></span><span class="block md:hidden"><?= $season->seasonAb ?></span></a></td>
+								<td class="text-center !border-r border-slate-200  hidden md:block"><?= new_age_calc($season->dob, $season->season_start) ?></td>
+								<td class="text-center  !border-r border-slate-200"><?= $season->hoh_sum ?></td>
+								<td class="text-center  !border-r border-slate-200"><?= $season->pov_sum ?></td>
+								<td class="text-center  !border-r border-slate-200"><?= $season->nom_sum ?></td>
+								<td class="text-center  !border-r border-slate-200"><?= $season->vote_count ?></td>
+								<td class="text-center  !border-r border-slate-200"><?php
+        $days = days_calc_new($season->season_start, $evict_date);
+        $total_days += $days;
+        echo $days;
+        ?></td>
+								<td class="text-left !pl-2"><?= s_results_week($p_week) ?></td>
+								<td>
+									<?php $s_percent = season_percentage_calc($season->season_start, $season->season_end, $evict_date); ?>
+									
+									<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+									<div class=" hidden md:block <?php if ($s_percent < 50) {
+           echo "bg-green-200";
+         } elseif ($s_percent >= 50 && $s_percent <= 75) {
+           echo "bg-green-400";
+         } elseif ($s_percent > 75 && $s_percent <= 99) {
+           echo "bg-green-600";
+         } elseif ($s_percent == 100) {
+           echo "bg-green-800";
+         } ?> h-2.5 rounded-full" style="width: <?= $s_percent ?>%"></div>
 
+									</div>
 
+								</td>
+							</tr>
+						<?php endforeach; ?>
+							<tr class="border-t border-slate-200">
+								<td class="font-bold text-sm">Totals:</td>
+								<td class=" hidden md:block"></td>
+								<td class="font-bold text-second500 text-center"><?= $total_hoh ?></td>
+								<td class="font-bold text-second500 text-center"><?= $total_pov ?></td>
+								<td class="font-bold text-second500 text-center"><?= $total_nom ?></td>
+								<td class="font-bold text-second500 text-center"><?= $total_voted_for ?></td>
+								<td class="font-bold text-second500 text-center"><?= $total_days ?></td>
+								
+							</tr>
+					</table>
+				</div>
+			</section>
 
+			<section id="bio-2" class="p-2 prose w-full">
+				<?php the_content(); ?>
+			</section>
+		</div>
 
+		<div class="w-[320px]  flex-shrink-0">
+		<?php get_template_part("template-parts/sidebar-default"); ?>
+		</div>
+	</div>
 </div>
+
+
+<style>
+	.result-winner {
+		color: green;
+		font-size: .85rem;
+		font-weight: 600
+	}
+
+	.result-runner-up {
+		color: #FFA500;
+		font-size: .85rem;
+		font-weight: 600
+	}
+
+	.result-afp {
+		color: purple;
+		font-size: .85rem;
+		font-weight: 600
+	}
+
+	.result-jury {
+		color: rgb(14 165 233);
+		font-size: .85rem;
+		font-weight: 600
+	}
+
+	.result-evicted {
+		color: red;
+		font-size: .85rem;
+		font-weight: 600
+	}
+
+	.result-tbd {
+		color: black;
+		font-size: .85rem;
+		font-weight: 400
+	}
+</style>
+
+
 
 
 

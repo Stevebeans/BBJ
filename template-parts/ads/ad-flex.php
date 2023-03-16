@@ -1,4 +1,5 @@
-<section id="" class="ad-block-flex container mx-auto p-4">
+<?php if (!premiumCheck()): ?>
+     <section id="" class="ad-block-flex container mx-auto p-4">
      <div class="ad-box my-4 ">
           <div class="ad-label">Advertisement</div>
           <div>
@@ -17,3 +18,4 @@
           </div>
      </div>
 </section>
+<?php endif; ?>
