@@ -32,7 +32,7 @@
 <?php wp_footer(); ?>
 
 
-<?php if (!premiumCheck()): ?>
+<?php if (!premiumCheck() && !is_front_page()): ?>
 <script type="text/javascript">
   window._taboola = window._taboola || [];
   _taboola.push({article:'auto'});

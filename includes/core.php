@@ -17,9 +17,20 @@ function my_update_value_date_time_picker($value, $post_id, $field)
 
 function my_post_time_ago_function()
 {
-  return sprintf(esc_html__("%s ago", "textdomain"), human_time_diff(get_the_modified_time("U"), current_time("timestamp")));
+  $time_diff = human_time_diff(get_the_modified_time("U"), current_time("timestamp"));
+  $class = "";
+
+  if (current_time("timestamp") - get_the_modified_time("U") < 4 * HOUR_IN_SECONDS) {
+    $class = "text-red-500";
+  } else {
+    $class = "text-gray-500";
+  }
+
+  return [
+    "time_diff" => sprintf(esc_html__("%s ago", "textdomain"), $time_diff),
+    "class" => $class,
+  ];
 }
-add_filter("the_modified_date", "my_post_time_ago_function");
 
 function time_ago_calc($time)
 {

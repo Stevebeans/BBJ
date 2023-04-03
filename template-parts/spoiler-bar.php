@@ -21,13 +21,13 @@
           $lastName = $playerData->last_name;
 
           $name_map = [
-            "afp" => "America's Favorite",
+            "afp" => "AFP",
             "winner" => "Winner",
             "hoh" => "HoH",
-            "second" => "Runner Up",
+            "second" => "2ND",
             "pov" => "Veto",
             "jury" => "Jury",
-            "nom" => "Nominee",
+            "nom" => "Nom",
             "evic" => "Evicted",
           ];
           $new_names = [];
@@ -49,9 +49,9 @@
           ?>
     
       <div class="profile-contain">
-        <div class="profile-outline flex justify-center items-center <?= isset($innerArray["current_house_status"][0]) ? $innerArray["current_house_status"][0] : "active" ?>"><a href="<?php the_permalink($innerArray["player_id"]); ?>"><img src="<?= $imgUrl[0] ?>" alt="Player profile for <?= $firstName . " " . $lastName ?>" class="player-thumb"></a></div>
-        <div class="text-gray-700 font-mainHead text-center font-medium text-base leading-5 dark:text-gray-200"><?= $firstName ?></div>
-        <div class="text-xs text-center leading-3 tracking-tighter <?= isset($innerArray["current_house_status"][0]) ? $innerArray["current_house_status"][0] : "active" ?>"><?= $names_string ?></div>
+        <div class="profile-outline flex justify-center items-center <?= isset($innerArray["current_house_status"][0]) ? $innerArray["current_house_status"][0] : "active" ?>"><a href="<?php the_permalink($innerArray["player_id"]); ?>"><img src="<?= $imgUrl[0] ?>" alt="Player profile for <?= $firstName . " " . $lastName ?>" class="w-6 h-8 md:w-10 md:h-12 rounded-xl"></a></div>
+        <div class="text-gray-700 font-mainHead text-center font-medium text-xs md:text-base leading-3 md:!leading-4 dark:text-gray-200 "><?= $firstName ?></div>
+        <div class="text-xs md:text-base font-mainHead text-center !leading-3 md:!leading-4 tracking-tighter <?= isset($innerArray["current_house_status"][0]) ? $innerArray["current_house_status"][0] : "active" ?>"><?= $names_string ?></div>
       </div>
     
 

@@ -2601,6 +2601,48 @@ const FeedUpdates = () => {
 
 /***/ }),
 
+/***/ "./src/scripts/PaymentModel.js":
+/*!*************************************!*\
+  !*** ./src/scripts/PaymentModel.js ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class PaymentModel {
+  constructor() {
+    this.paymentForm = document.getElementById("payment-options");
+    this.events();
+  }
+
+  events() {
+    const selectItems = this.paymentForm.querySelectorAll(".select-option");
+    selectItems.forEach(item => {
+      console.log(item);
+      item.addEventListener("click", e => {
+        console.log(e.target);
+        this.chooseItem(e);
+      });
+    });
+  }
+
+  chooseItem(e) {
+    // Get the clicked item and its data-plan-type value
+    const selectedItem = e.target.closest(".select-option");
+    const planType = selectedItem.getAttribute("data-plan-type"); // Find the input fields with the IDs 'field_plan-type' and 'plan_stripe-plan-type', and update their values
+
+    const inputFieldPlanType = this.paymentForm.querySelector("#field_plan-type");
+    const inputStripePlanType = this.paymentForm.querySelector("#field_stripe-plan-type");
+    inputFieldPlanType.value = planType;
+    inputStripePlanType.value = planType;
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (PaymentModel);
+
+/***/ }),
+
 /***/ "./src/scripts/Permissions.js":
 /*!************************************!*\
   !*** ./src/scripts/Permissions.js ***!
@@ -7938,6 +7980,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./scripts/FeedUpdateBar */ "./src/scripts/FeedUpdateBar.js");
 /* harmony import */ var _scripts_DarkMode__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./scripts/DarkMode */ "./src/scripts/DarkMode.js");
 /* harmony import */ var _scripts_FeedUpdates__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./scripts/FeedUpdates */ "./src/scripts/FeedUpdates.js");
+/* harmony import */ var _scripts_PaymentModel__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./scripts/PaymentModel */ "./src/scripts/PaymentModel.js");
 
 
 
@@ -7959,10 +8002,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 const playerTableEl = document.getElementById("player-directory-table");
 const commentEl = document.getElementById("bbj-comment-system");
 const searchBar = document.getElementById("bbj-search");
 const feedUpdates = document.getElementById("new-feed-updates");
+const paymentForm = document.getElementById("payment-options");
+
+if (paymentForm) {
+  let paymentModel = new _scripts_PaymentModel__WEBPACK_IMPORTED_MODULE_15__["default"]();
+}
 
 if (feedUpdates) {
   react_dom__WEBPACK_IMPORTED_MODULE_4___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_scripts_FeedUpdates__WEBPACK_IMPORTED_MODULE_14__["default"], null), feedUpdates);

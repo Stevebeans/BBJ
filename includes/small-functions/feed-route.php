@@ -4,6 +4,7 @@ function bbj_register_feed_updates_endpoint()
   register_rest_route("bbj/v1", "feed-updates", [
     "methods" => "GET",
     "callback" => "bbj_get_feed_updates",
+    "permission_callback" => "__return_true",
     "args" => [
       "mode" => [
         "required" => false,

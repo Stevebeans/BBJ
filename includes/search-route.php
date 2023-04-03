@@ -4,6 +4,7 @@ add_action("rest_api_init", function () {
   register_rest_route("bbj/v1", "/search", [
     "methods" => "GET",
     "callback" => "bbj_search_results",
+    "permission_callback" => "__return_true",
   ]);
 });
 

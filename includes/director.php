@@ -15,8 +15,9 @@ require_once META_BOX_FILES . "/site-settings.php";
 require_once SMALL_FUNCTIONS . "/logfile.php";
 require_once SMALL_FUNCTIONS . "/ad-insert.php";
 require_once SMALL_FUNCTIONS . "/feed-route.php";
+require_once SMALL_FUNCTIONS . "/front-page-stats.php";
 
 require_once STRIPE . "/payment-complete.php";
 require_once STRIPE . "/payment-fail.php";
 
-require_once STRIPE . "/ff-stripe.php";
+//require_once STRIPE . "/ff-stripe.php";

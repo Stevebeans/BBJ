@@ -4,11 +4,12 @@ module.exports = {
   theme: {
     extend: {
       dropShadow: {
-        "ca-text": "0 1 1 rgba(0,0,0, 0.7)"
+        "ca-text": "0 1 1 rgba(0,0,0, 0.7)",
       },
       boxShadow: {
         deep: "0 3px 6px rgba(53, 84, 110, 0.5)",
-        deepHover: "0 3px 6px rgba(53, 84, 110, 0.8)"
+        deepHover: "0 3px 6px rgba(53, 84, 110, 0.8)",
+        frontBox: "0 4px 4px rgba(0,0,0, 0.30)"
       },
       scale: {
         md: "1.07",

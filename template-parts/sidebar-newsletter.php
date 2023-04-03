@@ -1,4 +1,4 @@
-<div class="border border-gray-200 rounded-md p-2 m-4">
+<div class="border border-gray-200 rounded-md p-2">
 
 <h2 class="text-primary500 font-bold font-osw">Don't Miss An Update</h2>
   <?php echo do_shortcode('[mailpoet_form id="1"]'); ?>

@@ -50,6 +50,7 @@
      endif;
      ?>
 
+<script async src="https://fundingchoicesmessages.google.com/i/pub-1172879704296990?ers=1" nonce="TH85HcHKLQ1PJMToliS9AA"></script><script nonce="TH85HcHKLQ1PJMToliS9AA">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
   </head>
   <body <?php body_class(); ?> class="">
 
@@ -144,14 +145,15 @@ p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div>
 </header>
 
 <section id="main-body" class="bg-slate-200 dark:bg-slate-700">
+
   
       <?php get_template_part("template-parts/spoiler-bar"); ?>
 
-      <?php if (!premiumCheck()):
-        get_template_part("template-parts/ads/ad-header");
-      endif; ?>
+      <?php get_template_part("template-parts/ads/ad-header"); ?>
     
       <div id="user-role" data-role="<?= $bbjAdCheck ?>"></div>
 <?php if (feedUpdater()): ?>
-  <?php get_template_part("template-parts/feed-updater"); ?>
+  <?php get_template_part("template-parts/feed-updater", null, ["bbjUpdater" => $bbjUpdater]); ?>
+
+
 <?php endif; ?>

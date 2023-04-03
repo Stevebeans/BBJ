@@ -76,6 +76,9 @@
 }
 
 @layer utilities {
+  .pp-user-avatar {
+    @apply mr-1 mt-1 rounded-full;
+  }
   .bbj-btn {
     @apply rounded-lg border border-primary500 bg-second500 px-4 py-1.5 text-primary500 hover:bg-secondHard hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
   }
@@ -316,4 +319,49 @@
 
 .open .hamburger-bottom {
   transform: rotate(-45deg) translateY(6px) translateX(-6px);
+}
+
+.result-winner {
+  color: green;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.result-runner-up {
+  color: #ffa500;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.result-afp {
+  color: purple;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.result-jury {
+  color: rgb(14 165 233);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.result-evicted {
+  color: red;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.result-tbd {
+  color: black;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.frm_paypal input[type="submit"] {
+  background: url("https://bigbrotherjunkies.com/wp-content/uploads/2023/03/paypal-checkout.png") no-repeat;
+  width: 300px; /* Replace with the width of the image */
+  height: auto; /* Replace with the height of the image */
+  border: none;
+  text-indent: -9999px;
+  cursor: pointer;
 }

@@ -7,6 +7,7 @@ function bbj_routes()
   register_rest_route("bbj/v1", "player_info", [
     "methods" => "GET",
     "callback" => "player_info",
+    "permission_callback" => "__return_true",
   ]);
 }
 

@@ -113,18 +113,18 @@ $winner_check = $wpdb->get_results(
 							<?php } ?>
 							<div class="flex">
 								<?php if ($fbLink): ?>
-								<div class="mr-2 "><a href="<?php echo $fbLink; ?>" target="_blank" class="text-second500 hover:text-secondSoft"><i class="fa-brands fa-facebook-f"></i></a></div>
+								<div class="mr-2 "><a href="<?php echo $fbLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft"><i class="fa-brands fa-facebook-f"></i></a></div>
 							<?php endif; ?>
 							<?php if ($igLink): ?>
-								<div class="mr-2"><a href="<?php echo $igLink; ?>" target="_blank" class="text-second500 hover:text-secondSoft"><i class="fa-brands fa-instagram"></i></a></div>
+								<div class="mr-2"><a href="<?php echo $igLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft"><i class="fa-brands fa-instagram"></i></a></div>
 							<?php endif; ?>
 							
 							<?php if ($twLink): ?>
-								<div class="mr-2"><a href="<?php echo $twLink; ?>" target="_blank" class="text-second500 hover:text-secondSoft"><i class="fa-brands fa-twitter"></i></a></div>
+								<div class="mr-2"><a href="<?php echo $twLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft"><i class="fa-brands fa-twitter"></i></a></div>
 							<?php endif; ?>
 							
 							<?php if ($ttLink): ?>
-								<div><a href="<?php echo $ttLink; ?>" target="_blank" class="text-second500 hover:text-secondSoft"><i class="fa-brands fa-tiktok"></i></a></div>
+								<div><a href="<?php echo $ttLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft"><i class="fa-brands fa-tiktok"></i></a></div>
 							<?php endif; ?>
 							</div>
 							
@@ -229,13 +229,14 @@ $total_days = 0; ?>
 							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600">HOH</th>
 							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600">POV</th>
 							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600">NOM</th>
-							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600"><span class="hidden md:block">Votes</span><span class="block md:hidden">VTE</span></th>
+							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600"><span class="hidden md:block">VOTES</span><span class="block md:hidden">VTE</span></th>
 							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600">DAYS</th>
 							<th class="text-xs md:text-sm p-0.5 md:p-1 text-slate-600">RESULT</th>
 							<th class="text-sm p-1 text-slate-600 hidden md:block">PROGRESS</th>
 
 						</tr>
 						<?php foreach ($season_results as $season): ?>
+
 							<?php
        $p_week = $wpdb->get_results(
          $wpdb->prepare(
@@ -245,7 +246,12 @@ $total_days = 0; ?>
            $playerID
          )
        );
-       $evict_date = $p_week[0]->evict_date;
+
+       if (isset($p_week[0])) {
+         $evict_date = $p_week[0]->evict_date;
+       } else {
+         // handle the case where $p_week is empty or doesn't have the desired key
+       }
        ?>
 							<tr class="border-0">
 								<td class="!border-r border-slate-200"><a href="<?= get_permalink($season->season_id) ?>" class="hover:underline visited:underline"><span class="hidden md:block"><?= $season->season_name ?></span><span class="block md:hidden"><?= $season->seasonAb ?></span></a></td>
@@ -259,7 +265,7 @@ $total_days = 0; ?>
         $total_days += $days;
         echo $days;
         ?></td>
-								<td class="text-left !pl-2"><?= s_results_week($p_week) ?></td>
+								<td class="text-left !pl-2"><?= s_results_week($p_week, "player-page") ?></td>
 								<td>
 									<?php $s_percent = season_percentage_calc($season->season_start, $season->season_end, $evict_date); ?>
 									
@@ -281,7 +287,7 @@ $total_days = 0; ?>
 						<?php endforeach; ?>
 							<tr class="border-t border-slate-200">
 								<td class="font-bold text-sm">Totals:</td>
-								<td class=" hidden md:block"></td>
+								<td class="hidden md:table-lock"></td>
 								<td class="font-bold text-second500 text-center"><?= $total_hoh ?></td>
 								<td class="font-bold text-second500 text-center"><?= $total_pov ?></td>
 								<td class="font-bold text-second500 text-center"><?= $total_nom ?></td>
@@ -298,50 +304,13 @@ $total_days = 0; ?>
 			</section>
 		</div>
 
-		<div class="w-[320px]  flex-shrink-0">
+		<div class="w-full md:w-[320px]  flex-shrink-0">
 		<?php get_template_part("template-parts/sidebar-default"); ?>
 		</div>
 	</div>
 </div>
 
 
-<style>
-	.result-winner {
-		color: green;
-		font-size: .85rem;
-		font-weight: 600
-	}
-
-	.result-runner-up {
-		color: #FFA500;
-		font-size: .85rem;
-		font-weight: 600
-	}
-
-	.result-afp {
-		color: purple;
-		font-size: .85rem;
-		font-weight: 600
-	}
-
-	.result-jury {
-		color: rgb(14 165 233);
-		font-size: .85rem;
-		font-weight: 600
-	}
-
-	.result-evicted {
-		color: red;
-		font-size: .85rem;
-		font-weight: 600
-	}
-
-	.result-tbd {
-		color: black;
-		font-size: .85rem;
-		font-weight: 400
-	}
-</style>
 
 
 

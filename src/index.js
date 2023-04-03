@@ -20,11 +20,17 @@ import { permission_check } from "./scripts/Permissions";
 import { feed_update_slider } from "./scripts/FeedUpdateBar";
 import DarkMode from "./scripts/DarkMode";
 import FeedUpdates from "./scripts/FeedUpdates";
+import PaymentModel from "./scripts/PaymentModel";
 
 const playerTableEl = document.getElementById("player-directory-table");
 const commentEl = document.getElementById("bbj-comment-system");
 const searchBar = document.getElementById("bbj-search");
 const feedUpdates = document.getElementById("new-feed-updates");
+const paymentForm = document.getElementById("payment-options");
+
+if (paymentForm) {
+  let paymentModel = new PaymentModel();
+}
 
 if (feedUpdates) {
   ReactDOM.render(<FeedUpdates />, feedUpdates);
