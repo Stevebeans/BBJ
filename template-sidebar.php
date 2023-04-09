@@ -1,41 +1,20 @@
-<?php
+<?php get_header(); ?>
 
-/**
-* Template Name: Single Sidebar - Full
-*/
-get_header();
-?>
 
-<div class="bodyContainer">
-	<!-- Main   -->
-	<div class="mainBody">
-		<div class="widgetContain boxShadowsft">
-			<div class="widgetHeader">
-        <div class="titleBar"></div>
-          <h2 class="widgetTitle"><?php the_title( ); ?></h2>        
+<div class="bbj-container-inner">
+
+  <div class="mt-2 flex w-full flex-col bg-white lg:flex-row overflow-hidden">
+    <div class="flex-grow">
+      <div class="p-2">
+        <h1 class="font-mainHead text-2xl text-primary500">Title</h1>
+        <div class="h-[6px] bg-second500 w-[100px] mb-4"></div>
       </div>
-      <div class="widgetBody">
-          <div class="entry-content">
-            <div class="featured-image">
-              <?php 
-                if (has_post_thumbnail())
-                  the_post_thumbnail( ); 
-                ?>                  
-            </div>
-
-            <div class="post-content">
-
-                <?php 
-                  the_content();
-                ?>
-            </div>
-
-          </div>
-        </div>
-		</div>	
-	</div>
-
-  <?php get_template_part( 'template-parts/sidebar-main' )?>
+    </div>
+    <div class="w-full md:w-[320px]  flex-shrink-0">
+		<?php get_template_part("template-parts/sidebar-default"); ?>
+		</div>
+  </div>
 </div>
-<?php
-get_footer();
+
+
+<?php get_footer(); ?>

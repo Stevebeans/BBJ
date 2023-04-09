@@ -15,50 +15,76 @@ function player_info($data)
 {
   global $wpdb;
   $sql = "SELECT
-  wwbj.first_name, wwbj.last_name, wwbj.profile_picture, wwbj.ID AS playerID, wwbj.date_of_birth, wwbj.player_gender,
-  stats.*, seasons.`ID` AS seasonID, seasons.start_date, seasons.end_date, seasons.full_name, geo.locality
-  FROM wp_bbj_players AS wwbj
-  LEFT JOIN `wp_mb_relationships` 
-      ON (wwbj.`ID` = `wp_mb_relationships`.`from`)
-  LEFT JOIN wp_bbj_seasons AS seasons
-      ON (seasons.`ID` = `wp_mb_relationships`.`to`)
-  LEFT JOIN wp_bbj_player_season_stats AS stats 
-      ON (stats.`ID` = wwbj.`ID`)
-  LEFT JOIN wp_bbj_geo AS geo 
-      ON (geo.`ID` = wwbj.`ID`)
-  ORDER BY wwbj.first_name ASC; ";
+  p.ID AS playerID,
+  p.first_name,
+  p.last_name,
+  p.profile_picture,
+  p.date_of_birth,
+  p.player_gender,
+  p.official_nickname,
+  psr.winner,
+  psr.afp,
+  psr.runner_up,
+  psr.total_hoh,
+  psr.total_pov,
+  psr.total_nom,
+  psr.season_id,
+  s.full_name AS season_name,
+  s.start_date AS season_start,
+  s.abbreviation AS season_abbr,
+  s.end_date AS season_end
+  FROM wp_bbj_players AS p
+  LEFT JOIN wp_bbj_play_season_rel AS psr ON psr.player_id = p.ID
+  LEFT JOIN wp_bbj_seasons as s ON s.ID = psr.season_id
+  ";
 
   $players = $wpdb->get_results($sql);
 
   $playerTable = [];
+  $addedPlayerIDs = [];
 
   foreach ($players as $p):
     $dob = $p->date_of_birth;
-    $showStart = $p->start_date;
-    $showEnd = $p->end_date;
-
+    $city = rwmb_meta("locality", "", $p->playerID);
     $imgUrl = wp_get_attachment_image_src($p->profile_picture, "profile-picture");
+    $seasonLink = get_permalink($p->season_id);
 
-    array_push($playerTable, [
-      "profile" => $imgUrl[0],
-      "first_name" => $p->first_name,
-      "last_name" => $p->last_name,
-      "player_link" => get_permalink($p->playerID),
-      "season" => $p->full_name,
-      "hoh_wins" => $p->hohwins ? $p->hohwins : 0,
-      "pov_wins" => $p->povwins ? $p->povwins : 0,
-      "misc_wins" => $p->miscwins ? $p->miscwins : 0,
-      "nom" => $p->nominated ? $p->nominated : 0,
-      "saved" => $p->saved_block ? $p->saved_block : 0,
-      "finished" => $p->place_finished ? $p->place_finished : "",
-      "current_age" => $dob ? current_age($dob) : "",
-      "then_age" => $dob ? show_age($dob, $showStart) : "",
-      "start_date" => $p->start_date,
-      "end_date" => $p->end_date,
-      "location" => $p->locality,
-      "gender" => $p->player_gender,
-    ]);
+    $playerID = $p->playerID;
+
+    if (!in_array($playerID, $addedPlayerIDs)) {
+      $addedPlayerIDs[] = $playerID;
+      $playerTable[] = [
+        "id" => $playerID,
+        "profile" => $imgUrl[0],
+        "first_name" => $p->first_name,
+        "last_name" => $p->last_name,
+        "nickname" => $p->official_nickname,
+        "player_link" => get_permalink($playerID),
+        "location" => $city,
+        "gender" => $p->player_gender,
+        "current_age" => $dob ? current_age($dob) : "",
+        "seasons" => [],
+      ];
+    }
+
+    if ($p->season_id) {
+      $playerIndex = array_search($playerID, $addedPlayerIDs);
+      $playerTable[$playerIndex]["seasons"][$p->season_id] = [
+        "name" => $p->season_name,
+        "abbr" => $p->season_abbr,
+        "link" => $seasonLink,
+        "winner" => $p->winner,
+        "runner_up" => $p->runner_up,
+        "afp" => $p->afp,
+        "start_date" => $p->season_start,
+        "end_date" => $p->season_end,
+        "hoh_wins" => $p->total_hoh ? $p->total_hoh : 0,
+        "pov_wins" => $p->total_pov ? $p->total_pov : 0,
+        "nom" => $p->total_nom ? $p->total_nom : 0,
+      ];
+    }
   endforeach;
 
   return $playerTable;
 }
+
