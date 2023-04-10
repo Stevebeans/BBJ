@@ -353,7 +353,9 @@ $curSeasonID = currentSeason("ID");
 
         <?= do_shortcode("[bbj_stats]") ?>
 
-        <div class="text-xs">More stats to come!</div>
+        <div class="text-xs">
+          <a href="/big-brother-stats/">More Big Brother Stats</a>
+        </div>
 
       </section>
             

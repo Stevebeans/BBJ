@@ -16,6 +16,7 @@ function get_top_competition_data($competition_type)
     return $wpdb->get_results($query);
 }
 
+
 function render_competition_leaderboard($competition_data, $competition_title)
 {
     echo '<div class="border border-slate-200 w-full sm:w-[200px] mr-2 mb-2 grid grid-cols-2">';
@@ -84,13 +85,14 @@ function render_rank_4_to_10($id, $displayName, $total_sum)
         <div>{$total_sum}</div>
         </a>
         </div>";
-        }
+}
         
-        $top_hoh = get_top_competition_data('hoh');
-        $top_pov = get_top_competition_data('pov');
-        $top_nom = get_top_competition_data('nom');
-        $top_votes = get_top_competition_data('votes');
-        $top_saved = get_top_competition_data('saved');
+$top_comp = get_top_competition_data('comp');
+$top_hoh = get_top_competition_data('hoh');
+$top_pov = get_top_competition_data('pov');
+$top_nom = get_top_competition_data('nom');
+$top_votes = get_top_competition_data('votes');
+$top_saved = get_top_competition_data('saved');
         
 get_header();
 ?>
@@ -101,7 +103,8 @@ get_header();
       <div class="p-2">
         <h1 class="font-mainHead text-2xl text-primary500">Big Brother Stats</h1>
         <div class="h-[6px] bg-second500 w-[100px] mb-4"></div>
-        <div class="flex flex-col sm:flex-rows sm:flex-wrap">
+        <div class="flex flex-col sm:flex-row sm:flex-wrap">
+        <?php render_competition_leaderboard($top_comp, 'Total Comp Wins'); ?>  
         <?php render_competition_leaderboard($top_hoh, 'Head of Household'); ?>
         <?php render_competition_leaderboard($top_pov, 'Power of Veto'); ?>
         <?php render_competition_leaderboard($top_nom, 'Nominations'); ?>
