@@ -50,6 +50,7 @@ $query = $wpdb->prepare(
 			r.total_weeks,
 			r.total_veto_played,
 			r.save_per,
+			r.finish,
 			r.hoh_per,
 			r.pov_per,
 			r.comp_per,
@@ -99,7 +100,7 @@ $query = $wpdb->prepare(
 	WHERE
 			r.season_id = %d
 	ORDER BY
-			r.evict_date DESC
+			r.finish ASC
 	",
   $season_id
 );
