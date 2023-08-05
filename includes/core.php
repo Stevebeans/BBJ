@@ -32,6 +32,26 @@ function my_post_time_ago_function()
   ];
 }
 
+
+function getLeaveDate($evictDate) {
+  // Default to current date
+  $leaveDate = new DateTime();
+
+  // Check if evict_date is set and not zero
+  if (isset($evictDate) && $evictDate != "0000-00-00") {
+      // Convert to DateTime object
+      $evictDateObj = DateTime::createFromFormat('Y-m-d', $evictDate);
+
+      // If conversion is successful and evict_date is a valid date
+      if ($evictDateObj !== false) {
+          $leaveDate = $evictDateObj;
+      }
+  }
+
+  // Return the leaveDate as a string in 'Y-m-d' format
+  return $leaveDate->format('Y-m-d');
+}
+
 function time_ago_calc($time)
 {
   date_default_timezone_set("US/Eastern");
@@ -356,13 +376,26 @@ function isAdmin()
 
 function premiumCheck()
 {
+  // Check if user is logged in
   if (is_user_logged_in()):
     $user = wp_get_current_user();
-    if (current_user_can("supporter") || current_user_can("editor") || current_user_can("administrator") || current_user_can("second_in_command")):
+    // Check if user has one of the specified roles
+    if (current_user_can("supporter") || current_user_can("editor") || current_user_can('updater') || current_user_can("administrator") || current_user_can("second_in_command")):
       return true;
     endif;
   endif;
+
+  // Check if on specific pages
+  global $post;
+  $restricted_pages = array('become-supporter'); //add all the pages you want to hide ads on
+
+  if(is_page($restricted_pages)):
+    return true;
+  endif;
+
+  return false;
 }
+
 
 function feedUpdater()
 {

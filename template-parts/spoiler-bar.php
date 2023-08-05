@@ -15,10 +15,21 @@
         foreach ($unserializedPlayer as $innerArray):
 
           $playerId = (int) $innerArray["player_id"];
-          $playerData = $wpdb->get_row($wpdb->prepare("SELECT profile_picture, first_name, last_name FROM wp_bbj_players WHERE ID = %d", $playerId));
+          $playerData = $wpdb->get_row($wpdb->prepare("SELECT profile_picture, first_name, last_name, official_nickname AS nick FROM wp_bbj_players WHERE ID = %d", $playerId));
+
+          bbj_log2(print_r($playerData, true));
           $imgUrl = wp_get_attachment_image_src($playerData->profile_picture, "profile-picture");
           $firstName = $playerData->first_name;
           $lastName = $playerData->last_name;
+          $displayName = $firstName;
+          $fontClass = 'font-mainHead';
+          $fontSizeClass = 'text-xs md:text-base';
+
+          if(!empty($playerData->nick)) {
+              $displayName = '"' . $playerData->nick . '"';
+              $fontClass = 'font-hand';
+              $fontSizeClass = 'text-xs md:text-sm';
+          }
 
           $name_map = [
             "afp" => "AFP",
@@ -49,9 +60,9 @@
           ?>
     
       <div class="profile-contain">
-        <div class="profile-outline flex justify-center items-center <?= isset($innerArray["current_house_status"][0]) ? $innerArray["current_house_status"][0] : "active" ?>"><a href="<?php the_permalink($innerArray["player_id"]); ?>"><img src="<?= $imgUrl[0] ?>" alt="Player profile for <?= $firstName . " " . $lastName ?>" class="w-6 h-8 md:w-10 md:h-12 rounded-xl"></a></div>
-        <div class="text-gray-700 font-mainHead text-center font-medium text-xs md:text-base leading-3 md:!leading-4 dark:text-gray-200 "><?= $firstName ?></div>
-        <div class="text-xs md:text-base font-mainHead text-center !leading-3 md:!leading-4 tracking-tighter <?= isset($innerArray["current_house_status"][0]) ? $innerArray["current_house_status"][0] : "active" ?>"><?= $names_string ?></div>
+        <div class="profile-outline flex justify-center items-center <?= isset($innerArray["current_house_status"][0]) ? $innerArray["current_house_status"][0] : "active" ?>"><a href="<?php the_permalink($innerArray["player_id"]); ?>"><img src="<?= $imgUrl[0] ?>" alt="Player profile for <?= $firstName . " " . $lastName ?>" class="w-6 h-8 md:w-10 md:h-12 rounded-xl overflow-hidden"></a></div>
+        <div class="text-gray-700 <?= $fontClass ?> text-center font-medium <?= $fontSizeClass ?> pt-0.5 leading-4 md:!leading-4 dark:text-gray-200 "><?= $displayName ?></div>
+        <div class="text-xs font-mainHead text-center !leading-3 md:!leading-4 tracking-tighter <?= isset($innerArray["current_house_status"][0]) ? $innerArray["current_house_status"][0] : "active" ?>"><?= $names_string ?></div>
       </div>
     
 

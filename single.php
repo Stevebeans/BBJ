@@ -20,8 +20,8 @@ get_header(); ?>
       </div>
 
       <div class="absolute top-64 w-full">
-        <h1 class="text-3xl font-bold mb-1 text-white pl-4"><?php the_title(); ?></h1>
-        <div class="text-white pl-6 mb-2 text-sm"><?php the_modified_date(); ?> | <A href="#wpd-threads" class="text-second500 hover:text-secondHard !underline underline-offset-2"><?php echo $post->comment_count; ?> 
+        <h1 class="text-lg md:text-3xl font-bold mb-1 text-white pl-3"><?php the_title(); ?></h1>
+        <div class="text-white pl-3 mb-2 text-sm"><?php the_modified_date(); ?> | <A href="#wpd-threads" class="text-second500 hover:text-secondHard !underline underline-offset-2"><?php echo $post->comment_count; ?> 
         Comments</a></div>  
       </div> 
       
@@ -32,7 +32,7 @@ get_header(); ?>
       <?php endif; ?>  
       
       
-      <div class="blog-post mx-auto bg-white w-11/12 rounded-xl p-2 z-10  mb-10 -mt-[100px]">
+      <div class="blog-post mx-auto bg-white w-full md:w-[90%] rounded-xl p-0.5 md:p-2 z-10  mb-10 -mt-[100px]">
         <div class="flex justify-between border-b border-gray-200 p-2">
         <div class="flex justify-center items-center">
   <?php
@@ -50,7 +50,7 @@ get_header(); ?>
         </div>
 
 
-        <div class="prose-xl prose-slate p-2"> 
+        <div class="prose-base prose-slate p-2 "> 
 
           <?php get_template_part("template-parts/quicklinks"); ?>
 

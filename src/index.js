@@ -27,6 +27,8 @@ const commentEl = document.getElementById("bbj-comment-system");
 const searchBar = document.getElementById("bbj-search");
 const feedUpdates = document.getElementById("new-feed-updates");
 const paymentForm = document.getElementById("payment-options");
+const mainBody = document.querySelector("#main-body");
+const updateBox = document.querySelector("#update-box");
 
 if (paymentForm) {
   let paymentModel = new PaymentModel();
@@ -34,6 +36,10 @@ if (paymentForm) {
 
 if (feedUpdates) {
   ReactDOM.render(<FeedUpdates />, feedUpdates);
+}
+
+if (updateBox) {
+  feed_update_slider();
 }
 
 if (searchBar) {
@@ -55,7 +61,6 @@ const playerTable = new PlayerTable();
 
 const darkMode = new DarkMode();
 permission_check();
-feed_update_slider();
 
 console.log("js-loaded");
 

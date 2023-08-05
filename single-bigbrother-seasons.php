@@ -192,6 +192,11 @@ $players = $wpdb->get_results($query);
 								</tr>
 
 								<?php foreach ($players as $player):
+
+								
+									
+									$leaveDate = getLeaveDate($player->evict_date);
+
           $prof_pic = rwmb_meta("profile_picture", ["size" => "profile-picture"], $player->ID); ?>
 									<tr class="border-0 even:bg-gray-100">
 									<td class="!p-1 text-sm !border-r !border-b border-slate-200">
@@ -208,10 +213,10 @@ $players = $wpdb->get_results($query);
 										<td class="text-sm text-center !border-b !border-r border-slate-200"><?= $player->pov_count ? $player->pov_count : 0 ?></td>
 										<td class="text-sm text-center !border-b !border-r border-slate-200"><?= $player->nom_count ? $player->nom_count : 0 ?></td>
 										<td class="text-sm text-center !border-b  !border-r border-slate-200"><?= $player->voted_for_count ? $player->voted_for_count : 0 ?></td>
-										<td class="text-sm text-center !border-b  !border-r border-slate-200"><?= days_calc_new($start_date, $player->evict_date) ?></td>
+										<td class="text-sm text-center !border-b  !border-r border-slate-200"><?= days_calc_new($start_date, $leaveDate) ?></td>
 										<td class="text-left !pl-2"><?= s_results_week($player, "player-list") ?></td>
 										<td class=" hidden md:table-cell">
-									<?php $s_percent = season_percentage_calc($start_date, $end_date, $player->evict_date); ?>
+									<?php $s_percent = season_percentage_calc($start_date, $end_date, $leaveDate); ?>
 									
 									<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
 									<div class="<?php if ($s_percent < 50) {

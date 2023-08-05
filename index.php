@@ -6,73 +6,81 @@ get_header(); ?>
 <?php
 $curSeason = currentSeason("name");
 $curSeasonID = currentSeason("ID");
+
+$user_id = get_current_user_id();
+$posts_per_page = get_user_meta($user_id, 'feed_update_count', true);
 ?>
 
 
 
 <div class="bbj-container-inner">
 <?php if (!is_paged()): ?>
-	<div class="mt-2 flex w-full flex-col bg-white lg:flex-row overflow-hidden">
+	<div class="mt-2 flex w-full flex-col bg-white lg:flex-row overflow-hidden ">
     <section id="main-left" class="w-full flex-grow">
       <h1 class="font-mainHead text-4xl text-primary500 p-2"><a href="<?= get_permalink($curSeasonID) ?>"><?= $curSeason ?></a> Spoilers</h1>
       
       <!-- Feed Updates and Featured Post block -->
-      <div class="flex flex-grow p-2 flex-col-reverse md:flex-row">   
+      <div class="flex flex-grow p-2 flex-col-reverse md:flex-row" id="main-feeds">   
              
         <!-- Live Feed Update Block -->
         <div id="feed-updates" class="w-full md:w-[210px] flex-shrink-0 md:border-r border-dotted border-slate-500">
+
           <h3 class="font-mainHead text-2xl text-primary500">Live Feed Updates</h3>
           <div class="h-[6px] bg-second500 w-[100px] mb-4"></div>
+
+
+          <div class="text-xs">Showing the last <?= $posts_per_page ?> Updates <?php echo !premiumCheck() ? '' : '(<a href="/user-dashboard" class="text-blue-600 font-bold underline visited:text-blue-700 hover:underline">change</a>)' ?></div>
+          <div class="h-[800px] no-scrollbar overflow-y-auto mr-2">
           <?php
           $args = [
             "post_type" => "live-feed-updates",
-            "posts_per_page" => 7,
+            "posts_per_page" => $posts_per_page,
             "orderby" => "modified",
             "order" => "DESC",
           ];
           $feed_updates = new WP_Query($args);
           ?>
+
           <?php if ($feed_updates->have_posts()): ?>
             <?php while ($feed_updates->have_posts()):
-              $feed_updates->the_post(); ?>
+              $feed_updates->the_post(); 
+              ?>
             <?php $post_time_data = my_post_time_ago_function(); ?>
-          <div class="p-2 border-b last:border-0 border-gray-400 flex mb-4">          
-            <div class="row-span-2 flex justify-center items-start">
-              <div>
-                <style>
-                  .pp-user-avatar {
-                    border-radius: 100%;
-                    margin-right: 4px;
-                    margin-top: 4px;
-                  }
-                </style>
-                    <?php
-                    $author_id = get_the_author_meta("ID");
-                    $avatar_shortcode = '[avatar user="' . $author_id . '" size="16" link="file" align="center"]';
-                    $avatar_url = do_shortcode($avatar_shortcode);
-                    ?>
-                   <?= $avatar_url ?>
-              </div>  
-            </div>
 
-            <div class="w-full">     
-              <div>
-                <div class="text-gray-800"><?php the_title(); ?></div>
-                <div class="text-gray-600 text-sm"><?php the_content(); ?></div>
-                <div class="<?= $post_time_data["class"] ?> text-xs font-ibm"><?= $post_time_data["time_diff"] ?></div>
+
+            <div class="my-4 p-1 border-l-8 border-gray-200 hover:bg-slate-200 border-t border-b rounded-md">
+            <div class="bg-gray-100 p-1">
+              <div class="text-xs md:hidden">
+              <?php 
+                  echo get_the_date('m/d/y h:ia');
+              ?>
+              </div>
+              <div class="text-xs">
+              <span class="<?php echo $post_time_data["class"] ?>"><?php echo $post_time_data["time_diff"] ?></span>
+              </div>
+              <div class="text-xs">
+                By: <?php the_author(); ?>
               </div>
             </div>
+            <div class="text-sm"><?php the_title(); ?></div>
+            <div class="text-center"><?php
+              if (has_post_thumbnail()) {
+                echo get_the_post_thumbnail(null, 'large', array( 'class' => 'text-center mx-auto rounded-lg my-1' ));
+              }
+            ?></div>
+            <div class="text-sm " id="main-page-feed"><?= get_the_content() ?></div>
+            </div>
+
+            <?php endwhile;
+            wp_reset_postdata(); 
+             endif; ?>
 
           </div>
-          <?php
-            endwhile; ?>
-            <?php else: ?>
-          <p>No updates found</p>
-          <?php endif; ?>
-          <div class="flex justify-center items-center">
-            <a href="/feed-updates/"><div class="border border-primary500 rounded-3xl py-1 px-2 mr-2 flex justify-center bg-second500 items-center text-center text-sm font-bold hover:text-white">
-              View More Live Feed Updates Here</div></a>
-          </div>
+          <div class="text-center text-sm"><a href="/feed-updates" class="text-blue-600 font-bold underline hover:underline visited:text-blue-700">View more updates here</a></div>
+
+
+
+          
         <?php wp_reset_postdata(); ?>
 
           

@@ -25,22 +25,9 @@
 
     
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1Q771W4ZV2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-1Q771W4ZV2');
-    </script>
 
 
-    <?php if (!premiumCheck()): ?>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3657293189229655"
-     crossorigin="anonymous"></script>
-     <?php endif; ?>
-    
+
 
      <?php
      $logIn = is_user_logged_in();
@@ -50,7 +37,21 @@
      endif;
      ?>
 
-<script async src="https://fundingchoicesmessages.google.com/i/pub-1172879704296990?ers=1" nonce="TH85HcHKLQ1PJMToliS9AA"></script><script nonce="TH85HcHKLQ1PJMToliS9AA">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1Q771W4ZV2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-1Q771W4ZV2');
+    </script>
+    <?php if (!premiumCheck()): ?>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3657293189229655"
+     crossorigin="anonymous"></script>
+     <script async src="https://fundingchoicesmessages.google.com/i/pub-1172879704296990?ers=1" nonce="TH85HcHKLQ1PJMToliS9AA"></script><script nonce="TH85HcHKLQ1PJMToliS9AA">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+     <?php endif; ?>
+    
   </head>
   <body <?php body_class(); ?> class="">
 
@@ -101,7 +102,7 @@ p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div>
             </div>
             <ul class="py-1" aria-labelledby="user-menu-button">
               <li>
-                <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                <a href="/user-dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
               </li>
               <li>
                 <a href="<?= wp_logout_url() ?>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
@@ -124,7 +125,7 @@ p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div>
                   "items_wrap" =>
                     '<ul id="%1$s" class="%2$s nav-class-li">%3$s' .
                     (is_user_logged_in()
-                      ? '<li><a href="/dashboard">Settings</a></li>  
+                      ? '<li><a href="/user-dashboard">Settings</a></li>  
                     <li><a href="' .
                         wp_logout_url() .
                         '">Log Out</a></li>'
@@ -148,6 +149,11 @@ p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div>
 
   
       <?php get_template_part("template-parts/spoiler-bar"); ?>
+
+      <div class=" max-w-6xl w-full  mx-auto my-2 border border-red-400 bg-red-200 p-4">
+        <div class="text-center text-lg">Notice</div>
+        <div class="text-sm">I will be away between Sunday, August 6th and Thursday, August 10th. <Br /> There should still be a daily post from me as well as one from Mel, and Jennifer will continue to do live updates in addition to hopefully a second person soon. You shouldn't notice much of a difference, but if you do, that's why. <br /> - Steve</div>
+      </div>
 
       <?php get_template_part("template-parts/ads/ad-header"); ?>
     

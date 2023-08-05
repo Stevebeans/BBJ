@@ -17,16 +17,17 @@ get_header(); ?>
         <h2 class="text-xl font-bold my-2">Enjoy The Ad-Free Experience</h2>
 
         <div class="prose max-w-prose"><p>
-        Hey there, Big Brother Junkies fan! We've got something special just for you. How about enjoying all the amazing content you love on our site without any ads getting in the way? For only $4.99 a month, you can become a supporter and get that smooth, ad-free experience you've always wanted.</p>
+        Hey there, Big Brother Junkies fan! We've got something special just for you. How about enjoying all the amazing content you love on our site without any ads getting in the way? For only $4.95 a month, you can become a supporter and get that smooth, ad-free experience you've always wanted.</p>
 
         <p>
 We're passionate about bringing you the best Big Brother updates and insights, and your support helps us keep the site up and running. Plus, you'll be part of our amazing community, contributing directly to the site you love. So, what do you say? Join us as a supporter and let's make Big Brother Junkies even better, together!</p>
         </div>
+        <?php if ( is_user_logged_in() ): ?>
         <div id="payment-options">
           <div class="flex">
-            <div class="flex-1 bg-sky-200 border rounded border-blue-200 p-4 m-2 text-center cursor-pointer select-option" data-value="4.99" data-plan-type="1">
+            <div class="flex-1 bg-sky-200 border rounded border-blue-200 p-4 m-2 text-center cursor-pointer select-option" data-value="4.95" data-plan-type="1">
               <h3 class="text-lg font-bold">Monthly</h3>
-              <p>$4.99/month *</p>
+              <p>$4.95/month *</p>
             </div>
             <div class="flex-1 bg-sky-200 border rounded border-blue-200 p-4 m-2 text-center cursor-pointer select-option" data-value="39"  data-plan-type="2">
               <h3 class="text-lg font-bold">Annual</h3>
@@ -46,6 +47,9 @@ We're passionate about bringing you the best Big Brother updates and insights, a
                       </li>
                   </ul>
               </div>
+              <div id="bbj-payment-summary" class="my-4 p-4 bg-white border rounded shadow-md hidden">
+                  <!-- The payment summary will be inserted here -->
+              </div>
               <div id="myTabContent">
                   <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                       <p class="text-sm text-gray-500 dark:text-gray-400"><?php echo FrmFormsController::get_form_shortcode(["id" => 9]); ?></p>
@@ -56,6 +60,11 @@ We're passionate about bringing you the best Big Brother updates and insights, a
                   
               </div>
           </div>
+          <?php else: ?>
+          <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
+            <p class="text-sm text-gray-500 dark:text-gray-400">You must be logged in to become a supporter. <a href="/log-in">Login</a> or <a href="/registration">Register</a></p>
+          </div>
+          <?php endif; ?>
         </div>
     </div>
 

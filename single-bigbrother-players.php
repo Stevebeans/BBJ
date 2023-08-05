@@ -249,6 +249,7 @@ $total_days = 0; ?>
 
        if (isset($p_week[0])) {
          $evict_date = $p_week[0]->evict_date;
+				 $leaveDate = getLeaveDate($evict_date);
        } else {
          // handle the case where $p_week is empty or doesn't have the desired key
        }
@@ -261,13 +262,13 @@ $total_days = 0; ?>
 								<td class="text-center  !border-r border-slate-200"><?= $season->nom_sum ?></td>
 								<td class="text-center  !border-r border-slate-200"><?= $season->vote_count ?></td>
 								<td class="text-center  !border-r border-slate-200"><?php
-        $days = days_calc_new($season->season_start, $evict_date);
+        $days = days_calc_new($season->season_start, $leaveDate);
         $total_days += $days;
         echo $days;
         ?></td>
 								<td class="text-left !pl-2"><?= s_results_week($p_week, "player-page") ?></td>
 								<td>
-									<?php $s_percent = season_percentage_calc($season->season_start, $season->season_end, $evict_date); ?>
+									<?php $s_percent = season_percentage_calc($season->season_start, $season->season_end, $leaveDate); ?>
 									
 									<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
 									<div class=" hidden md:block <?php if ($s_percent < 50) {
@@ -287,7 +288,7 @@ $total_days = 0; ?>
 						<?php endforeach; ?>
 							<tr class="border-t border-slate-200">
 								<td class="font-bold text-sm">Totals:</td>
-								<td class="hidden md:table-lock"></td>
+								<td class=""></td>
 								<td class="font-bold text-second500 text-center"><?= $total_hoh ?></td>
 								<td class="font-bold text-second500 text-center"><?= $total_pov ?></td>
 								<td class="font-bold text-second500 text-center"><?= $total_nom ?></td>

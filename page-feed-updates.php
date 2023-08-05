@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php get_header(); 
+
+$curSeason = currentSeason("name");
+$curSeasonID = currentSeason("ID");
+
+
+$user_id = get_current_user_id();
+$posts_per_page = get_user_meta($user_id, 'feed_update_count', true);
+?>
 
 
 <div class="bbj-container-inner">
@@ -7,9 +15,8 @@
   <div class="bbj-inner-content-container">
     <div class="bbj-content-container">
       <div class="mt-6">
-        <div class="heading-bg">
-          <h1 class="heading-text"><a href="<?= site_url() ?>" class="hover:text-primarySoft">Home</a> >> Latest Live Feed Updates</h1>
-        </div>    
+          <h1 class="font-mainHead text-3xl text-primary500"><?= $curSeason ?> Live Feed Updates</h1>
+          <div class="h-[6px] bg-second500 w-[100px] mb-4"></div>    
 
 
         <div id="new-feed-updates"></div>
@@ -19,7 +26,7 @@
 
         $args = [
           "post_type" => "live-feed-updates",
-          "posts_per_page" => 15,
+          "posts_per_page" => $posts_per_page,
           "orderby" => "modified",
           "order" => "DESC",
           "paged" => $paged,
@@ -35,27 +42,29 @@
           $feed_updates->the_post();
           $counter++;
           ?>
+          <?php $post_time_data = my_post_time_ago_function(); ?>
 
 
-          <div class="p-2 border-b last:border-0 border-gray-400 flex gap-4 mb-4">          
-            <div class="row-span-2 w-10 flex justify-center items-start">
-              <div>
-                <?php
-                $author_id = get_the_author_meta("ID");
-                $avatar_url = get_avatar_url($author_id, ["size" => 32]);
-                ?>
-                <img src="<?php echo $avatar_url; ?>"class="rounded-full w-10 h-10"alt="Author Avatar"> 
-              </div>  
+          <div class="my-4 p-1 border-l-8 border-gray-200 hover:bg-slate-200 border-t border-b rounded-md">         
+          <div class="bg-gray-100 p-1">
+            <div class="text-xs ">
+            <?php 
+                echo get_the_date('m/d/y h:ia');
+            ?>
+            (<span class="<?php echo $post_time_data["class"] ?>"><?php echo $post_time_data["time_diff"] ?></span>)
             </div>
-
-            <div>
-              
-              <div class="text-red-500 text-sm"><?php echo the_modified_date(); ?></div>
-              <div>
-                <div class="text-gray-800 text-lg"><?php the_title(); ?></div>
-                <div class="text-gray-800"><?php the_content(); ?></div>
-              </div>
+            <div class="text-xs">
+              By: <?php the_author(); ?>
             </div>
+          </div>
+
+            <div class="text-sm"><?php the_title(); ?></div>
+            <div class="text-center"><?php
+              if (has_post_thumbnail()) {
+                echo get_the_post_thumbnail(null, 'large', array( 'class' => 'text-center mx-auto rounded-lg my-1' ));
+              }
+            ?></div>
+            <div class="text-sm " id="main-page-feed"><?= get_the_content() ?></div>
 
           </div>
 
