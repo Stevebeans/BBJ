@@ -12,7 +12,22 @@
       
     
       
-          <?php if ( is_user_logged_in() ): ?>            
+          <?php if ( is_user_logged_in() ): ?>  
+            
+            <?php if (premiumCheck()): ?>
+              <div class="w-full my-2 bg-yellow-50 p-4 rounded-lg border-2 border-yellow-300 relative">
+                <div class="absolute top-2 left-2"><i class="fa-solid fa-heart text-red-500"></i></div>
+                <div class="absolute top-2 right-2"><i class="fa-solid fa-heart text-red-500"></i></div>
+                <div class="text-lg text-center font-bold">Thank you for being a supporter!</div>
+                <div class="text-sm">As ad-blockers become more and more prominent and pre-installed in browsers, it becomes harder and harder to pay the massive server bills for keeping this site running.
+                  Rather than beg for donations every year, I decided to offer a premium membership for those who want to support the site and get some extra perks in return.
+                  <br><br>
+                  As a supporter, I also want you to have personal access to my email address so you can contact me directly with any questions or concerns you may have.  Please just keep the subject line something like "BBJ Supporter" so I can answer it asap. My personal email is <a href="mailto:stevebeans@gmail.com" class="text-blue-500">stevebeans@gmail.com</a>
+                  <br><br>
+                  Please don't give it out, I get enough spam as is <i class="fa-regular fa-face-smile"></i>
+                </div>
+              </div>
+            <?php endif; ?>
 
             <form method="post">
               <div class="border p-4 shadow-md rounded-md">
