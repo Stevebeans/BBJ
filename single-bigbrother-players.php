@@ -189,13 +189,6 @@ $winner_check = $wpdb->get_results(
 				</div>
 			</section>
 
-			<?php if (!premiumCheck()): ?>
-			<section id="spacer" class="w-full flex justify-center items-center my-4">
-				<div class="w-[90%] h-[2px] bg-slate-400"></div>
-			</section>
-
-			<div><?php get_template_part("template-parts/ads/ad-flex"); ?></div>
-			<?php endif; ?>
 			
 			<section id="spacer2" class="w-full flex justify-center items-center my-4">
 				<div class="w-[90%] h-[2px] bg-slate-400"></div>

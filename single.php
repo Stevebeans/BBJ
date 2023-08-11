@@ -63,7 +63,6 @@ get_header(); ?>
 
 
           
-          <?php get_template_part("template-parts/ads/taboola-below"); ?> 
 
 
           <div id="bbj-comment-system"></div>

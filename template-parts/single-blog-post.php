@@ -19,7 +19,6 @@
     <?php endif; ?>
 
           <?php the_content(); ?>    
-          <?php get_template_part("template-parts/ads/taboola-below"); ?>  
       </div>    
     </div>                    
       <?php get_template_part("template-parts/sidebar-spoiler-box"); ?>

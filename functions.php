@@ -1,6 +1,6 @@
 <?php
 
-define("BBJ_THEME_VERSION", "3.1.4.2");
+define("BBJ_THEME_VERSION", "3.1.4.7");
 define("BBJ_ROOT", dirname(__FILE__));
 define("BBJ_INCLUDES", BBJ_ROOT . "/includes");
 define("BBJ_IMAGES", get_theme_file_uri("/images"));
@@ -18,6 +18,7 @@ require "includes/cpt.php";
 require "includes/breadcrumbs.php";
 require "includes/routes.php";
 require "includes/search-route.php";
+require 'includes/ads.php';
 
 //Include Metabox Files
 require_once BBJ_MB_FILES . "/create-tables.php";

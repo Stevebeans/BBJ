@@ -170,7 +170,6 @@ $players = $wpdb->get_results($query);
 				</div>
 				<div class="p-2 flex flex-col flex-grow">
 					<div>
-					<?php get_template_part("template-parts/ads/ad-flex"); ?>
 					</div>
 
 					<div class="w-full">
@@ -240,7 +239,6 @@ $players = $wpdb->get_results($query);
 					</div>
 
 					<div>
-					<?php get_template_part("template-parts/ads/ad-flex"); ?>
 					</div>
 
 					<div class="w-full">
@@ -309,7 +307,6 @@ $players = $wpdb->get_results($query);
 					</div>
 
 					<div>
-					<?php get_template_part("template-parts/ads/ad-flex"); ?>
 					</div>
 
 					<div>

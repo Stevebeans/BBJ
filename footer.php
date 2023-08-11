@@ -32,8 +32,9 @@
 <?php wp_footer(); ?>
 
 
-<?php if (!premiumCheck() && !is_front_page()): ?>
-<script type="text/javascript">
+<?php if (!premiumCheck()): ?>
+
+  <script type="text/javascript">
   window._taboola = window._taboola || [];
   _taboola.push({article:'auto'});
   !function (e, f, u, i) {
@@ -48,10 +49,7 @@
   '//cdn.taboola.com/libtrc/bigbrotherjunkies-network/loader.js',
   'tb_loader_script');
   if(window.performance && typeof window.performance.mark == 'function')
-    {window.performance.mark('tbl_ic');}
-
-
-    
+    {window.performance.mark('tbl_ic');}    
 </script>
 <script type="text/javascript">
   window._taboola = window._taboola || [];

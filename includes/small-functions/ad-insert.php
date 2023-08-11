@@ -1,7 +1,7 @@
 <?php
 //Insert ads after second paragraph of single post content.
 
-add_filter("the_content", "prefix_insert_post_ads");
+//add_filter("the_content", "prefix_insert_post_ads");
 
 function prefix_insert_post_ads($content)
 {

@@ -46,11 +46,11 @@
 
       gtag('config', 'G-1Q771W4ZV2');
     </script>
+    
     <?php if (!premiumCheck()): ?>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3657293189229655"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
      crossorigin="anonymous"></script>
-     <script async src="https://fundingchoicesmessages.google.com/i/pub-1172879704296990?ers=1" nonce="TH85HcHKLQ1PJMToliS9AA"></script><script nonce="TH85HcHKLQ1PJMToliS9AA">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
-     <?php endif; ?>
+    <?php endif; ?>
     
   </head>
   <body <?php body_class(); ?> class="">
@@ -65,6 +65,10 @@
         document.documentElement.classList.remove('dark')
     }
 </script>
+
+        <?php show_header_ad() ?>
+
+
     <nav class="bg-white rounded dark:bg-gray-900 drop-shadow z-50 relative">
       <div class="container flex flex-wrap items-center justify-between mx-auto px-2 py-1 md:p-2">
       
@@ -150,12 +154,11 @@ p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div>
   
       <?php get_template_part("template-parts/spoiler-bar"); ?>
 
-      <div class=" max-w-6xl w-full  mx-auto my-2 border border-red-400 bg-red-200 p-4">
+      <!-- <div class=" max-w-6xl w-full  mx-auto my-2 border border-red-400 bg-red-200 p-4">
         <div class="text-center text-lg">Notice</div>
         <div class="text-sm">I will be away between Sunday, August 6th and Thursday, August 10th. <Br /> There should still be a daily post from me as well as one from Mel, and Jennifer will continue to do live updates in addition to hopefully a second person soon. You shouldn't notice much of a difference, but if you do, that's why. <br /> - Steve</div>
-      </div>
+      </div> -->
 
-      <?php get_template_part("template-parts/ads/ad-header"); ?>
     
       <div id="user-role" data-role="<?= $bbjAdCheck ?>"></div>
 <?php if (feedUpdater()): ?>

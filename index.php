@@ -42,7 +42,9 @@ $posts_per_page = get_user_meta($user_id, 'feed_update_count', true);
           ?>
 
           <?php if ($feed_updates->have_posts()): ?>
-            <?php while ($feed_updates->have_posts()):
+            <?php 
+            $counter = 0;
+            while ($feed_updates->have_posts()):
               $feed_updates->the_post(); 
               ?>
             <?php $post_time_data = my_post_time_ago_function(); ?>
@@ -71,7 +73,29 @@ $posts_per_page = get_user_meta($user_id, 'feed_update_count', true);
             <div class="text-sm " id="main-page-feed"><?= get_the_content() ?></div>
             </div>
 
-            <?php endwhile;
+            <?php 
+            $counter++;
+
+            if (!premiumCheck() && ($counter === 4 || $counter === 9)):
+              ?>
+              <div class=" w-full p-2  border relative">
+                          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
+                crossorigin="anonymous"></script>
+            <!-- 2023 Feed Update Index -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-1172879704296990"
+                data-ad-slot="7061892596"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+                <div class="text-xs absolute bottom-0 right-0 bg-slate-50">Don't want ads? <a href="/become-supporter/" class=" text-primary500 hover:underline mt-4">Go premium here</a></div>
+              </div>
+            <?php endif;
+
+            endwhile;
             wp_reset_postdata(); 
              endif; ?>
 
@@ -158,7 +182,7 @@ $posts_per_page = get_user_meta($user_id, 'feed_update_count', true);
             <div class="text-sm">Get the latest updates from the <?= $curSeason ?> Live Feeds directly to your inbox</div>
           </div>
 
-          <div class="my-4"><?php get_template_part("template-parts/ads/ad-flex"); ?></div>
+          <div class="my-4"></div>
 
           <h3 class="font-mainHead text-2xl text-primary500">More Featured <?= $curSeason ?> Stories</h3>
           <div class="h-[6px] bg-second500 w-[100px] mb-4"></div>
@@ -211,7 +235,6 @@ $posts_per_page = get_user_meta($user_id, 'feed_update_count', true);
           <?php wp_reset_postdata(); ?>
 
           <div class="my-4">
-            <?php get_template_part("template-parts/ads/ad-flex"); ?>
           </div>
 
         </div>

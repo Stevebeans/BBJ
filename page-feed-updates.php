@@ -68,12 +68,27 @@ $posts_per_page = get_user_meta($user_id, 'feed_update_count', true);
 
           </div>
 
-          <?php if (!premiumCheck() && ($counter == 3 || $counter == 8 || $counter == 14)): ?>
-          <div class="md:col-span-2">
-          <?php get_template_part("template-parts/ads/ad-in-article"); ?>
-          </div>
-          <?php endif; ?>
+          <?php
+        // Premium check and ad block
+        if (!premiumCheck() && ($counter === 4 || $counter === 9)):
+        ?>
+            <div class=" w-full p-2  border relative">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
+                        crossorigin="anonymous"></script>
+                <!-- 2023 Feed Update Index -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-1172879704296990"
+                     data-ad-slot="7061892596"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <div class="text-xs absolute bottom-0 right-0 bg-slate-50">Don't want ads? <a href="/become-supporter/" class=" text-primary500 hover:underline mt-4">Go premium here</a></div>
+            </div>
         <?php
+        endif;
         endwhile; ?>
       <?php else: ?>
         <p>No updates found</p>

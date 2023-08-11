@@ -6,9 +6,4 @@
 
   <?php get_template_part("template-parts/sidebar-newsletter"); ?>
 
-  <?php if (!premiumCheck()):
-    get_template_part("template-parts/ads/ad-rectangle");
-
-    // get_template_part("template-parts/ads/taboola-sidebar");
-  endif; ?>
 </div>
