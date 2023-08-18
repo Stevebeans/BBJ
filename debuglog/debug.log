@@ -1,0 +1,12 @@
+[13-Aug-2023 01:20:16 UTC] PHP Notice:  Undefined variable: currentUser in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 104
+[13-Aug-2023 01:20:16 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 104
+[13-Aug-2023 01:20:16 UTC] PHP Notice:  Undefined variable: currentUser in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 105
+[13-Aug-2023 01:20:16 UTC] PHP Notice:  Trying to get property 'user_email' of non-object in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 105
+[13-Aug-2023 01:20:16 UTC] PHP Notice:  Undefined variable: currentUser in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 104
+[13-Aug-2023 01:20:16 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 104
+[13-Aug-2023 01:20:16 UTC] PHP Notice:  Undefined variable: currentUser in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 105
+[13-Aug-2023 01:20:16 UTC] PHP Notice:  Trying to get property 'user_email' of non-object in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 105
+[13-Aug-2023 01:20:27 UTC] PHP Notice:  Undefined variable: currentUser in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 104
+[13-Aug-2023 01:20:27 UTC] PHP Notice:  Trying to get property 'display_name' of non-object in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 104
+[13-Aug-2023 01:20:27 UTC] PHP Notice:  Undefined variable: currentUser in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 105
+[13-Aug-2023 01:20:27 UTC] PHP Notice:  Trying to get property 'user_email' of non-object in /home/747173.cloudwaysapps.com/duesaptjae/public_html/wp-content/themes/BBJ/header.php on line 105

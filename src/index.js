@@ -21,6 +21,7 @@ import { feed_update_slider } from "./scripts/FeedUpdateBar";
 import DarkMode from "./scripts/DarkMode";
 import FeedUpdates from "./scripts/FeedUpdates";
 import PaymentModel from "./scripts/PaymentModel";
+import FeedEdit from "./scripts/FeedEdit";
 
 const playerTableEl = document.getElementById("player-directory-table");
 const commentEl = document.getElementById("bbj-comment-system");

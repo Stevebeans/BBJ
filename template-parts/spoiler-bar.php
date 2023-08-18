@@ -17,7 +17,7 @@
           $playerId = (int) $innerArray["player_id"];
           $playerData = $wpdb->get_row($wpdb->prepare("SELECT profile_picture, first_name, last_name, official_nickname AS nick FROM wp_bbj_players WHERE ID = %d", $playerId));
 
-          bbj_log2(print_r($playerData, true));
+          //bbj_log2(print_r($playerData, true));
           $imgUrl = wp_get_attachment_image_src($playerData->profile_picture, "profile-picture");
           $firstName = $playerData->first_name;
           $lastName = $playerData->last_name;

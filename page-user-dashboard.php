@@ -70,6 +70,52 @@
                 </div>
               </div>
 
+              <div class="border p-4 shadow-md rounded-md mt-6">
+                <div class="font-bold text-lg">Avatar Settings</div>
+                <div class="text-center mb-4">
+                  <?php $avatar_url = get_avatar_url(get_current_user_id(), ["size" => 32]); ?>
+                  <img src="<?= $avatar_url ?>"class="rounded-lg  h-24 w-24 mr-2" alt="Author Avatar">
+              </div>
+
+                <input type="hidden" id="avatar_nonce" name="avatar_nonce" value="<?php echo wp_create_nonce('avatar_upload_nonce'); ?>" />
+                <input type="file" id="avatar-upload" name="avatar-upload">
+                <br />
+                <button id="avatar-upload-button" class="button button-primary new-bbj-btn">Upload Avatar</button>
+                
+            </div>
+
+            <script>
+    jQuery(document).ready(function($) {
+        $('#avatar-upload-button').on('click', function(e) {
+            e.preventDefault();
+            
+            var file_data = $('#avatar-upload').prop('files')[0];
+            var nonce = $('#avatar_nonce').val();
+            var form_data = new FormData();
+            form_data.append('file', file_data);
+            form_data.append('action', 'upload_avatar');
+            form_data.append('security', nonce);
+
+            $.ajax({
+                url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                type: 'post',
+                contentType: false,
+                processData: false,
+                data: form_data,
+                success: function(response) {
+                    if (response.success) {
+                        location.reload(); // Reload page to see new avatar
+                    } else {
+                        alert(response.data.message); 
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+
+
 
                 <input type="submit" value="Save Changes" class="bbj-btn mt-4 ">
             </form>

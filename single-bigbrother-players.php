@@ -113,18 +113,18 @@ $winner_check = $wpdb->get_results(
 							<?php } ?>
 							<div class="flex">
 								<?php if ($fbLink): ?>
-								<div class="mr-2 "><a href="<?php echo $fbLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft"><i class="fa-brands fa-facebook-f"></i></a></div>
+								<div class="mr-2 "><a href="<?php echo $fbLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft visited:text-second500"><i class="fa-brands fa-facebook-f"></i></a></div>
 							<?php endif; ?>
 							<?php if ($igLink): ?>
-								<div class="mr-2"><a href="<?php echo $igLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft"><i class="fa-brands fa-instagram"></i></a></div>
+								<div class="mr-2"><a href="<?php echo $igLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft visited:text-second500"><i class="fa-brands fa-instagram"></i></a></div>
 							<?php endif; ?>
 							
 							<?php if ($twLink): ?>
-								<div class="mr-2"><a href="<?php echo $twLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft"><i class="fa-brands fa-twitter"></i></a></div>
+								<div class="mr-2"><a href="<?php echo $twLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft visited:text-second500"><i class="fa-brands fa-twitter"></i></a></div>
 							<?php endif; ?>
 							
 							<?php if ($ttLink): ?>
-								<div><a href="<?php echo $ttLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft"><i class="fa-brands fa-tiktok"></i></a></div>
+								<div><a href="<?php echo $ttLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft visited:text-second500"><i class="fa-brands fa-tiktok"></i></a></div>
 							<?php endif; ?>
 							</div>
 							
@@ -254,7 +254,9 @@ $total_days = 0; ?>
 								<td class="text-center  !border-r border-slate-200"><?= $season->pov_sum ?></td>
 								<td class="text-center  !border-r border-slate-200"><?= $season->nom_sum ?></td>
 								<td class="text-center  !border-r border-slate-200"><?= $season->vote_count ?></td>
-								<td class="text-center  !border-r border-slate-200"><?php
+								<td class="text-center  !border-r border-slate-200">
+									
+									<?php
         $days = days_calc_new($season->season_start, $leaveDate);
         $total_days += $days;
         echo $days;

@@ -17,7 +17,26 @@
       $addFreeExperience = true;
     endif;
   endif;
-  ?>
+
+  if (!premiumCheck()): ?>
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({article:'auto'});
+  !function (e, f, u, i) {
+    if (!document.getElementById(i)){
+      e.async = 1;
+      e.src = u;
+      e.id = i;
+      f.parentNode.insertBefore(e, f);
+    }
+  }(document.createElement('script'),
+  document.getElementsByTagName('script')[0],
+  '//cdn.taboola.com/libtrc/bigbrotherjunkies-network/loader.js',
+  'tb_loader_script');
+  if(window.performance && typeof window.performance.mark == 'function')
+    {window.performance.mark('tbl_ic');}
+</script>
+  <?php endif ?>
   <head>
     <meta charset="<?php bloginfo("charset"); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +85,6 @@
     }
 </script>
 
-        <?php show_header_ad() ?>
 
 
     <nav class="bg-white rounded dark:bg-gray-900 drop-shadow z-50 relative">
@@ -153,6 +171,9 @@ p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div>
 
   
       <?php get_template_part("template-parts/spoiler-bar"); ?>
+
+      
+      <?php show_header_ad() ?>
 
       <!-- <div class=" max-w-6xl w-full  mx-auto my-2 border border-red-400 bg-red-200 p-4">
         <div class="text-center text-lg">Notice</div>
