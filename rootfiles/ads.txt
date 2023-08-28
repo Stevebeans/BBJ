@@ -24,3 +24,4 @@ inmobi.com, a985e39014a94721a8e97c929d32ef9d, RESELLER, 83e75a7ae333ca9d
 imds.tv, 82376, RESELLER, ae6c32151e71f19d
 vidoomy.com, 2717565, RESELLER
 omgstudios.com, 0603231, RESELLER
+mgid.com, 822626, DIRECT, d4c29acad76ce94f

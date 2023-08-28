@@ -22,6 +22,8 @@ import DarkMode from "./scripts/DarkMode";
 import FeedUpdates from "./scripts/FeedUpdates";
 import PaymentModel from "./scripts/PaymentModel";
 import FeedEdit from "./scripts/FeedEdit";
+import { handleWelcomeBar } from "./scripts/WelcomeBar";
+import FeedUpdateBarReact from "./scripts/FeedUpdateBarReact";
 
 const playerTableEl = document.getElementById("player-directory-table");
 const commentEl = document.getElementById("bbj-comment-system");
@@ -30,18 +32,25 @@ const feedUpdates = document.getElementById("new-feed-updates");
 const paymentForm = document.getElementById("payment-options");
 const mainBody = document.querySelector("#main-body");
 const updateBox = document.querySelector("#update-box");
+const newFeedUpdate = document.querySelector("#feed-update-box");
 
 if (paymentForm) {
   let paymentModel = new PaymentModel();
 }
 
+handleWelcomeBar();
+
 if (feedUpdates) {
   ReactDOM.render(<FeedUpdates />, feedUpdates);
 }
 
-if (updateBox) {
-  feed_update_slider();
+if (newFeedUpdate) {
+  ReactDOM.render(<FeedUpdateBarReact />, newFeedUpdate);
 }
+
+// if (updateBox) {
+//   feed_update_slider();
+// }
 
 if (searchBar) {
   let searchBar = new BBJSearch();

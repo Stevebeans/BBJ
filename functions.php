@@ -1,6 +1,6 @@
 <?php
 
-define("BBJ_THEME_VERSION", "3.1.6.4");
+define("BBJ_THEME_VERSION", "3.1.6.5.2");
 define("BBJ_ROOT", dirname(__FILE__));
 define("BBJ_INCLUDES", BBJ_ROOT . "/includes");
 define("BBJ_IMAGES", get_theme_file_uri("/images"));
@@ -79,3 +79,5 @@ add_filter("acfe/bidirectional/force_update/name=my_field", "__return_true");
 // if (function_exists("register_sidebar")) {
 //   register_sidebar();
 // }
+
+add_filter('comment_flood_filter', '__return_false');

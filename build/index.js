@@ -3302,6 +3302,113 @@ function toggle_feed_window() {
 
 /***/ }),
 
+/***/ "./src/scripts/FeedUpdateBarReact.js":
+/*!*******************************************!*\
+  !*** ./src/scripts/FeedUpdateBarReact.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+
+
+
+
+function FeedUpdateBarReact() {
+  const [isOpen, setIsOpen] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+  const [content, setContent] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+  const [image, setImage] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+  const [updateMessage, setUpdateMessage] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const storedState = localStorage.getItem("feed_update_bar");
+    console.log("stored state");
+    console.log(storedState);
+
+    if (storedState === "true") {
+      setIsOpen(true);
+    }
+  }, []);
+
+  const toggleContent = () => {
+    const newState = !isOpen;
+    setIsOpen(newState);
+    localStorage.setItem("feed_update_bar", newState);
+  };
+
+  const submitUpdate = () => {
+    setUpdateMessage("Submitting...");
+    const url = "/wp-json/bbj/v1/feed-update"; // axios try catch
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image", image);
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"].post(url, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    }).then(function (response) {
+      console.log(response);
+      setUpdateMessage("Success!"); // clear form
+
+      setTitle("");
+      setContent("");
+      setImage("");
+      window.location.reload();
+    }).catch(function (error) {
+      console.log(error);
+      setUpdateMessage(error);
+    });
+  };
+
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "fixed bottom-0 z-50 flex w-full justify-center"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "mx-auto flex w-full max-w-7xl flex-col"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "flex w-full cursor-pointer justify-between rounded-t-md bg-primary500 px-2 py-1 font-bold text-white",
+    onClick: toggleContent
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Feed Update Bar"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "flex items-center hover:cursor-pointer"
+  }, isOpen ? "Close" : "Open", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+    className: `fa-solid fa-toggle-${isOpen ? "on" : "off"} ml-2`
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `transition-all duration-300 ease-in-out ${isOpen ? "h-fit" : "h-0"} overflow-hidden bg-white p-2`
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "flex flex-col md:grid md:grid-cols-4 md:flex-row md:gap-2"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "md:col-span-4"
+  }, "Title", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "text",
+    className: "w-full rounded-md",
+    onChange: e => setTitle(e.target.value)
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "md:col-span-3"
+  }, "Content", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("textarea", {
+    className: "w-full rounded-md",
+    onChange: e => setContent(e.target.value)
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Upload Image", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "file",
+    onChange: e => setImage(e.target.files[0])
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "text-center hover:cursor-pointer md:col-span-4"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "rounded-lg border border-primary500 bg-sky-50 px-2 py-1",
+    onClick: submitUpdate
+  }, "Submit"), updateMessage && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "ml-2"
+  }, updateMessage))))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (FeedUpdateBarReact);
+
+/***/ }),
+
 /***/ "./src/scripts/FeedUpdates.js":
 /*!************************************!*\
   !*** ./src/scripts/FeedUpdates.js ***!
@@ -4569,6 +4676,71 @@ class SpoilerBarNew {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (SpoilerBarNew);
+
+/***/ }),
+
+/***/ "./src/scripts/WelcomeBar.js":
+/*!***********************************!*\
+  !*** ./src/scripts/WelcomeBar.js ***!
+  \***********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getCookie": function() { return /* binding */ getCookie; },
+/* harmony export */   "handleWelcomeBar": function() { return /* binding */ handleWelcomeBar; },
+/* harmony export */   "setCookie": function() { return /* binding */ setCookie; }
+/* harmony export */ });
+// Function to set a cookie
+function setCookie(name, value, days) {
+  var date = new Date();
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+  var expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+} // Function to get a cookie
+
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(";");
+
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+
+    while (c.charAt(0) === " ") c = c.substring(1, c.length);
+
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+
+  return null;
+} // Function to handle the welcome bar
+
+
+function handleWelcomeBar() {
+  console.log("welcome bar!");
+  var welcomeBar = document.getElementById("welcome-bar");
+  var closeButton = document.getElementById("close-bar");
+
+  if (!welcomeBar || !closeButton) {
+    return; // If either element doesn't exist, exit the function
+  } // Check if the welcomeBar cookie is already set
+
+
+  if (getCookie("welcomeBar") === "closed") {
+    welcomeBar.style.display = "none";
+  } // Add click event listener to the close button
+
+
+  closeButton.addEventListener("click", function () {
+    welcomeBar.style.display = "none"; // Hide the welcome bar
+
+    setCookie("welcomeBar", "closed", 7); // Set the cookie to expire in 7 days
+  });
+} // Call the handleWelcomeBar function when the page loads
+
+
+window.addEventListener("load", handleWelcomeBar);
+
 
 /***/ }),
 
@@ -11297,6 +11469,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_FeedUpdates__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./scripts/FeedUpdates */ "./src/scripts/FeedUpdates.js");
 /* harmony import */ var _scripts_PaymentModel__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./scripts/PaymentModel */ "./src/scripts/PaymentModel.js");
 /* harmony import */ var _scripts_FeedEdit__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./scripts/FeedEdit */ "./src/scripts/FeedEdit.js");
+/* harmony import */ var _scripts_WelcomeBar__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./scripts/WelcomeBar */ "./src/scripts/WelcomeBar.js");
+/* harmony import */ var _scripts_FeedUpdateBarReact__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./scripts/FeedUpdateBarReact */ "./src/scripts/FeedUpdateBarReact.js");
 
 
 
@@ -11320,6 +11494,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 const playerTableEl = document.getElementById("player-directory-table");
 const commentEl = document.getElementById("bbj-comment-system");
 const searchBar = document.getElementById("bbj-search");
@@ -11327,18 +11503,24 @@ const feedUpdates = document.getElementById("new-feed-updates");
 const paymentForm = document.getElementById("payment-options");
 const mainBody = document.querySelector("#main-body");
 const updateBox = document.querySelector("#update-box");
+const newFeedUpdate = document.querySelector("#feed-update-box");
 
 if (paymentForm) {
   let paymentModel = new _scripts_PaymentModel__WEBPACK_IMPORTED_MODULE_15__["default"]();
 }
 
+(0,_scripts_WelcomeBar__WEBPACK_IMPORTED_MODULE_17__.handleWelcomeBar)();
+
 if (feedUpdates) {
   react_dom__WEBPACK_IMPORTED_MODULE_4___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_scripts_FeedUpdates__WEBPACK_IMPORTED_MODULE_14__["default"], null), feedUpdates);
 }
 
-if (updateBox) {
-  (0,_scripts_FeedUpdateBar__WEBPACK_IMPORTED_MODULE_12__.feed_update_slider)();
-}
+if (newFeedUpdate) {
+  react_dom__WEBPACK_IMPORTED_MODULE_4___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_scripts_FeedUpdateBarReact__WEBPACK_IMPORTED_MODULE_18__["default"], null), newFeedUpdate);
+} // if (updateBox) {
+//   feed_update_slider();
+// }
+
 
 if (searchBar) {
   let searchBar = new _scripts_SearchBar__WEBPACK_IMPORTED_MODULE_7__["default"]();

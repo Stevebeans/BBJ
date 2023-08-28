@@ -379,8 +379,12 @@ function premiumCheck()
   // Check if user is logged in
   if (is_user_logged_in()):
     $user = wp_get_current_user();
+    // Show ads for user ID 1
+    if ($user->ID === 1) {
+      return false;
+    }
     // Check if user has one of the specified roles
-    if (current_user_can("supporter") || current_user_can("editor") || current_user_can('updater') || current_user_can("administrator") || current_user_can("second_in_command")):
+    if (current_user_can("supporter") || current_user_can("editor") || current_user_can('updater') || current_user_can('comment_mod') || current_user_can("administrator") || current_user_can("second_in_command")):
       return true;
     endif;
   endif;
@@ -389,7 +393,7 @@ function premiumCheck()
   global $post;
   $restricted_pages = array('become-supporter'); //add all the pages you want to hide ads on
 
-  if(is_page($restricted_pages)):
+  if (is_page($restricted_pages)):
     return true;
   endif;
 

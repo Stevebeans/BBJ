@@ -1,46 +1,49 @@
 <?php 
 
 function show_header_ad() {
-  if (!premiumCheck()):?>
-    <div class="max-w-screen-xl p-4 mx-auto mb-2 relative">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
-            crossorigin="anonymous"></script>
-        <!-- 2023 - Above Header -->
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-1172879704296990"
-            data-ad-slot="2494556659"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <div class="text-xs absolute bottom-0 right-0 bg-slate-50">Don't want ads? <a href="/become-supporter/" class=" text-primary500 hover:underline mt-4">Go premium here</a></div>
+  ?>
+    <div class="max-w-screen-xl p-0 md:p-4 mx-auto my-2 border"  id="ad-container">
+      
+      <div><?php if( function_exists('the_ad') ) {  the_ad('51558'); } ?></div>
+      
     </div>
+
   <?php 
-  endif;
+
+}
+
+function sidebar_ad() {
+  ?>
+    <div class="max-w-screen-xl p-0 md:p-4 mx-auto my-2 border"  id="ad-container">
+      <?php 
+      if( function_exists('the_ad_group') ) { the_ad_group(5928); } ?>
+    </div>
+
+  <?php 
 }
 
 
-function show_front_responsive() {
-  if (!premiumCheck()):?>
+function show_front_responsive() { ?>
     <div class="max-w-screen-xl p-4 mx-auto mb-2 relative">
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
-              crossorigin="anonymous"></script>
-          <!-- 2023 Front Page Responsive -->
-          <ins class="adsbygoogle"
-              style="display:block"
-              data-ad-client="ca-pub-1172879704296990"
-              data-ad-slot="4201378236"
-              data-ad-format="auto"
-              data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        <div class="text-xs absolute bottom-0 right-0 bg-slate-50">Don't want ads? <a href="/become-supporter/" class=" text-primary500 hover:underline mt-4">Go premium here</a></div>
+      <div class=" text-gray-600 text-sm">Advertisement:</div>
+      <div><?php
+      
+      if( function_exists('the_ad_group') ) { the_ad_group(5929); }?></div>
+              
     </div>
-  <?php 
-  endif;
+  <?php
+}
+
+function show_after_content() {
+  ?>
+    <div class="max-w-screen-xl p-4 mx-auto mb-2 relative border-t border-gray-200 border-b">
+      <div class=" text-gray-600 text-sm">Advertisement:</div>
+      <div><?php
+      
+      if( function_exists('the_ad_group') ) { the_ad_group(5930); }?></div>
+              
+    </div>
+  <?php
 }
 
 function show_front_feed_updates() {
@@ -131,22 +134,3 @@ function taboola_mid() {
 }
 
 
-function sidebar_ad() {
-  if (!premiumCheck()):?>
-    <div class="max-w-screen-xl p-4 mx-auto mb-2 relative border-b border-gray-300 flex justify-center items-center">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
-     crossorigin="anonymous"></script>
-<!-- 2023 BBJ Sidebar -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1172879704296990"
-     data-ad-slot="3649185218"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-        <div class="text-xs absolute bottom-0 right-0 bg-slate-50">Don't want ads? <a href="/become-supporter/" class=" text-primary500 hover:underline mt-4">Go premium here</a></div>
-    </div>
-  <?php 
-  endif; }

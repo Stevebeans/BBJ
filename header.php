@@ -182,8 +182,55 @@ p-0 absolute w-1 word-wrap-normal">Big Brother Junkies</span></h1></div>
 
     
       <div id="user-role" data-role="<?= $bbjAdCheck ?>"></div>
-<?php if (feedUpdater()): ?>
-  <?php get_template_part("template-parts/feed-updater", null, ["bbjUpdater" => $bbjUpdater]); ?>
+  <?php if (feedUpdater()): ?>
+    <div id="feed-update-box"></div>
+  <?php //get_template_part("template-parts/feed-updater", null, ["bbjUpdater" => $bbjUpdater]); ?>
 
 
 <?php endif; ?>
+
+
+
+
+<?php /*if (!premiumCheck()): ?>
+<div id="welcome-bar" class="fixed bottom-0 left-0 right-0 md:h-40 h-1/2 bg-gray-100 flex justify-center items-start border-t border-primary500 z-50">
+  <div class="max-w-screen-xl w-full flex flex-col md:flex-row items-start mx-auto pt-8 px-2 md:pt-2">
+    <div class="w-full md:w-1/2">
+      <img src="<?= BBJ_IMAGES . "/bbjlogo2020.png" ?>" alt="<?= get_bloginfo("description") ?>" >
+      Welcome to Big Brother Junkies, your hub for all things Big Brother! Join free, or go premium for an ad-free experience & upcoming perks. Dive in and be part of our community!
+    </div>
+    <div class="flex-grow text-center border w-full md:w-1/2 grid grid-cols-2 gap-2">
+      <div class="bg-white pb-4">
+        <div class="border-b border-sky-300 font-bold text-lg">Free</div>
+        <div>
+          <ul class="mb-2">
+            <li>Join the conversation</li>
+            <li>Comment on posts</li>
+            <li>Update avatar</li>
+            <li></li>
+          </ul>
+          <a href="/registration/" class="rounded-lg bg-primary500 p-2 text-white visited:text-white hover:text-second500">Join For Free</a>
+
+        </div>
+      </div>
+      <div class="bg-white">
+      <div class="border-b border-sky-300 font-bold text-lg text-second500">Premium</div>
+        <div>
+          <ul class="mb-2">
+            <li>Everything from free</li>
+            <li>Ad-free experience</li>
+            <li>More customizing</li>
+          </ul>
+          <a href="/become-supporter/" class="rounded-lg bg-second500 p-2 text-white visited:text-white hover:text-primary500">Go Premium</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button id="close-bar" class="px-2 cursor-pointer absolute top-2 right-0 hover:cursor-pointer ">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+</div>
+
+<?php  endif; */ ?>

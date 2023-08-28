@@ -29,8 +29,9 @@
     <div class="fine-print">© 2022 JunkyNet Media, LLC. All Rights Reserved</div>
   </footer>
 
+  <!-- Pre Footer -->
 <?php wp_footer(); ?>
-
+  <!-- Post Footer -->
 
 <?php if (!premiumCheck()): ?>
 <script type="text/javascript">
