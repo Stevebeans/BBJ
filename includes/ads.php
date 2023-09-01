@@ -4,7 +4,7 @@ function show_header_ad() {
   ?>
     <div class="max-w-screen-xl p-0 md:p-4 mx-auto my-2 border"  id="ad-container">
       
-      <div><?php if( function_exists('the_ad') ) {  the_ad('51558'); } ?></div>
+      <div><?php if( function_exists('the_ad_placement') ) { the_ad_placement('header'); } ?></div>
       
     </div>
 
@@ -16,7 +16,9 @@ function sidebar_ad() {
   ?>
     <div class="max-w-screen-xl p-0 md:p-4 mx-auto my-2 border"  id="ad-container">
       <?php 
-      if( function_exists('the_ad_group') ) { the_ad_group(5928); } ?>
+      if( function_exists('the_ad_placement') ) { the_ad_placement('sidebar-split'); }
+      
+      ?>
     </div>
 
   <?php 
@@ -25,10 +27,7 @@ function sidebar_ad() {
 
 function show_front_responsive() { ?>
     <div class="max-w-screen-xl p-4 mx-auto mb-2 relative">
-      <div class=" text-gray-600 text-sm">Advertisement:</div>
-      <div><?php
-      
-      if( function_exists('the_ad_group') ) { the_ad_group(5929); }?></div>
+      <?php if( function_exists('the_ad_placement') ) { the_ad_placement('front-page'); } ?>
               
     </div>
   <?php
@@ -37,54 +36,31 @@ function show_front_responsive() { ?>
 function show_after_content() {
   ?>
     <div class="max-w-screen-xl p-4 mx-auto mb-2 relative border-t border-gray-200 border-b">
-      <div class=" text-gray-600 text-sm">Advertisement:</div>
-      <div><?php
       
-      if( function_exists('the_ad_group') ) { the_ad_group(5930); }?></div>
+      <?php if( function_exists('the_ad_placement') ) { the_ad_placement('after-content'); } ?>
               
     </div>
   <?php
 }
 
-function show_front_feed_updates() {
-  if (!premiumCheck()):?>
+
+
+//
+function show_front_feed_updates() {?>
     <div class="max-w-screen-xl p-4 mx-auto mb-2 relative ">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
-                crossorigin="anonymous"></script>
-            <!-- 2023 Feed Update Index -->
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-1172879704296990"
-                data-ad-slot="7061892596"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        <div class="text-xs absolute bottom-0 right-0 bg-slate-50">Don't want ads? <a href="/become-supporter/" class=" text-primary500 hover:underline mt-4">Go premium here</a></div>
+            <?php if( function_exists('the_ad_placement') ) { the_ad_placement('between-posts'); } ?>
     </div>
   <?php 
-  endif;
+  
 }
 
-function show_in_feed_ads() {
-  if (!premiumCheck()):?>
+
+// This is in the live-feed-updates between posts
+function show_in_feed_ads() { ?>
     <div class="max-w-screen-xl p-4 mx-auto mb-2 relative border-b border-gray-300">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
-        crossorigin="anonymous"></script>
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-format="fluid"
-        data-ad-layout-key="-ew-68+fy+62-149"
-        data-ad-client="ca-pub-1172879704296990"
-        data-ad-slot="2313581496"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-        <div class="text-xs absolute bottom-0 right-0 bg-slate-50">Don't want ads? <a href="/become-supporter/" class=" text-primary500 hover:underline mt-4">Go premium here</a></div>
+        <?php if( function_exists('the_ad_placement') ) { the_ad_placement('between-feed-updates'); } ?>
     </div>
   <?php 
-  endif;
 }
 
 function in_article_google() {

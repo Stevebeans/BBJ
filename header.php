@@ -40,6 +40,7 @@
   <head>
     <meta charset="<?php bloginfo("charset"); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name='ir-site-verification-token' value='2012599910'>
     <?php wp_head(); ?>
 
     
@@ -66,10 +67,7 @@
       gtag('config', 'G-1Q771W4ZV2');
     </script>
     
-    <?php if (!premiumCheck()): ?>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1172879704296990"
-     crossorigin="anonymous"></script>
-    <?php endif; ?>
+   <?php if( function_exists('the_ad_placement') ) { the_ad_placement('header-code'); } ?>
     
   </head>
   <body <?php body_class(); ?> class="">

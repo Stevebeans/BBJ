@@ -7,6 +7,8 @@ get_header(); ?>
 
   <?php while (have_posts()):
     the_post(); ?>
+
+  <!-- outer section -->
   <section id="blog-post" class="rounded-md w-full flex flex-col lg:flex-row bg-white">
     <div class="container mx-auto relative">
       <div class="absolute top-4 w-full pl-4">
@@ -30,8 +32,11 @@ get_header(); ?>
 
 
       <div class="blog-post mx-auto bg-white w-full md:w-[90%] rounded-xl p-0.5 md:p-2 z-10  mb-10 -mt-[100px]">
+        
         <div class="flex justify-between border-b border-gray-200 p-2">
+          
           <div class="flex justify-center items-center">
+            
             <?php
             $author_id = get_the_author_meta("ID");
             $avatar_url = get_avatar_url($author_id, ["size" => 32]);
@@ -62,13 +67,16 @@ get_header(); ?>
             comments_template();
           endif; ?>
         </div>
+        
       </div>  
 
-      <div class="border-l border-gray-200">
+      
+    </div>
+    <div class="border-l border-gray-200" id="bbj-sidebar">
+      
           
-          <?php get_template_part("template-parts/sidebar-default"); ?>
+      <?php get_template_part("template-parts/sidebar-default"); ?>
 
-      </div>
     </div>
   </section>
 
