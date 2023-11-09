@@ -1,18 +1,101 @@
 <?php 
 
 function show_header_ad() {
+  if (!premiumCheck()):
   ?>
-    <div class="max-w-screen-xl p-0 md:p-4 mx-auto my-2 border"  id="ad-container">
+    
       
-      <div><?php if( function_exists('the_ad_placement') ) { the_ad_placement('header'); } ?></div>
+      <div><?php if( function_exists('the_ad_placement') ) { the_ad_placement('sep23-header'); } ?></div>
+      
+    
+
+  <?php 
+  endif;
+}
+
+function spot_two () {
+  ?>
+  <div class="max-w-screen-xl p-0  mx-auto my-2 border-t border-b border-gray-300"> 
+
+    <div class="text-gray-600 font-ibm text-xs">Advertisement:</div>
+    <div><?php if( function_exists('the_ad_placement') ) { the_ad_placement('spot-2'); } ?></div>
+  </div>
+
+
+  <?php
+
+}
+
+function show_first_ad() {
+  ?>
+    <div class="max-w-screen-xl p-0  mx-auto my-2 border-t border-b border-gray-300"  id="ad-container">
+
+      <div class="text-gray-600 font-ibm text-xs">Advertisement:</div>
+      
+      <div class="py-2"><?php if( function_exists('the_ad_placement') ) { the_ad_placement('top_unit'); } ?></div>
+      
+    </div>
+
+  <?php
+
+}
+
+function show_second_ad() {
+  ?>
+    <div class="max-w-screen-xl p-0  mx-auto my-2 border-t border-b border-gray-300"  id="ad-container">
+
+      <div class="text-gray-600 font-ibm text-xs">Advertisement:</div>
+      
+      <div class="py-2"><?php if( function_exists('the_ad_placement') ) { the_ad_placement('second-unit'); } ?></div>
+      
+    </div>
+
+  <?php
+
+}
+
+function between_posts() {
+  ?>
+    <div class="max-w-screen-xl p-0  mx-auto my-2 border-t border-b border-gray-300"  id="ad-container">
+
+    <div class="text-gray-600 font-ibm text-xs">Advertisement:</div>
+      
+      <div><?php if( function_exists('the_ad_placement') ) { the_ad_placement('new-between-posts'); } ?></div>
       
     </div>
 
   <?php 
+}
 
+
+function front_between_feed_updates() {
+  
+  ?>
+    <div class="max-w-screen-xl p-0  mx-auto my-2"  id="ad-container">
+      
+      <div><?php if( function_exists('the_ad_placement') ) { the_ad_placement('sep23-between-feed-updates');  }?></div>
+      
+    </div>
+
+  <?php 
+  
+}
+
+function show_below_header() {
+  if (!premiumCheck()):
+  ?>
+    <div class="max-w-screen-xl p-0  mx-auto my-2"  id="ad-container-below-header">
+      
+      <div><?php if( function_exists('the_ad_placement') ) { the_ad_placement('below-header'); } ?></div>
+      
+    </div>
+
+  <?php 
+  endif;
 }
 
 function sidebar_ad() {
+  if (!premiumCheck()):
   ?>
     <div class="max-w-screen-xl p-0 md:p-4 mx-auto my-2 border"  id="ad-container">
       <?php 
@@ -22,18 +105,23 @@ function sidebar_ad() {
     </div>
 
   <?php 
+  endif;
 }
 
 
-function show_front_responsive() { ?>
-    <div class="max-w-screen-xl p-4 mx-auto mb-2 relative">
+function show_front_responsive() { 
+  if (!premiumCheck()):
+  ?>
+    <div class="max-w-screen-xl p-4 mx-auto mb-2 relative flex justify-center items-center">
       <?php if( function_exists('the_ad_placement') ) { the_ad_placement('front-page'); } ?>
-              
+            
     </div>
   <?php
+  endif;
 }
 
 function show_after_content() {
+  if (!premiumCheck()):
   ?>
     <div class="max-w-screen-xl p-4 mx-auto mb-2 relative border-t border-gray-200 border-b">
       
@@ -41,14 +129,27 @@ function show_after_content() {
               
     </div>
   <?php
+  endif;
 }
 
+function show_impact_radius() {
+  if (!premiumCheck()):
+  ?>
+    <div class="max-w-screen-xl py-1 flex items-center justify-center mx-auto mb-2 relative border-t border-gray-200 border-b">
+      
+      <?php if( function_exists('the_ad_placement') ) { the_ad_placement('impact-radius'); } ?>
+              
+    </div>
+  <?php
+  endif;
+}
 
 
 //
 function show_front_feed_updates() {?>
     <div class="max-w-screen-xl p-4 mx-auto mb-2 relative ">
             <?php if( function_exists('the_ad_placement') ) { the_ad_placement('between-posts'); } ?>
+            
     </div>
   <?php 
   

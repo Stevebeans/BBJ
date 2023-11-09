@@ -265,12 +265,29 @@
   }
 }
 
+.adcontainer {
+  @apply mx-auto my-2  max-w-screen-xl p-0;
+}
+
+.positive {
+  @apply text-green-700;
+}
+
+.negative {
+  @apply text-red-500;
+}
+
 #main-page-feed p {
   @apply my-1 text-sm;
 }
 
 #mailpoet_form_1 .mailpoet_paragraph {
   margin-bottom: 4px !important;
+}
+
+.slide-down {
+  max-height: 400px; /* or any height you want */
+  transition: max-height 0.3s ease-in-out;
 }
 
 #mailpoet_form_1 .mailpoet_text {

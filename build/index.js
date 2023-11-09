@@ -3246,6 +3246,104 @@ class FeedEdit {
 
 /***/ }),
 
+/***/ "./src/scripts/FeedRating.js":
+/*!***********************************!*\
+  !*** ./src/scripts/FeedRating.js ***!
+  \***********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+
+
+class FeedRating {
+  constructor() {
+    this.initDiv = document.querySelector("#new-feed-updates");
+    this.feedRatingContainer = document.querySelectorAll(".feed-update-ratings");
+    this.loginModal = document.querySelector("#loginModal");
+    this.closeLoginModalButton = document.querySelector("#closeLoginModal");
+    this.isUserLoggedIn = !!window.userLoggedIn;
+    console.log("is user logged in", this.isUserLoggedIn);
+
+    if (this.initDiv) {
+      this.initialize();
+    }
+  }
+
+  initialize() {
+    console.log("initializing feed rating");
+    console.log(document);
+    document.addEventListener("DOMContentLoaded", () => {
+      this.attachEventHandlers();
+      this.closeLoginModalButton.addEventListener("click", () => {
+        this.loginModal.classList.add("hidden");
+      });
+    });
+  }
+
+  showLoginModal() {
+    this.loginModal.classList.remove("hidden");
+  }
+
+  attachEventHandlers() {
+    this.feedRatingContainer.forEach(feedRating => {
+      const feedRatingId = feedRating.getAttribute("data-feed-rating");
+      const rateUp = feedRating.querySelector(".feed-update-id-up");
+      const rateDown = feedRating.querySelector(".feed-update-id-down");
+      rateUp.addEventListener("click", event => {
+        this.submitRating(feedRatingId, "up");
+      });
+      rateDown.addEventListener("click", event => {
+        this.submitRating(feedRatingId, "down");
+      });
+    });
+  }
+
+  submitRating(feedRatingId, rating) {
+    if (!this.isUserLoggedIn) {
+      this.showLoginModal();
+      return;
+    }
+
+    const data = {
+      feed_update_id: feedRatingId,
+      rating: rating
+    };
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("/wp-json/bbj/v1/add_feed_update_rating", data, {
+      headers: {
+        "X-WP-Nonce": playerData.nonce,
+        "Content-Type": "application/json"
+      }
+    }).then(response => {
+      console.log(response);
+      const newRating = response.data.total_rating;
+      const ratingElement = document.querySelector(`[data-count-for="${feedRatingId}"]`); // Update the rating displayed
+
+      if (ratingElement) {
+        ratingElement.innerText = newRating; // Update the rating class
+
+        if (newRating > 0) {
+          ratingElement.classList.add("positive");
+          ratingElement.classList.remove("negative");
+        } else if (newRating < 0) {
+          ratingElement.classList.add("negative");
+          ratingElement.classList.remove("positive");
+        } else {
+          ratingElement.classList.remove("positive");
+          ratingElement.classList.remove("negative");
+        }
+      }
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (FeedRating);
+
+/***/ }),
+
 /***/ "./src/scripts/FeedUpdateBar.js":
 /*!**************************************!*\
   !*** ./src/scripts/FeedUpdateBar.js ***!
@@ -4412,6 +4510,115 @@ function LoadingSpinner(_ref) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (LoadingSpinner);
+
+/***/ }),
+
+/***/ "./src/scripts/ReplyBox.js":
+/*!*********************************!*\
+  !*** ./src/scripts/ReplyBox.js ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+
+
+class ReplyBox {
+  constructor() {
+    this.initialize();
+  }
+
+  initialize() {
+    // Wait for DOM to load before attaching event handlers
+    document.addEventListener("DOMContentLoaded", () => {
+      this.attachEventHandlers();
+      this.attachSubmitHandlers();
+    });
+  }
+
+  attachEventHandlers() {
+    // Now selecting the div containing the "fa-reply" icon.
+    const replyButtons = document.querySelectorAll(".reply-button");
+    replyButtons.forEach(replyButton => {
+      replyButton.addEventListener("click", event => {
+        this.toggleReplyBox(event);
+      });
+    });
+  }
+
+  attachSubmitHandlers() {
+    // For submit buttons
+    const submitButtons = document.querySelectorAll(".submit-comment");
+    submitButtons.forEach(button => {
+      button.addEventListener("click", event => {
+        const postId = event.target.getAttribute("data-post-id");
+        const textarea = document.getElementById(`comment-text-${postId}`);
+        const commentText = textarea.value;
+        const nonce = event.target.getAttribute("data-nonce");
+        this.submitComment(postId, commentText, nonce);
+      });
+    });
+  }
+
+  submitComment(postId, commentText, nonce) {
+    const data = {
+      post_id: postId,
+      comment_text: commentText
+    };
+    const responseTextDiv = document.querySelector(`#reply-box-inner-${postId} .response-text`);
+    responseTextDiv.innerHTML = ""; // submit to bbj/v1/add_comment via axios
+
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("/wp-json/bbj/v1/add_comment", data, {
+      headers: {
+        "X-WP-Nonce": nonce,
+        "Content-Type": "application/json"
+      }
+    }).then(response => {
+      console.log(response); // refresh page
+
+      location.reload();
+    }).catch(error => {
+      console.log(error);
+      let errorMessage = "An error occurred while submitting the comment.";
+
+      if (error.response && error.response.data && error.response.data.message) {
+        errorMessage = error.response.data.message;
+      }
+
+      responseTextDiv.innerHTML = `<span class="text-red-500">${errorMessage}</span>`;
+    });
+  }
+
+  toggleReplyBox(event) {
+    const parentContainer = event.target.closest(".border.relative");
+    const postID = parentContainer.dataset.replyBox;
+    let replyContainer = document.querySelector(`#reply-box-inner-${postID}`);
+    let replyText = parentContainer.querySelector(".reply-text");
+    let replyIcon = replyText.querySelector("i");
+    let replyTextinner = replyText.querySelector("span");
+
+    if (replyContainer.style.display === "none" || replyContainer.style.display === "") {
+      replyContainer.style.display = "block";
+      replyContainer.classList.add("slide-down");
+      replyIcon.classList.remove("fa-reply");
+      replyIcon.classList.add("fa-xmark");
+      replyTextinner.textContent = " Cancel";
+    } else {
+      replyContainer.classList.remove("slide-down");
+      replyIcon.classList.remove("fa-xmark");
+      replyIcon.classList.add("fa-reply");
+      replyTextinner.textContent = " Reply";
+      replyContainer.style.display = "none";
+    }
+
+    console.log(parentContainer);
+    console.log(postID);
+    console.log(replyContainer);
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (ReplyBox);
 
 /***/ }),
 
@@ -11471,6 +11678,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scripts_FeedEdit__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./scripts/FeedEdit */ "./src/scripts/FeedEdit.js");
 /* harmony import */ var _scripts_WelcomeBar__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./scripts/WelcomeBar */ "./src/scripts/WelcomeBar.js");
 /* harmony import */ var _scripts_FeedUpdateBarReact__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./scripts/FeedUpdateBarReact */ "./src/scripts/FeedUpdateBarReact.js");
+/* harmony import */ var _scripts_ReplyBox__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./scripts/ReplyBox */ "./src/scripts/ReplyBox.js");
+/* harmony import */ var _scripts_FeedRating__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./scripts/FeedRating */ "./src/scripts/FeedRating.js");
 
 
 
@@ -11496,6 +11705,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 const playerTableEl = document.getElementById("player-directory-table");
 const commentEl = document.getElementById("bbj-comment-system");
 const searchBar = document.getElementById("bbj-search");
@@ -11509,11 +11720,11 @@ if (paymentForm) {
   let paymentModel = new _scripts_PaymentModel__WEBPACK_IMPORTED_MODULE_15__["default"]();
 }
 
-(0,_scripts_WelcomeBar__WEBPACK_IMPORTED_MODULE_17__.handleWelcomeBar)();
-
-if (feedUpdates) {
-  react_dom__WEBPACK_IMPORTED_MODULE_4___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_scripts_FeedUpdates__WEBPACK_IMPORTED_MODULE_14__["default"], null), feedUpdates);
-}
+const feedRating = new _scripts_FeedRating__WEBPACK_IMPORTED_MODULE_20__["default"]();
+const replyBoxInstance = new _scripts_ReplyBox__WEBPACK_IMPORTED_MODULE_19__["default"]();
+(0,_scripts_WelcomeBar__WEBPACK_IMPORTED_MODULE_17__.handleWelcomeBar)(); // if (feedUpdates) {
+//   ReactDOM.render(<FeedUpdates />, feedUpdates);
+// }
 
 if (newFeedUpdate) {
   react_dom__WEBPACK_IMPORTED_MODULE_4___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_scripts_FeedUpdateBarReact__WEBPACK_IMPORTED_MODULE_18__["default"], null), newFeedUpdate);

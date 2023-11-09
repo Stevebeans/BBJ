@@ -68,6 +68,8 @@
     </script>
     
    <?php if( function_exists('the_ad_placement') ) { the_ad_placement('header-code'); } ?>
+
+   <meta name="ahrefs-site-verification" content="8026876afddfec6d7edc2fda6d5286f8e29ececb7ea8edaafb7f66ed478a7392">
     
   </head>
   <body <?php body_class(); ?> class="">
@@ -82,6 +84,7 @@
         document.documentElement.classList.remove('dark')
     }
 </script>
+
 
 
 

@@ -309,8 +309,8 @@ $players = $wpdb->get_results($query);
 					<div>
 					</div>
 
-					<div>
-						<h2 class="font-osw text-xl mb-4">Summary</h2>
+					<div class="prose-base prose-slate p-2 "> 
+						<?php the_content() ?>
 					</div>
 				</div>
 			</section>

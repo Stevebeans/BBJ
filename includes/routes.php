@@ -9,7 +9,11 @@ function bbj_routes()
     "callback" => "player_info",
     "permission_callback" => "__return_true",
   ]);
+
+
+
 }
+
 
 function player_info($data)
 {

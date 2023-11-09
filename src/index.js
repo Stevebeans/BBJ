@@ -24,6 +24,8 @@ import PaymentModel from "./scripts/PaymentModel";
 import FeedEdit from "./scripts/FeedEdit";
 import { handleWelcomeBar } from "./scripts/WelcomeBar";
 import FeedUpdateBarReact from "./scripts/FeedUpdateBarReact";
+import ReplyBox from "./scripts/ReplyBox";
+import FeedRating from "./scripts/FeedRating";
 
 const playerTableEl = document.getElementById("player-directory-table");
 const commentEl = document.getElementById("bbj-comment-system");
@@ -38,11 +40,15 @@ if (paymentForm) {
   let paymentModel = new PaymentModel();
 }
 
+const feedRating = new FeedRating();
+
+const replyBoxInstance = new ReplyBox();
+
 handleWelcomeBar();
 
-if (feedUpdates) {
-  ReactDOM.render(<FeedUpdates />, feedUpdates);
-}
+// if (feedUpdates) {
+//   ReactDOM.render(<FeedUpdates />, feedUpdates);
+// }
 
 if (newFeedUpdate) {
   ReactDOM.render(<FeedUpdateBarReact />, newFeedUpdate);
