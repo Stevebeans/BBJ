@@ -17,6 +17,7 @@ $first_name = esc_html(ucwords(strtolower($first_name)));
 $last_name = esc_html(ucwords(strtolower($last_name)));
 $nickname = esc_html(ucwords(strtolower(rwmb_meta("official_nickname"))));
 $profile_pic = rwmb_meta("profile_picture", ["size" => "prof-pic-lg"]);
+$dobMB = rwmb_meta("date_of_birth");
 
 $fbLink = rwmb_meta("facebook");
 $igLink = rwmb_meta("instagram");
@@ -113,18 +114,18 @@ $winner_check = $wpdb->get_results(
 							<?php } ?>
 							<div class="flex">
 								<?php if ($fbLink): ?>
-								<div class="mr-2 "><a href="<?php echo $fbLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft visited:text-second500"><i class="fa-brands fa-facebook-f"></i></a></div>
+								<div class="mr-2 "><a href="<?php echo $fbLink; ?>" target="_blank" class="text-second500 visited:text-second500 active:text-second500 hover:text-secondSoft"><i class="fa-brands fa-facebook-f"></i></a></div>
 							<?php endif; ?>
 							<?php if ($igLink): ?>
-								<div class="mr-2"><a href="<?php echo $igLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft visited:text-second500"><i class="fa-brands fa-instagram"></i></a></div>
+								<div class="mr-2"><a href="<?php echo $igLink; ?>" target="_blank" class="text-second500 visited:text-second500 active:text-second500 hover:text-secondSoft"><i class="fa-brands fa-instagram"></i></a></div>
 							<?php endif; ?>
 							
 							<?php if ($twLink): ?>
-								<div class="mr-2"><a href="<?php echo $twLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft visited:text-second500"><i class="fa-brands fa-twitter"></i></a></div>
+								<div class="mr-2"><a href="<?php echo $twLink; ?>" target="_blank" class="text-second500 visited:text-second500 active:text-second500 hover:text-secondSoft"><i class="fa-brands fa-twitter"></i></a></div>
 							<?php endif; ?>
 							
 							<?php if ($ttLink): ?>
-								<div><a href="<?php echo $ttLink; ?>" target="_blank" class="text-second500 active:text-second500 hover:text-secondSoft visited:text-second500"><i class="fa-brands fa-tiktok"></i></a></div>
+								<div><a href="<?php echo $ttLink; ?>" target="_blank" class="text-second500 active:text-second500 visited:text-second500 hover:text-secondSoft"><i class="fa-brands fa-tiktok"></i></a></div>
 							<?php endif; ?>
 							</div>
 							
@@ -201,8 +202,8 @@ $winner_check = $wpdb->get_results(
 					<div>State:</div><div><?= $state ?></div>
 					<div>Occupation:</div><div><?= $job ?></div>
 					<div>Current Age:</div><div>
-					<?php if (!empty($season_results[0]->dob)): ?>
-						<?= current_age_calc($season_results[0]->dob) ?>
+					<?php if (!empty($dobMB)): ?>
+						<?= current_age_calc($dobMB) ?>
 					<?php endif; ?>
 
 					</div>

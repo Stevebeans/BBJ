@@ -8,6 +8,9 @@
 $playerTable = "wp_bbj_players";
 $seasonTable = "wp_bbj_seasons";
 
+
+
+
 add_filter("acf/update_value/type=date_time_picker", "my_update_value_date_time_picker", 10, 3);
 
 function my_update_value_date_time_picker($value, $post_id, $field)

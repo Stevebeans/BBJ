@@ -3,6 +3,11 @@
 use function PHPSTORM_META\map;
 
 get_header();
+
+$mode = $_GET["bbjMode"];
+
+// check if admin 
+$isAdmin = current_user_can('administrator');
 ?>
 
 
@@ -45,6 +50,7 @@ $query = $wpdb->prepare(
 			r.total_weeks,
 			r.total_veto_played,
 			r.save_per,
+			r.finish,
 			r.hoh_per,
 			r.pov_per,
 			r.comp_per,
@@ -94,7 +100,7 @@ $query = $wpdb->prepare(
 	WHERE
 			r.season_id = %d
 	ORDER BY
-			r.evict_date DESC
+			r.finish ASC
 	",
   $season_id
 );
@@ -173,6 +179,14 @@ $players = $wpdb->get_results($query);
 					</div>
 
 					<div class="w-full">
+
+					<?php if (($mode === 'edit') && ($isAdmin) ): ?>
+
+							<a href="/wp-admin/admin.php?page=bbj-tools-edit-player-seasons&season=<?= $seasonID ?>&method=add">Edit Season</a> <Br />
+							<a href="/wp-admin/admin.php?page=bbj-tools-edit-player-seasons&season=<?= $seasonID ?>&method=weeks">Edit Weeks</a> <Br />
+					<?php endif; ?>
+
+
 						<h2 class="font-osw text-xl mb-4">Season Recap</h2>
 
 						<div class="w-full flex-grow  p-2">

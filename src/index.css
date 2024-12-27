@@ -232,10 +232,6 @@
     @apply flex flex-wrap sm:grid sm:grid-cols-2 sm:gap-2;
   }
 
-  .bbj-player-card-container {
-    @apply mb-4 w-full overflow-hidden rounded-lg bg-slate-100 shadow-deep hover:cursor-pointer hover:shadow-deepHover;
-  }
-
   .player-card-stat-header {
     @apply rounded bg-second500 text-center font-ibm text-xs font-bold capitalize text-primary500;
   }
@@ -414,4 +410,32 @@
   border: none;
   text-indent: -9999px;
   cursor: pointer;
+}
+
+.masonry.custom-masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 16px;
+  padding: 16px;
+}
+
+.player-card {
+  width: 100%;
+  margin-bottom: 16px;
+  display: inline-block;
+  /* Additional card styling */
+}
+
+@media (min-width: 640px) {
+  /* Adjust the breakpoint as needed */
+  .player-card {
+    width: calc(50% - 16px);
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Adjust the breakpoint as needed */
+  .player-card {
+    width: calc(33.333% - 16px);
+  }
 }
